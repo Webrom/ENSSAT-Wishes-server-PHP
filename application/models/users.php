@@ -22,4 +22,12 @@ class Users extends CI_Model{
         }
     }
 
+    public function verifyActivity(){
+        $this->db->select('actif');
+        $this->db->from('enseignant');
+        $this->db->where('login',$this->input->post('username'));
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 }
