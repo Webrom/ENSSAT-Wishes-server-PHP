@@ -27,7 +27,7 @@ class Users extends CI_Model{
         $this->db->from('enseignant');
         $this->db->where('login',$this->input->post('username'));
         $query = $this->db->get();
-        return $query;
+        return $query->result();
     }
 
 }
