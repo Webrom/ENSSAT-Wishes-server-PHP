@@ -1,0 +1,295 @@
+/*
+ * =====================================================
+ * By Bound3R
+ *
+ * Theme New Design Trends - Variables
+ * =====================================================
+ *
+ */
+
+//== Fuctions facility actions
+	/* Import Fonts*/
+	@font-face {
+		font-family: "opensans";
+		src:	url("../fonts/opensans-light.woff") format("woff");
+	}
+	@font-face {
+		font-family: "opensans-semibold";
+		src:	url("../fonts/opensans-semibold-600.woff") format("woff");
+	}
+	@font-face {
+		font-family: "opensans-six";
+		src:	url("../fonts/opensans-v6.woff") format("woff");
+	}
+
+	.text-shadow (@string: 1px 1px 1px rgba(0, 0, 0, 0.18)) {
+		text-shadow: @string;
+	}
+	.box-shadow (@string) {
+		-webkit-box-shadow: @string;
+		-moz-box-shadow:    @string;
+		box-shadow:         @string;
+	}
+	.border (@border: 0px, @border-color: @fix-no-bg) {
+		border-style: solid;
+		border-width: @border;
+		border-color: @border-color;
+	}
+
+	.border-radius (@radius: 0) {
+		-webkit-border-radius: @radius;
+		-moz-border-radius:    @radius;
+		border-radius:         @radius;
+
+		-moz-background-clip:    padding;
+		-webkit-background-clip: padding-box;
+		background-clip:         padding-box;
+	}
+
+	.box-shadow (@string) {
+		-webkit-box-shadow: @string;
+		-moz-box-shadow:    @string;
+		box-shadow:         @string;
+	}
+
+	.transition (@transition) {
+		-webkit-transition: @transition;
+		-moz-transition:    @transition;
+		-ms-transition:     @transition;
+		-o-transition:      @transition;
+	}
+
+	@font-family-opensans: 						"opensans", serif;
+	@font-family-opensans-semibold: 			"opensans-semibold", serif;
+	@font-family-opensans-vsix: 				"opensans-vsix", serif;
+
+/*
+ * =====================================================
+ * By Bound3R
+ *
+ * Theme FLAT GUI - Style
+ * =====================================================
+ *
+ */
+
+// == VARIABLES ========================================
+
+// == Body styles
+@body-bg: 	#FFFFFF;
+
+/* Typography */
+
+/* Body default text color*/
+@body-color: #732B41;
+
+/* Link color*/
+@link-color: #E62A64;
+@link-hover-color: #E7336B;
+
+/* Text colors */
+@text-primary-color: #9FAFbE;
+@text-primary-bg: #9FAFbE;
+@text-info-bg: #33B5E5;
+@text-success-color: #5a6609;
+@text-success-bg: #A9E247;
+@text-warning-bg: #E2A947;
+@text-danger-bg: #D92B66;
+
+/* Title */
+@h-padding: 5px 0 5px 10px;
+@h-color: 	#FFFFFF;
+@h-bg: #EA4A7B;
+
+/* H super */
+@h-super-bg:#E62A64;
+@h-super-shadow: #FFED20;
+
+/* Overlay subtitle */
+@h-overlay-bg: #ed6992;
+@h-overlay-margin: -16px 15px 10px 15px;
+@h-overlay-border-width: 7px 0 0 0;
+@h-overlay-border-color: #E7336B;
+
+/* Blockquote */
+@blockquote-border-color: #D92B66;
+
+/* Comments */
+@bg-comment: #FF4C83;
+@color-comment: #fff;
+
+// Buttons
+@button-margin: 0;
+@button-color: #FFFFFF;
+@button-bg: #E62A64;
+@button-border-width: 0;
+@button-radius: 1px;
+@button-hover-bg: darken(@button-bg, -4%);
+
+/* Primary button */
+@button-primary-bg: #E62A64;
+@button-primary-hover-bg: darken(@button-primary-bg, 4%);
+
+/* Info button */
+@button-info-bg: #33B5E5;
+@button-info-hover-bg: darken(@button-info-bg, 4%);
+
+/* Succes button */
+@button-success-color: #485C26;
+@button-success-bg: #B8D252;
+@button-success-hover-bg: darken(@button-success-bg, 4%);
+
+/* Warning button */
+@button-warning-bg: #FF9141;
+@button-warning-hover-bg: darken(@button-warning-bg, 4%);
+
+/* Danger button */
+@button-danger-bg: #FF4444;
+@button-danger-hover-bg: darken(@button-danger-bg, 4%);
+
+/* Other button */
+@button-other-bg: #272A2D;
+@button-other-hover-color: #FFFFFF;
+@button-other-hover-bg: darken(@button-other-bg, 4%);
+
+/* List group */
+@list-group-item-bg-active: #33b5e5;
+
+/* Pagination */
+@pagination-padding: 6px 11px;
+@pagination-color: #FFFFFF;
+@pagination-bg: #E62A64;
+@pagination-list-element-border-width: 0 1px;
+@pagination-list-element-border-left-color: #EA4A7B;
+@pagination-list-element-border-right-color: #EA4A7B;
+@pagination-hover-bg: #EA4A7B;
+@pagination-active-bg: #EA4A7B;
+@pagination-disable-color: #FFFFFF;
+@pagination-disable-bg: #B1244F;
+
+/* Flags */
+@flag-margin: 5px 10px;
+@flag-padding: 4px 20px 4px 12px;
+@flag-color: #FFFFFF;
+@flag-bg: #E62A64;
+@flag-cut-border-width: 13px 13px 13px 0;
+@flag-cut-bg: #fff;
+
+/* Tooltip */
+@tooltip-bg: #E62A64;
+@tooltip-border-color: #E62A64;
+
+/* Navbar */
+@navbar-color: #FFFFFF;
+@navbar-bg: #E62A64;
+@navbar-border-width: 0 0 1px 0;
+@navbar-border-color: #E62A64;
+@navbar-list-element-open-bg: #B1244F;
+@navbar-list-element-hover-bg: #B1244F;
+@navbar-list-drop-element-bg: #F5F5F5;
+@navbar-bg-title: #B1244F;
+
+/* Jumbotron */
+@jumbotron-color:  #FFFFFF;
+@jumbotron-bg: #E62A64;
+@jumbotron-padding: 20px;
+@jumbotron-h1-size: 58px;
+@jumbotron-h2-size: 26px;
+
+/* Thumbnail */
+@thumb-bg: #B32450;
+@thumb-border-width: 0;
+
+/* Carousel */
+@carousel-margin: 0 0 40px 0;
+@carousel-indicator-bottom: -40px;
+@carousel-indicator-elemnt: #B1244F;
+@carousel-indicator-elemnt-active: #E62A64;
+
+/* Panels */
+@panel-heading-default-bg: #FF4C83;
+@panel-heading-primary-bg: #FF4C83;
+@panel-heading-info-bg: #33b5e5;
+@panel-heading-success-color: #485c26;
+@panel-heading-success-bg: #b8d252;
+@panel-heading-warning-bg: #ff9141;
+@panel-heading-danger-bg: #E62A64;
+
+/* Progress bar */
+@progress-bar-bg: #EA4A7B;
+@progress-bar-success-bg: #B8D252;
+@progress-bar-info-bg: #33B5E5;
+@progress-bar-warning-bg: #FF9141;
+@progress-bar-danger-bg: #E62A64;
+
+/* Alerts */
+@alert-border-width: 1px;
+@alert-primary-color: #9199A2;
+@alert-primary-bg: #272A2A;
+@alert-primary-border-color: #383C40;
+@alert-warning-color: #E2A947;
+@alert-warning-border-color: #E2A947;
+@alert-danger-color: #D92B66;
+@alert-danger-border-color: #D92B66;
+@alert-info-color: #2C82B9;
+@alert-info-border-color: #2C82B9;
+@alert-success-color: #A9E247;
+@alert-success-border-color: #A9E247;
+
+/* ProgressBar */
+@progressbar-bg: #B1244F;
+
+// == Fix content elements & Basics
+@important: !important;
+@container-fixed-navbar-margin: 51px auto 0;
+@fix-no-bg: transparent @important;
+@grid-col-border-width: 1px;
+@grid-col-border-color: #272A2D;
+
+// == Grid modifications
+@grid-row-margin: 10px 0 0 0;
+@grid-col-margin: 0 0 0 2%;
+@grid-col-margin-4: 0 0 0 3%;
+@grid-col-lg-md-padding: 15px;
+@grid-col-border-color: #D92B66;
+@grid-col-lg-md-bg: @fix-no-bg;
+/* width */
+@grid-col-lg-md-width-12: 96%;
+@grid-col-lg-md-width-8: 63.66%;
+@grid-col-lg-md-width-6: 47%;
+@grid-col-lg-md-width-4: 29.33%;
+@grid-col-lg-md-width-1: 6.17%;
+@grid-col-lg-md-width-sm-xs: 96%;
+/* fix */
+@grid-col-lg-md-4-first: 0 1% 0 2%;
+@grid-col-lg-md-4-second: 0 1% 0 3%;
+@grid-col-lg-md-4-second-sm-xs: 0 1% 0 2%;
+
+//== Media queries breakpoints
+	// Extra small screen / phone
+	// Note: Deprecated @screen-xs and @screen-phone.
+	@screen-xs:									480px;
+	@screen-xs-min:								@screen-xs;
+	@screen-phone:							 	@screen-xs-min;
+
+	// Small screen / tablet
+	// Note: Deprecated @screen-sm and @screen-tablet.
+	@screen-sm:									768px;
+	@screen-sm-min:								@screen-sm;
+	@screen-tablet:								@screen-sm-min;
+
+	// Medium screen / desktop
+	// Note: Deprecated @screen-md and @screen-desktop.
+	@screen-md:									992px;
+	@screen-md-min:								@screen-md;
+	@screen-desktop:						 	@screen-md-min;
+
+	// Large screen / wide desktop
+	// Note: Deprecated @screen-lg and @screen-lg-desktop.
+	@screen-lg:									1200px;
+	@screen-lg-min:								@screen-lg;
+	@screen-lg-desktop:							@screen-lg-min;
+
+	// So media queries don't overlap when required, provide a maximum
+	@screen-xs-max:								(@screen-sm-min - 1);
+	@screen-sm-max:								(@screen-md-min - 1);
+	@screen-md-max:								(@screen-lg-min - 1);
