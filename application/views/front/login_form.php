@@ -30,7 +30,7 @@
                         <div class="form-group">
 
                             <div class="col-md-12 col-no-border">
-                                <label for="inputPassword" class="control-label">Password</label>
+                                <label for="inputPassword" class="control-label">Mot de passe</label>
                                 <input type="password" class="form-control" id="inputPassword" placeholder="Password">
                                 <div class="checkbox">
                                     <label>
