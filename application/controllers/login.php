@@ -17,8 +17,7 @@ class Login extends CI_Controller{
 
     public function validate_credentials(){
         $username = ($this->input->post('username'))?$this->input->post('username'):null;
-        $pwd = $this->input->post('password');
-
+        $pwd = ($this->input->post('password'))?$this->input->post('password'):null;
         var_dump($username,$pwd);
     }
 
@@ -26,5 +25,9 @@ class Login extends CI_Controller{
         $this->load->view('front/template/header');
         $this->load->view('front/login/signup_form');
         $this->load->view('front/template/footer');
+    }
+
+    public function createUser(){
+        echo 'azeaze';
     }
 }
