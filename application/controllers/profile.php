@@ -9,8 +9,8 @@
 class profile extends CI_Controller{
 
     public function index(){
-        $this->load->view('front/template/header');
-        $this->load->view('front/profile/profile_panel');
-        $this->load->view('front/template/footer');
+        $this->load->view('back/template/header');
+        $this->load->view('back/profile/profile_panel');
+        $this->load->view('back/template/footer');
     }
 }
