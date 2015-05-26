@@ -8,6 +8,11 @@
 
 class Users extends CI_Model{
 
+
+    /**
+     * Permet de savoir si un utilisateur existe, et si oui si le mot de passe est le bon
+     * @return bool Vrai si l'utilisateur et le mdp existe, sinon faux
+     */
     public function verifyUser(){
         $this->db->from('enseignant');
         $this->db->where('login',$this->input->post('username'));
@@ -22,6 +27,10 @@ class Users extends CI_Model{
         }
     }
 
+    /**
+     * Permet de savoir si un compte est actif ou inactif
+     * @return le contenu de 'actif' de la base
+     */
     public function verifyActivity(){
         $this->db->select('actif');
         $this->db->from('enseignant');
