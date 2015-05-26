@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
 /**
  * Created by PhpStorm.
  * User: zahead
@@ -9,5 +9,8 @@
 <footer>
 
 </footer>
+<script src="<?php echo base_url();?>/assets/js/jquery-1.10.2.min.js"></script>
+<script src="<?php echo base_url();?>/assets/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url();?>/assets/js/start.js"></script>
 </body>
 </html>

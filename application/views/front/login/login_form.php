@@ -17,6 +17,12 @@
     <div class="row">
         <div class="col-md-4 col-no-border"></div>
         <div class="col-md-4">
+            <?php if(isset($msg)):?>
+                <div class="alert alert-dismissable alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <?php echo $msg; ?>
+                </div>
+            <?php endif;?>
             <div class="bp-component">
                 <?php echo form_open('login/validate_credentials','class="form-horizontal"')?>
                     <fieldset>
@@ -24,13 +30,13 @@
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
                                 <label for="inputEmail" class="2 col-no-border control-label">Nom d'utilisateur</label>
-                                <?php echo form_input('username','Username','class="form-control" id="inputEmail" placeholder="Username"')?>
+                                <?php echo form_input('username','','class="form-control" id="inputEmail" placeholder="Username"')?>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
                                 <label for="inputPassword" class="control-label">Mot de passe</label>
-                                <?php echo form_input('password','Password','class="form-control" placeholder="password" id="inputPassword"')?>
+                                <?php echo form_password('password','','type="password" class="form-control" placeholder="password" id="inputPassword"')?>
                             </div>
                         </div>
                         <div class="form-group">

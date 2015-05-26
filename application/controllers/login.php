@@ -8,10 +8,10 @@
 
 class Login extends CI_Controller{
 
-    public function index()
+    public function index($data=null)
     {
         $this->load->view('front/template/header');
-        $this->load->view('front/login/login_form');
+        $this->load->view('front/login/login_form',$data);
         $this->load->view('front/template/footer');
     }
 
@@ -24,7 +24,21 @@ class Login extends CI_Controller{
                 'is_logged_in' => true
             );
             $this->session->set_userdata($data);
-            redirect('profile');
+            $actif = $this->users->verifyActivity();
+            if($actif=="1"){
+                redirect('homeNews');
+            }
+            else{
+                $data= array(
+                    'msg' => "Votre compte est incatif, veuillez contacter l'administrateur"
+                );
+                $this->index($data);
+            }
+        }else{
+            $data= array(
+                'msg' => "Ce compte n'existe pas vérifiez vos identifiants"
+            );
+            $this->index($data);
         }
     }
 

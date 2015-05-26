@@ -6,6 +6,8 @@
  * Time: 12:57
  */
 ?>
+<footer>
 
+</footer>
 </body>
 </html>
