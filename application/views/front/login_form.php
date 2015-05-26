@@ -18,13 +18,13 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <div class="bp-component">
-                <form class="form-horizontal">
+                <?php echo form_open('login/validate_credentials','class="form-horizontal"')?>
                     <fieldset>
                         <legend>Legend</legend>
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
                                 <label for="inputEmail" class="2 col-no-border control-label">Email anddress</label>
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Enter email">
+                                <?php echo form_input('username','Username','class="form-control" id="inputEmail"')?>
                             </div>
                         </div>
                         <div class="form-group">
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                     </fieldset>
-                </form>
+                <?php echo form_close();?>
             </div>
         </div>
         <div class="col-md-4"></div>

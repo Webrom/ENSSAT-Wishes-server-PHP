@@ -14,4 +14,11 @@ class Login extends CI_Controller{
         $this->load->view('front/login_form');
         $this->load->view('front/template/footer');
     }
+
+    public function validate_credentials(){
+        echo "pipi";
+        $this->load->view('front/template/header');
+        $this->load->view('front/login_form');
+        $this->load->view('front/template/footer');
+    }
 }
