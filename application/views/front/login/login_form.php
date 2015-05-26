@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Created by PhpStorm.
  * User: zahead
@@ -15,40 +15,34 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4"></div>
+        <div class="col-md-4 col-no-border"></div>
         <div class="col-md-4">
             <div class="bp-component">
-                <?php echo form_open('login/validate_credentials','class="form-horizontal"')?>
+                <?php echo form_open('login/createUser','class="form-horizontal"')?>
                     <fieldset>
-                        <legend>Legend</legend>
+                        <legend>Connexion</legend>
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
-                                <label for="inputEmail" class="2 col-no-border control-label">Email anddress</label>
-                                <?php echo form_input('username','Username','class="form-control" id="inputEmail"')?>
+                                <label for="inputEmail" class="2 col-no-border control-label">Nom d'utilisateur</label>
+                                <?php echo form_input('username','Username','class="form-control" id="inputEmail" placeholder="Username"')?>
                             </div>
                         </div>
                         <div class="form-group">
-
                             <div class="col-md-12 col-no-border">
                                 <label for="inputPassword" class="control-label">Mot de passe</label>
-                                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Checkbox
-                                    </label>
-                                </div>
+                                <?php echo form_input('password','Password','class="form-control" placeholder="password" id="inputPassword"')?>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-10 col-md-offset-2">
-                                <button class="btn btn-success">Connexion</button>
-                                <button type="submit" class="btn btn-info">Inscription</button>
+                                <?php echo form_submit('submit','Connexion','class="btn btn-success"')?>
+                                <?php echo anchor('login/signUp','Inscription','class="btn btn-info"');?>
                             </div>
                         </div>
                     </fieldset>
                 <?php echo form_close();?>
             </div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4 col-no-border"></div>
     </div>
 </div>
