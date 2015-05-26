@@ -9,7 +9,7 @@
 class admin extends CI_Controller{
 
     public function index(){
-        $this->load->model(users);
+        $this->load->model(admin);
 
         $this->load->view('back/template/header');
         $this->load->view('back/admin/admin_panel');
