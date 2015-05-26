@@ -20,10 +20,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-md-4 column">
             <form role="form">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Pseudo</label><input type="text" class="form-control" id="InputPseudo" />
+                    <label for="InputPseudo">Pseudo</label><input type="text" class="form-control" id="InputPseudo" />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Mot de passe</label><input type="password" class="form-control" id="InputPassword1" />
+                    <label for="InputPassword1">Mot de passe</label><input type="password" class="form-control" id="InputPassword1" />
                 </div>
                  <button type="submit" class="btn btn-default">Se connecter</button>
             </form>
