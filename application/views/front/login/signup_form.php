@@ -17,7 +17,7 @@
         <div class="col-md-4 col-no-border"></div>
         <div class="col-md-4">
             <div class="bp-component">
-                <?php echo form_open('login/validate_credentials','class="form-horizontal"')?>
+                <?php echo form_open('login/createUser','class="form-horizontal"')?>
 <fieldset>
     <legend>Inscription</legend>
     <div class="form-group">
