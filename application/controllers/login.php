@@ -16,8 +16,16 @@ class Login extends CI_Controller{
     }
 
     public function validate_credentials(){
-        $this->load->model('Users');
-        
+        $this->load->model('users');
+        $query = $this->users->verifyUser();
+        if($query){
+            $data = array(
+                'username' => $this->input->post('username'),
+                'is_logged_in' => true
+            );
+            $this->session->set_userdata($data);
+            redirect('profile');
+        }
     }
 
     public function signUp(){
