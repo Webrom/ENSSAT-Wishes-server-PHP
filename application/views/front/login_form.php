@@ -23,14 +23,14 @@
                         <legend>Legend</legend>
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
-                                <label for="inputEmail" class="2 col-no-border control-label">Email anddress</label>
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Enter email">
+                                <label for="inputID" class="2 col-no-border control-label">Identifiant</label>
+                                <input type="text" class="form-control" id="inputID" placeholder="Entrer votre id">
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-md-12 col-no-border">
-                                <label for="inputPassword" class="control-label">Password</label>
+                                <label for="inputPassword" class="control-label">Mot de passe</label>
                                 <input type="password" class="form-control" id="inputPassword" placeholder="Password">
                                 <div class="checkbox">
                                     <label>
