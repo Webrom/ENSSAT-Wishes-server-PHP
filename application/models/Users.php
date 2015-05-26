@@ -8,4 +8,17 @@
 
 class Users extends CI_Model{
 
+    public function verifyUser(){
+        $this->db->from('enseignant');
+        $this->db->where('login',$this->input->post('username'));
+        $this->db->where('pwd',$this->input->post('password'));
+        $query = $this->db->get();
+
+        if ($query->num_rows==1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
