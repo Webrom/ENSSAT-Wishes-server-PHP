@@ -6,14 +6,13 @@
  * Time: 12:52
  */
 
-class profile extends CI_Controller{
+class admin extends CI_Controller{
 
     public function index(){
         $this->load->model(users);
-        //TODO
 
         $this->load->view('back/template/header');
-        $this->load->view('back/profile/profile_panel');
+        $this->load->view('back/admin/admin_panel');
         $this->load->view('back/template/footer');
     }
 }
