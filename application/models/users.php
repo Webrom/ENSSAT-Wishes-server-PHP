@@ -69,6 +69,10 @@ class Users extends CI_Model{
         }*/
     }
 
+    public function changePassword($newPass,$userName){
+
+    }
+
     public function getStatus(){
         $this->db->select('statut');
         $this->db->distinct();

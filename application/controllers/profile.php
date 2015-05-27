@@ -8,11 +8,12 @@
 
 class profile extends CI_Controller{
 
-    public function index(){
+    public function index($msg=null){
         $this->load-> model('users');
         $userInfo = $this->users->getUserData();
         $data = array(
-            "userInfos" => $userInfo
+            "userInfos" => $userInfo,
+            "msg" => $msg
         );
         if(!$this->session->userdata('is_logged_in')){
             redirect('login');
@@ -30,12 +31,19 @@ class profile extends CI_Controller{
 
     public function changePass(){
         $this->load-> model('users');
-        $oldPass = $this->input->post("oldPass");
+        $oldPass  = $this->input->post("oldPass");
         $newPass1 = $this->input->post("newPass1");
         $newPass2 = $this->input->post("newPass2");
 
-        if($newPass1==$newPass2){
-            $this->users->verifyUser($this->session->userdata('username'),$oldPass);
+        if($this->users->verifyUser($this->session->userdata('username'),$oldPass))
+            if($newPass1==$newPass2){
+                changePassword($newPass1,$this->session->userdata('username'));
+            }
+            else{
+                $this->index("Les mots de passe ne correspondent pas ! ");
+            }
+        else{
+
         }
     }
 }
