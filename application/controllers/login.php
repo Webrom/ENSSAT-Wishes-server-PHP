@@ -45,7 +45,7 @@ class Login extends CI_Controller{
 
     public function validate_credentials(){
         $this->load-> model('users');
-        $query = $this->users->verifyUser();
+        $query = $this->users->verifyUser($this->input->post("username"),$this->input->post("password"));
 
         if($query){
 
@@ -60,13 +60,13 @@ class Login extends CI_Controller{
             }
             else{
                 $data= array(
-                    'msg' => "Votre compte est inactif, veuillez contacter l'administrateur"
+                    'msg' => "Votre compte est inactif, veuillez contacter l'administrateur."
                 );
                 $this->index($data);
             }
         }else{
             $data= array(
-                'msg' => "Ce compte n'existe pas, merci de vérifier vos identifiants"
+                'msg' => "Couple identifiant / mdp inexistant, merci de vérifier votre login."
             );
             $this->index($data);
         }
