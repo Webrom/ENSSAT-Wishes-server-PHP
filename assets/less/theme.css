@@ -877,12 +877,10 @@ a.list-group-item.active > .badge,
   width: 6.17%;
   margin: 0 0 0 2%;
 }
-.col-lg-4:first-child,
-.col-md-4:first-child {
+.col-lg-4:first-child {
   margin: 0 1% 0 2%;
 }
-.col-lg-4:nth-child(2),
-.col-md-4:nth-child(2) {
+.col-lg-4:nth-child(2) {
   margin: 0 1% 0 3%;
 }
 @media (min-width: 992px) and (max-width: 1199px) {

@@ -50,7 +50,6 @@ class Login extends CI_Controller{
         $query = $this->users->verifyUser($this->input->post("username"),$this->input->post("password"));
 
         if($query){
-
             $data = array(
                 'username' => $this->input->post('username'),
                 'is_logged_in' => true

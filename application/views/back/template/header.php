@@ -20,6 +20,9 @@
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
                 <li>
+                    <a href="<?php echo base_url()?>index.php/modules">Les modules</a>
+                </li>
+                <li class="hideMenu">
                     <a href="<?php echo base_url()?>index.php/profile">Profile</a>
                 </li>
                 <li class="hideMenu">
@@ -29,6 +32,9 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="<?php echo base_url()?>index.php/profile">Profile</a>
+                </li>
                 <li>
                     <a href="<?php echo base_url()?>index.php/login/logout">Déconnexion</a>
                 </li>

@@ -120,4 +120,11 @@ class Users extends CI_Model{
         $query = $this->db->get();
         return $query->row()->administrateur;
     }
+
+    public function getAllEnseignants(){
+        $this->db->select('login, nom, prenom');
+        $this->db->from('enseignant');
+        $query=$this->db->get();
+        return $query->result_array();
+    }
 }
