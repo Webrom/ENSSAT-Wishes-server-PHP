@@ -31,6 +31,12 @@
                 </div>
             </div>
             <div class="col-md-6 col-no-border">
+                <?php if(isset($msg)):?>
+                    <div class="alert alert-dismissable alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <?php echo $msg; ?>
+                    </div>
+                <?php endif;?>
                 <?php echo form_open('profile/changePass','class="form-horizontal"')?>
                 <div class="col-md-12 col-no-border">
                     <label for="oldPass" class="2 col-no-border control-label">Ancien mot de passe</label>

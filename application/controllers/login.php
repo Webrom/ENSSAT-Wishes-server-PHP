@@ -45,7 +45,7 @@ class Login extends CI_Controller{
 
     public function validate_credentials(){
         $this->load-> model('users');
-        $query = $this->users->verifyUser();
+        $query = $this->users->verifyUser($this->input->post('username'),$this->input->post('password'));
 
         if($query){
 
