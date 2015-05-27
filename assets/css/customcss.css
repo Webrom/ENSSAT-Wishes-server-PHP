@@ -1,0 +1,10 @@
+.customHide{
+    display:none;
+}
+
+#helpDisplay{
+    position:absolute;
+    left:50%;
+    top:50%;
+    border:1px solid darkred;
+}

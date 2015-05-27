@@ -27,20 +27,11 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="themes">
-                        <li><a href="#">Default</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">link</a></li>
-                        <li><a href="#">link</a></li>
-                        <li><a href="#">link</a></li>
-                        <li><a href="#">link</a></li>
-                        <li><a href="#">link</a></li>
-                    </ul>
-                </li>
                 <li>
                     <a href="#">Help</a>
+                </li>
+                <li>
+                    <a href="#">Profile</a>
                 </li>
                 <li>
                     <a href="#">Blog</a>
