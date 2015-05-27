@@ -8,17 +8,17 @@
 
 class profile extends CI_Controller{
 
-    public function index($msg=null){
+    public function index($msg=null,$success=null){
         $this->load-> model('users');
         $userInfo = $this->users->getUserData();
         $data = array(
             "userInfos" => $userInfo,
+            "success" => $success,
             "msg" => $msg
         );
         if(!$this->session->userdata('is_logged_in')){
             redirect('login');
         }else{
-            $this->load->model('users');
             $this->load->view('header');
             $this->load->view('back/template/header');
             if($this->users->isAdmin()=="1")
@@ -37,13 +37,14 @@ class profile extends CI_Controller{
 
         if($this->users->verifyUser($this->session->userdata('username'),$oldPass))
             if($newPass1==$newPass2){
-                changePassword($newPass1,$this->session->userdata('username'));
+                $this->users->changePassword($newPass1,$this->session->userdata('username'));
+                $this->index("Votre mot de passe a été changé, bravo mon poulet","alert-success");
             }
             else{
-                $this->index("Les mots de passe ne correspondent pas ! ");
+                $this->index("Les nouveaux mots de passe ne correspondent pas ! ","alert-danger");
             }
         else{
-
+            $this->index("Votre ancien mot de passe n'est pas bon ! ","alert-danger");
         }
     }
 }

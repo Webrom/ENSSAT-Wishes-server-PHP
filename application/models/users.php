@@ -96,7 +96,12 @@ class Users extends CI_Model{
     }
 
     public function changePassword($newPass,$userName){
-
+        //$this->db->query('UPDATE enseignant SET pwd ="'.$newPass.'" WHERE login="'.$userName.'";');
+        $data = array(
+            'pwd' => $newPass,
+        );
+        $this->db->where('login', $userName);
+        $this->db->update('enseignant', $data);
     }
 
     public function getStatus(){

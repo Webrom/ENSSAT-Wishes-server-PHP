@@ -32,7 +32,7 @@
             </div>
             <div class="col-md-6 col-no-border">
                 <?php if(isset($msg)):?>
-                    <div class="alert alert-dismissable alert-danger">
+                    <div class="alert alert-dismissable <?php if(isset($success)){ echo $success; } ?>">
                         <button type="button" class="close" data-dismiss="alert">×</button>
                         <?php echo $msg; ?>
                     </div>
