@@ -47,7 +47,6 @@ class Users extends CI_Model{
     }
 
     public function addUser(){
-        //if (isset($this->input->post('prenom'))&&)
         $test_login = strtolower(substr($this->input->post('prenom'),0,1));
         if (strlen($this->input->post('name'))>7){
             $taille = 7;
@@ -61,12 +60,39 @@ class Users extends CI_Model{
         $this->db->where('login',$test_login);
         $query = $this->db->get();
 
-        /*if ($query->num_rows==1){
-
+        if ($query->num_rows==1){
+            $x = 1;
+            $pourwhile = 0;
+            while ($pourwhile == 0){
+                $this->db->select('login');
+                $this->db->from('enseignant');
+                $this->db->where('login',$test_login.$x);
+                $querywhile = $this->db->get();
+                if ($querywhile->num_rows<1){
+                    $pourwhile = 1;
+                    $test_login = $test_login.$x;
+                }
+                else{
+                    $x++;
+                }
+            }
+        }
+        if ($this->input->post('status_select') == "autre"){
+            $statut = $this->input->post('status_perso');
         }
         else{
-            $this->db->set()
-        }*/
+            $statut = $this->input->post('status_select');
+        }
+        $this->db->set('login',$test_login);
+        $this->db->set('pwd',$this->input->post('password'));
+        $this->db->set('nom',$this->input->post('name'));
+        $this->db->set('prenom',$this->input->post('prenom'));
+        $this->db->set('statut',$statut);
+        $this->db->set('statutaire',$this->input->post('heures'));
+        $this->db->set('actif',0);
+        $this->db->set('administrateur',0);
+        $this->db->set('accepted',0);
+        $this->db->insert('enseignant');
     }
 
     public function changePassword($newPass,$userName){

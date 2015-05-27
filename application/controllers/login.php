@@ -45,7 +45,7 @@ class Login extends CI_Controller{
 
     public function validate_credentials(){
         $this->load-> model('users');
-        $query = $this->users->verifyUser($this->input->post('username'),$this->input->post('password'));
+        $query = $this->users->verifyUser();
 
         if($query){
 
@@ -72,6 +72,10 @@ class Login extends CI_Controller{
         }
     }
 
+    /**
+     * Cette fonction du controleur permet d'afficher le formulaire d'inscription
+     * Pour la liste des statuts des enseignants on demande au modèle d'intérroger la base
+     */
     public function signUp(){
         $this->load->view('header');
         $this->load->view('front/template/header_signup');
@@ -83,6 +87,7 @@ class Login extends CI_Controller{
         $this->load->view('front/login/signup_form', $data);
         $this->load->view('footer');
     }
+
 
     public function createUser(){
         $this->load->view('header');
@@ -105,7 +110,7 @@ class Login extends CI_Controller{
             $this->load->view('front/login/signup_form', $data);
         }
         else {
-            echo "formulaire ok";
+            $status = $this->users->addUser();
         }
         $this->load->view('footer');
     }
