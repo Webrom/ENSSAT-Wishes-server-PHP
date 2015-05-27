@@ -13,10 +13,12 @@ class Contenu extends CI_Model{
         $this->db->from ("contenu");
         $this->db->where("enseignant",$this->session->userdata('username'));
         $query =  $this->db->get();
-        $result = $query->result_array();
         $heures = 0;
-        foreach ($result as $heure){
-            $heures = $heures+$heure['hed'];
+        if ($query->num_rows>0) {
+            $result = $query->result_array();
+            foreach ($result as $heure) {
+                $heures = $heures + $heure['hed'];
+            }
         }
         return $heures;
     }

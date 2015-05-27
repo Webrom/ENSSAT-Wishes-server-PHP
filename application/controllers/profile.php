@@ -19,6 +19,13 @@ class profile extends CI_Controller{
         if(!$this->session->userdata('is_logged_in')){
             redirect('login');
         }else{
+            $this->load->model('contenu');
+            $heuresprises = $this->contenu->getHeuresPrises();
+            $heurestotales = $this->users->getHeures();
+            $pourcentage = round(($heuresprises/$heurestotales)*100,0);
+            $data['pourcentage'] = $pourcentage;
+            $data['heuresprises'] = $heuresprises;
+            $data['heurestotales'] = $heurestotales;
             $this->load->view('header');
             $this->load->view('back/template/header');
             $this->load->view('back/profile/profile_panel',$data);

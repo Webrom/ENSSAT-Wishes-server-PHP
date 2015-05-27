@@ -127,4 +127,12 @@ class Users extends CI_Model{
         $query=$this->db->get();
         return $query->result_array();
     }
+
+    public function getHeures(){
+        $this->db->select('statutaire');
+        $this->db->from('enseignant');
+        $this->db->where('login',$this->session->userdata('username'));
+        $query = $this->db->get();
+        return $query->row()->statutaire;
+    }
 }
