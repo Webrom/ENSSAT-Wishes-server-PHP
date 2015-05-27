@@ -10,7 +10,6 @@ class Login extends CI_Controller{
 
     public function index($data=null)
     {
-        $this->load->model('users');
         if(!$this->session->userdata('is_logged_in')){
             $this->load->view('header');
             $this->load->view('front/template/header');
@@ -23,7 +22,10 @@ class Login extends CI_Controller{
                 $data= array(
                     'msg' => "Votre compte est inactif, veuillez contacter l'administrateur"
                 );
-                $this->index($data);
+                $this->load->view('header');
+                $this->load->view('front/template/header');
+                $this->load->view('front/login/login_form',$data);
+                $this->load->view('footer');
             }
         }
 
@@ -41,7 +43,9 @@ class Login extends CI_Controller{
     public function validate_credentials(){
         $this->load-> model('users');
         $query = $this->users->verifyUser();
+
         if($query){
+
             $data = array(
                 'username' => $this->input->post('username'),
                 'is_logged_in' => true
