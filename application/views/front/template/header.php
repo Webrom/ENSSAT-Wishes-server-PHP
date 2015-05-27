@@ -41,9 +41,6 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#">Connexion</a>
-                </li>
-                <li>
                     <a href="#">Inscription</a>
                 </li>
             </ul>
