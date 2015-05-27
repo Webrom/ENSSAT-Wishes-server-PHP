@@ -32,6 +32,20 @@
                 <li>
                     <a id="linkHelp" href="#">Help</a>
                 </li>
+                <li class="hideMenu">
+                    <a href="#">Connexion</a>
+                </li>
+                <li class="hideMenu">
+                    <a href="#">Inscription</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">Connexion</a>
+                </li>
+                <li>
+                    <a href="#">Inscription</a>
+                </li>
             </ul>
         </div>
 
