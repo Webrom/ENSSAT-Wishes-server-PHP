@@ -35,6 +35,10 @@ class Login extends CI_Controller{
 
     }
 
+    public function mabite(){
+
+    }
+
     function logout()
     {
         $this->session->unset_userdata('is_logged_in');
@@ -72,7 +76,6 @@ class Login extends CI_Controller{
             $data= array(
                 'success' => "alert-danger",
                 'msg' => "Ce couple login / pwd n'existe pas, merci de vérifier vos identifiants !"
-
             );
             $this->index($data);
         }
@@ -110,9 +113,9 @@ class Login extends CI_Controller{
         if ($this->form_validation->run() == FALSE) {
             $status = $this->users->getStatus();
             $data = array(
-                "status" => $status,
+                'status' => $status,
                 'success' => "alert-danger",
-                "msg" => "Il y a une erreur dans votre formulaire, veuillez recommencer."
+                'msg' => "Il y a une erreur dans votre formulaire, veuillez recommencer."
             );
             $this->load->view('front/login/signup_form', $data);
         }
@@ -120,7 +123,7 @@ class Login extends CI_Controller{
             $login = $this->users->addUser();
             $data = array(
                 'success' => "alert-success",
-                "msg" => "Inscription terminée. Votre login est ".$login." , vous devez maintenant attendre la validation de votre compte par un administrateur."
+                'msg' => "Inscription terminée. Votre login est ".$login." , vous devez maintenant attendre la validation de votre compte par un administrateur."
             );
             $this->index($data);
         }
