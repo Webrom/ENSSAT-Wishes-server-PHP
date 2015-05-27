@@ -10,6 +10,7 @@ class Login extends CI_Controller{
 
     public function index($data=null)
     {
+        $this->load-> model('users');
         if(!$this->session->userdata('is_logged_in')){
             $this->load->view('header');
             $this->load->view('front/template/header');

@@ -10,7 +10,7 @@
 <div class="navbar navbar-dark navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a href="<?php echo base_url();?>" class="navbar-brand navbar-title">Home</a>
+            <a href="<?php echo base_url();?>" class="navbar-brand navbar-title">Accueil</a>
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
