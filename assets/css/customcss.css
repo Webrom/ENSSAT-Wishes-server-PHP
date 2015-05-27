@@ -16,4 +16,10 @@
     .hideMenu {
         display:none !important;
     }
+    #loginForm{
+        margin-top: 10%;
+    }
+    #signUpForm{
+        margin-top: 10%;
+    }
 }
