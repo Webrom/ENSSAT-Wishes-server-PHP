@@ -96,6 +96,11 @@ class Users extends CI_Model{
         return $test_login;
     }
 
+    /*
+     * fonction utilisee pour mettre a jour le password de l'utilisateur,
+     * depuis sa page profil
+     * @return rien du tout
+     */
     public function changePassword($newPass,$userName){
         //$this->db->query('UPDATE enseignant SET pwd ="'.$newPass.'" WHERE login="'.$userName.'";');
         $data = array(
@@ -105,6 +110,10 @@ class Users extends CI_Model{
         $this->db->update('enseignant', $data);
     }
 
+    /*
+     * retourne le statut d'un enseignant : 0 si inactif, 1 si actif
+     * @return resultat de query
+     */
     public function getStatus(){
         $this->db->select('statut');
         $this->db->distinct();
@@ -113,6 +122,9 @@ class Users extends CI_Model{
         return $query->result();
     }
 
+    /*
+     * retourne 1 si l'utilisateur courant est un administrateur du site
+     */
     public function isAdmin(){
         $this->db->select('administrateur');
         $this->db->from('enseignant');

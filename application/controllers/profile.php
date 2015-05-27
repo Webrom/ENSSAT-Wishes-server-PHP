@@ -42,7 +42,7 @@ class profile extends CI_Controller{
         if($this->users->verifyUser($this->session->userdata('username'),$oldPass))
             if($newPass1==$newPass2){
                 $this->users->changePassword($newPass1,$this->session->userdata('username'));
-                $this->index("Votre mot de passe a été changé, bravo mon poulet","alert-success");
+                $this->index("Votre mot de passe a été changé","alert-success");
             }
             else{
                 $this->index("Les nouveaux mots de passe ne correspondent pas ! ","alert-danger");
@@ -51,4 +51,6 @@ class profile extends CI_Controller{
             $this->index("Votre ancien mot de passe n'est pas bon ! ","alert-danger");
         }
     }
+
+
 }
