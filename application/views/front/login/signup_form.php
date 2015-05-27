@@ -41,7 +41,9 @@
                                 <?php foreach ($status as $lestatut){
                                     echo "<option value=\"$lestatut->statut\"";
                                     echo set_select('status_select', $lestatut->statut);
-                                    echo ">$lestatut->statut</option>";
+                                    echo ">";
+                                    echo ucfirst($lestatut->statut);
+                                    echo "</option>";
                                 }?>
                                     <option value="autre" <?php echo set_select('status_select','autre'); ?>>Autre</option>
                                 </select>
