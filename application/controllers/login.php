@@ -30,13 +30,13 @@ class Login extends CI_Controller{
             }
             else{
                 $data= array(
-                    'msg' => "Votre compte est incatif, veuillez contacter l'administrateur"
+                    'msg' => "Votre compte est inactif, veuillez contacter l'administrateur"
                 );
                 $this->index($data);
             }
         }else{
             $data= array(
-                'msg' => "Ce compte n'existe pas vérifiez vos identifiants"
+                'msg' => "Ce compte n'existe pas, merci de vérifier vos identifiants"
             );
             $this->index($data);
         }

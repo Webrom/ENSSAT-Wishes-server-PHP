@@ -10,7 +10,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>srv_voeux</title>
+    <title>Serveur de voeux d'enseignements</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href='<?php echo base_url();?>assets/css/bootstrap.min.css?v=2500' media="screen">
     <link rel="stylesheet" href='<?php echo base_url();?>assets/css/theme.min.css?v=2501'>
@@ -19,7 +19,7 @@
 <div class="navbar navbar-dark navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a href="/" class="navbar-brand navbar-title">Trendy</a>
+            <a href="<?php echo base_url();?>" class="navbar-brand navbar-title">Home</a>
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -28,33 +28,10 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="themes">
-                        <li><a href="#">Default</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">link</a></li>
-                        <li><a href="#">link</a></li>
-                        <li><a href="#">link</a></li>
-                        <li><a href="#">link</a></li>
-                        <li><a href="#">link</a></li>
-                    </ul>
-                </li>
                 <li>
                     <a href="#">Help</a>
                 </li>
-                <li>
-                    <a href="#">Blog</a>
-                </li>
             </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <form class="navbar-form navbar-left" role="search">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <button type="submit" class="btn glyphicon glyphicon-search"></button>
-                </form>
-            </ul>
-
         </div>
     </div>
 </div>
