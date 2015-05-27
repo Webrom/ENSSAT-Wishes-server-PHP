@@ -22,6 +22,7 @@ class Login extends CI_Controller{
                 redirect('homeNews');
             }else{
                 $data= array(
+                    'success' => "alert-danger",
                     'msg' => "Votre compte est inactif, veuillez contacter l'administrateur"
                 );
                 $this->load->view('header');
@@ -38,6 +39,7 @@ class Login extends CI_Controller{
     {
         $this->session->unset_userdata('is_logged_in');
         $data = array(
+            'success' => "alert-success",
             'msg' => "Vous avez bien été déconnecté."
         );
         $this->index($data);
@@ -60,12 +62,14 @@ class Login extends CI_Controller{
             }
             else{
                 $data= array(
+                    'success' => "alert-danger",
                     'msg' => "Votre compte est inactif, veuillez contacter l'administrateur"
                 );
                 $this->index($data);
             }
         }else{
             $data= array(
+                'success' => "alert-danger",
                 'msg' => "Ce compte n'existe pas, merci de vérifier vos identifiants"
             );
             $this->index($data);
@@ -99,18 +103,24 @@ class Login extends CI_Controller{
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('heures', 'Heures', 'required|is_natural_no_zero');
         if ($this->input->post('status_select') == "autre"){
-            $this->form_validation->set_rules('status_perso', 'status_perso', 'required|alpha');
+            $this->form_validation->set_rules('status_perso', 'status_perso', 'required|alpha_dash');
         }
         if ($this->form_validation->run() == FALSE) {
             $status = $this->users->getStatus();
             $data = array(
                 "status" => $status,
+                'success' => "alert-danger",
                 "msg" => "Il y a une erreur dans votre formulaire, veuillez recommencer."
             );
             $this->load->view('front/login/signup_form', $data);
         }
         else {
-            $status = $this->users->addUser();
+            $login = $this->users->addUser();
+            $data = array(
+                'success' => "alert-success",
+                "msg" => "Inscription terminée. Votre login est ".$login." , vous devez maintenant attendre la validation de votre compte par un administrateur."
+            );
+            $this->index($data);
         }
         $this->load->view('footer');
     }

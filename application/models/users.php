@@ -93,6 +93,7 @@ class Users extends CI_Model{
         $this->db->set('administrateur',0);
         $this->db->set('accepted',0);
         $this->db->insert('enseignant');
+        return $test_login;
     }
 
     public function changePassword($newPass,$userName){
