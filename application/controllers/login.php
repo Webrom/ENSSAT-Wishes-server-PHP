@@ -71,7 +71,7 @@ class Login extends CI_Controller{
         }else{
             $data= array(
                 'success' => "alert-danger",
-                'msg' => "Ce compte n'existe pas, merci de vérifier vos identifiants"
+                'msg' => "Ce couple login / pwd n'existe pas, merci de vérifier vos identifiants !"
 
             );
             $this->index($data);
