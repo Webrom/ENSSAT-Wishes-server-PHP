@@ -15,14 +15,16 @@ class modules extends CI_Controller{
         $this->load-> model('contenu');
     }
 
-    public function index($result=null){
+    public function index($result=null,$infosmodule=null){
         if(!$this->session->userdata('is_logged_in')){
             redirect('login');
         }else{
             $data = array(
                 "modules" => $this->modulesmodels->getAllModules(),
                 "enseignants" => $this->users->getAllEnseignants(),
-                "result" => $result
+                "result" => $result,
+                "module" => $infosmodule['module'],
+                "teacher" => $this->users->getUserData($infosmodule['teacher'])
             );
             $this->load->model('users');
             $this->load->view('header');
@@ -50,7 +52,7 @@ class modules extends CI_Controller{
                 $result = $this->contenu->getModuleByTeacher($data);
 
             }
-            $this->index($result);
+            $this->index($result,$data);
         }
     }
 }
