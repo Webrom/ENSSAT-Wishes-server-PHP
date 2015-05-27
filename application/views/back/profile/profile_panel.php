@@ -32,7 +32,18 @@
             </div>
             <div class="col-md-6 col-no-border">
                 <?php echo form_open()?>
-
+                <div class="col-md-12 col-no-border">
+                    <label for="oldPass" class="2 col-no-border control-label">Ancien mot de passe</label>
+                    <?php echo form_password('oldPass','','class="form-control" id="oldPass"')?>
+                </div>
+                <div class="col-md-12 col-no-border">
+                    <label for="newPass1" class="2 col-no-border control-label">Nouveau password : </label>
+                    <?php echo form_password('newPass1','','class="form-control" id="newPass1"')?>
+                </div>
+                <div class="col-md-12 col-no-border">
+                    <label for="newPass2" class="2 col-no-border control-label">Nouveau password (confirmation) :</label>
+                    <?php echo form_password('newPass2','','class="form-control" id="newPass2"')?>
+                </div>
                 <?php echo form_close()?>
             </div>
         </div>
