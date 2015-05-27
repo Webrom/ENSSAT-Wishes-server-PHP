@@ -14,6 +14,7 @@ class Login extends CI_Controller{
             $this->load->view('header');
             $this->load->view('front/template/header');
             $this->load->view('front/login/login_form',$data);
+            $this->load->view('front/template/footer_help');
             $this->load->view('footer');
         }else{
             if($this->users->verifyActivity($this->session->userdata('username'))=="1"){
@@ -25,6 +26,7 @@ class Login extends CI_Controller{
                 $this->load->view('header');
                 $this->load->view('front/template/header');
                 $this->load->view('front/login/login_form',$data);
+                $this->load->view('front/template/footer_help');
                 $this->load->view('footer');
             }
         }
