@@ -29,6 +29,22 @@
                     <label for="inputStatutaire" class="2 col-no-border control-label">Total d'heure à effectuer :</label>
                     <input disabled class="form-control" id="inputStatutaire" value="<?php echo $userInfo['statutaire'];?>" type="text">
                 </div>
+                <div class="col-md-12 col-no-border">
+                    <?php echo form_open_multipart('upload/do_upload');?>
+                    <div class="col-md-6 col-no-border">Image de profil :</div>
+                    <div class="col-md-6 col-no-border">
+                        <input type="file" name="userfile" size="20" />
+                    </div>
+                    <div class="col-md-4 col-no-border"></div>
+                    <div class="col-md-6 col-no-border">
+                        <input type="submit" value="Upload" />
+                    </div>
+                    <div class="col-md-2 col-no-border"></div>
+                    <?php if(isset($error)):?>
+                        echo $error;?>
+                    <?php endif;?>
+                    <?php echo form_close();?>
+                </div>
             </div>
             <div class="col-md-6 col-no-border">
                 <?php if(isset($msg)):?>
