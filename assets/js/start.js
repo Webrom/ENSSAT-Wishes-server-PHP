@@ -19,4 +19,12 @@ $(function(){
     $("#helpDisplay").click(function(e){
         $("#helpDisplay").fadeToggle();
     });
+    $("#status_select").change(function(e){
+        if ($("#status_select").val() == "autre"){
+            $("#StatusPerso").fadeIn();
+        }
+        else{
+            $("#StatusPerso").fadeOut();
+        }
+        });
 });

@@ -93,6 +93,9 @@ class Login extends CI_Controller{
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('heures', 'Heures', 'required|is_natural_no_zero');
+        if ($this->input->post('status_select') == "autre"){
+            $this->form_validation->set_rules('status_perso', 'status_perso', 'required|alpha');
+        }
         if ($this->form_validation->run() == FALSE) {
             $status = $this->users->getStatus();
             $data = array(

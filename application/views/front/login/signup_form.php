@@ -47,7 +47,7 @@
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="select_statut" class="control-label">Statut</label>
-                                <select name="status_select" class="form-control">
+                                <select name="status_select" class="form-control" id="status_select">
                                 <?php foreach ($status as $lestatut){
                                     echo "<option value=\"$lestatut->statut\"";
                                     echo set_select('status_select', $lestatut->statut);
@@ -59,7 +59,7 @@
                                 </select>
 
                             </div>
-                            <div class="col-md-12 col-no-border">
+                            <div class="col-md-12 col-no-border customHide" id="StatusPerso">
                                 <label for="inputStatusPerso" class="control-label">Votre statut</label>
                                 <?php echo form_input('status_perso','','class="form-control" placeholder="Statut" id="inputStatusPerso"')?>
                             </div>
