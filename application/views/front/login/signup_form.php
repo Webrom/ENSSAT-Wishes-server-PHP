@@ -34,7 +34,10 @@
                                 <?php echo form_input('password','Password','class="form-control" placeholder="password" id="inputPassword"')?>
                             </div>
                             <div class="col-md-12 col-no-border">
-                                <label for="name" class="control-label">Votre nom</label>
+                                <label for="select_statut" class="control-label">Votre statut</label>
+                                <?php foreach ($status as $lestatut){
+                                echo "$lestatut->statut <br />";
+                                }?>
                                 <?php echo form_input('name','John','class="form-control" placeholder="John" id="name"')?>
                             </div>
                         </div>

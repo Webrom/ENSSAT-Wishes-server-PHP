@@ -44,17 +44,18 @@ class Login extends CI_Controller{
 
     public function signUp(){
         $this->load->view('front/template/header');
-        $this->load->view('front/login/signup_form');
+        $this->load->model('users');
+        $status = $this->users->getStatus();
+        $data = array(
+            "status"=>$status
+        );
+        $this->load->view('front/login/signup_form',$data);
         $this->load->view('front/template/footer');
     }
 
     public function createUser(){
         $this->load->model('users');
         $this->users->addUser();
-        $test = $this->users->getStatus();
-        var_dump($test);
-        foreach ($test as $lestatut){
-            echo "$lestatut->statut <br />";
-        }
+
     }
 }
