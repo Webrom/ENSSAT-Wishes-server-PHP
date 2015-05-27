@@ -12,6 +12,7 @@ class modules extends CI_Controller{
         parent::__construct();
         $this->load-> model('modulesmodels');
         $this->load-> model('users');
+        $this->load-> model('contenu');
     }
 
     public function index(){
@@ -27,6 +28,27 @@ class modules extends CI_Controller{
             $this->load->view('back/template/header');
             $this->load->view('back/modules/showmodules',$data);
             $this->load->view('footer');
+        }
+    }
+
+    public function displayModule(){
+        if(!$this->session->userdata('is_logged_in')){
+            redirect('login');
+        }else{
+            $data=array(
+                "module"=>$this->input->post('module'),
+                "teacher"=>$this->input->post('teacher')
+            );
+            if($data['module']!="" && $data['teacher']!="")
+                $this->contenu->getModuleTeacher($data);
+            elseif($data['module']!="") {
+                $result = $this->contenu->getModuleByModule($data);
+                var_dump($result);
+            }else{
+                $result = $this->contenu->getModuleByTeacher($data);
+                var_dump($result);
+            }
+
         }
     }
 }

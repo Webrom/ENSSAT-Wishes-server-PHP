@@ -15,10 +15,11 @@
         <div class="col-md-2 col-no-border"></div>
         <div class="col-md-8">
             <div class="col-md-12 col-no-border">
-                <?php echo form_open()?>
+                <?php echo form_open('modules/displayModule')?>
                 <div class="col-md-6 col-no-border">
                     <label for="selectModule" class="control-label">Selectionnez un module</label>
                     <select name="module" class="form-control" id="selectModule">
+                        <option value="">...</option>
                         <?php foreach($modules as $module):?>
                             <option value="<?php echo $module['ident'];?>"><?php echo $module['ident'];?></option>
                         <?php endforeach;?>
@@ -27,6 +28,7 @@
                 <div class="col-md-6 col-no-border">
                     <label for="selectTeacher" class="control-label">Selectionnez un enseignant</label>
                     <select name="teacher" class="form-control" id="selectTeacher">
+                        <option value="">...</option>
                         <?php foreach($enseignants as $teacher):?>
                             <option value="<?php echo $teacher['login'];?>"><?php echo $teacher['nom']." ".$teacher['prenom'];?></option>
                         <?php endforeach;?>
