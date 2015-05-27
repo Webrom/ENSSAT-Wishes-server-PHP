@@ -10,10 +10,10 @@ class Users extends CI_Model{
      * Permet de savoir si un utilisateur existe, et si oui si le mot de passe est le bon
      * @return bool Vrai si l'utilisateur et le mdp existe, sinon faux
      */
-    public function verifyUser(){
+    public function verifyUser($name,$oldpass){
         $this->db->from('enseignant');
-        $this->db->where('login',$this->input->post('username'));
-        $this->db->where('pwd',$this->input->post('password'));
+        $this->db->where('login',$name);
+        $this->db->where('pwd',$oldpass);
         $query = $this->db->get();
 
         if ($query->num_rows==1){

@@ -35,7 +35,7 @@ class profile extends CI_Controller{
         $newPass2 = $this->input->post("newPass2");
 
         if($newPass1==$newPass2){
-
+            $this->users->verifyUser($this->session->userdata('username'),$oldPass);
         }
     }
 }
