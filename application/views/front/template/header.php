@@ -36,12 +36,12 @@
                     <a href="#">Connexion</a>
                 </li>
                 <li class="hideMenu">
-                    <a href="#">Inscription</a>
+                    <a href="<?php echo base_url()?>index.php/login/signUp">Inscription</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#">Inscription</a>
+                    <a href="<?php echo base_url()?>index.php/login/signUp">Inscription</a>
                 </li>
             </ul>
         </div>

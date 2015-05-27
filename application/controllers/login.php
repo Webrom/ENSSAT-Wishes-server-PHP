@@ -12,9 +12,10 @@ class Login extends CI_Controller{
     {
         $this->load->model('users');
         if(!$this->session->userdata('loggedin')){
+            $this->load->view('header');
             $this->load->view('front/template/header');
             $this->load->view('front/login/login_form',$data);
-            $this->load->view('front/template/footer');
+            $this->load->view('footer');
         }else{
             if($this->users->verifyActivity($this->session->userdata('username'))=="1"){
                 redirect('homeNews');
@@ -65,14 +66,15 @@ class Login extends CI_Controller{
     }
 
     public function signUp(){
-        $this->load->view('front/template/header');
+        $this->load->view('header');
+        $this->load->view('front/template/header_signup');
         $this->load->model('users');
         $status = $this->users->getStatus();
         $data = array(
             "status"=>$status
         );
         $this->load->view('front/login/signup_form',$data);
-        $this->load->view('front/template/footer');
+        $this->load->view('footer');
     }
 
     public function createUser(){

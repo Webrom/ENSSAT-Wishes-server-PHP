@@ -10,11 +10,12 @@ class profile extends CI_Controller{
 
     public function index(){
         $this->load->model('users');
+        $this->load->view('header');
         $this->load->view('back/template/header');
         if($this->users->isAdmin()=="1")
             $this->load->view('back/profile/admin_panel');
         else
             $this->load->view('back/profile/profile_panel');
-        $this->load->view('back/template/footer');
+        $this->load->view('footer');
     }
 }

@@ -6,11 +6,12 @@
  * Time: 12:51
  */
 ?>
+</head>
 <body>
 <div class="navbar navbar-dark navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a href="<?php echo base_url();?>" class="navbar-brand navbar-title">Trendy</a>
+            <a href="<?php echo base_url();?>" class="navbar-brand navbar-title">Home</a>
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -20,23 +21,21 @@
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">Help</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url()?>index.php/profile">Profile</a>
+                    <a id="linkHelp" href="#">Help</a>
                 </li>
                 <li class="hideMenu">
-                    <a href="#">Déconnexion</a>
+                    <a href="#">Connexion</a>
                 </li>
-
+                <li class="hideMenu">
+                    <a href="<?php echo base_url()?>index.php/login">Connexion</a>
+                </li>
             </ul>
-
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="<?php echo base_url()?>index.php/login/logout">Déconnexion</a>
+                    <a href="<?php echo base_url()?>index.php/login">Connexion</a>
                 </li>
             </ul>
-
         </div>
+
     </div>
 </div>
