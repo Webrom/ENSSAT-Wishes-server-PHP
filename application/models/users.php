@@ -24,6 +24,14 @@ class Users extends CI_Model{
         }
     }
 
+    public function getUserData(){
+        $this->db->SELECT ("nom","prenom", "statut", "statutaire");
+        $this->db->from ("enseignant");
+        $this->db->where("login",$this->session->userdata('username'));
+        $query =  $this->db->get();
+        return $query->result();
+    }
+
     /**
      * Permet de savoir si un compte est actif ou inactif
      * @param $name
