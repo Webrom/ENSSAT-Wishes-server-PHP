@@ -34,6 +34,10 @@
                                     <label for="prenom" class="control-label">Votre prenom</label>
                                     <?php echo form_input('prenom','','class="form-control" placeholder="Doe" id="prenom"')?>
                                 </div>
+                                <div class="col-md-12 col-no-border">
+                                    <label for="inputHours" class="control-label">Nombre d'heures allouées</label>
+                                    <?php echo form_input('heures','','class="form-control" placeholder="heures" id="inputHours"')?>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-no-border">
@@ -42,7 +46,7 @@
                                 <?php echo form_password('password','','class="form-control" placeholder="password" id="inputPassword"')?>
                             </div>
                             <div class="col-md-12 col-no-border">
-                                <label for="select_statut" class="control-label">Votre statut</label>
+                                <label for="select_statut" class="control-label">Statut</label>
                                 <select name="status_select" class="form-control">
                                 <?php foreach ($status as $lestatut){
                                     echo "<option value=\"$lestatut->statut\"";
@@ -56,9 +60,10 @@
 
                             </div>
                             <div class="col-md-12 col-no-border">
-                                <label for="inputHours" class="control-label">Nombre d'heures allouées</label>
-                                <?php echo form_input('heures','','class="form-control" placeholder="heures" id="inputHours"')?>
+                                <label for="inputStatusPerso" class="control-label">Votre statut</label>
+                                <?php echo form_input('status_perso','','class="form-control" placeholder="Statut" id="inputStatusPerso"')?>
                             </div>
+
                         </div>
                         <div class="form-group">
                             <div class="col-md-10 col-md-offset-2">
