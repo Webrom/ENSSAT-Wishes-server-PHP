@@ -8,16 +8,17 @@
 
 class profile extends CI_Controller{
 
-    public function index($msgError=null,$success=null){
+    public function index($uploadError=null,$msg=null,$success=null){
+        var_dump($uploadError); //TODO
+
         //charger le modele users
         $this->load-> model('users');
-        //recupérer dans les cookies les userInfos
-        $userInfo = $this->users->getUserData();
 
         $data = array(
-            "userInfos" => $userInfo,
+            "userInfos" => $this->users->getUserData(),
             "success" => $success,
-            "msgError" => $msgError
+            "msg" => $msg,
+            "uploadError" => $uploadError
         );
 
         if(!$this->session->userdata('is_logged_in')){
@@ -47,16 +48,16 @@ class profile extends CI_Controller{
         $newPass1 = $this->input->post("newPass1");
         $newPass2 = $this->input->post("newPass2");
 
-        if($this->users->verifyUser($this->session->userdata('username'),$oldPass))
-            if($newPass1==$newPass2){
-                $this->users->changePassword($newPass1,$this->session->userdata('username'));
-                $this->index("Votre mot de passe a été changé","alert-success");
+        if($this->users->verifyUser($this->session->userdata('username'),$oldPass)) {
+            if ($newPass1 == $newPass2) {
+                $this->users->changePassword($newPass1, $this->session->userdata('username'));
+                $this->index(null,"Votre mot de passe a été changé", "alert-success");
+            } else {
+                $this->index(null,"Les nouveaux mots de passe ne correspondent pas ! ", "alert-danger");
             }
-            else{
-                $this->index("Les nouveaux mots de passe ne correspondent pas ! ","alert-danger");
-            }
+        }
         else{
-            $this->index("Votre ancien mot de passe n'est pas bon ! ","alert-danger");
+            $this->index(null,"Votre ancien mot de passe n'est pas bon ! ","alert-danger");
         }
     }
 

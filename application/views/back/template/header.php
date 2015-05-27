@@ -33,7 +33,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="<?php echo base_url()?>index.php/profile">Profile</a>
+                    <a href="<?php echo base_url()?>index.php/profile">Profil</a>
                 </li>
                 <li>
                     <a href="<?php echo base_url()?>index.php/login/logout">Déconnexion</a>

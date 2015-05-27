@@ -24,16 +24,14 @@ class Upload extends CI_Controller {
 
         $this->load->library('upload', $config);
 
-        if ( ! $this->upload->do_upload())
-        {
+        if ( ! $this->upload->do_upload()){
             $msgError = $this->upload->display_errors();
         }
-        else
-        {
+        else{
             $msgError = "Image uploadée, bravo";
             $data = array('upload_data' => $this->upload->data());
         }
-        redirect('profile/index',$msgError,null);
+        redirect('profile',$msgError,null,null);
     }
 }
 ?>
