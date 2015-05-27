@@ -13,8 +13,8 @@
 })();
 
 $(function(){
-   $("a#linkHelp").click(function(e){
-       e.preventDefault();
-       $("#helpDisplay").fadeToggle();
-   })
+    $("a#linkHelp").click(function(e){
+        e.preventDefault();
+        $("#helpDisplay").fadeToggle();
+    })
 });
