@@ -8,7 +8,6 @@
 
 class homeNews extends CI_Controller {
     public function index(){
-        echo "azeaze";
         $this->load->view('back/template/header');
         $this->load->view('back/template/footer');
     }
