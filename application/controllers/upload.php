@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Upload extends CI_Controller {
 
@@ -9,9 +9,16 @@ class Upload extends CI_Controller {
         $this->load-> model('users');
     }
 
-    function index()
+    function index($data)
     {
-        $this->load->view('upload_form', array('error' => ' ' ));
+        if(!$this->session->userdata('is_logged_in')){
+            redirect('login');
+        }else {
+            $this->load->view('header');
+            $this->load->view('back/template/header');
+            $this->load->view('back/upload/upload',$data);
+            $this->load->view('footer');
+        }
     }
 
     function do_upload()
@@ -25,13 +32,17 @@ class Upload extends CI_Controller {
         $this->load->library('upload', $config);
 
         if ( ! $this->upload->do_upload()){
-            $msgError = $this->upload->display_errors();
+            $data = array(
+                "error" => "Une erreur est survenue durant le téléchargement de votre image. Vueillez rééssayer.".$this->upload->display_errors()
+            );
         }
         else{
-            $msgError = "Image uploadée, bravo";
-            $data = array('upload_data' => $this->upload->data());
+            $data = array(
+                "error" => "Image uploadée, bravo"
+            );
+            //$data = array('upload_data' => $this->upload->data());
         }
-        redirect('profile',$msgError,null,null);
+        $this->index($data);
     }
 }
 ?>

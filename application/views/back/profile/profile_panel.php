@@ -28,8 +28,8 @@
                 </div>
                 <div class="col-md-2 col-no-border"></div>
             </div>
-
             <div class="col-md-6 col-no-border">
+                <?php echo form_open_multipart('upload/do_upload');?>
                 <div class="col-md-12 col-no-border">
                     <label for="inputStatut" class="2 col-no-border control-label">Votre statut :</label>
                     <input disabled class="form-control" id="inputStatut" value="<?php echo $userInfo['statut'];?>" type="text">
@@ -39,7 +39,6 @@
                     <input disabled class="form-control" id="inputStatutaire" value="<?php echo $userInfo['statutaire'];?>" type="text">
                 </div>
                 <div class="col-md-12 col-no-border">
-                    <?php echo form_open_multipart('upload/do_upload');?>
                     <div class="form-group">
                         <label class="control-label">Uploader image :</label>
                         <div class="input-group">
@@ -49,19 +48,17 @@
                             </span>
                         </div>
                     </div>
-                    <?php
-                        echo form_close();
-                    ?>
                 </div>
+                <?php echo form_close(); ?>
             </div>
             <div class="col-md-6 col-no-border">
-                <?php if(isset($msg)):?>
-                <div class="alert alert-dismissable <?php if(isset($success)){ echo $success; } ?>">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <?php echo $msg; ?>
-                </div>
-                <?php endif;?>
-                <?php echo form_open('profile/changePass','class="form-horizontal"')?>
+                    <?php if(isset($msg)):?>
+                    <div class="alert alert-dismissable <?php if(isset($success)){ echo $success; } ?>">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <?php echo $msg; ?>
+                    </div>
+                    <?php endif;?>
+                    <?php echo form_open('profile/changePass','class="form-horizontal"')?>
                     <div class="col-md-12 col-no-border">
                         <label for="oldPass" class="2 col-no-border control-label">Ancien mot de passe : </label>
                         <?php echo form_password('oldPass','','class="form-control" id="oldPass"')?>
@@ -81,7 +78,7 @@
                         </div>
                         <div class="col-md-5 col-no-border"></div>
                     </div>
-                <?php echo form_close()?>
+                    <?php echo form_close()?>
             </div>
         </div>
         <div class="col-md-2 col-no-border"></div>
