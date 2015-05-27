@@ -10,13 +10,35 @@ class Login extends CI_Controller{
 
     public function index($data=null)
     {
-        $this->load->view('front/template/header');
-        $this->load->view('front/login/login_form',$data);
-        $this->load->view('front/template/footer');
+        $this->load->model('users');
+        if(!$this->session->userdata('loggedin')){
+            $this->load->view('front/template/header');
+            $this->load->view('front/login/login_form',$data);
+            $this->load->view('front/template/footer');
+        }else{
+            if($this->users->verifyActivity($this->session->userdata('username'))=="1"){
+                redirect('homeNews');
+            }else{
+                $data= array(
+                    'msg' => "Votre compte est inactif, veuillez contacter l'administrateur"
+                );
+                $this->index($data);
+            }
+        }
+
+    }
+
+    function logout()
+    {
+        $this->session->unset_userdata('loggedin');
+        $data = array(
+            'msg' => "Vous avez bien été déconnecté."
+        );
+        $this->index($data);
     }
 
     public function validate_credentials(){
-        $this->load->model('users');
+        $this->load-> model('users');
         $query = $this->users->verifyUser();
         if($query){
             $data = array(
@@ -24,7 +46,7 @@ class Login extends CI_Controller{
                 'is_logged_in' => true
             );
             $this->session->set_userdata($data);
-            $actif = $this->users->verifyActivity();
+            $actif = $this->users->verifyActivity($data['username']);
             if($actif=="1"){
                 redirect('homeNews');
             }

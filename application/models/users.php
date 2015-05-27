@@ -26,12 +26,13 @@ class Users extends CI_Model{
 
     /**
      * Permet de savoir si un compte est actif ou inactif
+     * @param $name
      * @return le contenu de 'actif' de la base
      */
-    public function verifyActivity(){
+    public function verifyActivity($name){
         $this->db->select('actif');
         $this->db->from('enseignant');
-        $this->db->where('login',$this->input->post('username'));
+        $this->db->where('login',$name);
         $query = $this->db->get();
         return $query->row()->actif;
     }
