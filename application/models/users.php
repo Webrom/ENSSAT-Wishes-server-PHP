@@ -1,9 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Created by PhpStorm.
- * User: zahead
- * Date: 26/05/15
- * Time: 14:46
+ * Fonctions pour les connexions utilisateurs
  */
 
 class Users extends CI_Model{
@@ -37,6 +34,19 @@ class Users extends CI_Model{
         $this->db->where('login',$this->input->post('username'));
         $query = $this->db->get();
         return $query->row()->actif;
+    }
+
+    public function addUser(){
+        $test_login = strtolower(substr($this->input->post('prenom'),0,1));
+        if (strlen($this->input->post('name'))>7){
+            $taille = 7;
+        }
+        else{
+            $taille = strlen($this->input->post('name'));
+        }
+        $test_login = $test_login+strtolower(substr($this->input->post('name'),0,$taille));
+        echo "Le login généré est $test_login";
+        //$this->db->select('login');
     }
 
 }
