@@ -41,20 +41,19 @@
                 <div class="col-md-12 col-no-border">
                     <?php echo form_open_multipart('upload/do_upload');?>
                     <div class="form-group">
-                        <label class="control-label">Uploader image</label>
+                        <label class="control-label">Uploader image :</label>
                         <div class="input-group">
                             <input type="file" name="userfile" class="form-control">
-                    <span class="input-group-btn">
-                      <button class="btn" type="submit">Envoyer</button>
-                    </span>
+                            <span class="input-group-btn">
+                                <input class="btn" type="submit" value="upload">Envoyer</input>
+                            </span>
                         </div>
                     </div>
-
-                    <?php if(isset($msg)):?>
-                        echo $msg;?>
-                    <?php endif;?>
-                    <?php echo form_close();?>
-
+                    <?php
+                        if(isset($msg))
+                            echo $msg;
+                        echo form_close();
+                    ?>
                 </div>
             </div>
             <div class="col-md-6 col-no-border">

@@ -19,7 +19,7 @@ class Upload extends CI_Controller {
         $userInfo = $this->users->getUserData();
         $config['upload_path'] = getcwd() . '/uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size']	= '10000000000';
+        $config['max_size']	= '1000000';
         $config['max_width']  = '1024';
         $config['max_height']  = '768';
 
