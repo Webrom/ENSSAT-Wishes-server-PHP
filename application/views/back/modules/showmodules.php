@@ -43,6 +43,14 @@
 
         </div>
         <div class="col-md-2 col-no-border"></div>
-
     </div>
+    <?php if(count($result)>0):?>
+    <div class="row">
+        <div class="col-md-2 col-no-border"></div>
+        <div class="col-md-8">
+            <?php var_dump($result);?>
+        </div>
+        <div class="col-md-2 col-no-border"></div>
+    </div>
+    <?php endif;?>
 </div>

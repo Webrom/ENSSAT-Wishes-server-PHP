@@ -9,7 +9,12 @@
 class Contenu extends CI_Model{
 
     public function getModuleTeacher($data){
-        echo "mt";
+        $this->db->select("*");
+        $this->db->from("contenu");
+        $this->db->where("module",$data['module']);
+        $this->db->where("enseignant",$data['teacher']);
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function getModuleByModule($data){
@@ -21,7 +26,11 @@ class Contenu extends CI_Model{
     }
 
     public function getModuleByTeacher($data){
-        echo "t";
+        $this->db->select("*");
+        $this->db->from("contenu");
+        $this->db->where("enseignant",$data['teacher']);
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function getHeuresPrises(){
