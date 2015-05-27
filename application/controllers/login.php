@@ -10,9 +10,9 @@ class Login extends CI_Controller{
 
     public function index($data=null)
     {
-        $this->load->view('front/template/header');
-        $this->load->view('front/login/login_form',$data);
-        $this->load->view('front/template/footer');
+        $this->load->view('back/template/header');
+        $this->load->view('back/login/login_form',$data);
+        $this->load->view('back/template/footer');
     }
 
     public function validate_credentials(){
@@ -36,7 +36,7 @@ class Login extends CI_Controller{
             }
         }else{
             $data= array(
-                'msg' => "Ce compte n'existe pas vérifiez vos identifiants"
+                'msg' => "Ce compte n'existe pas, merci de vérifier vos identifiants"
             );
             $this->index($data);
         }
