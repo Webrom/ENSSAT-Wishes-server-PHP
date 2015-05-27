@@ -14,6 +14,12 @@
     <div class="row">
         <div class="col-md-3 col-no-border"></div>
         <div class="col-md-6" id="signUpForm">
+            <?php if(isset($msg)):?>
+                <div class="alert alert-dismissable alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <?php echo $msg; ?>
+                </div>
+            <?php endif;?>
             <div class="bp-component">
                 <?php echo form_open('login/createUser','class="form-horizontal"')?>
                     <fieldset>

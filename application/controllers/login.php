@@ -75,17 +75,44 @@ class Login extends CI_Controller{
         $this->load->view('header');
         $this->load->view('front/template/header_signup');
         $this->load->model('users');
-        $status = $this->users->getStatus();
-        $data = array(
-            "status"=>$status
-        );
-        $this->load->view('front/login/signup_form',$data);
+        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('prenom', 'Prenom', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('heures', 'Heures', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $status = $this->users->getStatus();
+            $data = array(
+                "status" => $status
+            );
+            $this->load->view('front/login/signup_form', $data);
+        }
+        else {
+            echo "cest bon";
+        }
         $this->load->view('footer');
     }
 
     public function createUser(){
+        $this->load->view('header');
+        $this->load->view('front/template/header_signup');
         $this->load->model('users');
-        $this->users->addUser();
-
+        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('prenom', 'Prenom', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('heures', 'Heures', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $status = $this->users->getStatus();
+            $data = array(
+                "status" => $status,
+                "msg" => "Il y a une erreur dans votre formulaire, veuillez recommencer."
+            );
+            $this->load->view('front/login/signup_form', $data);
+        }
+        else {
+            echo "formulaire ok";
+        }
+        $this->load->view('footer');
     }
 }
