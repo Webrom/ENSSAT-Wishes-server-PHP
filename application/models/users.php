@@ -48,4 +48,12 @@ class Users extends CI_Model{
         echo "Le login généré est $test_login";
         //$this->db->select('login');
     }
+
+    public function isAdmin(){
+        $this->db->select('administrateur');
+        $this->db->from('enseignant');
+        $this->db->where('login',$this->session->userdata('username'));
+        $query = $this->db->get();
+        return $query->row()->administrateur;
+    }
 }

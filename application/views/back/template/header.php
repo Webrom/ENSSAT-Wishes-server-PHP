@@ -31,7 +31,7 @@
                     <a href="#">Help</a>
                 </li>
                 <li>
-                    <a href="#">Profile</a>
+                    <a href="<?php echo base_url()?>index.php/profile">Profile</a>
                 </li>
                 <li>
                     <a href="#">Blog</a>
