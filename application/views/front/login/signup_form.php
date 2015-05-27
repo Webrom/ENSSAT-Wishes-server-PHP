@@ -22,25 +22,30 @@
                             <div class="form-group">
                                 <div class="col-md-12 col-no-border">
                                     <label for="name" class="control-label">Votre nom</label>
-                                    <?php echo form_input('name','John','class="form-control" placeholder="John" id="name"')?>
+                                    <?php echo form_input('name','','class="form-control" placeholder="John" id="name"')?>
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <label for="prenom" class="control-label">Votre prenom</label>
-                                    <?php echo form_input('prenom','Doe','class="form-control" placeholder="Doe" id="prenom"')?>
+                                    <?php echo form_input('prenom','','class="form-control" placeholder="Doe" id="prenom"')?>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-no-border">
                             <div class="col-md-12 col-no-border">
                                 <label for="inputPassword" class="control-label">Mot de passe</label>
-                                <?php echo form_input('password','Password','class="form-control" placeholder="password" id="inputPassword"')?>
+                                <?php echo form_password('password','','class="form-control" placeholder="password" id="inputPassword"')?>
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="select_statut" class="control-label">Votre statut</label>
+                                <select name="status_select" class="form-control">
                                 <?php foreach ($status as $lestatut){
-                                    echo "$lestatut->statut <br />";
+                                    echo "<option value=\"$lestatut->statut\"";
+                                    echo set_select('status_select', $lestatut->statut);
+                                    echo ">$lestatut->statut</option>";
                                 }?>
-                                <?php echo form_input('name','John','class="form-control" placeholder="John" id="name"')?>
+                                    <option value="autre" <?php echo set_select('status_select','autre'); ?>>Autre</option>
+                                </select>
+
                             </div>
                         </div>
                         <div class="form-group">
