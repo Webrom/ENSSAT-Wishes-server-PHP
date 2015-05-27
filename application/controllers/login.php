@@ -51,5 +51,10 @@ class Login extends CI_Controller{
     public function createUser(){
         $this->load->model('users');
         $this->users->addUser();
+        $test = $this->users->getStatus();
+        var_dump($test);
+        foreach ($test as $lestatut){
+            echo "$lestatut->statut <br />";
+        }
     }
 }

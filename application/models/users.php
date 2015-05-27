@@ -44,9 +44,26 @@ class Users extends CI_Model{
         else{
             $taille = strlen($this->input->post('name'));
         }
-        $test_login = $test_login+strtolower(substr($this->input->post('name'),0,$taille));
-        echo "Le login généré est $test_login";
-        //$this->db->select('login');
+        $test_login = $test_login.strtolower(substr($this->input->post('name'),0,$taille));
+        $this->db->select('login');
+        $this->db->from('enseignant');
+        $this->db->where('login',$test_login);
+        $query = $this->db->get();
+
+        /*if ($query->num_rows==1){
+
+        }
+        else{
+            $this->db->set()
+        }*/
+    }
+
+    public function getStatus(){
+        $this->db->select('statut');
+        $this->db->distinct();
+        $this->db->from('enseignant');
+        $query = $this->db->get();
+        return $query->result();
     }
 
     public function isAdmin(){

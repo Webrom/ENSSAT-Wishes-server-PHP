@@ -33,6 +33,10 @@
                                 <label for="inputPassword" class="control-label">Mot de passe</label>
                                 <?php echo form_input('password','Password','class="form-control" placeholder="password" id="inputPassword"')?>
                             </div>
+                            <div class="col-md-12 col-no-border">
+                                <label for="name" class="control-label">Votre nom</label>
+                                <?php echo form_input('name','John','class="form-control" placeholder="John" id="name"')?>
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-10 col-md-offset-2">
