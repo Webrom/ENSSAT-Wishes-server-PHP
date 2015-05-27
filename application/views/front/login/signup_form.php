@@ -49,6 +49,10 @@
                                 </select>
 
                             </div>
+                            <div class="col-md-12 col-no-border">
+                                <label for="inputHours" class="control-label">Nombre d'heures allouées</label>
+                                <?php echo form_input('heures','','class="form-control" placeholder="heures" id="inputHours"')?>
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-10 col-md-offset-2">

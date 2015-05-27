@@ -38,6 +38,7 @@ class Users extends CI_Model{
     }
 
     public function addUser(){
+        //if (isset())
         $test_login = strtolower(substr($this->input->post('prenom'),0,1));
         if (strlen($this->input->post('name'))>7){
             $taille = 7;
