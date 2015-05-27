@@ -26,5 +26,10 @@ $(function(){
         else{
             $("#StatusPerso").fadeOut();
         }
+    });
+    $("#resetFormSearch").click(function(e){
+        $('.form-control').each(function () {
+            $(this).val("");
         });
+    });
 });

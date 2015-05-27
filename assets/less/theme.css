@@ -96,7 +96,7 @@ h6,
 .h6 {
   padding: 5px 0 5px 10px;
   color: #ffffff;
-  background-color: #ea4a7b;
+  background-color: #2980b9;
 }
 .h-super {
   padding: 5px 0 15px 10px;
@@ -744,6 +744,12 @@ a.list-group-item.active > .badge,
 }
 .list-group-item-heading {
   color: #FFF !important;
+}
+.module-not-taken {
+  background: #27ae60;
+}
+.module-not-taken:hover {
+  background: #2ecc71 !important;
 }
 /* Thumbnail */
 .thumbnail {

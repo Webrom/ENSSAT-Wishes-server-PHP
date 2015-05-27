@@ -24,7 +24,7 @@ class modules extends CI_Controller{
                 "enseignants" => $this->users->getAllEnseignants(),
                 "result" => $result,
                 "module" => $infosmodule['module'],
-                "teacher" => $this->users->getUserData($infosmodule['teacher'])
+                "teacher" => $infosmodule['teacher']
             );
             $this->load->model('users');
             $this->load->view('header');
@@ -52,6 +52,10 @@ class modules extends CI_Controller{
                 $result = $this->contenu->getModuleByTeacher($data);
 
             }
+            $data=array(
+                "module" => $this->input->post('module'),
+                "teacher" =>  $this->users->getUserDataByUsername($this->input->post('teacher'))
+            );
             $this->index($result,$data);
         }
     }
