@@ -9,10 +9,14 @@
 class admin extends CI_Controller{
 
     public function index(){
-        $this->load->model(admin);
-        $this->load->view('header');
-        $this->load->view('back/template/header');
-        $this->load->view('back/admin/admin_panel');
-        $this->load->view('footer');
+        if(!$this->session->userdata('is_logged_in')){
+            redirect('login');
+        }else{
+            $this->load->model(admin);
+            $this->load->view('header');
+            $this->load->view('back/template/header');
+            $this->load->view('back/admin/admin_panel');
+            $this->load->view('footer');
+        }
     }
 }

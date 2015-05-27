@@ -8,8 +8,12 @@
 
 class homeNews extends CI_Controller {
     public function index(){
-        $this->load->view('header');
-        $this->load->view('back/template/header');
-        $this->load->view('footer');
+        if(!$this->session->userdata('is_logged_in')){
+            redirect('login');
+        }else{
+            $this->load->view('header');
+            $this->load->view('back/template/header');
+            $this->load->view('footer');
+        }
     }
 }

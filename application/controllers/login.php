@@ -11,7 +11,7 @@ class Login extends CI_Controller{
     public function index($data=null)
     {
         $this->load->model('users');
-        if(!$this->session->userdata('loggedin')){
+        if(!$this->session->userdata('is_logged_in')){
             $this->load->view('header');
             $this->load->view('front/template/header');
             $this->load->view('front/login/login_form',$data);
@@ -31,7 +31,7 @@ class Login extends CI_Controller{
 
     function logout()
     {
-        $this->session->unset_userdata('loggedin');
+        $this->session->unset_userdata('is_logged_in');
         $data = array(
             'msg' => "Vous avez bien été déconnecté."
         );
