@@ -13,20 +13,24 @@
         <div class="col-md-2 col-no-border"></div>
         <div class="col-md-8">
             <div class="col-md-12 col-no-border">
-                <div class="col-md-2">
-                    <img class="media-object img-circle" alt="64x64" src="<?php echo base_url()?>assets/img/comments/01.jpg" style="width: 64px; height: 64px;">
-                </div>
-                <div class="col-md-10">
-                    <h2><?php echo $userInfo['prenom']." ".$userInfo['nom'];?></h2>
-                </div>
-                <div class="col-md-2 col-no-border"></div>
-                <div class="col-md-8 col-no-border">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-success" style="width: <?php echo $pourcentage; ?>%"></div>
+                <div class="col-md-12 col-no-border">
+                    <div class="col-md-2">
+                        <img class="media-object img-circle" alt="64x64" src="<?php echo base_url()?>assets/img/comments/01.jpg" style="width: 64px; height: 64px;">
                     </div>
-                    <span class="text-success"><?php echo $pourcentage; ?>% : <?php echo $heuresprises;?> h sur vos <?php echo $heurestotales;?> h</span>
+                    <div class="col-md-10">
+                        <h2><?php echo $userInfo['prenom']." ".$userInfo['nom'];?></h2>
+                    </div>
                 </div>
-                <div class="col-md-2 col-no-border"></div>
+                <div class="col-md-12 col-no-border">
+                    <div class="col-md-8 col-no-border">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" style="width: <?php echo $pourcentage; ?>%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-no-border">
+                        <span class="text-success"><?php echo $pourcentage; ?>% : <?php echo $heuresprises;?> h sur vos <?php echo $heurestotales;?> h</span>
+                    </div>
+                </div>
             </div>
             <div class="col-md-6 col-no-border">
                 <?php echo form_open_multipart('upload/do_upload');?>
