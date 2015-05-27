@@ -9,9 +9,7 @@
 <!-- Forms -->
 <div class="bp-docs-section">
     <div class="row">
-        <div class="col-md-12 title-section">
-            <h1 id="forms">Connexion</h1>
-        </div>
+
     </div>
 
     <div class="row">

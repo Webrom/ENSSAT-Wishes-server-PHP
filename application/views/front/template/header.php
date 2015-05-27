@@ -6,16 +6,6 @@
  * Time: 12:51
  */
 ?>
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Serveur de voeux d'enseignements</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href='<?php echo base_url();?>assets/css/bootstrap.min.css?v=2500' media="screen">
-    <link rel="stylesheet" href='<?php echo base_url();?>assets/css/customcss.css' media="screen">
-    <link rel="stylesheet" href='<?php echo base_url();?>assets/css/theme.min.css?v=2501'>
-</head>
 <body>
 <div class="navbar navbar-dark navbar-fixed-top">
     <div class="container">
@@ -31,9 +21,6 @@
             <ul class="nav navbar-nav">
                 <li>
                     <a id="linkHelp" href="#">Help</a>
-                </li>
-                <li class="hideMenu">
-                    <a href="#">Connexion</a>
                 </li>
                 <li class="hideMenu">
                     <a href="<?php echo base_url()?>index.php/login/signUp">Inscription</a>
