@@ -16,4 +16,7 @@ $(function(){
     $("a#linkHelp").click(function(e){
         $("#helpDisplay").fadeToggle();
     });
+    $("#helpDisplay").click(function(e){
+        $("#helpDisplay").fadeToggle();
+    });
 });
