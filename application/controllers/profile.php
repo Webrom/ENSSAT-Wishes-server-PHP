@@ -9,6 +9,11 @@
 class profile extends CI_Controller{
 
     public function index(){
+        $this->load-> model('users');
+        $userInfo = $this->users->getUserData();
+        $data = array(
+            "userInfos" => $userInfo
+        );
         if(!$this->session->userdata('is_logged_in')){
             redirect('login');
         }else{
@@ -18,8 +23,19 @@ class profile extends CI_Controller{
             if($this->users->isAdmin()=="1")
                 $this->load->view('back/profile/admin_panel');
             else
-                $this->load->view('back/profile/profile_panel');
+                $this->load->view('back/profile/profile_panel',$data);
             $this->load->view('footer');
+        }
+    }
+
+    public function changePass(){
+        $this->load-> model('users');
+        $oldPass = $this->input->post("oldPass");
+        $newPass1 = $this->input->post("newPass1");
+        $newPass2 = $this->input->post("newPass2");
+
+        if($newPass1==$newPass2){
+
         }
     }
 }
