@@ -41,29 +41,30 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-no-border">
-                            <div class="col-md-12 col-no-border">
-                                <label for="inputPassword" class="control-label">Mot de passe</label>
-                                <?php echo form_password('password','','class="form-control" placeholder="password" id="inputPassword"')?>
-                            </div>
-                            <div class="col-md-12 col-no-border">
-                                <label for="select_statut" class="control-label">Statut</label>
-                                <select name="status_select" class="form-control" id="status_select">
-                                <?php foreach ($status as $lestatut){
-                                    echo "<option value=\"$lestatut->statut\"";
-                                    echo set_select('status_select', $lestatut->statut);
-                                    echo ">";
-                                    echo ucfirst($lestatut->statut);
-                                    echo "</option>";
-                                }?>
-                                    <option value="autre" <?php echo set_select('status_select','autre'); ?>>Autre</option>
-                                </select>
+                            <div class="form-group">
+                                <div class="col-md-12 col-no-border">
+                                    <label for="inputPassword" class="control-label">Mot de passe</label>
+                                    <?php echo form_password('password','','class="form-control" placeholder="password" id="inputPassword"')?>
+                                </div>
+                                <div class="col-md-12 col-no-border">
+                                    <label for="select_statut" class="control-label">Statut</label>
+                                    <select name="status_select" class="form-control" id="status_select">
+                                    <?php foreach ($status as $lestatut){
+                                        echo "<option value=\"$lestatut->statut\"";
+                                        echo set_select('status_select', $lestatut->statut);
+                                        echo ">";
+                                        echo ucfirst($lestatut->statut);
+                                        echo "</option>";
+                                    }?>
+                                        <option value="autre" <?php echo set_select('status_select','autre'); ?>>Autre</option>
+                                    </select>
 
+                                </div>
+                                <div class="col-md-12 col-no-border customHide" id="StatusPerso">
+                                    <label for="inputStatusPerso" class="control-label">Votre statut</label>
+                                    <?php echo form_input('status_perso','','class="form-control" placeholder="Statut" id="inputStatusPerso"')?>
+                                </div>
                             </div>
-                            <div class="col-md-12 col-no-border customHide" id="StatusPerso">
-                                <label for="inputStatusPerso" class="control-label">Votre statut</label>
-                                <?php echo form_input('status_perso','','class="form-control" placeholder="Statut" id="inputStatusPerso"')?>
-                            </div>
-
                         </div>
                         <div class="form-group">
                             <div class="col-md-10 col-md-offset-2">
