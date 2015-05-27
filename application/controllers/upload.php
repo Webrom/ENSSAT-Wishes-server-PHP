@@ -28,14 +28,14 @@ class Upload extends CI_Controller {
         if ( ! $this->upload->do_upload())
         {
             $msg = array(
-                'error' => $this->upload->display_errors(),
+                'msg' => $this->upload->display_errors(),
                 'userInfos' => $userInfo
             );
         }
         else
         {
             $msg = array(
-                'error' => "Image uploadée, bravo",
+                'msg' => "Image uploadée, bravo",
                 'userInfos' => $userInfo
             );
             $data = array('upload_data' => $this->upload->data());

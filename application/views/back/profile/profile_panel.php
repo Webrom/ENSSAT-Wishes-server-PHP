@@ -40,19 +40,21 @@
                 </div>
                 <div class="col-md-12 col-no-border">
                     <?php echo form_open_multipart('upload/do_upload');?>
-                    <div class="col-md-6 col-no-border">Image de profil :</div>
-                    <div class="col-md-6 col-no-border">
-                        <input type="file" name="userfile" size="20" />
+                    <div class="form-group">
+                        <label class="control-label">Uploader image</label>
+                        <div class="input-group">
+                            <input type="file" name="userfile" class="form-control">
+                    <span class="input-group-btn">
+                      <button class="btn" type="submit">Envoyer</button>
+                    </span>
+                        </div>
                     </div>
-                    <div class="col-md-4 col-no-border"></div>
-                    <div class="col-md-6 col-no-border">
-                        <input type="submit" value="Upload" />
-                    </div>
-                    <div class="col-md-2 col-no-border"></div>
-                    <?php if(isset($error)):?>
-                        echo $error;?>
+
+                    <?php if(isset($msg)):?>
+                        echo $msg;?>
                     <?php endif;?>
                     <?php echo form_close();?>
+
                 </div>
             </div>
             <div class="col-md-6 col-no-border">
