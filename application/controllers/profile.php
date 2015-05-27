@@ -8,24 +8,32 @@
 
 class profile extends CI_Controller{
 
-    public function index($msg=null,$success=null){
+    public function index($msgError=null,$success=null){
+        //charger le modele users
         $this->load-> model('users');
+        //recupérer dans les cookies les userInfos
         $userInfo = $this->users->getUserData();
+
         $data = array(
             "userInfos" => $userInfo,
             "success" => $success,
-            "msg" => $msg
+            "msgError" => $msgError
         );
+
         if(!$this->session->userdata('is_logged_in')){
             redirect('login');
         }else{
             $this->load->model('contenu');
+
+            /* CALCUL POURCENTAGE HEURES PRISES */
             $heuresprises = $this->contenu->getHeuresPrises();
             $heurestotales = $this->users->getHeures();
             $pourcentage = round(($heuresprises/$heurestotales)*100,0);
             $data['pourcentage'] = $pourcentage;
             $data['heuresprises'] = $heuresprises;
             $data['heurestotales'] = $heurestotales;
+            /* FIN CALCUL */
+
             $this->load->view('header');
             $this->load->view('back/template/header');
             $this->load->view('back/profile/profile_panel',$data);

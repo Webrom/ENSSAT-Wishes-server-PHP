@@ -23,7 +23,7 @@
                     <a href="<?php echo base_url()?>index.php/modules">Les modules</a>
                 </li>
                 <li class="hideMenu">
-                    <a href="<?php echo base_url()?>index.php/profile">Profile</a>
+                    <a href="<?php echo base_url()?>index.php/profile">Profil</a>
                 </li>
                 <li class="hideMenu">
                     <a href="#">Déconnexion</a>

@@ -16,7 +16,6 @@ class Upload extends CI_Controller {
 
     function do_upload()
     {
-        $userInfo = $this->users->getUserData();
         $config['upload_path'] = getcwd() . '/uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size']	= '1000000';
@@ -27,20 +26,14 @@ class Upload extends CI_Controller {
 
         if ( ! $this->upload->do_upload())
         {
-            $msg = array(
-                'msg' => $this->upload->display_errors(),
-                'userInfos' => $userInfo
-            );
+            $msgError = $this->upload->display_errors();
         }
         else
         {
-            $msg = array(
-                'msg' => "Image uploadée, bravo",
-                'userInfos' => $userInfo
-            );
+            $msgError = "Image uploadée, bravo";
             $data = array('upload_data' => $this->upload->data());
         }
-        redirect('profile',$msg);
+        redirect('profile/index',$msgError,null);
     }
 }
 ?>
