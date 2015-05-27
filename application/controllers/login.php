@@ -49,6 +49,7 @@ class Login extends CI_Controller{
     }
 
     public function createUser(){
-        echo 'azeaze';
+        $this->load->model('users');
+        $this->users->addUser();
     }
 }

@@ -48,5 +48,4 @@ class Users extends CI_Model{
         echo "Le login généré est $test_login";
         //$this->db->select('login');
     }
-
 }
