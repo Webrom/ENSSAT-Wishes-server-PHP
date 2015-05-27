@@ -75,21 +75,11 @@ class Login extends CI_Controller{
         $this->load->view('header');
         $this->load->view('front/template/header_signup');
         $this->load->model('users');
-        $this->form_validation->set_rules('name', 'Name', 'required');
-        $this->form_validation->set_rules('prenom', 'Prenom', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
-        $this->form_validation->set_rules('heures', 'Heures', 'required');
-        if ($this->form_validation->run() == FALSE) {
-            $status = $this->users->getStatus();
-            $data = array(
+        $status = $this->users->getStatus();
+        $data = array(
                 "status" => $status
             );
-            $this->load->view('front/login/signup_form', $data);
-        }
-        else {
-            echo "cest bon";
-        }
+        $this->load->view('front/login/signup_form', $data);
         $this->load->view('footer');
     }
 
@@ -97,11 +87,11 @@ class Login extends CI_Controller{
         $this->load->view('header');
         $this->load->view('front/template/header_signup');
         $this->load->model('users');
-        $this->form_validation->set_rules('name', 'Name', 'required');
-        $this->form_validation->set_rules('prenom', 'Prenom', 'required');
+        $this->form_validation->set_rules('name', 'Name', 'required|alpha_dash');
+        $this->form_validation->set_rules('prenom', 'Prenom', 'required|alpha_dash');
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
-        $this->form_validation->set_rules('heures', 'Heures', 'required');
+        $this->form_validation->set_rules('heures', 'Heures', 'required|is_natural_no_zero');
         if ($this->form_validation->run() == FALSE) {
             $status = $this->users->getStatus();
             $data = array(
