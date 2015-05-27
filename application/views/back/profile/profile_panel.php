@@ -19,7 +19,16 @@
                 <div class="col-md-10">
                     <h2><?php echo $userInfo['nom']." ".$userInfo['prenom'];?></h2>
                 </div>
+                <div class="col-md-2 col-no-border"></div>
+                <div class="col-md-8 col-no-border">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" style="width: <?php echo $pourcentage; ?>%"></div>
+                    </div>
+                    <span class="text-success"><?php echo $pourcentage; ?>% : <?php echo $heuresprises;?> h sur vos <?php echo $heurestotales;?> h</span>
+                </div>
+                <div class="col-md-2 col-no-border"></div>
             </div>
+
             <div class="col-md-6 col-no-border">
                 <div class="col-md-12 col-no-border">
                     <label for="inputStatut" class="2 col-no-border control-label">Votre statut :</label>
