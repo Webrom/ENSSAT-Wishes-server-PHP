@@ -12,5 +12,4 @@ class homeNews extends CI_Controller {
         $this->load->view('back/template/header');
         $this->load->view('back/template/footer');
     }
-
 }
