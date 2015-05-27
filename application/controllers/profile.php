@@ -27,4 +27,15 @@ class profile extends CI_Controller{
             $this->load->view('footer');
         }
     }
+
+    public function changePass(){
+        $this->load-> model('users');
+        $oldPass = $this->input->post("oldPass");
+        $newPass1 = $this->input->post("newPass1");
+        $newPass2 = $this->input->post("newPass2");
+
+        if($newPass1==$newPass2){
+
+        }
+    }
 }

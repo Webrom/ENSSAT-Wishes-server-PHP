@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-no-border">
-                <?php echo form_open()?>
+                <?php echo form_open('profile/changePass','class="form-horizontal"')?>
                 <div class="col-md-12 col-no-border">
                     <label for="oldPass" class="2 col-no-border control-label">Ancien mot de passe</label>
                     <?php echo form_password('oldPass','','class="form-control" id="oldPass"')?>
@@ -43,6 +43,13 @@
                 <div class="col-md-12 col-no-border">
                     <label for="newPass2" class="2 col-no-border control-label">Nouveau password (confirmation) :</label>
                     <?php echo form_password('newPass2','','class="form-control" id="newPass2"')?>
+                </div>
+                <div class="col-md-12 col-no-border">
+                    <div class="col-md-3 col-no-border"></div>
+                    <div class="col-md-4 col-no-border">
+                            <?php echo form_submit('submit','Confirmer','class="btn btn-success"')?>
+                    </div>
+                    <div class="col-md-5 col-no-border"></div>
                 </div>
                 <?php echo form_close()?>
             </div>
