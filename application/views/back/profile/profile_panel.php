@@ -20,8 +20,8 @@
                 </div>
                 <div class="col-md-12 col-no-border">
                     <div class="col-md-8 col-no-border">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success" style="width: <?php echo $pourcentage; ?>%"></div>
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar" style="width: <?php echo $pourcentage; ?>%"></div>
                         </div>
                     </div>
                     <div class="col-md-4 col-no-border">
