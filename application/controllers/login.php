@@ -103,6 +103,8 @@ class Login extends CI_Controller{
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('heures', 'Heures', 'required|is_natural_no_zero');
         if ($this->input->post('status_select') == "autre"){
+            echo "on rentre en 1";
+            die();
             $this->form_validation->set_rules('status_perso', 'status_perso', 'required|alpha_dash');
         }
         if ($this->form_validation->run() == FALSE) {
@@ -115,7 +117,7 @@ class Login extends CI_Controller{
             $this->load->view('front/login/signup_form', $data);
         }
         else {
-            $login = $this->users->addUser();
+            $login = $this->users->addUser($this->input->post('password'));
             $data = array(
                 'success' => "alert-success",
                 'msg' => "Inscription terminée. Votre login est ".$login." , vous devez maintenant attendre la validation de votre compte par un administrateur."

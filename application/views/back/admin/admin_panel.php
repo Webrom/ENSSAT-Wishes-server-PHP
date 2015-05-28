@@ -136,14 +136,12 @@
                                                         <?php echo form_input('heures','','class="form-control" placeholder="heures" id="inputHours" required')?>
                                                     </div>
                                                     <div class="col-md-12 col-no-border">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox"> Actif ?
-                                                            </label>
-                                                        </div>
+                                                        <label for="actif" class="control-label">Actif ?</label>
+                                                        <select class="form-control" id="select" name="actif">
+                                                            <option>0</option>
+                                                            <option>1</option>
+                                                        </select>
                                                     </div>
-
-
                                                 </div>
                                                 <div class="col-md-12 col-no-border">
                                                     <label for="select_statut" class="control-label">Statut</label>

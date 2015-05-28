@@ -55,7 +55,7 @@ class Users extends CI_Model{
         return $query->row()->actif;
     }
 
-    public function addUser($default_pwd=null){
+    public function addUser($pwd="servicesENSSAT",$activity=0,$accepted=0){
         $test_login = strtolower(substr($this->input->post('prenom'),0,1));
         if (strlen($this->input->post('name'))>7){
             $taille = 7;
@@ -93,21 +93,23 @@ class Users extends CI_Model{
             $statut = $this->input->post('status_select');
         }
         $this->db->set('login',$test_login);
-        if(!isset($default_pwd))
-            $this->db->set('pwd',$this->input->post('password'));
-        else
-            $this->db->set('pwd',$default_pwd);
+        $this->db->set('pwd',$pwd);
         $this->db->set('nom',$this->input->post('name'));
         $this->db->set('prenom',$this->input->post('prenom'));
         $this->db->set('statut',$statut);
         $this->db->set('statutaire',$this->input->post('heures'));
-        $this->db->set('actif',0);
+        $this->db->set('actif',$activity);
         $this->db->set('administrateur',0);
-        $this->db->set('accepted',0);
+        $this->db->set('accepted',$accepted);
         $this->db->insert('enseignant');
         return $test_login;
     }
 
+    public function delUser($userLogin){
+        //DELETE FROM `voeux`.`enseignant` WHERE `enseignant`.`login` = 'bvozel'
+        $this->db->where('login', $userLogin);
+        $this->db->delete('enseignant');
+    }
     /*
      * fonction utilisee pour mettre a jour le password de l'utilisateur,
      * depuis sa page profil
