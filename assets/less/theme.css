@@ -180,7 +180,8 @@ textarea {
   color: #ffffff;
 }
 .navbar-dark .nav > li > a:hover,
-.navbar-dark .nav > li > a:focus {
+.navbar-dark .nav > li > a:focus,
+.navbar-dark .nav > li > a.active {
   background-color: #1c4e6f;
 }
 .navbar-dark ul > li > ul > li a {

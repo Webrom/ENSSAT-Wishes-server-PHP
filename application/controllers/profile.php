@@ -18,7 +18,8 @@ class profile extends CI_Controller{
             "msg" => $msg,
             "uploadError" => $uploadError,
             "admin" => $this->session->userdata["admin"],
-            "avatar" => $this->users->getAvatar()
+            "avatar" => $this->users->getAvatar(),
+            "active" => "Profil"
         );
 
         if(!$this->session->userdata('is_logged_in')){

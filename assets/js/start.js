@@ -33,4 +33,10 @@ $(function(){
             $(this).val("");
         });
     });
+    $('.navbar-nav li a').each(function(){
+        if($(this).text()==$('#activePage').text()){
+            console.log($(this).text());
+            $(this).addClass("active");
+        }
+    });
 });

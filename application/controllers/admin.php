@@ -26,6 +26,7 @@ class admin extends CI_Controller{
                 "result" => $result,
                 "module" => $infosmodule['module'],
                 "teacher" => $infosmodule['teacher'],
+                "active" => "Administration"
             );
             $this->load->view('header',$data);
             $this->load->view('back/template/header');
