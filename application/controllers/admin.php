@@ -34,14 +34,6 @@ class admin extends CI_Controller{
     }
 
     public function addModule(){
-        $module = array(
-            "ident" => $this->input->post('inputIdent'),
-            "public" => $this->input->post('inputPublic'),
-            "semestre" => $this->input->post('inputSemestre'),
-            "libelle" => $this->input->post('inputLibelle'),
-            "responsable" => $this->input->post('inputResponsable')
-        );
-
-        var_dump($module);
+        $this->modulesmodels->addModule();
     }
 }

@@ -34,11 +34,11 @@
                                             <div class="form-group">
                                                 <div class="col-md-12 col-no-border">
                                                     <label for="inputIdent" class="2 col-no-border control-label">Identifiant du module</label>
-                                                    <?php echo form_input('inputIdent','','class="form-control" id="inputIdent" placeholder="ex : ALGOC1"')?>
+                                                    <?php echo form_input('inputIdent','','class="form-control" id="inputIdent" placeholder="ex : ALGOC1" required')?>
                                                 </div>
                                                 <div class="col-md-12 col-no-border">
                                                     <label for="inputLibelle" class="2 col-no-border control-label">Description du module</label>
-                                                    <?php echo form_input('inputLibelle','','class="form-control" id="inputIdent" placeholder="ex : Algorithmique et language C 1"')?>
+                                                    <?php echo form_input('inputLibelle','','class="form-control" id="inputIdent" placeholder="ex : Algorithmique et language C 1" required')?>
                                                 </div>
                                                 <div class="col-md-12 col-no-border">
                                                     <label for="selectResponsable" class="control-label">Responsable</label>

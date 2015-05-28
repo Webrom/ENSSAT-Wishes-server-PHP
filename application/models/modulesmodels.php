@@ -8,7 +8,7 @@
 
 class modulesmodels extends CI_Model {
 
-    public function getAllModule(){
+    public function getAllModules(){
         $this->db->select("ident,libelle");
         $this->db->from ("module");
         $query = $this->db->get();
@@ -24,6 +24,19 @@ class modulesmodels extends CI_Model {
     }
 
     public function addModule(){
-
+        /*$this->db->set('ident',$this->input->post('inputIdent'));
+        $this->db->set('public',$this->input->post('selectPublic'));
+        $this->db->set('semestre',$this->input->post('selectSemestre'));
+        $this->db->set('libelle',$this->input->post('inputLibelle'));
+        $this->db->set('responsable',$this->input->post('selectResponsable'));*/
+        $module= array(
+            "ident" => $this->input->post('inputIdent'),
+            "public" => $this->input->post('selectPublic'),
+            "semestre" => $this->input->post('selectSemestre'),
+            "libelle" => $this->input->post('inputLibelle'),
+            "responsable" => $this->input->post('selectResponsable')
+        );
+        $query = $this->db->insert('module',$module);
+        var_dump($query);
     }
 }
