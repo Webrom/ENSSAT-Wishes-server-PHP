@@ -62,4 +62,20 @@ class modules extends CI_Controller{
             $this->index($result,$data);
         }
     }
+
+    public function inscriptionModule(){
+        /*if(!$this->session->userdata('is_logged_in')){
+            redirect('login');
+        }else{
+            if (isset($this->input->get('module'))&&isset($this->input->get('partie'))){
+
+            }
+            else{
+                $info= array(
+                    'success' => "alert-danger",
+                    'msg' => "Il y a eu une erreur dans l'inscription au module."
+                );
+            }
+        }*/
+    }
 }

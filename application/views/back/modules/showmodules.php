@@ -71,7 +71,7 @@
             <?php foreach($result as $val):?>
                 <div class="col-md-4 col-no-border bp-component">
                     <div class="list-group">
-                        <a href="#" class="list-group-item <?php if(!$val['enseignant']){echo "module-not-taken";}?>">
+                        <div class="list-group-item <?php if(!$val['enseignant']){echo "module-not-taken";}?>">
                             <h4 class="list-group-item-heading"><?php echo $val['module'];?></h4>
                             <ul class="list-group">
                                 <li class='list-group-item'>
@@ -85,11 +85,11 @@
                                     <?php if($val['enseignant'])
                                         echo $val['enseignant'];
                                     else
-                                        echo "Pas d'enseignant";?>
+                                        echo '<a href=""><button type="button" class="btn btn-warning">S\'inscrire</button></a>';?>
                                 </li>
                             </ul>
 
-                        </a>
+                        </div>
                     </div>
                 </div>
 
