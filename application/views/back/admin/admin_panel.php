@@ -119,7 +119,12 @@
                                         <fieldset>
                                             <legend>Ajouter un utilisateur</legend>
                                             <div class="form-group">
-
+                                                <div class="col-md-12 col-no-border">
+                                                    <div class="col-md-8 col-no-border"></div>
+                                                    <div class="col-md-4 col-no-border">
+                                                        <?php echo form_submit('submit','valider','class="btn btn-success"')?>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </fieldset>
                                         <?php echo form_close()?>
@@ -133,7 +138,12 @@
                                         <fieldset>
                                             <legend>Supprimer un utilisateur</legend>
                                             <div class="form-group">
-
+                                                <div class="col-md-12 col-no-border">
+                                                    <div class="col-md-8 col-no-border"></div>
+                                                    <div class="col-md-4 col-no-border">
+                                                        <?php echo form_submit('submit','valider','class="btn btn-success"')?>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </fieldset>
                                         <?php echo form_close()?>
