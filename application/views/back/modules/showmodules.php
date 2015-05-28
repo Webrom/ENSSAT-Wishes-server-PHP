@@ -26,33 +26,37 @@
                     <select name="module" class="form-control" id="selectModule">
                         <?php if($module!=""): ?>
                             <option value="<?php echo $module;?>"><?php echo $module;?></option>
-                            <option value="">...</option>
+                            <option value="">Pas de module en particulier module</option>
                         <?php else: ?>
-                            <option value="">...</option>
+                            <option value="">Aucun module</option>
                         <?php endif?>
                         <?php foreach($modules as $module):?>
-                            <option value="<?php echo $module['ident'];?>"><?php echo $module['ident'];?></option>
+                            <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
                         <?php endforeach;?>
                     </select>
                 </div>
                 <div class="col-md-6 col-no-border">
                     <label for="selectTeacher" class="control-label">Selectionnez un enseignant</label>
-                    <select name="teacher" class="form-control" id="selectTeacher">
-                        <?php if(count($teacher)>0): ?>
+                    <select name="teacher" class="form-control" id="selectTeacher" <?php if($checked){echo 'disabled';} ?>>
+                        <?php if(count($teacher)>0 && $teacher!="no"): ?>
                             <option value="<?php echo $teacher[0]['login'];?>"><?php echo $teacher[0]['nom']." ".$teacher[0]['prenom'];?></option>
-                            <option value="">...</option>
+                            <option value="no">Pas d'enseignant en particulier</option>
                         <?php else: ?>
-                            <option value="">...</option>
+                            <option value="no">Pas d'enseignant en particulier</option>
                         <?php endif?>
                         <?php foreach($enseignants as $teacher):?>
                             <option value="<?php echo $teacher['login'];?>"><?php echo $teacher['nom']." ".$teacher['prenom'];?></option>
                         <?php endforeach;?>
                     </select>
                 </div>
+                <div class="col-md-6 col-no-border">
+                    <input type="checkbox" id="checkboxSansEnseignant" name="checkboxSansEnseignant" <?php if($checked){echo 'checked="checked"';} ?>/><label for="checkboxSansEnseignant" class="control-label">Uniquement les contenus sans enseignant</label>
+
+                </div>
                 <div class="col-md-8 col-no-border"></div>
                 <div class="col-md-4 col-no-border">
                     <?php echo form_button("reset","reset",'id="resetFormSearch" class="btn btn-info"');?>
-                    <?php echo form_submit('submit','valider','class="btn btn-success"')?>
+                    <?php echo form_submit('submit','Rechercher','class="btn btn-success"')?>
                 </div>
                 <?php echo form_close()?>
             </div>

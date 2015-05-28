@@ -39,4 +39,12 @@ $(function(){
             $(this).addClass("active");
         }
     });
+    $("#checkboxSansEnseignant").click(function(e){
+        if($("#checkboxSansEnseignant").prop('checked')){
+            $("#selectTeacher").prop('disabled', true);
+        }
+        else{
+            $("#selectTeacher").prop('disabled', false);
+        }
+    });
 });
