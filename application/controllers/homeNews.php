@@ -12,7 +12,7 @@ class homeNews extends CI_Controller {
             redirect('login');
         }else{
             $data = array(
-                "admin" => $this->session->userdata['admin']
+                "admin" => $this->session->userdata['admin'],
             );
             $this->load->view('header',$data);
             $this->load->view('back/template/header');
