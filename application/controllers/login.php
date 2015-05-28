@@ -52,7 +52,8 @@ class Login extends CI_Controller{
         if($query){
             $data = array(
                 'username' => $this->input->post('username'),
-                'is_logged_in' => true
+                'is_logged_in' => true,
+                'admin' => $this->users->isAdmin($this->input->post('username'))
             );
             $this->session->set_userdata($data);
             $actif = $this->users->verifyActivity($data['username']);

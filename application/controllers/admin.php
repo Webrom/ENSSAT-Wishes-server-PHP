@@ -12,8 +12,10 @@ class admin extends CI_Controller{
         if(!$this->session->userdata('is_logged_in')){
             redirect('login');
         }else{
-            $this->load->model(admin);
-            $this->load->view('header');
+            $data = array(
+                "admin" => $this->session->userdata['admin']
+            );
+            $this->load->view('header',$data);
             $this->load->view('back/template/header');
             $this->load->view('back/admin/admin_panel');
             $this->load->view('footer');

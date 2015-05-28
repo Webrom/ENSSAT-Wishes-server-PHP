@@ -134,10 +134,10 @@ class Users extends CI_Model{
     /*
      * retourne 1 si l'utilisateur courant est un administrateur du site
      */
-    public function isAdmin(){
+    public function isAdmin($username){
         $this->db->select('administrateur');
         $this->db->from('enseignant');
-        $this->db->where('login',$this->session->userdata('username'));
+        $this->db->where('login',$username);
         $query = $this->db->get();
         return $query->row()->administrateur;
     }

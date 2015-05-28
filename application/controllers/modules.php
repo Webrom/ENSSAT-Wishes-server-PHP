@@ -24,10 +24,11 @@ class modules extends CI_Controller{
                 "enseignants" => $this->users->getAllEnseignants(),
                 "result" => $result,
                 "module" => $infosmodule['module'],
-                "teacher" => $infosmodule['teacher']
+                "teacher" => $infosmodule['teacher'],
+                "admin" => $this->session->userdata['admin']
             );
             $this->load->model('users');
-            $this->load->view('header');
+            $this->load->view('header',$data);
             $this->load->view('back/template/header');
             $this->load->view('back/modules/showmodules',$data);
             $this->load->view('footer');

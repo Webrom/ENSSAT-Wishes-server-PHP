@@ -22,6 +22,11 @@
                 <li>
                     <a href="<?php echo base_url()?>index.php/modules">Les modules</a>
                 </li>
+                <?php if(isset($admin) && $admin=="1"): ?>
+                    <li class="hideMenu">
+                        <a href="<?php echo base_url()?>index.php/admin">Administration</a>
+                    </li>
+                <?php endif;?>
                 <li class="hideMenu">
                     <a href="<?php echo base_url()?>index.php/profile">Profil</a>
                 </li>
@@ -32,6 +37,11 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                <?php if(isset($admin) && $admin=="1"): ?>
+                <li>
+                    <a href="<?php echo base_url()?>index.php/admin">Administration</a>
+                </li>
+                <?php endif;?>
                 <li>
                     <a href="<?php echo base_url()?>index.php/profile">Profil</a>
                 </li>
