@@ -73,7 +73,7 @@
                                             <div class="form-group">
                                                 <div class="col-md-8 col-no-border"></div>
                                                 <div class="col-md-4 col-no-border">
-                                                    <?php echo form_submit('submit','valider','class="btn btn-success"')?>
+                                                    <?php echo form_submit('submit','Valider','class="btn btn-success"')?>
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -100,7 +100,7 @@
                                             <div class="col-md-12 col-no-border">
                                                 <div class="col-md-8 col-no-border"></div>
                                                 <div class="col-md-4 col-no-border">
-                                                    <?php echo form_submit('submit','valider','class="btn btn-success"')?>
+                                                    <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
                                                 </div>
                                             </div>
                                         </fieldset>
