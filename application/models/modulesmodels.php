@@ -15,6 +15,24 @@ class modulesmodels extends CI_Model {
         return $query->result_array();
     }
 
+    public function addContenuToModule(){
+        $contenu = array(
+            "module" => $this->input->post('selectModule'),
+            "partie" => $this->input->post('moduleType'),
+            "type" =>  $this->input->post('selectType'),
+            "hed" => $this->input->post('moduleHed'),
+            "enseignant" => null,
+        );
+        $query = $this->db->insert('contenu',$contenu);
+        if(!$query){
+            $ret= array(
+                "ErrorMessage" => $this->db->_error_message(),
+                "ErrorNumber" => $this->db->_error_message()
+            );
+        }
+        return ($query)?"good":$ret;
+    }
+
     public function getAllPublic(){
         $this->db->select("public");
         $this->db->distinct();

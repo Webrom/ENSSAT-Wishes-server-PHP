@@ -89,7 +89,7 @@
                                             <legend>Supprimer un module</legend>
                                             <div class="form-group">
                                                 <div class="col-md-12 col-no-border">
-                                                    <label for="selectModule" class="control-label">Selectionnez Module</label>
+                                                    <label for="selectModule" class="control-label">Module</label>
                                                     <select name="module[]" class="form-control" id="selectModule" multiple style="height: 380.5px">
                                                         <?php foreach($modules as $module):?>
                                                             <option value="<?php echo $module['ident'];?>"><?php echo $module['ident'];?></option>
@@ -232,7 +232,7 @@
                             <div class="col-md-6 col-no-border">
                                 <div class="bp-component">
                                     <div class="col-md-12 col-no-border">
-                                        <?php echo form_open("",'class="form-horizontal"')?>
+                                        <?php echo form_open("admin/addContenuToModule",'class="form-horizontal"')?>
                                         <fieldset>
                                             <legend>Ajouter un contenu à un module</legend>
                                             <div class="form-group">
@@ -258,7 +258,7 @@
                                                 </div>
                                                 <div class="col-md-12 col-no-border">
                                                     <label for="moduleHed" class="control-label">Indiquez le nombre d'heure</label>
-                                                    <?php echo form_input('moduleHed','','class="form-control" placeholder="ex : 12" id="moduleHed" required')?>
+                                                    <input type="number" name="moduleHed" class="form-control" placeholder="ex : 12" id="moduleHed" required/>
                                                 </div>
                                                 <div class="col-md-12 col-no-border">
                                                     <div class="col-md-8 col-no-border"></div>

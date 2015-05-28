@@ -63,4 +63,16 @@ class admin extends CI_Controller{
             $this->index("Le/les modules ont été supprimé.", "alert-success");
         }
     }
+
+    public function addContenuToModule(){
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
+            redirect('login');
+        }else {
+            $res=$this->modulesmodels->addContenuToModule();
+            if($res=="good")
+                $this->index("Votre contenu a été rajouté.","alert-success");
+            else
+                $this->index($res['ErrorMessage']." ".$res['ErrorNumber'],"alert-danger");
+        }
+    }
 }
