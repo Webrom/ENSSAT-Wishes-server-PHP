@@ -9,8 +9,6 @@
 class profile extends CI_Controller{
 
     public function index($uploadError=null,$msg=null,$success=null){
-        //var_dump($uploadError); //TODO
-
         //charger le modele users
         $this->load-> model('users');
 

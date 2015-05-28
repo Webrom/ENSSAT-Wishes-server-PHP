@@ -7,6 +7,7 @@ class Upload extends CI_Controller {
         parent::__construct();
         $this->load->helper(array('form', 'url'));
         $this->load-> model('users');
+        $this->load-> model('uploadmodel');
     }
 
     function index($data)
@@ -33,14 +34,15 @@ class Upload extends CI_Controller {
 
         if ( ! $this->upload->do_upload()){
             $data = array(
-                "error" => "Une erreur est survenue durant le téléchargement de votre image. Vueillez rééssayer.".$this->upload->display_errors()
+                "error" => "Une erreur est survenue durant le téléchargement de votre image de profil. Veuillez rééssayer. Erreur : ".$this->upload->display_errors()
             );
         }
         else{
             $data = array(
                 "error" => "Image uploadée, bravo"
             );
-            //$data = array('upload_data' => $this->upload->data());
+            $upload_data = $this->upload->data();
+            $this->uploadmodel->changeAvatar($upload_data);
         }
         $this->index($data);
     }
