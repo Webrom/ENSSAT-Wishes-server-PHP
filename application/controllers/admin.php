@@ -21,12 +21,27 @@ class admin extends CI_Controller{
         }else{
             $data = array(
                 "admin" => $this->session->userdata['admin'],
-                "active" => "Administration"
+                "active" => "Administration",
+                "enseignants" => $this->users->getAllEnseignants(),
+                "semestres" => array("S1","S2","S3","S4","S5","S6"),
+                "publics" => $this->modulesmodels->getAllPublic()
             );
             $this->load->view('header',$data);
             $this->load->view('back/template/header');
             $this->load->view('back/admin/admin_panel',$data);
             $this->load->view('footer');
         }
+    }
+
+    public function addModule(){
+        $module = array(
+            "ident" => $this->input->post('inputIdent'),
+            "public" => $this->input->post('inputPublic'),
+            "semestre" => $this->input->post('inputSemestre'),
+            "libelle" => $this->input->post('inputLibelle'),
+            "responsable" => $this->input->post('inputResponsable')
+        );
+
+        var_dump($module);
     }
 }

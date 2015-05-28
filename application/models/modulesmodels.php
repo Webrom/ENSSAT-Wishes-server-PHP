@@ -7,12 +7,23 @@
  */
 
 class modulesmodels extends CI_Model {
-    public function getAllModules(){
+
+    public function getAllModule(){
         $this->db->select("ident,libelle");
         $this->db->from ("module");
         $query = $this->db->get();
         return $query->result_array();
     }
 
+    public function getAllPublic(){
+        $this->db->select("public");
+        $this->db->distinct();
+        $this->db->from("module");
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
+    public function addModule(){
+
+    }
 }
