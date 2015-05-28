@@ -15,7 +15,7 @@ class admin extends CI_Controller{
         $this->load-> model('contenu');
     }
 
-    public function index(){
+    public function index($msg=null,$success=null){
         if(!$this->session->userdata('is_logged_in')){
             redirect('login');
         }else{
@@ -24,7 +24,10 @@ class admin extends CI_Controller{
                 "active" => "Administration",
                 "enseignants" => $this->users->getAllEnseignants(),
                 "semestres" => array("S1","S2","S3","S4","S5","S6"),
-                "publics" => $this->modulesmodels->getAllPublic()
+                "publics" => $this->modulesmodels->getAllPublic(),
+                "modules" => $this->modulesmodels->getAllModules(),
+                "msg" => $msg,
+                "success" => $success
             );
             $this->load->view('header',$data);
             $this->load->view('back/template/header');
@@ -34,6 +37,15 @@ class admin extends CI_Controller{
     }
 
     public function addModule(){
-        $this->modulesmodels->addModule();
+        $res= $this->modulesmodels->addModule();
+        if($res=="good")
+            $this->index("Votre module a été rajouté.","alert-success");
+        else
+            $this->index($res['ErrorMessage']." ".$res['ErrorNumber'],"alert-danger");
+    }
+
+    public function deleteModule(){
+        $this->modulesmodels->deleteModule();
+        $this->index("Le/les modules ont été supprimé.","alert-success");
     }
 }

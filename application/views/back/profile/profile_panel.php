@@ -30,7 +30,6 @@
                 </div>
             </div>
             <div class="col-md-6 col-no-border">
-                <?php echo form_open_multipart('upload/do_upload');?>
                 <div class="col-md-12 col-no-border">
                     <label for="inputStatut" class="2 col-no-border control-label">Votre statut :</label>
                     <input disabled class="form-control" id="inputStatut" value="<?php echo $userInfo['statut'];?>" type="text">
@@ -39,15 +38,21 @@
                     <label for="inputStatutaire" class="2 col-no-border control-label">Total d'heure à effectuer :</label>
                     <input disabled class="form-control" id="inputStatutaire" value="<?php echo $userInfo['statutaire'];?>" type="text">
                 </div>
+                <?php echo form_open_multipart('upload/do_upload');?>
                 <div class="col-md-12 col-no-border">
-                    <div class="form-group">
-                        <label class="control-label">Uploader image :</label>
-                        <div class="input-group">
-                            <input type="file" name="userfile" class="form-control">
-                            <span class="input-group-btn">
-                                <input class="btn" type="submit" value="upload">Envoyer</input>
-                            </span>
-                        </div>
+                    <div class="col-md-1 col-no-border"></div>
+                    <div class="col-md-6 col-no-border">
+                        <input type="file" name="userfile" size="20" />
+                    </div>
+                    <div class="col-md-5 col-no-border"></div>
+                </div>
+                <div class="col-md-12 col-no-border">
+                    <div class="col-md-4 col-no-border">
+                        <button type="submit" class="btn btn-success" value="upload">Envoyer</button>
+                    </div>
+                    <div class="col-md-8 col-no-border">
+                        <?php if(file_exists("./uploads/".$userInfo['login'].".jpg"))
+                            echo anchor('upload/remove','Supprimer image actuelle','class="btn btn-danger"');?>
                     </div>
                 </div>
                 <?php echo form_close(); ?>

@@ -23,20 +23,30 @@ class modulesmodels extends CI_Model {
         return $query->result_array();
     }
 
+    public function deleteModule(){
+        foreach($this->input->post('module') as $module){
+            $this->db->where('module',$module);
+            $this->db->delete('module');
+            $this->db->where('ident',$module);
+            $this->db->delete('module');
+        }
+    }
+
     public function addModule(){
-        /*$this->db->set('ident',$this->input->post('inputIdent'));
-        $this->db->set('public',$this->input->post('selectPublic'));
-        $this->db->set('semestre',$this->input->post('selectSemestre'));
-        $this->db->set('libelle',$this->input->post('inputLibelle'));
-        $this->db->set('responsable',$this->input->post('selectResponsable'));*/
         $module= array(
             "ident" => $this->input->post('inputIdent'),
             "public" => $this->input->post('selectPublic'),
             "semestre" => $this->input->post('selectSemestre'),
             "libelle" => $this->input->post('inputLibelle'),
-            "responsable" => $this->input->post('selectResponsable')
+            "responsable" => strlen($this->input->post('selectResponsable')!=0)?$this->input->post('selectResponsable'):null
         );
         $query = $this->db->insert('module',$module);
-        var_dump($query);
+        if(!$query){
+            $ret= array(
+                "ErrorMessage" => $this->db->_error_message(),
+                "ErrorNumber" => $this->db->_error_message()
+            );
+        }
+        return ($query)?"good":$ret;
     }
 }

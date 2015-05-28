@@ -40,11 +40,19 @@ class Upload extends CI_Controller {
         }
         else{
             $data = array(
-                "error" => "Image uploadée, bravo"
+                "error" => "Image uploadée"
             );
             $upload_data = $this->upload->data();
             $this->uploadmodel->changeAvatar($upload_data,$this->session->userdata('username'));
         }
+        $this->index($data);
+    }
+
+    public function remove(){
+        $data = array(
+            "error" => "Image supprimée"
+        );
+        $this->uploadmodel->delAvatar($this->session->userdata('username'));
         $this->index($data);
     }
 }
