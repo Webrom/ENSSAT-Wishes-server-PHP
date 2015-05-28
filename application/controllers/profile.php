@@ -35,7 +35,7 @@ class profile extends CI_Controller{
             $data['heurestotales'] = $heurestotales;
             /* FIN CALCUL */
 
-            $this->load->view('header');
+            $this->load->view('header',$data);
             $this->load->view('back/template/header');
             $this->load->view('back/profile/profile_panel',$data);
             $this->load->view('footer');
