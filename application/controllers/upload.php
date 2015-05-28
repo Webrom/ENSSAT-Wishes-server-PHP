@@ -28,6 +28,7 @@ class Upload extends CI_Controller {
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size']	= '1000000';
         $config['max_width']  = '1024';
+        $config['max_width']  = '1024';
         $config['max_height']  = '768';
 
         $this->load->library('upload', $config);
@@ -42,7 +43,7 @@ class Upload extends CI_Controller {
                 "error" => "Image uploadée, bravo"
             );
             $upload_data = $this->upload->data();
-            $this->uploadmodel->changeAvatar($upload_data);
+            $this->uploadmodel->changeAvatar($upload_data,$this->session->userdata('username'));
         }
         $this->index($data);
     }

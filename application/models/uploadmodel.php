@@ -6,11 +6,16 @@
  * Time: 10:47
  */
 class uploadmodel extends CI_Model{
-    //ALTER TABLE enseignant ADD path_avatar VARCHAR(255)
-    public function changeAvatar($upload_data){
+    //ALTER TABLE enseignant ADD avatar VARCHAR(30) DEFAULT 'avatar_defaut.jpg'
+    public function changeAvatar($upload_data,$userName){
+        if(file_exists("/uploads/".$userName))
+            unlink("/uploads/".$userName);
+        rename("./uploads/".$upload_data['file_name'], "./uploads/".$userName.".jpg");
+
         $data = array(
-            'path_avatar' => $upload_data[],
+            'avatar' => $userName . ".jpg"
         );
+
         $this->db->where('login', $userName);
         $this->db->update('enseignant', $data);
     }

@@ -110,12 +110,12 @@ class Users extends CI_Model{
      * depuis sa page profil
      * @return rien du tout
      */
-    public function changePassword($newPass,$userName){
+    public function changePassword($newPass){
         //$this->db->query('UPDATE enseignant SET pwd ="'.$newPass.'" WHERE login="'.$userName.'";');
         $data = array(
             'pwd' => $newPass,
         );
-        $this->db->where('login', $userName);
+        $this->db->where('login', $this->session->userdata('username'));
         $this->db->update('enseignant', $data);
     }
 
@@ -155,5 +155,13 @@ class Users extends CI_Model{
         $this->db->where('login',$this->session->userdata('username'));
         $query = $this->db->get();
         return $query->row()->statutaire;
+    }
+
+    public function getAvatar(){
+        $this->db->select('avatar');
+        $this->db->from('enseignant');
+        $this->db->where('login',$this->session->userdata('username'));
+        $query = $this->db->get();
+        return $query->row()->avatar;
     }
 }

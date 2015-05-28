@@ -16,8 +16,7 @@ class profile extends CI_Controller{
             "userInfos" => $this->users->getUserData(),
             "success" => $success,
             "msg" => $msg,
-            "uploadError" => $uploadError,
-            "admin" => $this->session->userdata['admin']
+            "uploadError" => $uploadError
         );
 
         if(!$this->session->userdata('is_logged_in')){
@@ -34,7 +33,7 @@ class profile extends CI_Controller{
             $data['heurestotales'] = $heurestotales;
             /* FIN CALCUL */
 
-            $this->load->view('header',$data);
+            $this->load->view('header');
             $this->load->view('back/template/header');
             $this->load->view('back/profile/profile_panel',$data);
             $this->load->view('footer');

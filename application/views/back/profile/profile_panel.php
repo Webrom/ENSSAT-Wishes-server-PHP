@@ -12,7 +12,7 @@
             <div class="col-md-12 col-no-border">
                 <div class="col-md-12 col-no-border">
                     <div class="col-md-2">
-                        <img class="media-object img-circle" alt="64x64" src="<?php echo base_url()?>assets/img/comments/01.jpg" style="width: 64px; height: 64px;">
+                        <img class="media-object img-circle" alt="64x64" src="<?php echo base_url()?>uploads/<?php echo $avatar;?>" style="width: 64px; height: 64px;">
                     </div>
                     <div class="col-md-10">
                         <h2><?php echo $userInfo['prenom']." ".$userInfo['nom'];?></h2>
