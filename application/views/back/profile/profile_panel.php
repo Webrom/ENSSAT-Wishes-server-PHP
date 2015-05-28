@@ -4,9 +4,6 @@
 
 <div class="bp-docs-section">
     <div class="row">
-        <div class="col-md-12 title-section">
-            <h1 id="forms">Profil</h1>
-        </div>
     </div>
     <?php foreach($userInfos as $userInfo):;?>
     <div class="row">

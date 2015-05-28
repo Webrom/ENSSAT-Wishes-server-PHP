@@ -59,6 +59,7 @@
 /* Body */
 body {
   padding-top: 40px;
+  padding-bottom: 40px;
   text-align: justify;
   font-family: "opensans", serif;
   color: #732b41;

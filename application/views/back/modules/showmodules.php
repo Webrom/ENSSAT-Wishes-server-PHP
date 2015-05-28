@@ -8,13 +8,12 @@
 <div class="bp-docs-section">
     <div class="row">
         <div class="col-md-12 title-section">
-            <h1 id="forms">Les modules</h1>
-            <?php if($module!=""): ?>
+            <?php /*if($module!=""): ?>
                 <?php echo $module;?>
             <?php endif; ?>
             <?php if(count($teacher)>0):?>
                 <?php echo $teacher[0]['nom']." ".$teacher[0]['prenom'];?>
-            <?php endif?>
+            <?php endif*/?>
         </div>
     </div>
     <div class="row">
@@ -23,7 +22,7 @@
             <div class="col-md-12 col-no-border">
                 <?php echo form_open('modules/displayModule')?>
                 <div class="col-md-6 col-no-border">
-                    <label for="selectModule" class="control-label">Selectionnez un module</label>
+                    <label for="selectModule" class="control-label">Selectionnez Module</label>
                     <select name="module" class="form-control" id="selectModule">
                         <?php if($module!=""): ?>
                             <option value="<?php echo $module;?>"><?php echo $module;?></option>
