@@ -58,7 +58,6 @@
                                     }?>
                                         <option value="autre" <?php echo set_select('status_select','autre'); ?>>Autre</option>
                                     </select>
-
                                 </div>
                                 <div class="col-md-12 col-no-border customHide" id="StatusPerso">
                                     <label for="inputStatusPerso" class="control-label">Votre statut</label>

@@ -23,7 +23,7 @@ class Login extends CI_Controller{
             }else{
                 $data= array(
                     'success' => "alert-danger",
-                    'msg' => "Votre compte est inactif, veuillez contacter l'administrateur"
+                    'msg' => "Votre compte est inactif, veuillez contacter l'administrateur."
                 );
                 $this->load->view('header');
                 $this->load->view('front/template/header');
@@ -64,7 +64,7 @@ class Login extends CI_Controller{
                 $data= array(
 
                     'success' => "alert-danger",
-                    'msg' => "Votre compte est inactif, veuillez contacter l'administrateur"
+                    'msg' => "Votre compte est inactif, veuillez contacter l'administrateur."
 
                 );
                 $this->index($data);
@@ -87,7 +87,7 @@ class Login extends CI_Controller{
         $this->load->view('front/template/header_signup');
         $this->load->model('users');
         $data = array(
-                $this->users->getStatus()
+                'status' => $this->users->getStatus()
             );
         $this->load->view('front/login/signup_form', $data);
         $this->load->view('footer');
@@ -100,7 +100,6 @@ class Login extends CI_Controller{
         $this->load->model('users');
         $this->form_validation->set_rules('name', 'Name', 'required|alpha_dash');
         $this->form_validation->set_rules('prenom', 'Prenom', 'required|alpha_dash');
-        $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('heures', 'Heures', 'required|is_natural_no_zero');
         if ($this->input->post('status_select') == "autre"){

@@ -28,7 +28,7 @@ class admin extends CI_Controller{
                 "modules" => $this->modulesmodels->getAllModules(),
                 "msg" => $msg,
                 "success" => $success,
-                "status" =>  $status = $this->users->getStatus()
+                "status" =>  $this->users->getStatus()
             );
             $this->load->view('header',$data);
             $this->load->view('back/template/header');
