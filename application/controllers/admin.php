@@ -8,12 +8,24 @@
 
 class admin extends CI_Controller{
 
-    public function index(){
+    function __construct() {
+        parent::__construct();
+        $this->load-> model('modulesmodels');
+        $this->load-> model('users');
+        $this->load-> model('contenu');
+    }
+
+    public function index($result=null,$infosmodule=null){
         if(!$this->session->userdata('is_logged_in')){
             redirect('login');
         }else{
             $data = array(
-                "admin" => $this->session->userdata['admin']
+                "admin" => $this->session->userdata['admin'],
+                "modules" => $this->modulesmodels->getAllModules(),
+                "enseignants" => $this->users->getAllEnseignants(),
+                "result" => $result,
+                "module" => $infosmodule['module'],
+                "teacher" => $infosmodule['teacher'],
             );
             $this->load->view('header',$data);
             $this->load->view('back/template/header');

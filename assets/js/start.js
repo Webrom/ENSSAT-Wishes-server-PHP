@@ -28,6 +28,7 @@ $(function(){
         }
     });
     $("#resetFormSearch").click(function(e){
+        $("#modules_result").addClass("animated zoomOut");
         $('.form-control').each(function () {
             $(this).val("");
         });

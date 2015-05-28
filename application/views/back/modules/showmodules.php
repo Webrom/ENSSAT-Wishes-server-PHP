@@ -61,7 +61,7 @@
         <div class="col-md-2 col-no-border"></div>
     </div>
     <?php if(count($result)>0):?>
-    <div class="row">
+    <div class="row" id="modules_result">
         <div class="col-md-2 col-no-border"></div>
         <div class="col-md-8 col-no-border">
             <?php foreach($result as $val):?>

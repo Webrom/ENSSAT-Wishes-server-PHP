@@ -25,10 +25,6 @@
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade active in" id="home">
                         <div class="col-md-12 col-no-border">
-                            <div class="col-md-6 col-no-border">
-                            </div>
-                            <div class="col-md-6 col-no-border">
-                            </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="profile">
