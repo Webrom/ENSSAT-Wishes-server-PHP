@@ -31,11 +31,12 @@ $(function(){
         $("#modules_result").addClass("animated zoomOut");
         $('.form-control').each(function () {
             $(this).val("");
+            if($(this).attr("id")=="selectTeacher")
+                $(this).val("no");
         });
     });
     $('.navbar-nav li a').each(function(){
         if($(this).text()==$('#activePage').text()){
-            console.log($(this).text());
             $(this).addClass("active");
         }
     });
