@@ -115,10 +115,42 @@
                             <div class="col-md-6 col-no-border">
                                 <div class="bp-component">
                                     <div class="col-md-12 col-no-border">
-                                        <?php echo form_open("",'class="form-horizontal"')?>
+                                        <?php echo form_open("admin/addUser",'class="form-horizontal"')?>
                                         <fieldset>
-                                            <legend>Ajouter un utilisateur</legend>
                                             <div class="form-group">
+                                            <legend>Ajouter un utilisateur</legend>
+                                            <div class="col-md-12 col-no-border">
+                                                <div class="form-group">
+                                                    <div class="col-md-12 col-no-border">
+                                                        <label for="name" class="control-label">Nom de l'utilisateur</label>
+                                                        <?php echo form_input('name','','class="form-control" placeholder="John" id="name" required')?>
+                                                    </div>
+                                                    <div class="col-md-12 col-no-border">
+                                                        <label for="prenom" class="control-label">Prénom de l'utilisateur</label>
+                                                        <?php echo form_input('prenom','','class="form-control" placeholder="Doe" id="prenom" required')?>
+                                                    </div>
+                                                    <div class="col-md-12 col-no-border">
+                                                        <label for="inputHours" class="control-label">Nombre d'heures allouées</label>
+                                                        <?php echo form_input('heures','','class="form-control" placeholder="heures" id="inputHours" required')?>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-no-border">
+                                                    <label for="select_statut" class="control-label">Statut</label>
+                                                    <select name="status_select" class="form-control" id="status_select">
+                                                        <?php foreach ($status as $lestatut){
+                                                            echo "<option value=\"$lestatut->statut\"";
+                                                            echo set_select('status_select', $lestatut->statut);
+                                                            echo ">";
+                                                            echo ucfirst($lestatut->statut);
+                                                            echo "</option>";
+                                                        }?>
+                                                        <option value="autre" <?php echo set_select('status_select','autre'); ?>>Autre</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-12 col-no-border customHide" id="StatusPerso">
+                                                    <label for="inputStatusPerso" class="control-label">Statut personnalisé</label>
+                                                    <?php echo form_input('status_perso','','class="form-control" placeholder="Statut" id="inputStatusPerso"')?>
+                                                </div>
                                                 <div class="col-md-12 col-no-border">
                                                     <div class="col-md-8 col-no-border"></div>
                                                     <div class="col-md-4 col-no-border">

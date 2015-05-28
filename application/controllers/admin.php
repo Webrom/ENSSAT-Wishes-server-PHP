@@ -27,13 +27,19 @@ class admin extends CI_Controller{
                 "publics" => $this->modulesmodels->getAllPublic(),
                 "modules" => $this->modulesmodels->getAllModules(),
                 "msg" => $msg,
-                "success" => $success
+                "success" => $success,
+                "status" =>  $status = $this->users->getStatus()
             );
             $this->load->view('header',$data);
             $this->load->view('back/template/header');
             $this->load->view('back/admin/admin_panel',$data);
             $this->load->view('footer');
         }
+    }
+
+    public function addUser(){
+        $this->users->addUser("azerty");
+        $this->index("Utilisateur bien créé.","alert-success");
     }
 
     public function addModule(){
