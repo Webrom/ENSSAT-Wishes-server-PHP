@@ -236,7 +236,36 @@
                                         <fieldset>
                                             <legend>Ajouter un contenu à un module</legend>
                                             <div class="form-group">
-
+                                                <div class="col-md-12 col-no-border">
+                                                    <label for="selectModule" class="control-label">Selectionnez Module</label>
+                                                    <select name="selectModule" class="form-control" id="selectModule">
+                                                        <?php foreach($modules as $module):?>
+                                                            <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
+                                                        <?php endforeach;?>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-12 col-no-border">
+                                                    <label for="moduleType" class="control-label">Type de module (doit etre unique)</label>
+                                                    <?php echo form_input('moduleType','','class="form-control" placeholder="ex : TP1, CM2, ..." id="moduleType" required')?>
+                                                </div>
+                                                <div class="col-md-12 col-no-border">
+                                                    <label for="selectType" class="control-label">Type</label>
+                                                    <select name="selectType" class="form-control" id="selectType">
+                                                        <?php foreach($moduleTypes as $moduleType):?>
+                                                            <option value="<?php echo $moduleType['type'];?>"><?php echo $moduleType['type'];?></option>
+                                                        <?php endforeach;?>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-12 col-no-border">
+                                                    <label for="moduleHed" class="control-label">Indiquez le nombre d'heure</label>
+                                                    <?php echo form_input('moduleHed','','class="form-control" placeholder="ex : 12" id="moduleHed" required')?>
+                                                </div>
+                                                <div class="col-md-12 col-no-border">
+                                                    <div class="col-md-8 col-no-border"></div>
+                                                    <div class="col-md-4 col-no-border">
+                                                        <?php echo form_submit('submit','valider','class="btn btn-success"')?>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </fieldset>
                                         <?php echo form_close()?>

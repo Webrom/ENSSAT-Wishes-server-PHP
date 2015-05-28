@@ -8,6 +8,14 @@
 
 class Contenu extends CI_Model{
 
+    public function getAllModuleTypes(){
+        $this->db->select("type");
+        $this->db->distinct();
+        $this->db->from("contenu");
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function getModuleTeacher($data){
         $this->db->select("*");
         $this->db->from("contenu");
