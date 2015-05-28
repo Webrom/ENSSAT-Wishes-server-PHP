@@ -184,7 +184,7 @@
                                                 <div class="col-md-12 col-no-border">
                                                     <div class="col-md-8 col-no-border"></div>
                                                     <div class="col-md-4 col-no-border">
-                                                        <?php echo form_submit('submit','valider','class="btn btn-success"')?>
+                                                        <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -279,7 +279,14 @@
                                         <fieldset>
                                             <legend>Supprimer un contenu d'un module</legend>
                                             <div class="form-group">
-
+                                                <div class="col-md-12 col-no-border">
+                                                    <label for="selectModule" class="control-label">Selectionnez Module</label>
+                                                    <select name="selectModule" class="form-control" id="selectModule">
+                                                        <?php foreach($modules as $module):?>
+                                                            <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
+                                                        <?php endforeach;?>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </fieldset>
                                         <?php echo form_close()?>
