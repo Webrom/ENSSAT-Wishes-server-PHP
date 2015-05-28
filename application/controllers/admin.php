@@ -38,7 +38,7 @@ class admin extends CI_Controller{
     }
 
     public function addUser(){
-        $this->users->addUser("azerty");
+        $this->users->addUser("servicesENSSAT");
         $this->index("Utilisateur bien créé.","alert-success");
     }
 

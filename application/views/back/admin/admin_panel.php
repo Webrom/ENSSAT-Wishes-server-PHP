@@ -120,6 +120,8 @@
                                             <div class="form-group">
                                             <legend>Ajouter un utilisateur</legend>
                                             <div class="col-md-12 col-no-border">
+                                                Pour ajouter un utilisateur, merci d'utiliser le panel ci-contre.
+                                                Votre utilisateur aura le mot de passe par défaut, soit "servicesENSSAT".
                                                 <div class="form-group">
                                                     <div class="col-md-12 col-no-border">
                                                         <label for="name" class="control-label">Nom de l'utilisateur</label>
@@ -133,6 +135,15 @@
                                                         <label for="inputHours" class="control-label">Nombre d'heures allouées</label>
                                                         <?php echo form_input('heures','','class="form-control" placeholder="heures" id="inputHours" required')?>
                                                     </div>
+                                                    <div class="col-md-12 col-no-border">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox"> Actif ?
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+
                                                 </div>
                                                 <div class="col-md-12 col-no-border">
                                                     <label for="select_statut" class="control-label">Statut</label>
