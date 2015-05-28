@@ -7,6 +7,7 @@
  */
 ?>
 <body>
+<p id="activePage" class="customHide"><?php if(isset($active)) echo $active;?></p>
 <div class="navbar navbar-dark navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">

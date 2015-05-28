@@ -25,7 +25,8 @@ class modules extends CI_Controller{
                 "result" => $result,
                 "module" => $infosmodule['module'],
                 "teacher" => $infosmodule['teacher'],
-                "admin" => $this->session->userdata['admin']
+                "admin" => $this->session->userdata['admin'],
+                "active" => "Les modules"
             );
             $this->load->model('users');
             $this->load->view('header',$data);
