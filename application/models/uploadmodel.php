@@ -8,12 +8,23 @@
 class uploadmodel extends CI_Model{
     //ALTER TABLE enseignant ADD avatar VARCHAR(30) DEFAULT 'avatar_defaut.jpg'
     public function changeAvatar($upload_data,$userName){
-        if(file_exists("/uploads/".$userName))
-            unlink("/uploads/".$userName);
+        if(file_exists("./uploads/".$userName.".jpg"))
+            unlink("./uploads/".$userName.".jpg");
         rename("./uploads/".$upload_data['file_name'], "./uploads/".$userName.".jpg");
 
         $data = array(
             'avatar' => $userName . ".jpg"
+        );
+
+        $this->db->where('login', $userName);
+        $this->db->update('enseignant', $data);
+    }
+
+    public function delAvatar($userName){
+        if(file_exists("./uploads/".$userName.".jpg"))
+            unlink("./uploads/".$userName.".jpg");
+        $data = array(
+            'avatar' => "avatar_defaut.jpg"
         );
 
         $this->db->where('login', $userName);
