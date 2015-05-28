@@ -21,22 +21,22 @@
                 </div>
             <?php endif;?>
             <div class="bp-component">
-                <?php echo form_open('login/createUser','class="form-horizontal"')?>
+                <?php echo form_open('login/createUser','class="form-horizontal" id="monformulaire"')?>
                     <fieldset>
                         <legend>Inscription</legend>
                         <div class="col-md-6 col-no-border">
                             <div class="form-group">
                                 <div class="col-md-12 col-no-border">
                                     <label for="name" class="control-label">Votre nom</label>
-                                    <?php echo form_input('name','','class="form-control" placeholder="John" id="name"')?>
+                                    <?php echo form_input('name','','class="form-control" placeholder="John" id="name" required')?>
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <label for="prenom" class="control-label">Votre prenom</label>
-                                    <?php echo form_input('prenom','','class="form-control" placeholder="Doe" id="prenom"')?>
+                                    <?php echo form_input('prenom','','class="form-control" placeholder="Doe" id="prenom" required')?>
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <label for="inputHours" class="control-label">Nombre d'heures allouées</label>
-                                    <?php echo form_input('heures','','class="form-control" placeholder="heures" id="inputHours"')?>
+                                    <?php echo form_input('heures','','class="form-control" placeholder="heures" id="inputHours" required')?>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <div class="col-md-12 col-no-border">
                                     <label for="inputPassword" class="control-label">Mot de passe</label>
-                                    <?php echo form_password('password','','class="form-control" placeholder="password" id="inputPassword"')?>
+                                    <?php echo form_password('password','','class="form-control" placeholder="password" id="inputPassword" required')?>
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <label for="select_statut" class="control-label">Statut</label>
