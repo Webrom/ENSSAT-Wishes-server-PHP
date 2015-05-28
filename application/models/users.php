@@ -55,7 +55,7 @@ class Users extends CI_Model{
         return $query->row()->actif;
     }
 
-    public function addUser(){
+    public function addUser($default_pwd=null){
         $test_login = strtolower(substr($this->input->post('prenom'),0,1));
         if (strlen($this->input->post('name'))>7){
             $taille = 7;
@@ -93,7 +93,10 @@ class Users extends CI_Model{
             $statut = $this->input->post('status_select');
         }
         $this->db->set('login',$test_login);
-        $this->db->set('pwd',$this->input->post('password'));
+        if(!isset($default_pwd))
+            $this->db->set('pwd',$this->input->post('password'));
+        else
+            $this->db->set('pwd',$default_pwd);
         $this->db->set('nom',$this->input->post('name'));
         $this->db->set('prenom',$this->input->post('prenom'));
         $this->db->set('statut',$statut);

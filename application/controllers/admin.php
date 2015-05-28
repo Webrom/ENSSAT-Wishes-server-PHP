@@ -16,7 +16,7 @@ class admin extends CI_Controller{
     }
 
     public function index($msg=null,$success=null){
-        if(!$this->session->userdata('is_logged_in')){
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
             redirect('login');
         }else{
             $data = array(
@@ -27,7 +27,8 @@ class admin extends CI_Controller{
                 "publics" => $this->modulesmodels->getAllPublic(),
                 "modules" => $this->modulesmodels->getAllModules(),
                 "msg" => $msg,
-                "success" => $success
+                "success" => $success,
+                "status" =>  $status = $this->users->getStatus()
             );
             $this->load->view('header',$data);
             $this->load->view('back/template/header');
@@ -36,16 +37,29 @@ class admin extends CI_Controller{
         }
     }
 
+    public function addUser(){
+        $this->users->addUser("servicesENSSAT");
+        $this->index("Utilisateur bien créé.","alert-success");
+    }
+
     public function addModule(){
-        $res= $this->modulesmodels->addModule();
-        if($res=="good")
-            $this->index("Votre module a été rajouté.","alert-success");
-        else
-            $this->index($res['ErrorMessage']." ".$res['ErrorNumber'],"alert-danger");
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0" ){
+            redirect('login');
+        }else{
+            $res= $this->modulesmodels->addModule();
+            if($res=="good")
+                $this->index("Votre module a été rajouté.","alert-success");
+            else
+                $this->index($res['ErrorMessage']." ".$res['ErrorNumber'],"alert-danger");
+        }
     }
 
     public function deleteModule(){
-        $this->modulesmodels->deleteModule();
-        $this->index("Le/les modules ont été supprimé.","alert-success");
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
+            redirect('login');
+        }else {
+            $this->modulesmodels->deleteModule();
+            $this->index("Le/les modules ont été supprimé.", "alert-success");
+        }
     }
 }
