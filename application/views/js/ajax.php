@@ -13,7 +13,7 @@
         var param = {
             "base_url": '<?php echo base_url()?>',
             "controler": "admin",
-            "method": $(this).attr('id'),
+            "method": $(this).attr('method'),
             "gData": "#" + $(this).attr('class').substring(0, 10)
         };
         console.log(param);

@@ -27,7 +27,7 @@
                     <li class='<?php if($active=="News") echo "active"?>'><a href="#news" data-toggle="tab">News</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade active in" id="module">
+                    <div class="tab-pane fade <?php if($active==null || $active=="Modules") echo "active in"?> in" id="module">
                         <div class="row">
                             <div class="col-md-6 col-no-border">
                                 <div class="bp-component">
@@ -112,7 +112,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="profile">
+                    <div class="tab-pane fade <?php if($active=="Utilisateurs") echo "active in"?>" id="profile">
                         <div class="row">
                             <div class="col-md-12 col-no-border <?php if(!$enAttente){echo "customHide";}?>">
                                 <fieldset>
@@ -228,7 +228,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="news">
+                    <div class="tab-pane fade <?php if($active=="News") echo "active in"?>" id="news">
                         <div class="row">
                             <div class="col-md-6 col-no-border">
                                 <div class="bp-component">
@@ -260,7 +260,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="contenu">
+                    <div class="tab-pane fade <?php if($active=="Contenu") echo "active in"?>" id="contenu">
                         <div class="row">
                             <div class="col-md-6 col-no-border">
                                 <div class="bp-component">
@@ -314,7 +314,7 @@
                                             <div class="form-group">
                                                 <div class="col-md-12 col-no-border">
                                                     <label for="selectModuleShowContenu" class="control-label">Selectionnez Module</label>
-                                                    <select name="selectModuleShowContenu" class="form-control" id="getContenu">
+                                                    <select name="selectModuleShowContenu" class="form-control" method="getContenu" id="getContenu">
                                                         <?php foreach($modules as $module):?>
                                                             <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
                                                         <?php endforeach;?>
@@ -354,13 +354,19 @@
                                             <div class="form-group">
                                                 <div class="col-md-12 col-no-border">
                                                     <label for="selectModuleShowContenu" class="control-label">Selectionnez Module</label>
-                                                    <select name="selectModuleShowContenu" class="form-control" id="getContenu">
+                                                    <select name="selectModuleShowContenu" class="form-control" id="obtContenu">
                                                         <?php foreach($modules as $module):?>
                                                             <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
                                                         <?php endforeach;?>
                                                     </select>
                                                 </div>
-                                                <div id="displaygetModuleContenus" class="customHide">
+                                                <div class="col-md-12 col-no-border">
+                                                    <div class="col-md-8 col-no-border"></div>
+                                                    <div class="col-md-4 col-no-border">
+                                                        <?php echo form_button('submit','valider','id="getModuleContenusModification" class="getContenu ajaxFunction btn btn-info"')?>
+                                                    </div>
+                                                </div>
+                                                <div id="displaygetModuleContenusModification" class="customHide">
                                                     <div class="col-md-12 col-no-border">
                                                         <div class="col-md-10 col-no-border"></div>
                                                         <div class="col-md-2 col-no-border">
