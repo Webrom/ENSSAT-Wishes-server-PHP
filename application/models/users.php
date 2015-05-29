@@ -161,6 +161,14 @@ class Users extends CI_Model{
         return $query->result();
     }
 
+    public function getAllInactifUsers(){
+        $this->db->select('login');
+        $this->db->from('enseignant');
+        $this->db->where('actif', 0);
+        $query = $this->db->get();
+        return $query->result_array();;
+    }
+
     /**
      * Retourne 1 si l'utilisateur courant est un administrateur du site
      * @param $username

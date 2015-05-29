@@ -4,7 +4,6 @@
 - Les interfaces de consultation devront permettre de visualiser les données sous
 différents angles (par exemple par (ou pour un) semestre, par (ou pour une) formation)
 à différents niveaux d’abstraction.
-- decharges
 - Dans gestion users : pouvoir afficher tous les users inactifs
 - Export CVS
 select un utilisateur
@@ -18,7 +17,4 @@ select un utilisateur
 
 
 ---- COLIN
-- DECHARGE
-    VALIDER PAR PROF ?
-
 - Fil de recherche par promotion / par semestre
