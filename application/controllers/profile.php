@@ -26,10 +26,11 @@ class profile extends CI_Controller{
             redirect('login');
         }else{
             $this->load->model('contenu');
+            $this->load->model('decharge');
 
             /* CALCUL POURCENTAGE HEURES PRISES */
             $heuresprises = $this->contenu->getHeuresPrises();
-            $heurestotales = $this->users->getHeures();
+            $heurestotales = $this->users->getHeures()-$this->decharge->getHoursDecharge($this->session->userdata('username'));
             $pourcentage = round(($heuresprises/$heurestotales)*100,0);
             $data['pourcentage'] = $pourcentage;
             $data['heuresprises'] = $heuresprises;
