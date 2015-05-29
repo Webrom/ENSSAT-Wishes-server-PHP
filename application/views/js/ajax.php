@@ -10,20 +10,23 @@
 <script type="text/javascript">
     $(".ajaxFunction").click(function(e){
         e.preventDefault();
-        var base_url = '<?php echo base_url()?>';
-        var controler = "admin";
-        var method = $(this).attr('id');
-        var gData = "#"+$(this).attr('class').substring(0,10);
+        var param = {
+            "base_url": '<?php echo base_url()?>',
+            "controler": "admin",
+            "method": $(this).attr('id'),
+            "gData": "#" + $(this).attr('class').substring(0, 10)
+        };
+        console.log(param);
         $.ajax({
-            url : base_url+'index.php/'+controler+'/'+method,
+            url : param["base_url"]+'index.php/'+param["controler"]+'/'+param["method"],
             type : 'GET',
-            data : 'gData='+$(gData).val(),
+            data : 'gData='+$(param["gData"]).val(),
             cache: false,
             'success':
                 function(data){
-                    switch (method){
+                    switch (param["method"]){
                         case "getModuleContenus":
-                            $("#display"+method).addClass('animated bounceInUp').removeClass('customHide');
+                            $("#display"+param["method"]).addClass('animated bounceInUp').removeClass('customHide');
                             array = JSON.parse(data);
                             $(".ajaxContenuModule").each(function(){
                                 $(this).remove();
