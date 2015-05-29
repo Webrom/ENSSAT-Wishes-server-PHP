@@ -15,7 +15,7 @@ class modules extends CI_Controller{
         $this->load-> model('contenu');
     }
 
-    public function index($result=null,$infosmodule=null){
+    public function index($result=null,$infosmodule=null,$infos=null){
         if(!$this->session->userdata('is_logged_in')){
             redirect('login');
         }else{
@@ -28,7 +28,9 @@ class modules extends CI_Controller{
                 "teacher" => $infosmodule['teacher'],
                 "admin" => $this->session->userdata['admin'],
                 "active" => "Rechercher",
-                "checked" => $infosmodule['checked']
+                "checked" => $infosmodule['checked'],
+                'success' => $infos['success'],
+                'msg' => $infos['msg']
             );
             $this->load->view('header',$data);
             $this->load->view('back/template/header');
@@ -64,11 +66,36 @@ class modules extends CI_Controller{
     }
 
     public function inscriptionModule(){
-        /*if(!$this->session->userdata('is_logged_in')){
+        if(!$this->session->userdata('is_logged_in')){
             redirect('login');
         }else{
-            if (isset($this->input->get('module'))&&isset($this->input->get('partie'))){
-
+            if ($this->input->get('module')&&$this->input->get('partie')){
+                $this->load->model('users');
+                $this->load->model('contenu');
+                $statutaire = $this->users->getHeures();
+                $heuresprises = $this->contenu->getHeuresPrises();
+                $heureducontenu = $this->contenu->getHeurePourUnContenu($this->input->get('module'),$this->input->get('partie'));
+                if (($statutaire-$heuresprises)>= $heureducontenu){
+                    $result = $this->contenu->addEnseignanttoContenu($this->input->get('module'),$this->input->get('partie'));
+                    if ($result) {
+                        $info = array(
+                            'success' => "alert-success",
+                            'msg' => "Vous êtes maintenant inscrit à ce contenu"
+                        );
+                    }
+                    else{
+                        $info = array(
+                            'success' => "alert-danger",
+                            'msg' => "Un problème (inconnu aussi au développeur de l'application) a eu lieu. Veuillez nous en excuser."
+                        );
+                    }
+                }
+                else{
+                    $info= array(
+                        'success' => "alert-danger",
+                        'msg' => "Désolé mais il ne vous reste plus assez d'heures libres pour ce contenu"
+                    );
+                }
             }
             else{
                 $info= array(
@@ -76,6 +103,7 @@ class modules extends CI_Controller{
                     'msg' => "Il y a eu une erreur dans l'inscription au module."
                 );
             }
-        }*/
+            $this->index(null,null,$info);
+        }
     }
 }

@@ -19,6 +19,12 @@
     <div class="row">
         <div class="col-md-2 col-no-border"></div>
         <div class="col-md-8">
+            <?php if(isset($msg)):?>
+                <div class="alert alert-dismissable <?php if(isset($success)){ echo $success; } ?>">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <?php echo $msg; ?>
+                </div>
+            <?php endif;?>
             <div class="col-md-12 col-no-border">
                 <?php echo form_open('modules/displayModule')?>
                 <div class="col-md-6 col-no-border">
@@ -75,7 +81,7 @@
                             <h4 class="list-group-item-heading"><?php echo $val['module'];?></h4>
                             <ul class="list-group">
                                 <li class='list-group-item'>
-                                    <?php echo $val['type']?>
+                                    <?php echo $val['partie']?>
                                 </li>
                                 <li class="list-group-item">
                                     <span class="badge"><?php echo $val['hed']?></span>
@@ -85,7 +91,7 @@
                                     <?php if($val['enseignant'])
                                         echo $val['enseignant'];
                                     else
-                                        echo '<a href=""><button type="button" class="btn btn-warning">S\'inscrire</button></a>';?>
+                                        echo '<a href="/index.php/modules/inscriptionModule?module='.$val['module'].'&partie='.$val['partie'].'"><button type="button" class="btn btn-warning">S\'inscrire</button></a>';?>
                                 </li>
                             </ul>
 
