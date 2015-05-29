@@ -60,7 +60,16 @@ class admin extends CI_Controller{
             redirect('login');
         }else {
             $this->modulesmodels->deleteModule();
-            $this->index("Le/les modules ont été supprimé.", "alert-success");
+            $this->index("Le/les modules ont étés supprimés.", "alert-success");
+        }
+    }
+
+    public function deleteUser(){
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
+            redirect('login');
+        }else {
+            $this->users->deleteUser();
+            $this->index("Le/les enseignants ont étés supprimés.", "alert-success");
         }
     }
 

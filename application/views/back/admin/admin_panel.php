@@ -175,15 +175,18 @@
                             <div class="col-md-6 col-no-border">
                                 <div class="bp-component">
                                     <div class="col-md-12 col-no-border">
-                                        <?php echo form_open("",'class="form-horizontal"')?>
+                                        <?php echo form_open("admin/deleteUser",'class="form-horizontal"')?>
                                         <fieldset>
                                             <legend>Supprimer un utilisateur</legend>
                                             <div class="form-group">
                                                 <div class="col-md-12 col-no-border">
-                                                    <label for="selectModule" class="control-label">Module</label>
-                                                    <select name="module[]" class="form-control" id="selectModule" multiple style="height: 380.5px">
-                                                        <?php foreach($modules as $module):?>
-                                                            <option value="<?php echo $module['ident'];?>"><?php echo $module['ident'];?></option>
+                                                    <label for="selectEnseignant" class="control-label">Enseignants</label>
+                                                    <select name="enseignants[]" class="form-control" id="selectEnseignant" multiple style="height: 380.5px">
+                                                        <?php foreach($enseignants as $enseignants):?>
+                                                            <option value="<?php echo $enseignants['login'];?>">
+                                                                <?php echo  $enseignants['login']  . " : " .
+                                                                            $enseignants['prenom'] . " " .
+                                                                            $enseignants['nom'];?></option>
                                                         <?php endforeach;?>
                                                     </select>
                                                     <div class="col-md-8 col-no-border"></div>
