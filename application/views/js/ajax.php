@@ -8,29 +8,35 @@
 
 ?>
 <script type="text/javascript">
-    $("#ajaxShowModuleContenu").click(function(e){
+    $(".ajaxFunction").click(function(e){
         e.preventDefault();
         var base_url = '<?php echo base_url()?>';
         var controler = "admin";
+        var method = $(this).attr('id');
+        var gData = "#"+$(this).attr('class').substring(0,10);
         $.ajax({
-            url : base_url+'index.php/'+controler+'/getModuleContenus',
+            url : base_url+'index.php/'+controler+'/'+method,
             type : 'GET',
-            data : 'module='+$("#selectModuleShowContenu").val(),
+            data : 'gData='+$(gData).val(),
             cache: false,
             'success':
                 function(data){
-                    var array = JSON.parse(data);
-                    $(".ajaxContenuModule").each(function(){
-                      $(this).remove();
-                    });
-                    for(var i = 0; i<JSON.parse(data).length;i++){
-                        var mytext = array[i].partie;
-                        var option = document.createElement('option');
-                        $(option).attr('value',mytext);
-                        $(option).addClass('ajaxContenuModule');
-                        $(option).text(mytext);
-                        $("#selectContenuModule").append($(option));
-
+                    switch (method){
+                        case "getModuleContenus":
+                            $("#display"+method).addClass('animated bounceInUp').removeClass('customHide');
+                            array = JSON.parse(data);
+                            $(".ajaxContenuModule").each(function(){
+                                $(this).remove();
+                            });
+                            for(var i = 0; i<JSON.parse(data).length;i++){
+                                var mytext = array[i].partie;
+                                var option = document.createElement('option');
+                                $(option).attr('value',mytext);
+                                $(option).addClass('ajaxContenuModule');
+                                $(option).text(mytext);
+                                $("#selectContenuModule").append($(option));
+                            }
+                            break;
                     }
                 }
         });

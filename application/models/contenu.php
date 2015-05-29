@@ -19,7 +19,7 @@ class Contenu extends CI_Model{
     public function getModuleContenus(){
         $this->db->select('module,partie,hed');
         $this->db->from("contenu");
-        $this->db->where('module',$this->input->get('module'));
+        $this->db->where('module',$this->input->get('gData'));
         $query = $this->db->get();
         return $query->result_array();
     }

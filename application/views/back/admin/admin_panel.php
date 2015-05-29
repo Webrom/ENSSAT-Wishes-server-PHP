@@ -335,7 +335,7 @@
                                             <div class="form-group">
                                                 <div class="col-md-12 col-no-border">
                                                     <label for="selectModuleShowContenu" class="control-label">Selectionnez Module</label>
-                                                    <select name="selectModuleShowContenu" class="form-control" id="selectModuleShowContenu">
+                                                    <select name="selectModuleShowContenu" class="form-control" id="getContenu">
                                                         <?php foreach($modules as $module):?>
                                                             <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
                                                         <?php endforeach;?>
@@ -344,10 +344,10 @@
                                                 <div class="col-md-12 col-no-border">
                                                     <div class="col-md-8 col-no-border"></div>
                                                     <div class="col-md-4 col-no-border">
-                                                        <?php echo form_submit('submit','valider','id="ajaxShowModuleContenu" class="btn btn-success"')?>
+                                                        <?php echo form_submit('submit','valider','id="getModuleContenus" class="getContenu ajaxFunction btn btn-success"')?>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12 col-no-border">
+                                                <div id="displaygetModuleContenus" class="customHide col-md-12 col-no-border">
                                                     <label for="selectContenuModule" class="control-label">Selectionnez une partie</label>
                                                     <select name="selectContenuModule" class="form-control" id="selectContenuModule" multiple>
                                                     </select>

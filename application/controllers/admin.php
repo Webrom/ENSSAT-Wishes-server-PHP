@@ -89,8 +89,10 @@ class admin extends CI_Controller{
     }
 
     public function getModuleContenus(){
-        echo json_encode($this->contenu->getModuleContenus());
-
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
+            redirect('login');
+        }else
+            echo json_encode($this->contenu->getModuleContenus());
     }
 
     public function addContenuToModule(){
