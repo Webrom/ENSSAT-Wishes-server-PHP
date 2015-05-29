@@ -139,10 +139,10 @@
                                                         <?php echo form_input('heures','','class="form-control" placeholder="heures" id="inputHours" required')?>
                                                     </div>
                                                     <div class="col-md-12 col-no-border">
-                                                        <label for="actif" class="control-label">Actif ?</label>
+                                                        <label for="actif" class="control-label">Actif</label>
                                                         <select class="form-control" id="select" name="actif">
-                                                            <option>0</option>
-                                                            <option>1</option>
+                                                            <option value="0">Non</option>
+                                                            <option value="1">Oui</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -187,9 +187,10 @@
                                                     <select name="enseignants[]" class="form-control" id="selectEnseignant" multiple style="height: 380.5px">
                                                         <?php foreach($enseignants as $enseignants):?>
                                                             <option value="<?php echo $enseignants['login'];?>">
-                                                                <?php echo  $enseignants['login']  . " : " .
+                                                                <?php echo  $enseignants['nom'].' '.
                                                                             $enseignants['prenom'] . " " .
-                                                                            $enseignants['nom'];?></option>
+                                                                            " : ".
+                                                                            $enseignants['login'];?></option>
                                                         <?php endforeach;?>
                                                     </select>
                                                 </div>

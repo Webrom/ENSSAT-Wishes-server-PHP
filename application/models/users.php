@@ -177,6 +177,8 @@ class Users extends CI_Model{
     public function getAllEnseignants(){
         $this->db->select('login, nom, prenom');
         $this->db->from('enseignant');
+        $this->db->where('accepted',1);
+        $this->db->order_by('nom');
         $query=$this->db->get();
         return $query->result_array();
     }
