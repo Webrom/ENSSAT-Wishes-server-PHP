@@ -53,8 +53,15 @@ class admin extends CI_Controller{
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0" ){
             redirect('login');
         }else {
-            $this->users->acceptUsers();
-            $this->index("Utilisateur " . $this->input->post("login") . "activé.", "alert-success");
+            echo $this->users->acceptUsers($this->input->get('login'));
+        }
+    }
+
+    public function refusetUsers(){
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0" ){
+            redirect('login');
+        }else {
+            echo $this->users->refuseUsers($this->input->get('login'));
         }
     }
 
@@ -83,7 +90,7 @@ class admin extends CI_Controller{
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
             redirect('login');
         }else {
-            $this->users->deleteUser();
+            $this->users->deleteUsers();
             $this->index("Le/les enseignants ont étés supprimés.", "alert-success");
         }
     }

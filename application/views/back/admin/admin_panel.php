@@ -124,10 +124,10 @@
                                                 <?php echo $enseignantsToAccept['nom']." ".$enseignantsToAccept['prenom']." | Login : ".$enseignantsToAccept['login'];?>
                                         </div>
                                     <div class="col-md-1 col-no-border">
-                                        <img src="/assets/img/cross.png" />
+                                        <img src="/assets/img/cross.png" id="<?php echo $enseignantsToAccept['login'];?>"/>
                                     </div>
                                     <div class="col-md-1 col-no-border">
-                                        <img src="/assets/img/checkmark2.png" />
+                                        <img src="/assets/img/checkmark2.png" class="valide_user" id="<?php echo $enseignantsToAccept['login'];?>"/>
                                     </div>
                                     </div>
                                     <?php endforeach;?>

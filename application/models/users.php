@@ -123,7 +123,7 @@ class Users extends CI_Model{
     /**
      * Supprime un utilisateur de la base
      */
-    public function deleteUser(){
+    public function deleteUsers(){
         //DELETE FROM `voeux`.`enseignant` WHERE `enseignant`.`login` = 'bvozel'
         foreach($this->input->post('enseignants') as $enseignants) {
             $this->db->where('login', $enseignants);
@@ -131,6 +131,9 @@ class Users extends CI_Model{
         }
     }
 
+    public function refuseUsers($login){
+
+    }
     /**
      * Fonction utilisée pour mettre a jour le password de l'utilisateur,
      * depuis sa page profil
@@ -191,12 +194,13 @@ class Users extends CI_Model{
         return $query->result_array();
     }
 
-    public function acceptUsers(){
+    public function acceptUsers($login){
         $data = array(
             'accepted' => 1
         );
-        $this->db->where('login',$this->input->post('login'));
-        $this->db->update('enseignant',$data);
+        $this->db->where('login',$login);
+        $result = $this->db->update('enseignant',$data);
+        return $result;
     }
 
     /**

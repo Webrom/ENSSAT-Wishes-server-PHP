@@ -41,9 +41,26 @@
                 }
         });
     });
-    $("#myimgid").click(function(e){
+    $(".valide_user").click(function(e){
+        var login = $(this).attr('id');
         var classe = "."+$(this).attr('id');
-        $(classe).remove();
-    })
+        var base_url = '<?php echo base_url()?>';
+        var controler = "admin";
+        var method = "acceptUsers";
+        $.ajax({
+            url : base_url+'index.php/'+controler+'/'+method,
+            type : 'GET',
+            data : 'login='+login,
+            cache: false,
+            'success':
+                function(data){
+                    if(data){
+                        $(classe).remove();
+                    }
+                }
+        });
+
+
+    });
 </script>
 
