@@ -347,13 +347,10 @@
                                                         <?php echo form_submit('submit','valider','id="ajaxShowModuleContenu" class="btn btn-success"')?>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <div class="col-md-12 col-no-border">
-                                                        <label for="selectContenuModule" class="control-label">Selectionnez Module</label>
-                                                        <select name="selectContenuModule" class="form-control" id="selectContenuModule">
-                                                            <option value="...">...</option>
-                                                        </select>
-                                                    </div>
+                                                <div class="col-md-12 col-no-border">
+                                                    <label for="selectContenuModule" class="control-label">Selectionnez une partie</label>
+                                                    <select name="selectContenuModule" class="form-control" id="selectContenuModule" multiple>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -370,27 +367,4 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    $("#ajaxShowModuleContenu").click(function(e){
-        e.preventDefault();
-        var base_url = '<?php echo base_url()?>';
-        var controler = "admin";
-        $.ajax({
-            url : base_url+'index.php/'+controler+'/getModuleContenus',
-            type : 'GET',
-            data : 'module='+$("#selectModuleShowContenu").val(),
-            cache: false,
-            'success':
-                function(data){
-                    var array = JSON.parse(data);
-                    console.log(array[0]);
-                    for(var i = 0; i<JSON.parse(data).length;i++){
-                        var mytext = array[i].partie;
-                        $("#ajaxShowModuleContenu").append('<option value="'+mytext+'">'+mytext+'</option>');
-                        console.log(array[i]);
-
-                    }
-                }
-            });
-        });
-</script>
+<?php $this->load->view('js/ajax');?>
