@@ -35,4 +35,9 @@
                 }
         });
     });
+    $("#myimgid").click(function(e){
+        var classe = "."+$(this).attr('id');
+        $(classe).remove();
+    })
 </script>
+
