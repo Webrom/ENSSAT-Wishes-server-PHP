@@ -131,27 +131,6 @@
                                     </div>
                                     </div>
                                     <?php endforeach;?>
-                                    <div class="col-md-12 col-no-border">
-                                        <?php echo form_open("admin/acceptUsers",'class="form-horizontal"')?>
-                                        <fieldset>
-                                            <legend>Accepter les utilisateurs</legend>
-                                            <div class="form-group">
-                                                <label for="acceptEnseignant" class="control-label">Enseignants a accepter :</label>
-                                                <select name="enseignantsToAccept[]" class="form-control" id="acceptEnseignant" multiple style="height: 380.5px">
-                                                    <?php foreach($enseignantsToAccept as $enseignantsToAccept):?>
-                                                        <option value="<?php echo $enseignantsToAccept['login'];?>">
-                                                            <?php echo  $enseignantsToAccept['login']  . " : " .
-                                                                $enseignantsToAccept['prenom'] . " " .
-                                                                $enseignantsToAccept['nom'];?></option>
-                                                    <?php endforeach;?>
-                                                </select>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-md-12 col-no-border">
-                                        <?php echo form_submit('submit','Accepter','class="btn btn-success"')?>
-                                    </div>
-                                    <?php echo form_close()?>
                                 </div>
                                 </fieldset>
                             </div>
