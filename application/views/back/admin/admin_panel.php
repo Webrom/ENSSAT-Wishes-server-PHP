@@ -24,7 +24,6 @@
                     <li class="active"><a href="#module" data-toggle="tab">Modules</a></li>
                     <li><a href="#contenu" data-toggle="tab">Contenu</a></li>
                     <li><a href="#profile" data-toggle="tab">Utilisateurs</a></li>
-                    <li><a href="#moderation" data-toggle="tab">Modération</a></li>
                     <li><a href="#news" data-toggle="tab">News</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
@@ -116,14 +115,20 @@
                     <div class="tab-pane fade" id="profile">
                         <div class="row">
                             <div class="col-md-12 col-no-border <?php if(!$enAttente){echo "customHide";}?>">
+                                <fieldset>
+                                    <legend>Utilisateur(s) en attente(s) d'acceptation</legend>
                                 <div class="bp-component">
                                     <?php foreach($enseignantsToAccept as $enseignantsToAccept):?>
-                                        <div class="col-md-9 col-no-border">
+                                    <div class="row">
+                                        <div class="col-md-10 col-no-border">
                                                 <?php echo $enseignantsToAccept['nom']." ".$enseignantsToAccept['prenom']." | Login : ".$enseignantsToAccept['login'];?>
                                         </div>
-                                    <div class="col-md-3 col-no-border">
-                                        <img src="/assets/img/Annuler.png" />
-                                        <img src="/assets/img/Valider.png" />
+                                    <div class="col-md-1 col-no-border">
+                                        <img src="/assets/img/cross.png" />
+                                    </div>
+                                    <div class="col-md-1 col-no-border">
+                                        <img src="/assets/img/checkmark2.png" />
+                                    </div>
                                     </div>
                                     <?php endforeach;?>
                                     <div class="col-md-12 col-no-border">
@@ -148,6 +153,7 @@
                                     </div>
                                     <?php echo form_close()?>
                                 </div>
+                                </fieldset>
                             </div>
                             <div class="col-md-6 col-no-border">
 
@@ -241,11 +247,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="moderation">
-                        <div class="row">
-
                         </div>
                     </div>
                     <div class="tab-pane fade" id="news">
