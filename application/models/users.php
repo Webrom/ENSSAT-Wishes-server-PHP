@@ -216,6 +216,10 @@ class Users extends CI_Model{
         return $query->row()->statutaire;
     }
 
+    // controler a verifier: - nombre d'heure qu'a un prof en statutaire : getHeures() users
+    // obtenir a la connexion et a l'affichage de la page le nombre d'heure de décharge déja mise modele decharge getHoursDecharge()
+    // nombre d'heure de module qu'il a déjà et vérifier si le nombre d'heure de décharge est pas supérieur  getHeuresPrises()
+
     /**
      * Retoune le nom du fichier avatar de l'utilisateur (pour afficher cet avatar dans la page login)
      * @return mixed

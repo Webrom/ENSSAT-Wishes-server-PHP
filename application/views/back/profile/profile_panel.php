@@ -30,7 +30,6 @@
                 </div>
             </div>
             <div class="col-md-6 col-no-border">
-                <?php echo form_open_multipart('upload/do_upload');?>
                 <div class="col-md-12 col-no-border">
                     <label for="inputStatut" class="2 col-no-border control-label">Votre statut :</label>
                     <input disabled class="form-control" id="inputStatut" value="<?php echo $userInfo['statut'];?>" type="text">
@@ -39,8 +38,19 @@
                     <label for="inputStatutaire" class="2 col-no-border control-label">Total d'heure à effectuer :</label>
                     <input disabled class="form-control" id="inputStatutaire" value="<?php echo $userInfo['statutaire'];?>" type="text">
                 </div>
+                <?php echo form_open('profile/modifyDecharge','class="form-horizontal"')?>
                 <div class="col-md-12 col-no-border">
-                        <input type="file" name="userfile" size="20" />
+                    <label for="inputDecharge" class="2 col-no-border control-label">Decharge :</label>
+                    <input class="form-control" id="inputDecharge" name="inputDecharge" value="<?php echo $decharge;?>" type="text">
+                </div>
+                <div class="col-md-12 col-no-border">
+                    <?php echo form_submit('submit','Changer votre décharge','class="btn btn-success"')?>
+                </div>
+                <?php echo form_close(); ?>
+                <?php echo form_open_multipart('upload/do_upload');?>
+                <div class="col-md-12 col-no-border">
+                    Télécharger image profil :
+                    <input type="file" name="userfile" size="20" />
                 </div>
                 <div class="col-md-12 col-no-border">
                         <button type="submit" class="btn btn-success" value="upload">Envoyer</button>

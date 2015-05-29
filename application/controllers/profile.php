@@ -8,10 +8,15 @@
 
 class profile extends CI_Controller{
 
-    public function index($uploadError=null,$msg=null,$success=null){
+    function __construct(){
+        parent::__construct();
         //charger le modele users
         $this->load-> model('users');
+        $this->load-> model('contenu');
+        $this->load-> model('decharge');
+    }
 
+    public function index($uploadError=null,$msg=null,$success=null){
         $data = array(
             "userInfos" => $this->users->getUserData(),
             "success" => $success,
@@ -19,7 +24,8 @@ class profile extends CI_Controller{
             "uploadError" => $uploadError,
             "admin" => $this->session->userdata["admin"],
             "avatar" => $this->users->getAvatar(),
-            "active" => "Profil"
+            "active" => "Profil",
+            "decharge" => $this->decharge->getHoursDecharge($this->session->userdata('username'))
         );
 
         if(!$this->session->userdata('is_logged_in')){
@@ -53,7 +59,6 @@ class profile extends CI_Controller{
      *   sinon renvoyer message d'erreur
      */
     public function changePass(){
-        $this->load-> model('users');
         $oldPass  = $this->input->post("oldPass");
         $newPass1 = $this->input->post("newPass1");
         $newPass2 = $this->input->post("newPass2");
@@ -74,5 +79,25 @@ class profile extends CI_Controller{
         else{
             $this->index(null,"Votre ancien mot de passe n'est pas bon ! ","alert-danger");
         }
+    }
+
+    public function modifyDecharge(){
+        if($this->decharge->isPresentInTable()){
+            if($this->input->post("inputDecharge")<$this->users->getHeures() && $this->input->post("inputDecharge")<=$this->users->getHeures()-$this->contenu->getHeuresPrises()){
+                $this->decharge->setDecharge();
+                $msg = "Votre decharge a été modifiée";
+                $msgbox = "alert-success";
+            }
+            else {
+                $msg = "Trop de décharge tue la décharge... Merci d'indiquer un nombre raisonable";
+                $msgbox = "alert-danger";
+            }
+        }
+        else {
+            $this->decharge->addNewDecharge();
+            $msg="Votre decharge a été modifiée";
+            $msgbox="alert-success";
+        }
+        $this->index(null, $msg, $msgbox);
     }
 }
