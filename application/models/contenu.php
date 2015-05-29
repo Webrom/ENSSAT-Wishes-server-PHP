@@ -95,6 +95,15 @@ class Contenu extends CI_Model{
         return $query;
     }
 
+    public function removeALotEnseignanttoContenu($tableau_enseignants){
+        foreach($tableau_enseignants as $enseignants) {
+            $data = array(
+                'enseignant' => null
+            );
+            $this->db->where('enseignant', $enseignants);
+            $this->db->update('contenu',$data);
+        }
+    }
 
     /**
      * Permet de savoir un contenu existe
