@@ -75,4 +75,45 @@ class Contenu extends CI_Model{
         $query = $this->db->update('contenu',$data);
         return $query;
     }
+
+
+    /**
+     * Permet de savoir un contenu existe
+     * @param $module
+     * @param $partie
+     * @return bool vrai si le module existe, faux sinon
+     */
+    public function ifContenuExist($module,$partie){
+        $this->db->select('*');
+        $this->db->from('contenu');
+        $this->db->where('module',$module);
+        $this->db->where('partie',$partie);
+        $query = $this->db->get();
+        if ($query->num_rows<1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    /**
+     * Permet de savoir si un contenu a déjà un prof d'attribué
+     * @param $module
+     * @param $partie
+     * @return bool
+     */
+    public function ifThereIsTeacher($module,$partie){
+        $this->db->select('enseignant');
+        $this->db->from('contenu');
+        $this->db->where('module',$module);
+        $this->db->where('partie',$partie);
+        $query = $this->db->get();
+        if ($query->row()->enseignant==null){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }

@@ -69,31 +69,45 @@ class modules extends CI_Controller{
         if(!$this->session->userdata('is_logged_in')){
             redirect('login');
         }else{
-            if ($this->input->get('module')&&$this->input->get('partie')){
+            if ($this->input->get('module')&&$this->input->get('partie')) {
                 $this->load->model('users');
                 $this->load->model('contenu');
-                $statutaire = $this->users->getHeures();
-                $heuresprises = $this->contenu->getHeuresPrises();
-                $heureducontenu = $this->contenu->getHeurePourUnContenu($this->input->get('module'),$this->input->get('partie'));
-                if (($statutaire-$heuresprises)>= $heureducontenu){
-                    $result = $this->contenu->addEnseignanttoContenu($this->input->get('module'),$this->input->get('partie'));
-                    if ($result) {
-                        $info = array(
-                            'success' => "alert-success",
-                            'msg' => "Vous êtes maintenant inscrit à ce contenu"
-                        );
+                if ($this->contenu->ifContenuExist($this->input->get('module'), $this->input->get('partie'))) {
+                    if (!$this->contenu->ifThereIsTeacher($this->input->get('module'), $this->input->get('partie'))) {
+                        $statutaire = $this->users->getHeures();
+                        $heuresprises = $this->contenu->getHeuresPrises();
+                        $heureducontenu = $this->contenu->getHeurePourUnContenu($this->input->get('module'), $this->input->get('partie'));
+                        if (($statutaire - $heuresprises) >= $heureducontenu) {
+                            $result = $this->contenu->addEnseignanttoContenu($this->input->get('module'), $this->input->get('partie'));
+                            if ($result) {
+                                $info = array(
+                                    'success' => "alert-success",
+                                    'msg' => "Vous êtes maintenant inscrit à ce contenu"
+                                );
+                            } else {
+                                $info = array(
+                                    'success' => "alert-danger",
+                                    'msg' => "Un problème (inconnu aussi au développeur de l'application) a eu lieu. Veuillez nous en excuser."
+                                );
+                            }
+                        } else {
+                            $info = array(
+                                'success' => "alert-danger",
+                                'msg' => "Désolé mais il ne vous reste plus assez d'heures libres pour ce contenu"
+                            );
+                        }
                     }
                     else{
                         $info = array(
                             'success' => "alert-danger",
-                            'msg' => "Un problème (inconnu aussi au développeur de l'application) a eu lieu. Veuillez nous en excuser."
+                            'msg' => "Le module a déjà un prof !"
                         );
                     }
                 }
                 else{
-                    $info= array(
+                    $info = array(
                         'success' => "alert-danger",
-                        'msg' => "Désolé mais il ne vous reste plus assez d'heures libres pour ce contenu"
+                        'msg' => "Les informations sont érronées."
                     );
                 }
             }
