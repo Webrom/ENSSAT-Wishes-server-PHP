@@ -1,4 +1,10 @@
 - PROMPT DE CONFIRMATION POUR CHAQUE SUPPRESSION
 - ADMIN PEUT MODIFIER LES INFORMATIONS DE CHAQUE PERSONNE QUI S'INSCRIT
 - VALIDATION ADMIN
+- Les interfaces de consultation devront permettre de visualiser les données sous
+différents angles (par exemple par (ou pour un) semestre, par (ou pour une) formation)
+à différents niveaux d’abstraction.
+- decharges
 - Dans gestion users : pouvoir afficher tous les users inactifs
+
+select un utilisateur

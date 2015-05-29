@@ -41,6 +41,7 @@ class modulesmodels extends CI_Model {
         return $query->result_array();
     }
 
+
     public function deleteModule(){
         foreach($this->input->post('module') as $module){
             $this->db->where('module',$module);
