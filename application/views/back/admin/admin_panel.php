@@ -371,7 +371,12 @@
                     var array = JSON.parse(data);
                     console.log(array[0]);
                     for(var i = 0; i<JSON.parse(data).length;i++){
+                        $("#ajaxShowModuleContenu").append($('<option>'),{
+                            value=array[i].partie,
+                            text=array[i].partie
+                        });
                         console.log(array[i]);
+
                     }
                 }
             });
