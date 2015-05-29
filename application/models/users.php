@@ -105,10 +105,12 @@ class Users extends CI_Model{
         return $test_login;
     }
 
-    public function delUser($userLogin){
+    public function deleteUser(){
         //DELETE FROM `voeux`.`enseignant` WHERE `enseignant`.`login` = 'bvozel'
-        $this->db->where('login', $userLogin);
-        $this->db->delete('enseignant');
+        foreach($this->input->post('enseignants') as $enseignants) {
+            $this->db->where('login', $enseignants);
+            $this->db->delete('enseignant');
+        }
     }
     /*
      * fonction utilisee pour mettre a jour le password de l'utilisateur,
