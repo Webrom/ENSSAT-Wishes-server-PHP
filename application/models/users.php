@@ -222,4 +222,17 @@ class Users extends CI_Model{
         $query = $this->db->get();
         return $query->row()->avatar;
     }
+
+    public function ifSomeoneWait(){
+        $this->db->from('enseignant');
+        $this->db->where('accepted',0);
+        $query = $this->db->get();
+
+        if ($query->num_rows>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

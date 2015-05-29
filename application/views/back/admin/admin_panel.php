@@ -115,7 +115,42 @@
                     </div>
                     <div class="tab-pane fade" id="profile">
                         <div class="row">
+                            <div class="col-md-12 col-no-border <?php if(!$enAttente){echo "customHide";}?>">
+                                <div class="bp-component">
+                                    <?php foreach($enseignantsToAccept as $enseignantsToAccept):?>
+                                        <div class="col-md-9 col-no-border">
+                                                <?php echo $enseignantsToAccept['nom']." ".$enseignantsToAccept['prenom']." | Login : ".$enseignantsToAccept['login'];?>
+                                        </div>
+                                    <div class="col-md-3 col-no-border">
+                                        <img src="/assets/img/Annuler.png" />
+                                        <img src="/assets/img/Valider.png" />
+                                    </div>
+                                    <?php endforeach;?>
+                                    <div class="col-md-12 col-no-border">
+                                        <?php echo form_open("admin/acceptUsers",'class="form-horizontal"')?>
+                                        <fieldset>
+                                            <legend>Accepter les utilisateurs</legend>
+                                            <div class="form-group">
+                                                <label for="acceptEnseignant" class="control-label">Enseignants a accepter :</label>
+                                                <select name="enseignantsToAccept[]" class="form-control" id="acceptEnseignant" multiple style="height: 380.5px">
+                                                    <?php foreach($enseignantsToAccept as $enseignantsToAccept):?>
+                                                        <option value="<?php echo $enseignantsToAccept['login'];?>">
+                                                            <?php echo  $enseignantsToAccept['login']  . " : " .
+                                                                $enseignantsToAccept['prenom'] . " " .
+                                                                $enseignantsToAccept['nom'];?></option>
+                                                    <?php endforeach;?>
+                                                </select>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-12 col-no-border">
+                                        <?php echo form_submit('submit','Accepter','class="btn btn-success"')?>
+                                    </div>
+                                    <?php echo form_close()?>
+                                </div>
+                            </div>
                             <div class="col-md-6 col-no-border">
+
                                 <div class="bp-component">
                                     <div class="col-md-12 col-no-border">
                                         <?php echo form_open("admin/addUser",'class="form-horizontal"')?>
@@ -210,29 +245,7 @@
                     </div>
                     <div class="tab-pane fade" id="moderation">
                         <div class="row">
-                            <div class="bp-component">
-                                <div class="col-md-12 col-no-border">
-                                    <?php echo form_open("admin/acceptUsers",'class="form-horizontal"')?>
-                                    <fieldset>
-                                        <legend>Accepter les utilisateurs</legend>
-                                        <div class="form-group">
-                                            <label for="acceptEnseignant" class="control-label">Enseignants a accepter :</label>
-                                            <select name="enseignantsToAccept[]" class="form-control" id="acceptEnseignant" multiple style="height: 380.5px">
-                                                <?php foreach($enseignantsToAccept as $enseignantsToAccept):?>
-                                                    <option value="<?php echo $enseignantsToAccept['login'];?>">
-                                                        <?php echo  $enseignantsToAccept['login']  . " : " .
-                                                            $enseignantsToAccept['prenom'] . " " .
-                                                            $enseignantsToAccept['nom'];?></option>
-                                                <?php endforeach;?>
-                                            </select>
-                                        </div>
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-12 col-no-border">
-                                    <?php echo form_submit('submit','Accepter','class="btn btn-success"')?>
-                                </div>
-                                <?php echo form_close()?>
-                            </div>
+
                         </div>
                     </div>
                     <div class="tab-pane fade" id="news">

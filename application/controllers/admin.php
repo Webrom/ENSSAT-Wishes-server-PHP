@@ -30,7 +30,8 @@ class admin extends CI_Controller{
                 "msg" => $msg,
                 "success" => $success,
                 "status" =>  $status = $this->users->getStatus(),
-                "moduleTypes" => $this->contenu->getAllModuleTypes()
+                "moduleTypes" => $this->contenu->getAllModuleTypes(),
+                "enAttente" => $this->users->ifSomeoneWait()
             );
             $this->load->view('header',$data);
             $this->load->view('back/template/header');
