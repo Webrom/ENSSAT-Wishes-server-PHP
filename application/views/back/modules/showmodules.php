@@ -91,7 +91,7 @@
                                     <?php if($val['enseignant'])
                                         echo $val['enseignant'];
                                     else
-                                        echo '<a href="'.$base_url().'/index.php/modules/inscriptionModule?module='.$val['module'].'&partie='.$val['partie'].'"><button type="button" class="btn btn-warning">S\'inscrire</button></a>';?>
+                                        echo '<a href="'.base_url().'/index.php/modules/inscriptionModule?module='.$val['module'].'&partie='.$val['partie'].'"><button type="button" class="btn btn-warning">S\'inscrire</button></a>';?>
                                 </li>
                             </ul>
 
