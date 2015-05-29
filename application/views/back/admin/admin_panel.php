@@ -329,7 +329,7 @@
                             <div class="col-md-6 col-no-border">
                                 <div class="bp-component">
                                     <div class="col-md-12 col-no-border">
-                                        <?php echo form_open("",'class="form-horizontal"')?>
+                                        <?php echo form_open("admin/deleteModuleContenu",'class="form-horizontal"')?>
                                         <fieldset>
                                             <legend>Supprimer un contenu d'un module</legend>
                                             <div class="form-group">
@@ -344,13 +344,21 @@
                                                 <div class="col-md-12 col-no-border">
                                                     <div class="col-md-8 col-no-border"></div>
                                                     <div class="col-md-4 col-no-border">
-                                                        <?php echo form_submit('submit','valider','id="getModuleContenus" class="getContenu ajaxFunction btn btn-success"')?>
+                                                        <?php echo form_button('submit','valider','id="getModuleContenus" class="getContenu ajaxFunction btn btn-info"')?>
                                                     </div>
                                                 </div>
-                                                <div id="displaygetModuleContenus" class="customHide col-md-12 col-no-border">
-                                                    <label for="selectContenuModule" class="control-label">Selectionnez une partie</label>
-                                                    <select name="selectContenuModule" class="form-control" id="selectContenuModule" multiple>
-                                                    </select>
+                                                <div id="displaygetModuleContenus" class="customHide">
+                                                    <div  class=" col-md-12 col-no-border">
+                                                        <label for="selectContenuModule" class="control-label">Selectionnez la/les partie(s)</label>
+                                                        <select name="selectContenuModule[]" class="form-control" id="selectContenuModule" multiple>
+                                                        </select>
+                                                    </div>
+                                                    <div  class=" col-md-12 col-no-border">
+                                                        <div class="col-md-7 col-no-border"></div>
+                                                        <div class="col-md-5 col-no-border">
+                                                            <?php echo form_submit('submit','Supprimer','id="deleteModuleContenu" class="delContenu btn btn-danger"')?>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </fieldset>

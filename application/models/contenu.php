@@ -24,6 +24,17 @@ class Contenu extends CI_Model{
         return $query->result_array();
     }
 
+    public function deleteContenuModule(){
+        $array = array(
+            "module" => $this->input->post('selectModuleShowContenu'),
+            "partie" => $this->input->post('selectContenuModule')
+        );
+        foreach($array['partie'] as $partie){
+            $this->db->where('partie',$partie);
+            $query = $this->db->delete('contenu');
+        }
+    }
+
     public function getModuleTeacher($data){
         $this->db->select("*");
         $this->db->from("contenu");

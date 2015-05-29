@@ -42,7 +42,7 @@ class modulesmodels extends CI_Model {
     }
 
 
-    public function deleteModule(){
+    public function deleteModuleContenu(){
         foreach($this->input->post('module') as $module){
             $this->db->where('module',$module);
             $this->db->delete('contenu');
