@@ -132,7 +132,8 @@ class Users extends CI_Model{
     }
 
     public function refuseUsers($login){
-
+        $this->db->where('login', $login);
+        return $this->db->delete('enseignant');
     }
     /**
      * Fonction utilisée pour mettre a jour le password de l'utilisateur,

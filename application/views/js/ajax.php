@@ -62,8 +62,26 @@
                     }
                 }
         });
+    });
 
-
+    $(".refuse_user").click(function(e){
+        var login = $(this).attr('id');
+        var classe = "."+$(this).attr('id');
+        var base_url = '<?php echo base_url()?>';
+        var controler = "admin";
+        var method = "refuseUsers";
+        $.ajax({
+            url : base_url+'index.php/'+controler+'/'+method,
+            type : 'GET',
+            data : 'login='+login,
+            cache: false,
+            'success':
+                function(data){
+                    if(data){
+                        $(classe).remove();
+                    }
+                }
+        });
     });
 </script>
 
