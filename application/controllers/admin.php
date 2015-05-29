@@ -45,7 +45,7 @@ class admin extends CI_Controller{
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0" ){
             redirect('login');
         }else {
-
+            echo ("azeazeaze");
         }
     }
 
