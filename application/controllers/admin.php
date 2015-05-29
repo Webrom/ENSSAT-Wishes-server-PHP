@@ -41,7 +41,7 @@ class admin extends CI_Controller{
         }
     }
 
-    public function getModuleContenusModification(){
+    public function setModuleContenus(){
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0" ){
             redirect('login');
         }else {
@@ -100,7 +100,8 @@ class admin extends CI_Controller{
             redirect('login');
         }else {
             $this->users->deleteUsers();
-            $this->index("Le/les enseignants ont étés supprimés.", "alert-success","Utilisateur");
+            $this->contenu->removeALotEnseignanttoContenu($this->input->post('enseignants'));
+            $this->index("Le/les enseignants ont étés supprimés.", "alert-success","Utilisateurs");
         }
     }
 
