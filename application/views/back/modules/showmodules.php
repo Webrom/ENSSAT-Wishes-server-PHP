@@ -85,7 +85,7 @@
                                 </li>
                                 <li class="list-group-item">
                                     <span class="badge"><?php echo $val['hed']?></span>
-                                    Heure d'enseignement :
+                                    Heures :
                                 </li>
                                 <li class="list-group-item">
                                     <?php if($val['enseignant'])

@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 col-no-border">
-                        <span class="text-success"><?php echo $pourcentage; ?>% : <?php echo $heuresprises;?> h sur vos <?php echo $heurestotales;?> h</span>
+                        <span class="text-success"><?php echo $pourcentage; ?>% : <?php echo $heuresprises;?>/<?php echo $heurestotales;?> h</span>
                     </div>
                 </div>
             </div>
