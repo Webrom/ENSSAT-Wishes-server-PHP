@@ -181,6 +181,22 @@ class Users extends CI_Model{
         return $query->result_array();
     }
 
+    public function getAllEnseignantsToAccept(){
+        $this->db->select('login, nom, prenom');
+        $this->db->from('enseignant');
+        $this->db->where('accepted',0);
+        $query=$this->db->get();
+        return $query->result_array();
+    }
+
+    public function acceptUsers(){
+        $data = array(
+            'accepted' => 1
+        );
+        $this->db->where('login',$this->input->post('login'));
+        $this->db->update('enseignant',$data);
+    }
+
     /**
      * Retourne le nombre d'heure qu'un enseignant à à effecter
      * @return mixed

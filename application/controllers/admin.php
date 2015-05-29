@@ -23,6 +23,7 @@ class admin extends CI_Controller{
                 "admin" => $this->session->userdata['admin'],
                 "active" => "Administration",
                 "enseignants" => $this->users->getAllEnseignants(),
+                "enseignantsToAccept" => $this->users->getAllEnseignantsToAccept(),
                 "semestres" => array("S1","S2","S3","S4","S5","S6"),
                 "publics" => $this->modulesmodels->getAllPublic(),
                 "modules" => $this->modulesmodels->getAllModules(),
@@ -39,8 +40,21 @@ class admin extends CI_Controller{
     }
 
     public function addUser(){
-        $this->users->addUser("servicesENSSAT",$this->input->post("actif"),"1");
-        $this->index("Utilisateur bien créé.","alert-success");
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0" ){
+            redirect('login');
+        }else {
+            $this->users->addUser("servicesENSSAT", $this->input->post("actif"), "1");
+            $this->index("Utilisateur bien créé.", "alert-success");
+        }
+    }
+
+    public function acceptUsers(){
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0" ){
+            redirect('login');
+        }else {
+            $this->users->acceptUsers();
+            $this->index("Utilisateur " . $this->input->post("login") . "activé.", "alert-success");
+        }
     }
 
     public function addModule(){

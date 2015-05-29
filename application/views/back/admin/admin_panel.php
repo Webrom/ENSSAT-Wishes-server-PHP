@@ -24,6 +24,7 @@
                     <li class="active"><a href="#module" data-toggle="tab">Modules</a></li>
                     <li><a href="#contenu" data-toggle="tab">Contenu</a></li>
                     <li><a href="#profile" data-toggle="tab">Utilisateurs</a></li>
+                    <li><a href="#moderation" data-toggle="tab">Modération</a></li>
                     <li><a href="#news" data-toggle="tab">News</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
@@ -71,9 +72,11 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <div class="col-md-8 col-no-border"></div>
-                                                <div class="col-md-4 col-no-border">
-                                                    <?php echo form_submit('submit','Valider','class="btn btn-success"')?>
+                                                <div class="col-md-12 col-no-border">
+                                                    <div class="col-md-8 col-no-border"></div>
+                                                    <div class="col-md-4 col-no-border">
+                                                        <?php echo form_submit('submit','Valider','class="btn btn-success"')?>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -189,6 +192,8 @@
                                                                             $enseignants['nom'];?></option>
                                                         <?php endforeach;?>
                                                     </select>
+                                                </div>
+                                                <div class="col-md-12 col-no-border">
                                                     <div class="col-md-8 col-no-border"></div>
                                                     <div class="col-md-4 col-no-border">
                                                         <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
@@ -199,6 +204,33 @@
                                         <?php echo form_close()?>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="moderation">
+                        <div class="row">
+                            <div class="bp-component">
+                                <div class="col-md-12 col-no-border">
+                                    <?php echo form_open("admin/acceptUsers",'class="form-horizontal"')?>
+                                    <fieldset>
+                                        <legend>Accepter les utilisateurs</legend>
+                                        <div class="form-group">
+                                            <label for="acceptEnseignant" class="control-label">Enseignants a accepter :</label>
+                                            <select name="enseignantsToAccept[]" class="form-control" id="acceptEnseignant" multiple style="height: 380.5px">
+                                                <?php foreach($enseignantsToAccept as $enseignantsToAccept):?>
+                                                    <option value="<?php echo $enseignantsToAccept['login'];?>">
+                                                        <?php echo  $enseignantsToAccept['login']  . " : " .
+                                                            $enseignantsToAccept['prenom'] . " " .
+                                                            $enseignantsToAccept['nom'];?></option>
+                                                <?php endforeach;?>
+                                            </select>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12 col-no-border">
+                                    <?php echo form_submit('submit','Accepter','class="btn btn-success"')?>
+                                </div>
+                                <?php echo form_close()?>
                             </div>
                         </div>
                     </div>
