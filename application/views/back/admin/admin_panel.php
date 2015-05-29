@@ -180,6 +180,12 @@
                                             <legend>Supprimer un utilisateur</legend>
                                             <div class="form-group">
                                                 <div class="col-md-12 col-no-border">
+                                                    <label for="selectModule" class="control-label">Module</label>
+                                                    <select name="module[]" class="form-control" id="selectModule" multiple style="height: 380.5px">
+                                                        <?php foreach($modules as $module):?>
+                                                            <option value="<?php echo $module['ident'];?>"><?php echo $module['ident'];?></option>
+                                                        <?php endforeach;?>
+                                                    </select>
                                                     <div class="col-md-8 col-no-border"></div>
                                                     <div class="col-md-4 col-no-border">
                                                         <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
