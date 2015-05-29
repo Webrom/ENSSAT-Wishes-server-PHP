@@ -21,10 +21,10 @@
             <?php endif;?>
             <div class="bp-component">
                 <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-                    <li class="active"><a href="#module" data-toggle="tab">Modules</a></li>
-                    <li><a href="#contenu" data-toggle="tab">Contenu</a></li>
-                    <li><a href="#profile" data-toggle="tab">Utilisateurs</a></li>
-                    <li><a href="#news" data-toggle="tab">News</a></li>
+                    <li class='<?php if($active==null || $active=="Modules") echo "active"?>'><a href="#module" data-toggle="tab">Modules</a></li>
+                    <li class='<?php if($active=="Contenu") echo "active"?>'><a href="#contenu" data-toggle="tab">Contenu</a></li>
+                    <li class='<?php if($active=="Utilisateurs") echo "active"?>'><a href="#profile" data-toggle="tab">Utilisateurs</a></li>
+                    <li class='<?php if($active=="News") echo "active"?>'><a href="#news" data-toggle="tab">News</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade active in" id="module">
@@ -336,6 +336,35 @@
                                                         <div class="col-md-7 col-no-border"></div>
                                                         <div class="col-md-5 col-no-border">
                                                             <?php echo form_submit('submit','Supprimer','id="deleteModuleContenu" class="delContenu btn btn-danger"')?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <?php echo form_close()?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-no-border">
+                                <div class="bp-component">
+                                    <div class="col-md-12 col-no-border">
+                                        <?php echo form_open("admin/deleteModuleContenu",'class="form-horizontal"')?>
+                                        <fieldset>
+                                            <legend>Modifier le contenu d'un module</legend>
+                                            <div class="form-group">
+                                                <div class="col-md-12 col-no-border">
+                                                    <label for="selectModuleShowContenu" class="control-label">Selectionnez Module</label>
+                                                    <select name="selectModuleShowContenu" class="form-control" id="getContenu">
+                                                        <?php foreach($modules as $module):?>
+                                                            <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
+                                                        <?php endforeach;?>
+                                                    </select>
+                                                </div>
+                                                <div id="displaygetModuleContenus" class="customHide">
+                                                    <div class="col-md-12 col-no-border">
+                                                        <div class="col-md-10 col-no-border"></div>
+                                                        <div class="col-md-2 col-no-border">
+                                                            <?php echo form_button('submit','valider','id="getModuleContenus" class="getContenu ajaxFunction btn btn-info"')?>
                                                         </div>
                                                     </div>
                                                 </div>
