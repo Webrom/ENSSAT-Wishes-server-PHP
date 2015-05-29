@@ -55,4 +55,24 @@ class Contenu extends CI_Model{
         }
         return $heures;
     }
+
+    public function getHeurePourUnContenu($module,$partie){
+        $this->db->select('hed');
+        $this->db->from('contenu');
+        $this->db->where('module',$module);
+        $this->db->where('partie',$partie);
+        $query = $this->db->get();
+        return $query->row()->hed;
+    }
+
+    public function addEnseignanttoContenu($module,$partie){
+        $data = array(
+            'enseignant' => $this->session->userdata('username')
+        );
+        //$this->db->set('enseignant',$this->session->userdata('username'));
+        $this->db->where('module',$module);
+        $this->db->where('partie',$partie);
+        $query = $this->db->update('contenu',$data);
+        return $query;
+    }
 }
