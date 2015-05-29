@@ -119,7 +119,7 @@
                                     <legend>Utilisateur(s) en attente(s) d'acceptation</legend>
                                 <div class="bp-component">
                                     <?php foreach($enseignantsToAccept as $enseignantsToAccept):?>
-                                    <div class="row">
+                                    <div class="row <?php echo $enseignantsToAccept['login'];?>">
                                         <div class="col-md-10 col-no-border">
                                                 <?php echo $enseignantsToAccept['nom']." ".$enseignantsToAccept['prenom']." | Login : ".$enseignantsToAccept['login'];?>
                                         </div>
