@@ -40,20 +40,14 @@
                     <input disabled class="form-control" id="inputStatutaire" value="<?php echo $userInfo['statutaire'];?>" type="text">
                 </div>
                 <div class="col-md-12 col-no-border">
-                    <div class="col-md-1 col-no-border"></div>
-                    <div class="col-md-6 col-no-border">
                         <input type="file" name="userfile" size="20" />
-                    </div>
-                    <div class="col-md-5 col-no-border"></div>
                 </div>
                 <div class="col-md-12 col-no-border">
-                    <div class="col-md-4 col-no-border">
                         <button type="submit" class="btn btn-success" value="upload">Envoyer</button>
-                    </div>
-                    <div class="col-md-8 col-no-border">
-                        <?php if(file_exists("./uploads/".$userInfo['login'].".jpg"))
-                            echo anchor('upload/remove','Supprimer image actuelle','class="btn btn-danger"');?>
-                    </div>
+                </div>
+                <div class="col-md-12 col-no-border">
+                    <?php if(file_exists("./uploads/".$userInfo['login'].".jpg"))
+                        echo anchor('upload/remove','Supprimer image actuelle','class="btn btn-danger"');?>
                 </div>
                 <?php echo form_close(); ?>
             </div>
