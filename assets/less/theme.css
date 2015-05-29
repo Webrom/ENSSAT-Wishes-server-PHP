@@ -736,7 +736,7 @@ a.list-group-item.active > .badge,
 }
 /* list Group */
 .list-group {
-  min-height: 157px;
+  min-height: 137px;
 }
 .list-group-item.active {
   background-color: #33b5e5 !important;
