@@ -43,6 +43,14 @@ class profile extends CI_Controller{
             }
         }
 
+    /**
+     * Changement password, avec des vérifications :
+     *   Si l'ancien password entré est le bon,
+     *     Si les deux nouveaux password coincident et sont non nuls
+     *       alors changer pwd
+     *     sinon renvoyer message d'erreur
+     *   sinon renvoyer message d'erreur
+     */
     public function changePass(){
         $this->load-> model('users');
         $oldPass  = $this->input->post("oldPass");

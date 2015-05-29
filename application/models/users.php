@@ -24,8 +24,11 @@ class Users extends CI_Model{
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function getUserData(){
-        $this->db->SELECT ("login,nom, prenom, statut, statutaire");
+        $this->db->select("login,nom, prenom, statut, statutaire");
         $this->db->from ("enseignant");
         $this->db->where("login",$this->session->userdata('username'));
         $query =  $this->db->get();
@@ -33,8 +36,12 @@ class Users extends CI_Model{
         return $query->result_array();
     }
 
+    /**
+     * @param $username
+     * @return mixed
+     */
     public function getUserDataByUsername($username){
-        $this->db->SELECT ("login,nom, prenom, statut, statutaire");
+        $this->db->select("login,nom, prenom, statut, statutaire");
         $this->db->from ("enseignant");
         $this->db->where("login",$username);
         $query =  $this->db->get();
@@ -55,6 +62,14 @@ class Users extends CI_Model{
         return $query->row()->actif;
     }
 
+    /**
+     * Permet d'ajouter un utilisateur en base / dans le système en fonction d'un certain nombre de
+     * critères (cf vérifications)
+     * @param string $pwd
+     * @param int $activity
+     * @param int $accepted
+     * @return string
+     */
     public function addUser($pwd="servicesENSSAT",$activity=0,$accepted=0){
         $test_login = strtolower(substr($this->input->post('prenom'),0,1));
         if (strlen($this->input->post('name'))>7){
@@ -105,6 +120,9 @@ class Users extends CI_Model{
         return $test_login;
     }
 
+    /**
+     * Supprime un utilisateur de la base
+     */
     public function deleteUser(){
         //DELETE FROM `voeux`.`enseignant` WHERE `enseignant`.`login` = 'bvozel'
         foreach($this->input->post('enseignants') as $enseignants) {
@@ -112,10 +130,10 @@ class Users extends CI_Model{
             $this->db->delete('enseignant');
         }
     }
-    /*
-     * fonction utilisee pour mettre a jour le password de l'utilisateur,
+
+    /**
+     * Fonction utilisée pour mettre a jour le password de l'utilisateur,
      * depuis sa page profil
-     * @return rien du tout
      */
     public function changePassword($newPass){
         //$this->db->query('UPDATE enseignant SET pwd ="'.$newPass.'" WHERE login="'.$userName.'";');
@@ -126,11 +144,12 @@ class Users extends CI_Model{
         $this->db->update('enseignant', $data);
     }
 
-    /*
-     * retourne le statut d'un enseignant : 0 si inactif, 1 si actif
+    /**
+     * Retourne le statut d'un enseignant : 0 si inactif, 1 si actif
      * @return resultat de query
      */
-    public function getStatus(){
+    public function getStatus()
+    {
         $this->db->select('statut');
         $this->db->distinct();
         $this->db->from('enseignant');
@@ -138,8 +157,10 @@ class Users extends CI_Model{
         return $query->result();
     }
 
-    /*
-     * retourne 1 si l'utilisateur courant est un administrateur du site
+    /**
+     * Retourne 1 si l'utilisateur courant est un administrateur du site
+     * @param $username
+     * @return mixed
      */
     public function isAdmin($username){
         $this->db->select('administrateur');
@@ -149,6 +170,10 @@ class Users extends CI_Model{
         return $query->row()->administrateur;
     }
 
+    /**
+     * Retourne liste de tout les enseignants sous format array
+     * @return mixed
+     */
     public function getAllEnseignants(){
         $this->db->select('login, nom, prenom');
         $this->db->from('enseignant');
@@ -156,6 +181,10 @@ class Users extends CI_Model{
         return $query->result_array();
     }
 
+    /**
+     * Retourne le nombre d'heure qu'un enseignant à à effecter
+     * @return mixed
+     */
     public function getHeures(){
         $this->db->select('statutaire');
         $this->db->from('enseignant');
@@ -164,6 +193,10 @@ class Users extends CI_Model{
         return $query->row()->statutaire;
     }
 
+    /**
+     * Retoune le nom du fichier avatar de l'utilisateur (pour afficher cet avatar dans la page login)
+     * @return mixed
+     */
     public function getAvatar(){
         $this->db->select('avatar');
         $this->db->from('enseignant');
