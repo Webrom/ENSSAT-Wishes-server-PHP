@@ -237,4 +237,22 @@ class admin extends CI_Controller{
             }
         }
     }
+
+    public function modifyNews(){
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
+            redirect('login');
+        }else {
+            if($this->input->post('modifier_news')!='no'){
+                if ($this->news->modifyNews($this->input->post('modifier_news'),$this->input->post('informationNewstoModify'))){
+                    $this->index("Modification effectuée", "alert-success");
+                }
+                else{
+                    $this->index("Erreur lors de la modification. Veuillez retenter plus tard.", "alert-danger");
+                }
+            }
+            else{
+                $this->index("Erreur", "alert-danger");
+            }
+        }
+    }
 }

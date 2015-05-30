@@ -341,16 +341,45 @@
                                     <?php foreach($allnews as $onenews):?>
                                         <option value="<?php echo $onenews['DATE'];?>">
                                             <?php echo  substr($onenews['DATE'],0,16).' : '.
-                                                substr($onenews['INFORMATION'],0,34)
+                                                substr($onenews['INFORMATION'],0,130)
                                             ;?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>
                             <div class="col-md-12 col-no-border customHide" id="afficheInformation">
-                                <textarea id="informationNews" rows="8" cols="40"></textarea>
+                                <textarea id="informationNews" rows="8" cols="150" disabled></textarea>
                                 <div class="col-md-8 col-no-border"></div>
                                 <div class="col-md-4 col-no-border">
                                     <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <?php echo form_close()?>
+                </div>
+            </div>
+            <div id="modifyNews" class="row">
+                <div class="col-md-12 col-no-border">
+                    <?php echo form_open("admin/modifyNews",'class="form-horizontal"')?>
+                    <fieldset>
+                        <legend>Modifier une news</legend>
+                        <div class="form-group">
+                            <div class="col-md-12 col-no-border">
+                                <select name="modifier_news" class="form-control" id="modifier_news">
+                                    <option value="no">Veuillez choisir</option>
+                                    <?php foreach($allnews as $onenews):?>
+                                        <option value="<?php echo $onenews['DATE'];?>">
+                                            <?php echo  substr($onenews['DATE'],0,16).' : '.
+                                                substr($onenews['INFORMATION'],0,130)
+                                            ;?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="col-md-12 col-no-border customHide" id="afficheInformationtoModify">
+                                <textarea name="informationNewstoModify" id="informationNewstoModify" rows="8" cols="150"></textarea>
+                                <div class="col-md-8 col-no-border"></div>
+                                <div class="col-md-4 col-no-border">
+                                    <?php echo form_submit('submit','Modifier','class="btn btn-success"')?>
                                 </div>
                             </div>
                         </div>

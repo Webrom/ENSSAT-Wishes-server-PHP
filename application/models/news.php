@@ -36,4 +36,12 @@ class News extends CI_Model{
         $this->db->where('DATE', $date);
         return $this->db->delete('news');
     }
+
+    public function modifyNews($date,$information){
+        $data = array(
+            'INFORMATION'=>$information
+        );
+        $this->db->where('DATE', $date);
+        return $this->db->update('news',$data);
+    }
 }
