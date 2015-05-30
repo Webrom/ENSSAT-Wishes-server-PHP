@@ -354,7 +354,7 @@
                             <div class="col-md-12 col-no-border">
                                 <div class="bp-component">
                                     <div class="col-md-12 col-no-border">
-                                        <?php echo form_open("admin/deleteModuleContenu",'class="form-horizontal"')?>
+                                        <?php echo form_open("admin/modifyModuleContenu",'class="form-horizontal"')?>
                                         <fieldset>
                                             <legend>Modifier le contenu d'un module</legend>
                                             <div class="form-group">
@@ -419,7 +419,7 @@
                                                     <div class="col-md-12 col-no-border">
                                                         <div class="col-md-10 col-no-border"></div>
                                                         <div class="col-md-2 col-no-border">
-                                                            <?php echo form_button('submit','Modifier','id="getModuleContenus" class="  btn btn-success"')?>
+                                                            <?php echo form_submit('submit','Modifier','id="getModuleContenus" class="  btn btn-success"')?>
                                                         </div>
                                                     </div>
                                                 </div>
