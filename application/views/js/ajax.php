@@ -55,14 +55,11 @@
                             }
                             break;
                         case "setModuleContenus":
-                            console.log(array);
-                            console.log(array[0]);
                             $("#modulePartieAjax").val(array[0].partie);
-                            $(".typeModuleAjax").val(array[0].type);
+                            $("#selectTypeAjax").val(array[0].type);
                             $("#teacherModuleAjax").val(array[0].enseignant);
                             $("#teacherModuleAjax").text((array[0].enseignant!="null")?array[0].enseignant:"aucun");
                             $("#moduleHedAjax").val(array[0].hed);
-                            console.log($(".typeModuleAjax").val());
                             break;
                     }
                 }

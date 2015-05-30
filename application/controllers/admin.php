@@ -50,6 +50,10 @@ class admin extends CI_Controller{
         }
     }
 
+    public function modifyModuleContenu(){
+        echo "a faire dans ta chatte de merde";//TODO
+    }
+
     public function setModuleContenus(){
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0" ){
             redirect('login');
