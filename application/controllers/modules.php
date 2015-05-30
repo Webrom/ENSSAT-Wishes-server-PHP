@@ -76,7 +76,7 @@ class modules extends CI_Controller{
                     if (!$this->contenu->ifThereIsTeacher($this->input->get('module'), $this->input->get('partie'))) {
                         $statutaire = $this->users->getHeures();
                         $heuresdecharge = $this->decharge->getHoursDecharge($this->session->userdata('username'));
-                        $heuresprises = $this->contenu->getHeuresPrises();
+                        $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
                         $heureducontenu = $this->contenu->getHeurePourUnContenu($this->input->get('module'), $this->input->get('partie'));
                         if (($statutaire - ($heuresprises+$heuresdecharge)) >= $heureducontenu) {
                             $result = $this->contenu->addEnseignanttoContenu($this->input->get('module'), $this->input->get('partie'));

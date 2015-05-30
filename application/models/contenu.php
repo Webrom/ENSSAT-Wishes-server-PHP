@@ -44,6 +44,20 @@ class Contenu extends CI_Model{
         return $query->result_array();
     }
 
+    public function modifyModuleContenu($data,$keys){
+        $where = 'module = "'.$keys['module'].'" AND partie = "'.$keys['partie'].'"';
+        $query = $this->db->query($this->db->update_string('contenu',$data,$where));
+        if(!$query){
+            $ret= array(
+                "ErrorMessage" => $this->db->_error_message(),
+                "ErrorNumber" => $this->db->_error_message()
+            );
+        }else
+            $ret = "good";
+        return $ret;
+
+    }
+
     public function deleteContenuModule(){
         $array = array(
             "module" => $this->input->post('selectModuleShowContenu'),
@@ -80,10 +94,13 @@ class Contenu extends CI_Model{
         return $query->result_array();
     }
 
-    public function getHeuresPrises(){
+    /**
+     * @return int nombre d'heure qu'un professeur a
+     */
+    public function getHeuresPrises($teacher){
         $this->db->SELECT ("hed");
         $this->db->from ("contenu");
-        $this->db->where("enseignant",$this->session->userdata('username'));
+        $this->db->where("enseignant",$teacher);
         $query =  $this->db->get();
         $heures = 0;
         if ($query->num_rows>0) {
