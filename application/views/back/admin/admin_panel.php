@@ -124,10 +124,10 @@
                                                 <?php echo $enseignantsToAccept['nom']." ".$enseignantsToAccept['prenom']." | Login : ".$enseignantsToAccept['login'];?>
                                         </div>
                                     <div class="col-md-1 col-no-border">
-                                        <img src="/assets/img/cross.png" class="refuse_user" id="<?php echo $enseignantsToAccept['login'];?>"/>
+                                        <img src="<?php echo base_url();?>/assets/img/cross.png" class="refuse_user" id="<?php echo $enseignantsToAccept['login'];?>"/>
                                     </div>
                                     <div class="col-md-1 col-no-border">
-                                        <img src="/assets/img/checkmark2.png" class="valide_user" id="<?php echo $enseignantsToAccept['login'];?>"/>
+                                        <img src="<?php echo base_url();?>/assets/img/checkmark2.png" class="valide_user" id="<?php echo $enseignantsToAccept['login'];?>"/>
                                     </div>
                                     </div>
                                     <?php endforeach;?>
@@ -253,11 +253,28 @@
                             <div class="col-md-6 col-no-border">
                                 <div class="bp-component">
                                     <div class="col-md-12 col-no-border">
-                                        <?php echo form_open("",'class="form-horizontal"')?>
+                                        <?php echo form_open("admin/removeNews",'class="form-horizontal"')?>
                                         <fieldset>
                                             <legend>Supprimer une news</legend>
                                             <div class="form-group">
-
+                                                <div class="col-md-12 col-no-border">
+                                                    <select name="supprimer_news" class="form-control" id="supprimer_news">
+                                                        <option value="no">Veuillez choisir</option>
+                                                        <?php foreach($allnews as $onenews):?>
+                                                            <option value="<?php echo $onenews['DATE'];?>">
+                                                                <?php echo  substr($onenews['DATE'],0,16).' : '.
+                                                                    substr($onenews['INFORMATION'],0,34)
+                                                                ;?></option>
+                                                        <?php endforeach;?>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-12 col-no-border customHide" id="afficheInformation">
+                                                    <textarea id="informationNews" rows="8" cols="40"></textarea>
+                                                    <div class="col-md-8 col-no-border"></div>
+                                                    <div class="col-md-4 col-no-border">
+                                                        <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </fieldset>
                                         <?php echo form_close()?>

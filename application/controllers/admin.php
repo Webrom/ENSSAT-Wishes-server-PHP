@@ -35,7 +35,8 @@ class admin extends CI_Controller{
                 "status" =>  $status = $this->users->getStatus(),
                 "moduleTypes" => $this->contenu->getAllModuleTypes(),
                 "enAttente" => $this->users->ifSomeoneWait(),
-                "active" => $active
+                "active" => $active,
+                "allnews" => $this->news->getGeneralesNews()
             );
             $this->load->view('header',$data);
             $this->load->view('back/template/header');
@@ -201,6 +202,37 @@ class admin extends CI_Controller{
             }
             else{
                 $this->index("Veuillez rentrer du texte", "alert-danger");
+            }
+        }
+    }
+
+    public function getInformationNews(){
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
+            redirect('login');
+        }else {
+            if($this->input->get('DATE')){
+                echo $this->news->getInformation($this->input->get('DATE'));
+            }
+            else{
+                echo "rien a afficher";
+            }
+        }
+    }
+
+    public function removeNews(){
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
+            redirect('login');
+        }else {
+            if($this->input->post('supprimer_news')!='no'){
+                if ($this->news->removeNews($this->input->post('supprimer_news'))){
+                    $this->index("Supression OK", "alert-success");
+                }
+                else{
+                    $this->index("Erreur de supression", "alert-danger");
+                }
+            }
+            else{
+                $this->index("Erreur", "alert-danger");
             }
         }
     }
