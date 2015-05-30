@@ -83,7 +83,7 @@ class profile extends CI_Controller{
 
     public function modifyDecharge(){
         if($this->decharge->isPresentInTable()){
-            if($this->input->post("inputDecharge")<$this->users->getHeures() && $this->input->post("inputDecharge")<=$this->users->getHeures()-$this->contenu->getHeuresPrises()){
+            if($this->input->post("inputDecharge")<$this->users->getHeures() && $this->input->post("inputDecharge")<=$this->users->getHeures()-$this->contenu->getHeuresPrises($this->session->userdata("username"))){
                 $this->decharge->setDecharge();
                 $msg = "Votre decharge a été modifiée";
                 $msgbox = "alert-success";
