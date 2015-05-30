@@ -26,6 +26,7 @@ class admin extends CI_Controller{
                 "active" => "Administration",
                 "enseignants" => $this->users->getAllEnseignants(),
                 "enseignantsContenu" => $this->users->getAllEnseignants(),
+                "enseignantsModify" => $this->users->getAllEnseignants(),
                 "enseignantsToAccept" => $this->users->getAllEnseignantsToAccept(),
                 "semestres" => array("S1","S2","S3","S4","S5","S6"),
                 "publics" => $this->modulesmodels->getAllPublic(),

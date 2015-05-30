@@ -59,12 +59,13 @@
                         </div>
                         <div style="height: 0px;" id="collapseThree" class="panel-collapse collapse">
                             <div class="panel-body">
-                            </div><ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
-                                <li><a class="adminChoice" href="#addUser">Ajouter</a></li>
-                                <li><a class="adminChoice" href="#deleteUsers">Supprimer</a></li>
-                                <li><a class="adminChoice" href="#modifyUsers">Modifier</a></li>
-                                <li><a class="adminChoice" href="#acceptUsers">En attente</a></li>
-                            </ul>
+                                <ul class="nav nav-tabs nav-pills nav-stacked" style="max-width: 300px;">
+                                    <li><a class="adminChoice" href="#acceptUsers">En attente</a></li>
+                                    <li><a class="adminChoice" href="#addUser">Ajouter</a></li>
+                                    <li><a class="adminChoice" href="#deleteUsers">Supprimer</a></li>
+                                    <li><a class="adminChoice" href="#modifyUsers">Modifier</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="panel panel-default">
@@ -77,11 +78,12 @@
                         </div>
                         <div style="height: 0px;" id="collapseFour" class="panel-collapse collapse">
                             <div class="panel-body">
-                            </div><ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
-                                <li><a class="adminChoice" href="#addNews">Ajouter</a></li>
-                                <li><a class="adminChoice" href="#deleteNews">Supprimer</a></li>
-                                <li><a class="adminChoice" href="#modifyNews">Modifier</a></li>
-                            </ul>
+                                <ul class="nav nav-tabs nav-pills nav-stacked" style="max-width: 300px;">
+                                    <li><a class="adminChoice" href="#addNews">Ajouter</a></li>
+                                    <li><a class="adminChoice" href="#deleteNews">Supprimer</a></li>
+                                    <li><a class="adminChoice" href="#modifyNews">Modifier</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -273,6 +275,35 @@
                                 <div class="col-md-8 col-no-border"></div>
                                 <div class="col-md-4 col-no-border">
                                     <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <?php echo form_close()?>
+                </div>
+            </div>
+            <div id="modifyUsers" class="row">
+                <div class="col-md-12 col-no-border">
+                    <?php echo form_open("",'class="form-horizontal"')?>
+                    <fieldset>
+                        <legend>Modifier un utilisateur</legend>
+                        <div class="form-group">
+                            <div class="col-md-12 col-no-border">
+                                <label for="selectEnseignant" class="control-label">Enseignants</label>
+                                <select name="enseignants" class="form-control" id="selectEnseignant">
+                                    <?php foreach($enseignantsModify as $enseignants):?>
+                                        <option value="<?php echo $enseignants['login'];?>">
+                                            <?php echo  $enseignants['nom'].' '.
+                                                $enseignants['prenom'] . " " .
+                                                " : ".
+                                                $enseignants['login'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="col-md-12 col-no-border">
+                                <div class="col-md-8 col-no-border"></div>
+                                <div class="col-md-4 col-no-border">
+                                    <?php echo form_button('submit','valider','class="btn btn-success"')?>
                                 </div>
                             </div>
                         </div>
