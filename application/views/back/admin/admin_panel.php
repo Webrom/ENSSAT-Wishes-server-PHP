@@ -342,13 +342,13 @@
                                     <?php foreach($allnews as $onenews):?>
                                         <option value="<?php echo $onenews['DATE'];?>">
                                             <?php echo  substr($onenews['DATE'],0,16).' : '.
-                                                substr($onenews['INFORMATION'],0,130)
+                                                substr($onenews['INFORMATION'],0,120).'...'
                                             ;?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>
                             <div class="col-md-12 col-no-border customHide" id="afficheInformation">
-                                <textarea id="informationNews" rows="8" cols="150" disabled></textarea>
+                                <textarea id="informationNews" rows="8" style="width:100%" disabled></textarea>
                                 <div class="col-md-8 col-no-border"></div>
                                 <div class="col-md-4 col-no-border">
                                     <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
@@ -371,13 +371,13 @@
                                     <?php foreach($allnews as $onenews):?>
                                         <option value="<?php echo $onenews['DATE'];?>">
                                             <?php echo  substr($onenews['DATE'],0,16).' : '.
-                                                substr($onenews['INFORMATION'],0,130)
+                                                substr($onenews['INFORMATION'],0,120).'...'
                                             ;?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>
                             <div class="col-md-12 col-no-border customHide" id="afficheInformationtoModify">
-                                <textarea name="informationNewstoModify" id="informationNewstoModify" rows="8" cols="150"></textarea>
+                                <textarea name="informationNewstoModify" id="informationNewstoModify" rows="8" style="width:100%"></textarea>
                                 <div class="col-md-8 col-no-border"></div>
                                 <div class="col-md-4 col-no-border">
                                     <?php echo form_submit('submit','Modifier','class="btn btn-success"')?>
