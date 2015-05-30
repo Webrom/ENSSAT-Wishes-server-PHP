@@ -56,42 +56,76 @@
             <div class="col-md-12 col-no-border">
                 <legend>Ajouter un module</legend>
                 <?php echo form_open('modules/displayModule')?>
-                <div class="col-md-6 col-no-border">
-                    <label for="selectModule" class="control-label">Selectionnez Module</label>
-                    <select name="module" class="form-control" id="selectModule">
-                        <?php if($module!=""): ?>
-                            <option value="<?php echo $module;?>"><?php echo $module;?></option>
-                            <option value="">Pas de module en particulier module</option>
-                        <?php else: ?>
-                            <option value="">Aucun module</option>
-                        <?php endif?>
-                        <?php foreach($modules as $module):?>
-                            <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
-                        <?php endforeach;?>
-                    </select>
+                <div class="row">
+                    <div class="col-md-6 col-no-border">
+                        <label for="selectModule" class="control-label">Selectionnez Module</label>
+                        <select name="module" class="form-control" id="selectModule">
+                            <?php if($module!=""): ?>
+                                <option value="<?php echo $module;?>"><?php echo $module;?></option>
+                                <option value="">Pas de module en particulier</option>
+                            <?php else: ?>
+                                <option value="">Aucun module</option>
+                            <?php endif;?>
+                            <?php foreach($modules as $module):?>
+                                <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                    <div class="col-md-6 col-no-border">
+                        <label for="selectTeacher" class="control-label">Selectionnez un enseignant</label>
+                        <select name="teacher" class="form-control" id="selectTeacher" <?php if($checked){echo 'disabled';} ?>>
+                            <?php if(count($teacher)>0 && $teacher!="no"): ?>
+                                <option value="<?php echo $teacher[0]['login'];?>"><?php echo $teacher[0]['nom']." ".$teacher[0]['prenom'];?></option>
+                                <option value="no">Pas d'enseignant en particulier</option>
+                            <?php else: ?>
+                                <option value="no">Pas d'enseignant en particulier</option>
+                            <?php endif?>
+                            <?php foreach($enseignants as $teacher):?>
+                                <option value="<?php echo $teacher['login'];?>"><?php echo $teacher['nom']." ".$teacher['prenom'];?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-md-6 col-no-border">
-                    <label for="selectTeacher" class="control-label">Selectionnez un enseignant</label>
-                    <select name="teacher" class="form-control" id="selectTeacher" <?php if($checked){echo 'disabled';} ?>>
-                        <?php if(count($teacher)>0 && $teacher!="no"): ?>
-                            <option value="<?php echo $teacher[0]['login'];?>"><?php echo $teacher[0]['nom']." ".$teacher[0]['prenom'];?></option>
-                            <option value="no">Pas d'enseignant en particulier</option>
-                        <?php else: ?>
-                            <option value="no">Pas d'enseignant en particulier</option>
-                        <?php endif?>
-                        <?php foreach($enseignants as $teacher):?>
-                            <option value="<?php echo $teacher['login'];?>"><?php echo $teacher['nom']." ".$teacher['prenom'];?></option>
-                        <?php endforeach;?>
-                    </select>
+                <div class="row">
+                    <div class="col-md-6 col-no-border">
+                        <label for="selectSemester" class="control-label">Selectionnez Semestre</label>
+                        <select name="semester" class="form-control" id="selectSemester">
+                            <?php if($semSelected!="noSemester"): ?>
+                                <option value="<?php echo $semSelected;?>"><?php echo $semSelected;?></option>
+                                <option value="noSemester">Pas de semestre en particulier</option>
+                            <?php else:?>
+                                <option value="noSemester">Pas de semestre en particulier</option>
+                            <?php endif;?>
+                            <?php foreach($allSemesters as $allSemester):?>
+                                <option value="<?php echo $allSemester;?>"><?php echo $allSemester;?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                    <div class="col-md-6 col-no-border">
+                        <label for="selectPromotion" class="control-label">Selectionnez Promotion</label>
+                        <select name="prom" class="form-control" id="selectPromotion">
+                            <?php if($promSelected!="noProm"): ?>
+                                <option value="<?php echo $promSelected;?>"><?php echo $promSelected;?></option>
+                                <option value="noProm">Pas de promotion en particulier</option>
+                            <?php else:?>
+                                <option value="noProm">Pas de promotion en particulier</option>
+                            <?php endif;?>
+                            <?php foreach($allProm as $allProm):?>
+                                <option value="<?php echo $allProm;?>"><?php echo $allProm;?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-md-6 col-no-border">
-                    <input type="checkbox" id="checkboxSansEnseignant" name="checkboxSansEnseignant" <?php if($checked){echo 'checked="checked"';} ?>/><label for="checkboxSansEnseignant" class="control-label">Uniquement les contenus sans enseignant</label>
+                <div class="row">
+                    <div class="col-md-6 col-no-border">
+                        <input type="checkbox" id="checkboxSansEnseignant" name="checkboxSansEnseignant" <?php if($checked){echo 'checked="checked"';} ?>/><label for="checkboxSansEnseignant" class="control-label">Uniquement les contenus sans enseignant</label>
 
-                </div>
-                <div class="col-md-8 col-no-border"></div>
-                <div class="col-md-4 col-no-border">
-                    <?php echo form_button("reset","reset",'id="resetFormSearch" class="btn btn-info"');?>
-                    <?php echo form_submit('submit','Rechercher','class="btn btn-success"')?>
+                    </div>
+                    <div class="col-md-8 col-no-border"></div>
+                    <div class="col-md-4 col-no-border">
+                        <?php echo form_button("reset","reset",'id="resetFormSearch" class="btn btn-info"');?>
+                        <?php echo form_submit('submit','Rechercher','class="btn btn-success"')?>
+                    </div>
                 </div>
                 <?php echo form_close()?>
             </div>

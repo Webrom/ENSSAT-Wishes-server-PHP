@@ -69,27 +69,39 @@ class Contenu extends CI_Model{
         }
     }
 
-    public function getModuleTeacher($data){
+    public function getModuleTeacher($data,$promotion,$semester){
         $this->db->select("*");
-        $this->db->from("contenu");
+        $this->db->from("contenu,module");
         $this->db->where("module",$data['module']);
         $this->db->where("enseignant",$data['teacher']);
+        if($promotion!="noProm")
+            $this->db->where("public",$promotion);
+        if($semester!="noSemester")
+            $this->db->where("semestre",$semester);
         $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function getModuleByModule($data){
+    public function getModuleByModule($data,$promotion,$semester){
         $this->db->select("*");
-        $this->db->from("contenu");
+        $this->db->from("contenu,module");
         $this->db->where("module",$data['module']);
+        if($promotion!="noProm")
+            $this->db->where("public",$promotion);
+        if($semester!="noSemester")
+            $this->db->where("semestre",$semester);
         $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function getModuleByTeacher($data){
+    public function getModuleByTeacher($data,$promotion,$semester){
         $this->db->select("*");
-        $this->db->from("contenu");
+        $this->db->from("contenu,module");
         $this->db->where("enseignant",$data['teacher']);
+        if($promotion!="noProm")
+            $this->db->where("public",$promotion);
+        if($semester!="noSemester")
+            $this->db->where("semestre",$semester);
         $query = $this->db->get();
         return $query->result_array();
     }
