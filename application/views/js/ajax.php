@@ -104,5 +104,30 @@
                 }
         });
     });
+
+    $("#supprimer_news").change(function(e){
+            if($(this).val()!='no'){
+                $("#afficheInformation").show();
+                var date = $(this).val();
+                var base_url = '<?php echo base_url()?>';
+                var controler = "admin";
+                var method = "getInformationNews";
+                $.ajax({
+                    url : base_url+'index.php/'+controler+'/'+method,
+                    type : 'GET',
+                    data : 'DATE='+date,
+                    cache: false,
+                    'success':
+                        function(data){
+                            $("#informationNews").text(data);
+                            $("#afficheInformation").show();
+                        }
+                });
+            }
+            else{
+                $("#afficheInformation").hide();
+            }
+        }
+    );
 </script>
 
