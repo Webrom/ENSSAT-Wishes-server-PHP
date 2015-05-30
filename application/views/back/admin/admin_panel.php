@@ -233,11 +233,17 @@
                             <div class="col-md-6 col-no-border">
                                 <div class="bp-component">
                                     <div class="col-md-12 col-no-border">
-                                        <?php echo form_open("",'class="form-horizontal"')?>
+                                        <?php echo form_open("admin/createNews",'class="form-horizontal"')?>
                                         <fieldset>
                                             <legend>Ajouter une news</legend>
                                             <div class="form-group">
-
+                                                <?php echo form_textarea('news','','class="form-control" id="inputNews" placeholder="Ecrire votre texte"')?>
+                                            </div>
+                                            <div class="col-md-12 col-no-border">
+                                                <div class="col-md-8 col-no-border"></div>
+                                                <div class="col-md-4 col-no-border">
+                                                    <?php echo form_submit('submit','Envoyer la news','class="btn btn-success"')?>
+                                                </div>
                                             </div>
                                         </fieldset>
                                         <?php echo form_close()?>

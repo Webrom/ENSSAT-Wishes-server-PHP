@@ -13,6 +13,7 @@ class admin extends CI_Controller{
         $this->load-> model('modulesmodels');
         $this->load-> model('users');
         $this->load-> model('contenu');
+        $this->load-> model('news');
     }
 
     public function index($msg=null,$success=null,$active=null){
@@ -130,6 +131,20 @@ class admin extends CI_Controller{
                 $this->index("Votre contenu a été rajouté.","alert-success","Contenu");
             else
                 $this->index($res['ErrorMessage']." ".$res['ErrorNumber'],"alert-danger","Contenu");
+        }
+    }
+
+    public function createNews(){
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
+            redirect('login');
+        }else {
+            $result = $this->news->addNews($this->session->userdata('username'),"generale",$this->input->post('news'));
+            if($result){
+                $this->index("Votre nouvelle a étée rajoutée.","alert-success");
+            }
+            else{
+                $this->index("Il y a une erreur... C'est surement à cause de dev incompétents !","alert-danger");
+            }
         }
     }
 }
