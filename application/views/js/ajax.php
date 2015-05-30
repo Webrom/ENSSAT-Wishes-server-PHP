@@ -20,18 +20,19 @@
         $.ajax({
             url : param["base_url"]+'index.php/'+param["controler"]+'/'+param["method"],
             type : 'GET',
-            data : 'gData='+$(param["gData"]).val(),
+            data : 'gData='+$(param["gData"]).val()+'&bData='+$('#obtContenu').val(),
             cache: false,
             'success':
                 function(data){
+                    console.log(data);
+                    $("#display"+param["method"]).addClass('animated bounceInUp').removeClass('customHide');
+                    var array = JSON.parse(data);
                     switch (param["method"]){
                         case "getModuleContenus":
-                            $("#display"+param["method"]).addClass('animated bounceInUp').removeClass('customHide');
-                            array = JSON.parse(data);
                             $(".ajaxContenuModule").each(function(){
                                 $(this).remove();
                             });
-                            for(var i = 0; i<JSON.parse(data).length;i++){
+                            for(var i = 0; i<array.length;i++){
                                 var mytext = array[i].partie;
                                 var option = document.createElement('option');
                                 $(option).attr('value',mytext);
@@ -39,6 +40,29 @@
                                 $(option).text(mytext);
                                 $("#selectContenuModule").append($(option));
                             }
+                            break;
+                        case "setModuleContenusType":
+                            $(".ajaxContenuType").each(function(){
+                                $(this).remove();
+                            });
+                            for(var i = 0; i<array.length;i++){
+                                var mytext = array[i].partie;
+                                var option = document.createElement('option');
+                                $(option).attr('value',mytext);
+                                $(option).addClass('ajaxContenuType');
+                                $(option).text(mytext);
+                                $("#dtcContenu").append($(option));
+                            }
+                            break;
+                        case "setModuleContenus":
+                            console.log(array);
+                            console.log(array[0]);
+                            $("#modulePartieAjax").val(array[0].partie);
+                            $(".typeModuleAjax").val(array[0].type);
+                            $("#teacherModuleAjax").val(array[0].enseignant);
+                            $("#teacherModuleAjax").text((array[0].enseignant!="null")?array[0].enseignant:"aucun");
+                            $("#moduleHedAjax").val(array[0].hed);
+                            console.log($(".typeModuleAjax").val());
                             break;
                     }
                 }

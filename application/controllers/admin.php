@@ -42,11 +42,20 @@ class admin extends CI_Controller{
         }
     }
 
+    public function setModuleContenusType(){
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0" ){
+            redirect('login');
+        }else {
+            echo json_encode($this->contenu->getTypeContenu());
+        }
+    }
+
     public function setModuleContenus(){
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0" ){
             redirect('login');
         }else {
-            echo ("azeazeaze");
+            //var_dump($this->contenu->getModuleContenus());
+            echo json_encode($this->contenu->getModuleContenusByPartieModule());
         }
     }
 

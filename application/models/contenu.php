@@ -16,10 +16,30 @@ class Contenu extends CI_Model{
         return $query->result_array();
     }
 
+    public function getTypeContenu(){
+        $this->db->select('partie');
+        $this->db->from('contenu');
+        $this->db->where('module',$this->input->get('gData'));
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function getModuleContenus(){
-        $this->db->select('module,partie,hed');
+        $this->db->select('*');
         $this->db->from("contenu");
         $this->db->where('module',$this->input->get('gData'));
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getModuleContenusByPartieModule(){
+        $array = array(
+            "partie" => $this->input->get('gData'),
+            "module" => $this->input->get('bData')
+        );
+        $this->db->select('*');
+        $this->db->from("contenu");
+        $this->db->where($array);
         $query = $this->db->get();
         return $query->result_array();
     }

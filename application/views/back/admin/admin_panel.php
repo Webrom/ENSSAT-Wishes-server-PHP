@@ -359,30 +359,46 @@
                                             <legend>Modifier le contenu d'un module</legend>
                                             <div class="form-group">
                                                 <div class="col-md-12 col-no-border">
-                                                    <label for="selectModuleShowContenu" class="control-label">Selectionnez Module</label>
-                                                    <select name="selectModuleShowContenu" class="form-control" id="obtContenu">
-                                                        <?php foreach($modules as $module):?>
-                                                            <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
-                                                        <?php endforeach;?>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-12 col-no-border">
-                                                    <div class="col-md-8 col-no-border"></div>
-                                                    <div class="col-md-4 col-no-border">
-                                                        <?php echo form_button('submit','valider','id="getModuleContenusModification" class="obtContenu ajaxFunction btn btn-info"')?>
+                                                    <div class="col-md-6 col-no-border">
+                                                        <div class="col-md-12 col-no-border">
+                                                            <label for="selectModuleShowContenu" class="control-label">Selectionnez Module</label>
+                                                            <select name="selectModuleShowContenu" class="form-control" id="obtContenu">
+                                                                <?php foreach($modules as $module):?>
+                                                                    <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
+                                                                <?php endforeach;?>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-12 col-no-border">
+                                                            <div class="col-md-8 col-no-border"></div>
+                                                            <div class="col-md-4 col-no-border">
+                                                                <?php echo form_button('recuperation','valider','id="setModuleContenusType" class="obtContenu ajaxFunction btn btn-info"')?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="displaysetModuleContenusType" class=" col-md-6 col-no-border">
+                                                        <div class="col-md-12 col-no-border">
+                                                            <label for="selectContenuModuleModification" class="control-label">Selectionnez la/les partie(s)</label>
+                                                            <select name="selectContenuModuleModification" class="form-control" id="dtcContenu">
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-12 col-no-border">
+                                                            <div class="col-md-8 col-no-border"></div>
+                                                            <div class="col-md-4 col-no-border">
+                                                                <?php echo form_button('submit','valider','id="setModuleContenus" class="dtcContenu ajaxFunction btn btn-info"')?>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div id="displaygetModuleContenusModification" class="">
                                                     <div class="col-md-12 col-no-border">
-                                                        <label for="moduleType" class="control-label">Type de module (doit etre unique)</label>
-                                                        <?php echo form_input('moduleType','','class="form-control" placeholder="ex : TP1, CM2, ..." id="moduleType" required')?>
+                                                        <label for="modulePartieAjax" class="control-label">Partie de module (doit etre unique)</label>
+                                                        <?php echo form_input('modulePartieAjax','','class="form-control" placeholder="ex : TP1, CM2, ..." id="modulePartieAjax" required')?>
                                                     </div>
                                                     <div class="col-md-12 col-no-border">
                                                         <label for="selectType" class="control-label">Type</label>
                                                         <select name="selectType" class="form-control" id="selectType">
-                                                            <option id="typeModuleAjax" value=""></option>
                                                             <?php foreach($moduleTypes as $moduleType):?>
-                                                                <option value="<?php echo $moduleType['type'];?>"><?php echo $moduleType['type'];?></option>
+                                                                <option class="typeModuleAjax" value="<?php echo $moduleType['type'];?>"><?php echo $moduleType['type'];?></option>
                                                             <?php endforeach;?>
                                                         </select>
                                                     </div>
@@ -397,8 +413,8 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-12 col-no-border">
-                                                        <label for="moduleHed" class="control-label">Indiquez le nombre d'heure</label>
-                                                        <input type="number" name="moduleHed" class="form-control" placeholder="ex : 12" id="moduleHed" required/>
+                                                        <label for="moduleHedAjax" class="control-label">Indiquez le nombre d'heure</label>
+                                                        <input type="number" name="moduleHedAjax" class="form-control" placeholder="ex : 12" id="moduleHedAjax" required/>
                                                     </div>
                                                     <div class="col-md-12 col-no-border">
                                                         <div class="col-md-10 col-no-border"></div>
