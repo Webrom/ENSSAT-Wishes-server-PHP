@@ -58,9 +58,9 @@
                                 </a>
                             </h4>
                         </div>
-                        <div  id="collapseThree" class="panel-collapse collapse">
+                        <div  id="collapseThree" class="#modifyUsers #deleteUsers #addUser #acceptUsers panel-collapse collapse">
                             <div class="panel-body">
-                                <ul class="#modifyUsers #deleteUsers #addUser #acceptUsers nav nav-tabs nav-pills nav-stacked" style="max-width: 300px;">
+                                <ul class="nav nav-tabs nav-pills nav-stacked" style="max-width: 300px;">
                                     <li><a class="adminChoice" href="#acceptUsers">En attente</a></li>
                                     <li><a class="adminChoice" href="#addUser">Ajouter</a></li>
                                     <li><a class="adminChoice" href="#deleteUsers">Supprimer</a></li>
@@ -203,28 +203,26 @@
                         <div class="form-group">
                             <legend>Ajouter un utilisateur</legend>
                             <div class="col-md-12 col-no-border">
-                                Pour ajouter un utilisateur, merci d'utiliser le panel ci-contre.
-                                Votre utilisateur aura le mot de passe par défaut, soit "servicesENSSAT".
-                                <div class="form-group">
-                                    <div class="col-md-12 col-no-border">
-                                        <label for="name" class="control-label">Nom de l'utilisateur</label>
-                                        <?php echo form_input('name','','class="form-control" placeholder="John" id="name" required')?>
-                                    </div>
-                                    <div class="col-md-12 col-no-border">
-                                        <label for="prenom" class="control-label">Prénom de l'utilisateur</label>
-                                        <?php echo form_input('prenom','','class="form-control" placeholder="Doe" id="prenom" required')?>
-                                    </div>
-                                    <div class="col-md-12 col-no-border">
-                                        <label for="inputHours" class="control-label">Nombre d'heures allouées</label>
-                                        <?php echo form_input('heures','','class="form-control" placeholder="heures" id="inputHours" required')?>
-                                    </div>
-                                    <div class="col-md-12 col-no-border">
-                                        <label for="actif" class="control-label">Actif</label>
-                                        <select class="form-control" id="select" name="actif">
-                                            <option value="0">Non</option>
-                                            <option value="1">Oui</option>
-                                        </select>
-                                    </div>
+                                <p>Pour ajouter un utilisateur, merci d'utiliser le panel ci-contre.
+                                    Votre utilisateur aura le mot de passe par défaut, soit "servicesENSSAT".</p>
+                                <div class="col-md-12 col-no-border">
+                                    <label for="name" class="control-label">Nom de l'utilisateur</label>
+                                    <?php echo form_input('name','','class="form-control" placeholder="John" id="name" required')?>
+                                </div>
+                                <div class="col-md-12 col-no-border">
+                                    <label for="prenom" class="control-label">Prénom de l'utilisateur</label>
+                                    <?php echo form_input('prenom','','class="form-control" placeholder="Doe" id="prenom" required')?>
+                                </div>
+                                <div class="col-md-12 col-no-border">
+                                    <label for="inputHours" class="control-label">Nombre d'heures allouées</label>
+                                    <?php echo form_input('heures','','class="form-control" placeholder="heures" id="inputHours" required')?>
+                                </div>
+                                <div class="col-md-12 col-no-border">
+                                    <label for="actif" class="control-label">Actif</label>
+                                    <select class="form-control" id="select" name="actif">
+                                        <option value="0">Non</option>
+                                        <option value="1">Oui</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <label for="select_statut" class="control-label">Statut</label>
@@ -250,6 +248,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </fieldset>
                     <?php echo form_close()?>
                 </div>

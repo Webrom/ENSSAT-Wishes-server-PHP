@@ -146,8 +146,12 @@ class admin extends CI_Controller{
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
             redirect('login');
         }else {
-            $this->modulesmodels->deleteModule();
-            $this->index("Le/les modules ont étés supprimés.", "alert-success","#deleteModule");
+            $modules = $this->input->post('module');
+            if($modules!=null){
+                $this->modulesmodels->deleteModuleContenu();
+                $this->index("Le/les modules ont étés supprimés.", "alert-success","#deleteModule");
+            }else
+                $this->index("Veuillez remplir correctement le formulaire", "alert-danger","#deleteModule");
         }
     }
 
@@ -172,8 +176,16 @@ class admin extends CI_Controller{
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
             redirect('login');
         }else{
-            $this->contenu->deleteContenuModule();
-            $this->index("Les parties ont bien été supprimées.","alert-success","#deleteContenu");
+            $array = array(
+                "module" => $this->input->post('selectModuleShowContenu'),
+                "partie" => $this->input->post('selectContenuModule')
+            );
+            if($array['module']!=null && $array['partie']!=null){
+                $this->contenu->deleteContenuModule();
+                $this->index("Les parties ont bien été supprimées.","alert-success","#deleteContenu");
+            }else
+                $this->index("Veuillez remplir correctement les champs","alert-danger","#deleteContenu");
+
         }
     }
 

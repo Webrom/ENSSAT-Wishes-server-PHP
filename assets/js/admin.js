@@ -32,7 +32,11 @@ function activeRefresh(){
             $(this).addClass('btn');
             $(this.parentElement).addClass('active');
             console.log($(this));
+        }else{
+            $(this).removeClass('btn');
+            $(this.parentElement).removeClass('active');
         }
+
     });
     $('.panel-collapse').each(function(){
         if($(this).hasClass($('#affiche').text())){
