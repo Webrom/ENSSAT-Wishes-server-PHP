@@ -58,7 +58,7 @@
                             $("#modulePartieAjax").val(array[0].partie);
                             $("#selectTypeAjax").val(array[0].type);
                             $("#teacherModuleAjax").val(array[0].enseignant);
-                            $("#teacherModuleAjax").text((array[0].enseignant!="null")?array[0].enseignant:"aucun");
+                            $("#teacherModuleAjax").text((array[0].enseignant!=null)?array[0].enseignant:"aucun");
                             $("#moduleHedAjax").val(array[0].hed);
                             break;
                     }

@@ -423,8 +423,8 @@
                                                         <label for="selectTeacher" class="control-label">Professeur</label>
                                                         <select name="selectTeacher" class="form-control" id="selectTeacher">
                                                             <option id="teacherModuleAjax" value=""></option>
-                                                            <?php foreach($moduleTypes as $moduleType):?>
-                                                                <option value="<?php echo $moduleType['enseignant'];?>"><?php echo $moduleType['enseignant'];?></option>
+                                                            <?php foreach($enseignantsContenu as $enseignant2):?>
+                                                                <option value="<?php echo $enseignant2['login'];?>"><?php echo $enseignant2['nom']." ".$enseignant2['prenom'];?></option>
                                                             <?php endforeach;?>
                                                             <option value="">Aucun</option>
                                                         </select>

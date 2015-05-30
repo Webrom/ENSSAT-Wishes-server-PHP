@@ -55,6 +55,14 @@ class modulesmodels extends CI_Model {
         }
     }
 
+    public function getModuleByPromOrSemester($promOrSemester,$valueSent){
+        $this->db->select("ident");
+        $this->db->from("module");
+        $this->db->where($promOrSemester,$valueSent);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
 
     public function deleteModuleContenu(){
         foreach($this->input->post('module') as $module){

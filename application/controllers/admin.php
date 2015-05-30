@@ -14,6 +14,7 @@ class admin extends CI_Controller{
         $this->load-> model('users');
         $this->load-> model('contenu');
         $this->load-> model('news');
+        $this->load-> model('decharge');
     }
 
     public function index($msg=null,$success=null,$active=null){
@@ -24,6 +25,7 @@ class admin extends CI_Controller{
                 "admin" => $this->session->userdata['admin'],
                 "active" => "Administration",
                 "enseignants" => $this->users->getAllEnseignants(),
+                "enseignantsContenu" => $this->users->getAllEnseignants(),
                 "enseignantsToAccept" => $this->users->getAllEnseignantsToAccept(),
                 "semestres" => array("S1","S2","S3","S4","S5","S6"),
                 "publics" => $this->modulesmodels->getAllPublic(),
@@ -51,15 +53,53 @@ class admin extends CI_Controller{
         }
     }
 
+    /**
+     * Modifie le contenu d'un module, modifie l'enseignant si ce dernier peut encore effectuer des heures,
+     * idem lorsqu'on modifie les hed du contenu
+     */
     public function modifyModuleContenu(){
-        echo "a faire dans ta chatte de merde";//TODO
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0" ){
+            redirect('login');
+        }else {
+            $data = array(
+                "partie" => $this->input->post('modulePartieAjax'),
+                "type" => $this->input->post('selectTypeAjax'),
+                "hed" => $this->input->post('moduleHedAjax'),
+                "enseignant" => ($this->input->post('selectTeacher')!="")?$this->input->post('selectTeacher'):null,
+            );
+            $keys = array(
+                "module" => $this->input->post('selectModuleShowContenu'),
+                "partie" => $this->input->post('selectContenuModuleModification')
+            );
+            $hours = array(
+                "teacherHours" => $this->users->getHeures(),
+                "effectiveTeacherHours" => $this->contenu->getHeuresPrises($data['enseignant']),
+                "decharge" => $this->decharge->getHoursDecharge($data['enseignant']),
+                "hedContenu" => $this->contenu->getHeurePourUnContenu($keys['module'],$keys['partie'])
+            );
+            //test heures
+            if($data['enseignant']==$this->contenu->getModuleTeacher(array(
+                    "module" => $keys['module'],
+                    "teacher" => $data['enseignant']
+                )))
+                $res = $hours['teacherHours']-$hours['decharge']+$hours['effectiveTeacherHours']-$hours['hedContenu'];
+            else
+                $res = $hours['teacherHours']-$hours['decharge']+$hours['effectiveTeacherHours'];
+            if($res>=$data['hed'] || $data['enseignant']==null){
+                $ret =$this->contenu->modifyModuleContenu($data,$keys);
+                if($ret=="good")
+                    $this->index('Le contenu du module a été modifié.',"alert-success","Contenu");
+                else
+                    $this->index($ret['ErrorMessage'].$ret['ErrorNumber'],'alert-danger','Contenu');
+            }else
+                $this->index($data['enseignant']." n'a pas assé d'heure de disponible pour ce contenu",'alert-danger','Contenu');
+        }
     }
 
     public function setModuleContenus(){
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0" ){
             redirect('login');
         }else {
-            //var_dump($this->contenu->getModuleContenus());
             echo json_encode($this->contenu->getModuleContenusByPartieModule());
         }
     }

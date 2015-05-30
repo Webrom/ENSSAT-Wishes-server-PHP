@@ -44,6 +44,20 @@ class Contenu extends CI_Model{
         return $query->result_array();
     }
 
+    public function modifyModuleContenu($data,$keys){
+        $where = 'module = "'.$keys['module'].'" AND partie = "'.$keys['partie'].'"';
+        $query = $this->db->query($this->db->update_string('contenu',$data,$where));
+        if(!$query){
+            $ret= array(
+                "ErrorMessage" => $this->db->_error_message(),
+                "ErrorNumber" => $this->db->_error_message()
+            );
+        }else
+            $ret = "good";
+        return $ret;
+
+    }
+
     public function deleteContenuModule(){
         $array = array(
             "module" => $this->input->post('selectModuleShowContenu'),
@@ -55,35 +69,50 @@ class Contenu extends CI_Model{
         }
     }
 
-    public function getModuleTeacher($data){
+    public function getModuleTeacher($data,$promotion,$semester){
         $this->db->select("*");
-        $this->db->from("contenu");
+        $this->db->from("contenu,module");
         $this->db->where("module",$data['module']);
         $this->db->where("enseignant",$data['teacher']);
+        if($promotion!="noProm")
+            $this->db->where("public",$promotion);
+        if($semester!="noSemester")
+            $this->db->where("semestre",$semester);
         $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function getModuleByModule($data){
+    public function getModuleByModule($data,$promotion,$semester){
         $this->db->select("*");
-        $this->db->from("contenu");
+        $this->db->from("contenu,module");
         $this->db->where("module",$data['module']);
+        if($promotion!="noProm")
+            $this->db->where("public",$promotion);
+        if($semester!="noSemester")
+            $this->db->where("semestre",$semester);
         $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function getModuleByTeacher($data){
+    public function getModuleByTeacher($data,$promotion,$semester){
         $this->db->select("*");
-        $this->db->from("contenu");
+        $this->db->from("contenu,module");
         $this->db->where("enseignant",$data['teacher']);
+        if($promotion!="noProm")
+            $this->db->where("public",$promotion);
+        if($semester!="noSemester")
+            $this->db->where("semestre",$semester);
         $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function getHeuresPrises(){
+    /**
+     * @return int nombre d'heure qu'un professeur a
+     */
+    public function getHeuresPrises($teacher){
         $this->db->SELECT ("hed");
         $this->db->from ("contenu");
-        $this->db->where("enseignant",$this->session->userdata('username'));
+        $this->db->where("enseignant",$teacher);
         $query =  $this->db->get();
         $heures = 0;
         if ($query->num_rows>0) {
