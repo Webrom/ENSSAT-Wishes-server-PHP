@@ -16,7 +16,7 @@ class modules extends CI_Controller{
         $this->load->model('decharge');
     }
 
-    public function index($result=null,$infosmodule=null,$infos=null){
+    public function index($result=null,$infosmodule=null,$infos=null,$onglet=null){
         if(!$this->session->userdata('is_logged_in')){
             redirect('login');
         }else{
@@ -35,7 +35,8 @@ class modules extends CI_Controller{
                 "checked" => $infosmodule['checked'],
                 "success" => $infos['success'],
                 "msg" => $infos['msg'],
-                "myModules" => $this->modulesmodels->getAllMyModules()
+                "myModules" => $this->modulesmodels->getAllMyModules(),
+                "onglet" => $onglet
             );
             $this->load->view('header',$data);
             $this->load->view('back/template/header');
@@ -68,7 +69,7 @@ class modules extends CI_Controller{
                 "semSelected" => ($this->input->post("semester")!="noSemester")?$this->input->post("semester"):"noSemester",
                 "checked" => $this->input->post('checkboxSansEnseignant')
             );
-            $this->index($result,$data);
+            $this->index($result,$data,null,"Recherche");
         }
     }
 
@@ -123,7 +124,7 @@ class modules extends CI_Controller{
                     'msg' => "Il y a eu une erreur dans l'inscription au module."
                 );
             }
-            $this->index(null,null,$info);
+            $this->index(null,null,$info,"Recherche");
         }
     }
     public function desinscriptionModule(){
@@ -153,7 +154,7 @@ class modules extends CI_Controller{
                 'moduleByProm' => $this->modulesmodels->getModuleByProm("public",$this->input->post("prom"))
             );
         }
-        $this->index($result, null, null);
+        $this->index($result, null, null,"Recherche");
     }
 
     public function displayModuleBySemester(){
@@ -164,6 +165,6 @@ class modules extends CI_Controller{
                 'moduleBySemester' => $this->modulesmodels->getModuleByProm("semestre",$this->input->post("prom"))
             );
         }
-        $this->index($result, null, null);
+        $this->index($result, null, null,"Recherche");
     }
 }
