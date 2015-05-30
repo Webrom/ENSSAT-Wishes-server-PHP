@@ -164,4 +164,16 @@ class Contenu extends CI_Model{
             return true;
         }
     }
+
+    public function desinscriptionModule($module,$partie){
+        $data = array(
+            'enseignant' => null
+        );
+        //$this->db->set('enseignant',$this->session->userdata('username'));
+        $this->db->where('module',$module);
+        $this->db->where('partie',$partie);
+        $this->db->where('enseignant',$this->session->userdata('username'));
+        $query = $this->db->update('contenu',$data);
+        return $query;
+    }
 }

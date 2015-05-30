@@ -49,7 +49,10 @@
                 <?php echo form_close(); ?>
                 <?php echo form_open_multipart('upload/do_upload');?>
                 <div class="col-md-12 col-no-border">
-                    Télécharger image profil :
+                    <p>Télécharger image profil : format JPG / PNG / GIF </p>
+                    <p>Taille max : 1 MO</p>
+                </div>
+                <div class="col-md-12 col-no-border">
                     <input type="file" name="userfile" size="20" />
                 </div>
                 <div class="col-md-12 col-no-border">

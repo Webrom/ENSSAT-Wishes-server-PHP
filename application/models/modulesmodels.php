@@ -41,6 +41,20 @@ class modulesmodels extends CI_Model {
         return $query->result_array();
     }
 
+    public function getAllMyModules(){
+        $this->db->select("module,partie,type,hed");
+        $this->db->from("contenu");
+        $this->db->where("enseignant",$this->session->userdata('username'));
+        $query = $this->db->get();
+
+        if(!$query) {
+            return null;
+        }
+        else {
+            return $query->result_array();
+        }
+    }
+
 
     public function deleteModuleContenu(){
         foreach($this->input->post('module') as $module){

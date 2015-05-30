@@ -10,9 +10,10 @@ class modules extends CI_Controller{
 
     function __construct() {
         parent::__construct();
-        $this->load-> model('modulesmodels');
-        $this->load-> model('users');
-        $this->load-> model('contenu');
+        $this->load->model('modulesmodels');
+        $this->load->model('users');
+        $this->load->model('contenu');
+        $this->load->model('decharge');
     }
 
     public function index($result=null,$infosmodule=null,$infos=null){
@@ -29,8 +30,9 @@ class modules extends CI_Controller{
                 "admin" => $this->session->userdata['admin'],
                 "active" => "Rechercher",
                 "checked" => $infosmodule['checked'],
-                'success' => $infos['success'],
-                'msg' => $infos['msg']
+                "success" => $infos['success'],
+                "msg" => $infos['msg'],
+                "myModules" => $this->modulesmodels->getAllMyModules()
             );
             $this->load->view('header',$data);
             $this->load->view('back/template/header');
@@ -70,9 +72,6 @@ class modules extends CI_Controller{
             redirect('login');
         }else{
             if ($this->input->get('module')&&$this->input->get('partie')) {
-                $this->load->model('users');
-                $this->load->model('contenu');
-                $this->load->model('decharge');
                 if ($this->contenu->ifContenuExist($this->input->get('module'), $this->input->get('partie'))) {
                     if (!$this->contenu->ifThereIsTeacher($this->input->get('module'), $this->input->get('partie'))) {
                         $statutaire = $this->users->getHeures();
@@ -121,5 +120,20 @@ class modules extends CI_Controller{
             }
             $this->index(null,null,$info);
         }
+    }
+    public function desinscriptionModule(){
+        if(!$this->contenu->desinscriptionModule($this->input->get('module'), $this->input->get('partie'))) {
+            $info = array(
+                'success' => "alert-danger",
+                'msg' => "Il y a eu une erreur dans la desinscription au module."
+            );
+        }
+        else{
+            $info = array(
+                'success' => "alert-success",
+                'msg' => "Vous êtes bien désinscrit de ce module."
+            );
+        }
+        $this->index(null,null,$info);
     }
 }

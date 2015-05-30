@@ -26,6 +26,35 @@
                 </div>
             <?php endif;?>
             <div class="col-md-12 col-no-border">
+                <legend>Vos modules</legend>
+                <?php foreach($myModules as $val):?>
+                    <div class="col-md-4 col-no-border bp-component">
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <h4 class="list-group-item-heading">
+                                        <?php echo $val['module'];?>
+                                </h4>
+                                <ul class="list-group">
+                                    <li class='list-group-item'>
+                                        <?php echo $val['partie'];?>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="badge">
+                                            <?php echo $val['hed'];?>
+                                        </span>
+                                        Heures :
+                                    </li>
+                                    <li class="list-group-item">
+                                        <?php echo '<a href="'.base_url().'index.php/modules/desinscriptionModule?module='.$val['module'].'&partie='.$val['partie'].'"><button type="button" class="btn btn-danger">Se désinscrire</button></a>';?>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="col-md-12 col-no-border">
+                <legend>Ajouter un module</legend>
                 <?php echo form_open('modules/displayModule')?>
                 <div class="col-md-6 col-no-border">
                     <label for="selectModule" class="control-label">Selectionnez Module</label>
@@ -66,6 +95,8 @@
                 </div>
                 <?php echo form_close()?>
             </div>
+
+
 
         </div>
         <div class="col-md-2 col-no-border"></div>
