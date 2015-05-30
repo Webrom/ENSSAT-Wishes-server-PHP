@@ -1,21 +1,30 @@
+- COMMENT + REFACTO
+   - MVC COHERENT
+- CSS / COULEUR
 - PROMPT DE CONFIRMATION POUR CHAQUE SUPPRESSION
-- ADMIN PEUT MODIFIER LES INFORMATIONS DE CHAQUE PERSONNE QUI S'INSCRIT (a reprendre : modifs des modules)
-- VALIDATION ADMIN (pourquoi ça marche pas chez ouam)
-- Dans gestion users : pouvoir afficher tous les users inactifs
-- Export CVS
+- EXPORT CVS
 
 
+ACCUEIL
+- AFFICHER NEWS
+- AFFICHER DEGRES DE PROGRESSION EN POURCENTAGE
+
+MODULE
+- CORRIGER MA REQUETE FOIREUSE
+
+ADMIN
+- MODIFIER MODULE (reponsable, ...)
+- MODIFIER USER
 
 
+NEWS
+- MODIFIER NEWS
+
+PROFIL
+- ACTIF / INACTIF
 
 
-
-
-
----- COLIN
-- CORRECTION REQUETE SQL
-
-
+OTHERS ----------------------------------------
 if(!$this->session->userdata('is_logged_in')){
     redirect('login');
 }else { ...
