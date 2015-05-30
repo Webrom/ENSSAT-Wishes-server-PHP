@@ -89,11 +89,11 @@ class admin extends CI_Controller{
             if($res>=$data['hed'] || $data['enseignant']==null){
                 $ret =$this->contenu->modifyModuleContenu($data,$keys);
                 if($ret=="good")
-                    $this->index('Le contenu du module a été modifié.',"alert-success","Contenu");
+                    $this->index('Le contenu du module a été modifié.',"alert-success","#modifyContenu");
                 else
-                    $this->index($ret['ErrorMessage'].$ret['ErrorNumber'],'alert-danger','Contenu');
+                    $this->index($ret['ErrorMessage'].$ret['ErrorNumber'],'alert-danger','#modifyContenu');
             }else
-                $this->index($data['enseignant']." n'a pas assé d'heure de disponible pour ce contenu",'alert-danger','Contenu');
+                $this->index($data['enseignant']." n'a pas assé d'heure de disponible pour ce contenu",'alert-danger','#modifyContenu');
         }
     }
 
@@ -110,7 +110,7 @@ class admin extends CI_Controller{
             redirect('login');
         }else {
             $this->users->addUser("servicesENSSAT", $this->input->post("actif"), "1");
-            $this->index("Utilisateur bien créé.", "alert-success","Utilisateurs");
+            $this->index("Utilisateur bien créé.", "alert-success","#addUser");
         }
     }
 
@@ -136,9 +136,9 @@ class admin extends CI_Controller{
         }else{
             $res= $this->modulesmodels->addModule();
             if($res=="good")
-                $this->index("Votre module a été rajouté.","alert-success","Modules");
+                $this->index("Votre module a été rajouté.","alert-success","");
             else
-                $this->index($res['ErrorMessage']." ".$res['ErrorNumber'],"alert-danger","Module");
+                $this->index($res['ErrorMessage']." ".$res['ErrorNumber'],"alert-danger","");
         }
     }
 
@@ -147,7 +147,7 @@ class admin extends CI_Controller{
             redirect('login');
         }else {
             $this->modulesmodels->deleteModule();
-            $this->index("Le/les modules ont étés supprimés.", "alert-success","Module");
+            $this->index("Le/les modules ont étés supprimés.", "alert-success","#deleteModule");
         }
     }
 
@@ -157,7 +157,7 @@ class admin extends CI_Controller{
         }else {
             $this->users->deleteUsers();
             $this->contenu->removeALotEnseignanttoContenu($this->input->post('enseignants'));
-            $this->index("Le/les enseignants ont étés supprimés.", "alert-success","Utilisateurs");
+            $this->index("Le/les enseignants ont étés supprimés.", "alert-success","#deleteUsers");
         }
     }
 
@@ -173,7 +173,7 @@ class admin extends CI_Controller{
             redirect('login');
         }else{
             $this->contenu->deleteContenuModule();
-            $this->index("Les parties ont bien été supprimées.","alert-success","Contenu");
+            $this->index("Les parties ont bien été supprimées.","alert-success","#deleteContenu");
         }
     }
 
@@ -183,9 +183,9 @@ class admin extends CI_Controller{
         }else {
             $res=$this->modulesmodels->addContenuToModule();
             if($res=="good")
-                $this->index("Votre contenu a été rajouté.","alert-success","Contenu");
+                $this->index("Votre contenu a été rajouté.","alert-success","#addContenu");
             else
-                $this->index($res['ErrorMessage']." ".$res['ErrorNumber'],"alert-danger","Contenu");
+                $this->index($res['ErrorMessage']." ".$res['ErrorNumber'],"alert-danger","#addContenu");
         }
     }
 
@@ -196,13 +196,13 @@ class admin extends CI_Controller{
             if ($this->input->post('news')) {
                 $result = $this->news->addNews($this->session->userdata('username'), "generale", $this->input->post('news'));
                 if ($result) {
-                    $this->index("Votre nouvelle a étée rajoutée.", "alert-success");
+                    $this->index("Votre nouvelle a étée rajoutée.", "alert-success","#addNews");
                 } else {
-                    $this->index("Il y a une erreur... C'est surement à cause de dev incompétents !", "alert-danger");
+                    $this->index("Il y a une erreur... C'est surement à cause de dev incompétents !", "alert-danger","#addNews");
                 }
             }
             else{
-                $this->index("Veuillez rentrer du texte", "alert-danger");
+                $this->index("Veuillez rentrer du texte", "alert-danger","#addNews");
             }
         }
     }
@@ -226,10 +226,10 @@ class admin extends CI_Controller{
         }else {
             if($this->input->post('supprimer_news')!='no'){
                 if ($this->news->removeNews($this->input->post('supprimer_news'))){
-                    $this->index("Supression OK", "alert-success");
+                    $this->index("Supression OK", "alert-success","#deleteNews");
                 }
                 else{
-                    $this->index("Erreur de supression", "alert-danger");
+                    $this->index("Erreur de supression", "alert-danger","#deleteNews");
                 }
             }
             else{
