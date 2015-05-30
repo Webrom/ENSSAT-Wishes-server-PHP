@@ -147,12 +147,16 @@ class admin extends CI_Controller{
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
             redirect('login');
         }else {
-            $result = $this->news->addNews($this->session->userdata('username'),"generale",$this->input->post('news'));
-            if($result){
-                $this->index("Votre nouvelle a étée rajoutée.","alert-success");
+            if ($this->input->post('news')) {
+                $result = $this->news->addNews($this->session->userdata('username'), "generale", $this->input->post('news'));
+                if ($result) {
+                    $this->index("Votre nouvelle a étée rajoutée.", "alert-success");
+                } else {
+                    $this->index("Il y a une erreur... C'est surement à cause de dev incompétents !", "alert-danger");
+                }
             }
             else{
-                $this->index("Il y a une erreur... C'est surement à cause de dev incompétents !","alert-danger");
+                $this->index("Veuillez rentrer du texte", "alert-danger");
             }
         }
     }
