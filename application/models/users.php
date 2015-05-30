@@ -123,9 +123,9 @@ class Users extends CI_Model{
     /**
      * Supprime un utilisateur de la base
      */
-    public function deleteUsers(){
+    public function deleteUsers($data){
         //DELETE FROM `voeux`.`enseignant` WHERE `enseignant`.`login` = 'bvozel'
-        foreach($this->input->post('enseignants') as $enseignants) {
+        foreach($data as $enseignants) {
             $this->db->where('login', $enseignants);
             $this->db->delete('enseignant');
         }

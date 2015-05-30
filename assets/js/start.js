@@ -14,7 +14,9 @@
 
 $(function(){
 
-
+    $('.alert-dismissable').each(function(){
+        $(this).delay(6000).slideUp();
+    });
     $("a#linkHelp").click(function(e){
         $("#helpDisplay").fadeToggle();
     });

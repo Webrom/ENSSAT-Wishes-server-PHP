@@ -159,9 +159,13 @@ class admin extends CI_Controller{
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
             redirect('login');
         }else {
-            $this->users->deleteUsers();
-            $this->contenu->removeALotEnseignanttoContenu($this->input->post('enseignants'));
-            $this->index("Le/les enseignants ont étés supprimés.", "alert-success","#deleteUsers");
+            $data = $this->input->post('enseignants');
+            if($data!=null){
+                $this->users->deleteUsers($data);
+                $this->contenu->removeALotEnseignanttoContenu($data);
+                $this->index("Le/les enseignants ont étés supprimés.", "alert-success","#deleteUsers");
+            }else
+                $this->index("Veuillez remplire correctement le formulaire", "alert-danger","#deleteUsers");
         }
     }
 
