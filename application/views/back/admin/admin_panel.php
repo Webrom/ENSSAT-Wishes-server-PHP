@@ -375,7 +375,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div id="displaysetModuleContenusType" class=" col-md-6 col-no-border">
+                                                    <div id="displaysetModuleContenusType" class="customHide col-md-6 col-no-border">
                                                         <div class="col-md-12 col-no-border">
                                                             <label for="selectContenuModuleModification" class="control-label">Selectionnez la/les partie(s)</label>
                                                             <select name="selectContenuModuleModification" class="form-control" id="dtcContenu">
@@ -389,14 +389,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div id="displaygetModuleContenusModification" class="">
+                                                <div id="displaysetModuleContenus" class="customHide">
                                                     <div class="col-md-12 col-no-border">
                                                         <label for="modulePartieAjax" class="control-label">Partie de module (doit etre unique)</label>
                                                         <?php echo form_input('modulePartieAjax','','class="form-control" placeholder="ex : TP1, CM2, ..." id="modulePartieAjax" required')?>
                                                     </div>
                                                     <div class="col-md-12 col-no-border">
-                                                        <label for="selectType" class="control-label">Type</label>
-                                                        <select name="selectType" class="form-control" id="selectType">
+                                                        <label for="selectTypeAjax" class="control-label">Type</label>
+                                                        <select name="selectTypeAjax" class="form-control" id="selectTypeAjax">
                                                             <?php foreach($moduleTypes as $moduleType):?>
                                                                 <option class="typeModuleAjax" value="<?php echo $moduleType['type'];?>"><?php echo $moduleType['type'];?></option>
                                                             <?php endforeach;?>
@@ -419,7 +419,7 @@
                                                     <div class="col-md-12 col-no-border">
                                                         <div class="col-md-10 col-no-border"></div>
                                                         <div class="col-md-2 col-no-border">
-                                                            <?php echo form_button('submit','valider','id="getModuleContenus" class="  btn btn-info"')?>
+                                                            <?php echo form_button('submit','Modifier','id="getModuleContenus" class="  btn btn-success"')?>
                                                         </div>
                                                     </div>
                                                 </div>
