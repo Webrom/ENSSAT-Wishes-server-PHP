@@ -9,6 +9,7 @@
 ?>
 <div class="bp-docs-section">
     <div class="row">
+        <p id="affiche" class="customHide"><?php echo(($active!="")?$active:"#addModulde");?></p>
     </div>
     <div class="row">
         <div class="col-md-2 col-no-border">
@@ -22,7 +23,7 @@
                                 </a>
                             </h4>
                         </div>
-                        <div style="height: auto;" id="collapseOne" class="panel-collapse collapse in">
+                        <div id="collapseOne" class="#deleteModule #addModulde panel-collapse collapse in">
                             <div class="panel-body">
                                 <ul class="nav nav-tabs nav-pills nav-stacked" style="max-width: 300px;">
                                     <li class="active"><a href="#addModulde" class="adminChoice btn">Ajouter</a></li>
@@ -39,7 +40,7 @@
                                 </a>
                             </h4>
                         </div>
-                        <div style="height: 0px;" id="collapseTwo" class="panel-collapse collapse">
+                        <div id="collapseTwo" class="#addContenu #deleteContenu #modifyContenu panel-collapse collapse">
                             <div class="panel-body">
                                 <ul class="nav nav-tabs nav-pills nav-stacked" style="max-width: 300px;">
                                     <li><a class="adminChoice" href="#addContenu">Ajouter</a></li>
@@ -57,9 +58,9 @@
                                 </a>
                             </h4>
                         </div>
-                        <div style="height: 0px;" id="collapseThree" class="panel-collapse collapse">
+                        <div  id="collapseThree" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <ul class="nav nav-tabs nav-pills nav-stacked" style="max-width: 300px;">
+                                <ul class="#modifyUsers #deleteUsers #addUser #acceptUsers nav nav-tabs nav-pills nav-stacked" style="max-width: 300px;">
                                     <li><a class="adminChoice" href="#acceptUsers">En attente</a></li>
                                     <li><a class="adminChoice" href="#addUser">Ajouter</a></li>
                                     <li><a class="adminChoice" href="#deleteUsers">Supprimer</a></li>
@@ -76,7 +77,7 @@
                                 </a>
                             </h4>
                         </div>
-                        <div style="height: 0px;" id="collapseFour" class="panel-collapse collapse">
+                        <div id="collapseFour" class="#modifyNews #deleteNews #addNews panel-collapse collapse">
                             <div class="panel-body">
                                 <ul class="nav nav-tabs nav-pills nav-stacked" style="max-width: 300px;">
                                     <li><a class="adminChoice" href="#addNews">Ajouter</a></li>

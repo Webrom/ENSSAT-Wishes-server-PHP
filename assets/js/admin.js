@@ -1,6 +1,9 @@
 $(function(){
     hideAll();
-    $('.classeUnique').removeClass('customHide');
+    console.log($('#affiche').text());
+    var show = $('#affiche').text();
+    $(show).removeClass('customHide');
+    activeRefresh();
     $('.adminChoice').click(function(e){
         hideAll();
         removeBTN();
@@ -21,4 +24,22 @@ function removeBTN(){
         $(this).removeClass('btn');
     });
     $('.nav-pills li').removeClass('active');
+}
+
+function activeRefresh(){
+    $('.adminChoice').each(function(){
+        if($(this).attr('href')==$('#affiche').text()){
+            $(this).addClass('btn');
+            $(this.parentElement).addClass('active');
+            console.log($(this));
+        }
+    });
+    $('.panel-collapse').each(function(){
+        if($(this).hasClass($('#affiche').text())){
+            $(this).fadeIn().removeClass('collapse').addClass('collapse in');
+        }else{
+            console.log($(this));
+            $(this).removeClass('in');
+        }
+    });
 }
