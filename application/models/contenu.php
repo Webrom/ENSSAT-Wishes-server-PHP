@@ -109,6 +109,34 @@ class Contenu extends CI_Model{
         return $query->result_array();
     }
 
+    public function getContenuByModule($array){
+        $this->db->select('*');
+        $this->db->from('module');
+        $this->db->join('contenu','module.ident=contenu.module');
+        if($array['module'])
+            $this->db->where('module',$array['module']);
+        if($array['semester']!='noSemester')
+            $this->db->where('semestre',$array['semester']);
+        if($array['teacher']!='no')
+            $this->db->where('enseignant',$array['teacher']);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getContenuByPromo($array){
+        $this->db->select('*');
+        $this->db->from('module');
+        $this->db->join('contenu','module.ident=contenu.module');
+        if($array['promotion']!='noProm')
+            $this->db->where('public',$array['promotion']);
+        if($array['semester']!='noSemester')
+            $this->db->where('semestre',$array['semester']);
+        if($array['teacher']!='no')
+            $this->db->where('enseignant',$array['teacher']);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     /**
      * @return int nombre d'heure qu'un professeur a
      */

@@ -32,6 +32,8 @@ $(function(){
         }
     });
     $("#resetFormSearch").click(function(e){
+        $("#selectTeacher").prop('disabled', false);
+        $("#checkboxSansEnseignant").removeProp('checked');
         $("#modules_result").remove();
         $('.form-control').each(function () {
             $(this).val("");
@@ -43,6 +45,7 @@ $(function(){
                 $(this).val("noProm");
         });
     });
+
     $('a#displayMyModules').click(function(){
         $("#modules_result").remove();
     });
@@ -58,5 +61,28 @@ $(function(){
         else{
             $("#selectTeacher").prop('disabled', false);
         }
+    });
+    $('.nav-custom a').click(function(e){
+        e.preventDefault();
+        $('.nav-custom a').each(function(){
+            $(this.parentElement).removeClass('active');
+            $(this).removeClass('btn');
+        });
+        if($(this).attr('href')=="#searchByModule"){
+            $("#searchByPromo").stop().slideUp('fast',function(){
+                $('#searchByModule').stop().slideDown();
+            });
+            $('#selectModule').val("");
+            $('#searchType').val('module');
+        }else{
+            $("#searchByModule").stop().slideUp('fast',function(){
+                $('#searchByPromo').stop().slideDown();
+            });
+            $('#selectPromotion').val("noProm");
+            $('#searchType').val('promo');
+        }
+        $(this.parentElement).addClass('active');
+        $(this).addClass('btn');
+        console.log($('#searchType').val());
     });
 });

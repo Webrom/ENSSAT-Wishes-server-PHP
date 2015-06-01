@@ -16,7 +16,7 @@ class modules extends CI_Controller{
         $this->load->model('decharge');
     }
 
-    public function index($result=null,$infosmodule=null,$infos=null,$onglet=null){
+    public function index($result=null,$infosmodule=null,$infos=null,$onglet=null,$recherche=null){
         if(!$this->session->userdata('is_logged_in')){
             redirect('login');
         }else{
@@ -36,7 +36,8 @@ class modules extends CI_Controller{
                 "success" => $infos['success'],
                 "msg" => $infos['msg'],
                 "myModules" => $this->modulesmodels->getAllMyModules(),
-                "onglet" => $onglet
+                "onglet" => $onglet,
+                "rechercheonglet" => $recherche
             );
             $this->load->view('header',$data);
             $this->load->view('back/template/header');
@@ -55,15 +56,12 @@ class modules extends CI_Controller{
                 "semester" => $this->input->post("semester"),
                 "teacher" => (!$this->input->post('checkboxSansEnseignant'))?$this->input->post('teacher'):null
             );
-            if($data['module'] != "" && $data['teacher'] != "no") {
-                //echo'1';die();
-                $result = $this->contenu->getModuleTeacher($data,$data["promotion"],$data["semester"]);
-            } elseif ($data['module'] != "") {
-                //echo'2';die();
-                $result = $this->contenu->getModuleByModule($data,$data["promotion"],$data["semester"]);
-            } else  {
-                //echo'3';die();
-                $result = $this->contenu->getModuleByElse($data,$data["promotion"],$data["semester"]);
+            if($this->input->post('searchType')=='module'){
+                $result = $this->contenu->getContenuByModule($data);
+                $recherche='module';
+            }else{
+                $result = $this->contenu->getContenuByPromo($data);
+                $recherche='promo';
             }
             $data=array(
                 "module" => $this->input->post('module'),
@@ -72,7 +70,7 @@ class modules extends CI_Controller{
                 "semSelected" => ($this->input->post("semester")!="noSemester")?$this->input->post("semester"):"noSemester",
                 "checked" => $this->input->post('checkboxSansEnseignant')
             );
-            $this->index($result,$data,null,"Recherche");
+            $this->index($result,$data,null,"Recherche",$recherche);
         }
     }
 

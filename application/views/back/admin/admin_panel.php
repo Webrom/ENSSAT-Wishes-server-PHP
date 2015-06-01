@@ -520,4 +520,4 @@
     </div>
 </div>
 
-<?php $this->load->view('js/ajax');?>
+<?php $this->load->view('js/ajax');$this->load->view('js/jsAdminLoad');?>
