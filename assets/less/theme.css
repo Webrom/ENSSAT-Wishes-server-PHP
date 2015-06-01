@@ -72,6 +72,9 @@ body a:hover {
   color: #2980b9;
   text-decoration: none;
 }
+body .pointer {
+  cursor: pointer;
+}
 /* Title Section */
 .title-section {
   border: 0 !important;

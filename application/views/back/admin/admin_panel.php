@@ -138,11 +138,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-12 col-no-border">
-                                <div class="col-md-8 col-no-border"></div>
-                                <div class="col-md-4 col-no-border">
+                            <div class="col-md-12 col-no-border text-right">
                                     <?php echo form_submit('submit','Valider','class="btn btn-success"')?>
-                                </div>
                             </div>
                         </div>
                     </fieldset>
@@ -164,11 +161,8 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-12 col-no-border">
-                            <div class="col-md-8 col-no-border"></div>
-                            <div class="col-md-4 col-no-border">
-                                <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
-                            </div>
+                        <div class="col-md-12 col-no-border text-right">
+                            <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
                         </div>
                     </fieldset>
                     <?php echo form_close()?>
@@ -185,10 +179,10 @@
                                         <?php echo $enseignantsToAccept['nom']." ".$enseignantsToAccept['prenom']." | Login : ".$enseignantsToAccept['login'];?>
                                     </div>
                                     <div class="col-md-1 col-no-border">
-                                        <img src="<?php echo base_url();?>/assets/img/cross.png" class="refuse_user" id="<?php echo $enseignantsToAccept['login'];?>"/>
+                                        <img src="<?php echo base_url();?>/assets/img/cross.png" class="refuse_user pointer" id="<?php echo $enseignantsToAccept['login'];?>"/>
                                     </div>
                                     <div class="col-md-1 col-no-border">
-                                        <img src="<?php echo base_url();?>/assets/img/checkmark2.png" class="valide_user" id="<?php echo $enseignantsToAccept['login'];?>"/>
+                                        <img src="<?php echo base_url();?>/assets/img/checkmark2.png" class="valide_user pointer" id="<?php echo $enseignantsToAccept['login'];?>"/>
                                     </div>
                                 </div>
                             <?php endforeach;?>
@@ -246,11 +240,8 @@
                                     <label for="inputStatusPerso" class="control-label">Statut personnalisé</label>
                                     <?php echo form_input('status_perso','','class="form-control" placeholder="Statut" id="inputStatusPerso"')?>
                                 </div>
-                                <div class="col-md-12 col-no-border">
-                                    <div class="col-md-8 col-no-border"></div>
-                                    <div class="col-md-4 col-no-border">
-                                        <?php echo form_submit('submit','valider','class="btn btn-success"')?>
-                                    </div>
+                                <div class="col-md-12 col-no-border text-right">
+                                    <?php echo form_submit('submit','valider','class="btn btn-success"')?>
                                 </div>
                             </div>
                         </div>
@@ -276,11 +267,8 @@
                                     <?php endforeach;?>
                                 </select>
                             </div>
-                            <div class="col-md-12 col-no-border">
-                                <div class="col-md-8 col-no-border"></div>
-                                <div class="col-md-4 col-no-border">
-                                    <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
-                                </div>
+                            <div class="col-md-12 col-no-border text-right">
+                                <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
                             </div>
                         </div>
                     </fieldset>
@@ -305,11 +293,8 @@
                                     <?php endforeach;?>
                                 </select>
                             </div>
-                            <div class="col-md-12 col-no-border">
-                                <div class="col-md-8 col-no-border"></div>
-                                <div class="col-md-4 col-no-border">
-                                    <?php echo form_button('submit','valider','class="btn btn-success"')?>
-                                </div>
+                            <div class="col-md-12 col-no-border text-right">
+                                <?php echo form_button('submit','valider','class="btn btn-success"')?>
                             </div>
                         </div>
                     </fieldset>
@@ -324,11 +309,8 @@
                         <div class="form-group">
                             <?php echo form_textarea('news','','class="form-control" id="inputNews" placeholder="Ecrire votre texte"')?>
                         </div>
-                        <div class="col-md-12 col-no-border">
-                            <div class="col-md-8 col-no-border"></div>
-                            <div class="col-md-4 col-no-border">
-                                <?php echo form_submit('submit','Envoyer la news','class="btn btn-success"')?>
-                            </div>
+                        <div class="col-md-12 col-no-border text-right">
+                            <?php echo form_submit('submit','Envoyer la news','class="btn btn-success"')?>
                         </div>
                     </fieldset>
                     <?php echo form_close()?>
@@ -353,10 +335,9 @@
                             </div>
                             <div class="col-md-12 col-no-border customHide" id="afficheInformation">
                                 <textarea id="informationNews" rows="8" style="width:100%" disabled></textarea>
-                                <div class="col-md-8 col-no-border"></div>
-                                <div class="col-md-4 col-no-border">
-                                    <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
-                                </div>
+                            </div>
+                            <div class="col-md-12 col-no-border text-right">
+                                <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
                             </div>
                         </div>
                     </fieldset>
@@ -380,10 +361,11 @@
                                     <?php endforeach;?>
                                 </select>
                             </div>
-                            <div class="col-md-12 col-no-border customHide" id="afficheInformationtoModify">
-                                <textarea name="informationNewstoModify" id="informationNewstoModify" rows="8" style="width:100%"></textarea>
-                                <div class="col-md-8 col-no-border"></div>
-                                <div class="col-md-4 col-no-border">
+                            <div class="row customHide" id="afficheInformationtoModify">
+                                <div class="col-md-12 col-no-border">
+                                    <textarea name="informationNewstoModify" id="informationNewstoModify" rows="8" style="width:100%"></textarea>
+                                </div>
+                                <div class="col-md-12 col-no-border text-right">
                                     <?php echo form_submit('submit','Modifier','class="btn btn-success"')?>
                                 </div>
                             </div>
@@ -422,11 +404,8 @@
                                 <label for="moduleHed" class="control-label">Indiquez le nombre d'heure</label>
                                 <input type="number" name="moduleHed" class="form-control" placeholder="ex : 12" id="moduleHed" required/>
                             </div>
-                            <div class="col-md-12 col-no-border">
-                                <div class="col-md-8 col-no-border"></div>
-                                <div class="col-md-4 col-no-border">
-                                    <?php echo form_submit('submit','valider','class="btn btn-success"')?>
-                                </div>
+                            <div class="col-md-12 col-no-border text-right">
+                                <?php echo form_submit('submit','valider','class="btn btn-success"')?>
                             </div>
                         </div>
                     </fieldset>
@@ -447,11 +426,8 @@
                                     <?php endforeach;?>
                                 </select>
                             </div>
-                            <div class="col-md-12 col-no-border">
-                                <div class="col-md-8 col-no-border"></div>
-                                <div class="col-md-4 col-no-border">
-                                    <?php echo form_button('submit','valider','id="getModuleContenus" class="getContenu ajaxFunction btn btn-info"')?>
-                                </div>
+                            <div class="col-md-12 col-no-border text-right">
+                                <?php echo form_button('submit','valider','id="getModuleContenus" class="getContenu ajaxFunction btn btn-info"')?>
                             </div>
                             <div id="displaygetModuleContenus" class="customHide">
                                 <div  class=" col-md-12 col-no-border">
@@ -459,11 +435,8 @@
                                     <select name="selectContenuModule[]" class="form-control" id="selectContenuModule" multiple>
                                     </select>
                                 </div>
-                                <div  class=" col-md-12 col-no-border">
-                                    <div class="col-md-7 col-no-border"></div>
-                                    <div class="col-md-5 col-no-border">
-                                        <?php echo form_submit('submit','Supprimer','id="deleteModuleContenu" class="delContenu btn btn-danger"')?>
-                                    </div>
+                                <div  class=" col-md-12 col-no-border text-right">
+                                    <?php echo form_submit('submit','Supprimer','id="deleteModuleContenu" class="delContenu btn btn-danger"')?>
                                 </div>
                             </div>
                         </div>
@@ -487,11 +460,8 @@
                                             <?php endforeach;?>
                                         </select>
                                     </div>
-                                    <div class="col-md-12 col-no-border">
-                                        <div class="col-md-8 col-no-border"></div>
-                                        <div class="col-md-4 col-no-border">
-                                            <?php echo form_button('recuperation','valider','id="setModuleContenusType" class="obtContenu ajaxFunction btn btn-info"')?>
-                                        </div>
+                                    <div class="col-md-12 col-no-border text-right">
+                                        <?php echo form_button('recuperation','valider','id="setModuleContenusType" class="obtContenu ajaxFunction btn btn-info"')?>
                                     </div>
                                 </div>
                                 <div id="displaysetModuleContenusType" class="customHide col-md-6 col-no-border">
@@ -535,11 +505,8 @@
                                     <label for="moduleHedAjax" class="control-label">Indiquez le nombre d'heure</label>
                                     <input type="number" name="moduleHedAjax" class="form-control" placeholder="ex : 12" id="moduleHedAjax" required/>
                                 </div>
-                                <div class="col-md-12 col-no-border">
-                                    <div class="col-md-10 col-no-border"></div>
-                                    <div class="col-md-2 col-no-border">
-                                        <?php echo form_submit('submit','Modifier','id="getModuleContenus" class="  btn btn-success"')?>
-                                    </div>
+                                <div class="col-md-12 col-no-border text-right">
+                                    <?php echo form_submit('submit','Modifier','id="getModuleContenus" class="  btn btn-success"')?>
                                 </div>
                             </div>
                         </div>
