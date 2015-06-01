@@ -152,5 +152,31 @@
             }
         }
     );
+
+    $("#modifyUser").click(function(e){
+                var login = $('#enseignantsModify').val();
+                var base_url = '<?php echo base_url()?>';
+                var controler = "admin";
+                var method = "getUserToModify";
+                $.ajax({
+                    url  : base_url+'index.php/'+controler+'/'+method,
+                    type : 'GET',
+                    data : 'gData='+login,
+                    cache: false,
+                    'success':
+                        function(data){
+                            var array = JSON.parse(data);
+                            console.log(array);
+                            console.log(array['0'].statutaire);
+                            $("#loginModify").val(array['0'].login);
+                            $("#actifModify").val(array['0'].actif);
+                            $("#select_statutModify").val(array['0'].statut);
+                            $("#heuresModify").val(array['0'].statutaire)
+                            $("#nameModify").val(array['0'].nom);
+                            $("#prenomModify").val(array['0'].prenom);
+                        }
+                });
+        }
+    );
 </script>
 
