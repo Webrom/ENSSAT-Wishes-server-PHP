@@ -1,6 +1,5 @@
 $(function(){
     hideAll();
-    console.log($('#affiche').text());
     var show = $('#affiche').text();
     $(show).removeClass('customHide');
     activeRefresh();
@@ -31,7 +30,6 @@ function activeRefresh(){
         if($(this).attr('href')==$('#affiche').text()){
             $(this).addClass('btn');
             $(this.parentElement).addClass('active');
-            console.log($(this));
         }else{
             $(this).removeClass('btn');
             $(this.parentElement).removeClass('active');
@@ -42,7 +40,6 @@ function activeRefresh(){
         if($(this).hasClass($('#affiche').text())){
             $(this).fadeIn().removeClass('collapse').addClass('collapse in');
         }else{
-            console.log($(this));
             $(this).removeClass('in');
         }
     });

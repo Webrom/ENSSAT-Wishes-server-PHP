@@ -68,41 +68,43 @@
                         </div>
                         <div class="tab-pane fade" id="profile">
                             <div class="row">
-                                <?php echo form_open('profile/changePass','class="form-horizontal"')?>
-                                <div class="col-md-12 col-no-border">
-                                    <label for="oldPass" class="2 col-no-border control-label">Ancien mot de passe : </label>
-                                    <?php echo form_password('oldPass','','class="form-control" id="oldPass"')?>
-                                </div>
-                                <div class="col-md-12 col-no-border">
-                                    <label for="newPass1" class="2 col-no-border control-label">Nouveau password : </label>
-                                    <?php echo form_password('newPass1','','class="form-control" id="newPass1"')?>
-                                </div>
-                                <div class="col-md-12 col-no-border">
-                                    <label for="newPass2" class="2 col-no-border control-label">Nouveau password (confirmation) : </label>
-                                    <?php echo form_password('newPass2','','class="form-control" id="newPass2"')?>
-                                </div>
-                                <div class="col-md-12 col-no-border text-right">
-                                    <?php echo form_submit('submit','Confirmer','class="btn btn-success"')?>
-                                </div>
-                                <?php echo form_close()?>
-                            </div>
-                            <div class="row">
-                                <?php echo form_open_multipart('upload/do_upload');?>
-                                <div class="col-md-12 col-no-border">
-                                    <p>Télécharger image profil : format JPG / PNG / GIF </p>
-                                    <p>Taille max : 1 MO</p>
-                                </div>
-                                <div class="col-md-12 col-no-border">
-                                    <input type="file" name="userfile" size="20" />
+                                <div class="col-md-6 col-no-border">
+                                    <?php echo form_open('profile/changePass','class="form-horizontal"')?>
+                                    <div class="col-md-12 col-no-border">
+                                        <label for="oldPass" class="2 col-no-border control-label">Ancien mot de passe : </label>
+                                        <?php echo form_password('oldPass','','class="form-control" id="oldPass"')?>
+                                    </div>
+                                    <div class="col-md-12 col-no-border">
+                                        <label for="newPass1" class="2 col-no-border control-label">Nouveau password : </label>
+                                        <?php echo form_password('newPass1','','class="form-control" id="newPass1"')?>
+                                    </div>
+                                    <div class="col-md-12 col-no-border">
+                                        <label for="newPass2" class="2 col-no-border control-label">Nouveau password (confirmation) : </label>
+                                        <?php echo form_password('newPass2','','class="form-control" id="newPass2"')?>
+                                    </div>
+                                    <div class="col-md-12 col-no-border text-right">
+                                        <?php echo form_submit('submit','Confirmer','class="btn btn-success"')?>
+                                    </div>
+                                    <?php echo form_close()?>
                                 </div>
                                 <div class="col-md-6 col-no-border">
-                                    <?php if(file_exists("./uploads/".$userInfo['login'].".jpg"))
-                                        echo anchor('upload/remove','Supprimer image actuelle','class="btn btn-danger"');?>
+                                    <?php echo form_open_multipart('upload/do_upload');?>
+                                    <div class="col-md-12 col-no-border">
+                                        <p>Télécharger image profil : format JPG / PNG / GIF </p>
+                                        <p>Taille max : 1 MO</p>
+                                    </div>
+                                    <div class="col-md-12 col-no-border">
+                                        <input type="file" name="userfile" size="20" />
+                                    </div>
+                                    <div class="col-md-6 col-no-border">
+                                        <?php if(file_exists("./uploads/".$userInfo['login'].".jpg"))
+                                            echo anchor('upload/remove','Supprimer image actuelle','class="btn btn-danger"');?>
+                                    </div>
+                                    <div class="col-md-6 col-no-border text-right">
+                                        <button type="submit" class="btn btn-success" value="upload">Envoyer</button>
+                                    </div>
+                                    <?php echo form_close(); ?>
                                 </div>
-                                <div class="col-md-6 col-no-border text-right">
-                                    <button type="submit" class="btn btn-success" value="upload">Envoyer</button>
-                                </div>
-                                <?php echo form_close(); ?>
                             </div>
                         </div>
                     </div>

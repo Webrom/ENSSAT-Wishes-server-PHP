@@ -83,6 +83,5 @@ $(function(){
         }
         $(this.parentElement).addClass('active');
         $(this).addClass('btn');
-        console.log($('#searchType').val());
     });
 });
