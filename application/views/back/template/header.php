@@ -23,6 +23,10 @@
                 <li>
                     <a href="<?php echo base_url()?>index.php/modules">Modules</a>
                 </li>
+                <li class="progress progress-striped active" style="margin: 15px;width: 100px">
+                        <div class="progress-bar progress-bar-success" style="width: <?php echo $pourcentage; ?>%">
+                        </div>
+                </li>
                 <?php if(isset($admin) && $admin=="1"): ?>
                     <li class="hideMenu">
                         <a href="<?php echo base_url()?>index.php/admin">Administration</a>
@@ -36,7 +40,6 @@
                 </li>
 
             </ul>
-
             <ul class="nav navbar-nav navbar-right">
                 <?php if(isset($admin) && $admin=="1"): ?>
                 <li>

@@ -39,6 +39,16 @@ class admin extends CI_Controller{
                 "activeOnglet" => $active,
                 "allnews" => $this->news->getGeneralesNews()
             );
+
+            /* CALCUL POURCENTAGE HEURES PRISES */
+            $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
+            $heurestotales = $this->users->getHeures()-$this->decharge->getHoursDecharge($this->session->userdata('username'));
+            $pourcentage = round(($heuresprises/$heurestotales)*100,0);
+            $data['pourcentage'] = $pourcentage;
+            $data['heuresprises'] = $heuresprises;
+            $data['heurestotales'] = $heurestotales;
+            /* FIN CALCUL */
+
             $this->load->view('header',$data);
             $this->load->view('back/template/header');
             $this->load->view('back/admin/admin_panel',$data);
