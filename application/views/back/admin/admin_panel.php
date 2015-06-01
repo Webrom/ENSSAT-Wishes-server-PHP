@@ -333,11 +333,13 @@
                                     <?php endforeach;?>
                                 </select>
                             </div>
-                            <div class="col-md-12 col-no-border customHide" id="afficheInformation">
-                                <textarea id="informationNews" rows="8" style="width:100%" disabled></textarea>
-                            </div>
-                            <div class="col-md-12 col-no-border text-right">
-                                <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
+                            <div class="row" id="afficheInformation">
+                                <div class="col-md-12 col-no-border" >
+                                    <textarea id="informationNews" rows="8" style="width:100%" disabled></textarea>
+                                </div>
+                                <div class="col-md-12 col-no-border text-right">
+                                    <?php echo form_submit('submit','Supprimer','class="btn btn-danger"')?>
+                                </div>
                             </div>
                         </div>
                     </fieldset>
