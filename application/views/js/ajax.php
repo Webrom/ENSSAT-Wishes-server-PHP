@@ -148,7 +148,7 @@
                 });
             }
             else{
-                $("#afficheInformation").hide();
+                $("#afficheInformationtoModify").hide();
             }
         }
     );
