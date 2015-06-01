@@ -294,7 +294,7 @@ class admin extends CI_Controller{
             }
         }
     }
-
+    //TODO modif user ... a revoir : animations / détails / création d'un enregistrement dans table decharge si il n'y est pas présent
     public function getUserToModify(){
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
             redirect('login');
