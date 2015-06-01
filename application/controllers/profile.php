@@ -18,7 +18,7 @@ class profile extends CI_Controller{
 
     public function index($uploadError=null,$msg=null,$success=null){
         $data = array(
-            "userInfos" => $this->users->getUserData(),
+            "userInfos" => $this->users->getUserDataByUsername($this->session->userdata('username')),
             "success" => $success,
             "msg" => $msg,
             "uploadError" => $uploadError,

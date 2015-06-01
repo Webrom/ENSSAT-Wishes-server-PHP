@@ -24,21 +24,10 @@ class Users extends CI_Model{
         }
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUserData(){
-        $this->db->select("login,nom, prenom, statut, statutaire");
-        $this->db->from ("enseignant");
-        $this->db->where("login",$this->session->userdata('username'));
-        $query =  $this->db->get();
 
-        return $query->result_array();
-    }
-
-    /**
+    /**Permet d'obtenir les informations d'un utlisateur
      * @param $username
-     * @return mixed
+     * @return mixed Tableau avec les infos du user
      */
     public function getUserDataByUsername($username){
         $this->db->select("login,nom, prenom, statut, statutaire");
