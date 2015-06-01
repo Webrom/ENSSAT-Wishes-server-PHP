@@ -27,12 +27,12 @@ class Users extends CI_Model{
     /**
      * @return mixed
      */
-    public function getUserData(){
+    public function getUserData($user){
         $this->db->select("login,nom, prenom, statut, statutaire");
         $this->db->from ("enseignant");
-        $this->db->where("login",$this->session->userdata('username'));
+        $this->db->where("login",$user);
         $query =  $this->db->get();
-
+        //TODO ENLEVER LOL PD
         return $query->result_array();
     }
 
@@ -41,7 +41,7 @@ class Users extends CI_Model{
      * @return mixed
      */
     public function getUserDataByUsername($username){
-        $this->db->select("login,nom, prenom, statut, statutaire");
+        $this->db->select("login, nom, prenom, statut, statutaire, actif");
         $this->db->from ("enseignant");
         $this->db->where("login",$username);
         $query =  $this->db->get();
@@ -252,5 +252,17 @@ class Users extends CI_Model{
         else{
             return false;
         }
+    }
+
+    public function modifyUser($name,$heure,$actif,$status){
+
+        var_dump($name);die();
+        $data = array(
+            'accepted' => 1
+        );
+        $this->db->where('login',$login);
+        $result = $this->db->update('enseignant',$data);
+        return $result;
+
     }
 }

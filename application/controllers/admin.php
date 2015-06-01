@@ -284,4 +284,20 @@ class admin extends CI_Controller{
             }
         }
     }
+
+    public function getUserToModify(){
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
+            redirect('login');
+        }else {
+            echo json_encode($this->users->getUserDataByUsername($this->input->get('gData')));
+        }
+    }
+
+    public function modifyUser(){
+        if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
+            redirect('login');
+        }else {
+            $this->users->modifyUser($this->input->post("enseignantsModify"),$this->input->post('heuresModify'),$this->input->post('actifModify'),$this->input->post('select_statutModify'));
+        }
+    }
 }
