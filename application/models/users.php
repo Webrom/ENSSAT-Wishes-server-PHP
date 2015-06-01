@@ -70,6 +70,7 @@ class Users extends CI_Model{
      * @param int $accepted
      * @return string
      */
+    //TODO modifier pour faire tout passer en paramètre de la fonction
     public function addUser($pwd="servicesENSSAT",$activity=0,$accepted=0){
         $test_login = strtolower(substr($this->input->post('prenom'),0,1));
         if (strlen($this->input->post('name'))>7){

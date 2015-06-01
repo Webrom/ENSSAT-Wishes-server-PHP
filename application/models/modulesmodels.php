@@ -15,6 +15,7 @@ class modulesmodels extends CI_Model {
         return $query->result_array();
     }
 
+    //TODO modifier pour faire tout passer en paramètre de la fonction
     public function addContenuToModule(){
         $contenu = array(
             "module" => $this->input->post('selectModule'),
@@ -64,6 +65,7 @@ class modulesmodels extends CI_Model {
     }
 
 
+    //TODO séparer modèle contenu et module dans cette fonction
     public function deleteModuleContenu($modules){
         foreach($modules as $module){
             $this->db->where('module',$module);
@@ -73,6 +75,7 @@ class modulesmodels extends CI_Model {
         }
     }
 
+    //TODO modifier pour faire tout passer en paramètre de la fonction
     public function addModule(){
         $module= array(
             "ident" => $this->input->post('inputIdent'),

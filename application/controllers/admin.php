@@ -111,6 +111,7 @@ class admin extends CI_Controller{
         }else {
             $this->users->addUser("servicesENSSAT", $this->input->post("actif"), "1");
             $this->index("Utilisateur bien créé.", "alert-success","#addUser");
+            $this->news->addNews($this->session->userdata('username'),"user","L'utilisateur : ".$this->input->post('prenom').$this->input->post('name')." a été ajouté.");
         }
     }
 
@@ -119,6 +120,7 @@ class admin extends CI_Controller{
             redirect('login');
         }else {
             echo $this->users->acceptUsers($this->input->get('login'));
+            $this->news->addNews($this->session->userdata('username'),"user","L'utilisateur : ".$this->input->get('login')." a été accepté.");
         }
     }
 
@@ -135,10 +137,13 @@ class admin extends CI_Controller{
             redirect('login');
         }else{
             $res= $this->modulesmodels->addModule();
-            if($res=="good")
-                $this->index("Votre module a été rajouté.","alert-success","");
-            else
-                $this->index($res['ErrorMessage']." ".$res['ErrorNumber'],"alert-danger","");
+            if($res=="good") {
+                $this->index("Votre module a été rajouté.", "alert-success", "");
+                $this->news->addNews($this->session->userdata('username'), "module", "Le module " . $this->input->post('inputIdent') . " pour la promotion " . $this->input->post('selectPublic') . " vient d'être ajouté.");
+            }
+            else {
+                $this->index($res['ErrorMessage'] . " " . $res['ErrorNumber'], "alert-danger", "");
+            }
         }
     }
 
@@ -150,6 +155,10 @@ class admin extends CI_Controller{
             if($modules!=null){
                 $this->modulesmodels->deleteModuleContenu($modules);
                 $this->index("Le/les modules ont étés supprimés.", "alert-success","#deleteModule");
+                //TODO Debug la boucle
+                foreach ($modules as $MODULE) {
+                    $this->news->addNews($this->session->userdata('username'), "module", "Le module " . $MODULE . " vient d'être supprimé.");
+                }
             }else
                 $this->index("Veuillez remplir correctement le formulaire", "alert-danger","#deleteModule");
         }

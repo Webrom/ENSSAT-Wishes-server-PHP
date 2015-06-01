@@ -93,10 +93,16 @@ class profile extends CI_Controller{
                 $msgbox = "alert-danger";
             }
         }
-        else {
-            $this->decharge->addNewDecharge();
-            $msg="Votre decharge a été modifiée";
-            $msgbox="alert-success";
+        else if($this->input->post("inputDecharge")<$this->users->getHeures() && $this->input->post("inputDecharge")<=$this->users->getHeures()-$this->contenu->getHeuresPrises($this->session->userdata("username"))){
+
+                $this->decharge->addNewDecharge();
+                $msg="Votre decharge a été modifiée";
+                $msgbox="alert-success";
+
+        }
+        else{
+            $msg = "Trop de décharge tue la décharge... Merci d'indiquer un nombre raisonable";
+            $msgbox = "alert-danger";
         }
         $this->index(null, $msg, $msgbox);
     }
