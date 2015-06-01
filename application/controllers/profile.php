@@ -16,6 +16,11 @@ class profile extends CI_Controller{
         $this->load-> model('decharge');
     }
 
+    /**
+     * @param null $uploadError
+     * @param null $msg
+     * @param null $success
+     */
     public function index($uploadError=null,$msg=null,$success=null){
         $data = array(
             "userInfos" => $this->users->getUserDataByUsername($this->session->userdata('username')),
