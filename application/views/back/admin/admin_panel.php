@@ -277,13 +277,13 @@
             </div>
             <div id="modifyUsers" class="row">
                 <div class="col-md-12 col-no-border">
-                    <?php echo form_open("",'class="form-horizontal"')?>
+                    <?php echo form_open("admin/modifyUser",'class="form-horizontal"')?>
                     <fieldset>
                         <legend>Modifier un utilisateur</legend>
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
-                                <label for="selectEnseignant" class="control-label">Enseignants</label>
-                                <select name="enseignants" class="form-control" id="selectEnseignant">
+                                <label for="enseignantsModify" class="control-label">Enseignants</label>
+                                <select name="enseignantsModify" class="form-control" id="enseignantsModify">
                                     <?php foreach($enseignantsModify as $enseignants):?>
                                         <option value="<?php echo $enseignants['login'];?>">
                                             <?php echo  $enseignants['nom'].' '.
@@ -294,7 +294,55 @@
                                 </select>
                             </div>
                             <div class="col-md-12 col-no-border text-right">
-                                <?php echo form_button('submit','valider','class="btn btn-success"')?>
+                                <?php echo form_button('submit','valider','id="modifyUser" class="btn btn-success"')?>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-no-border">
+                            <p>Pour modifier un utilisateur, merci d'utiliser le panel ci-contre.</p>
+                            <p>A noter : vous ne pouvez pas modifier le nom, le prénom et le pseudo d'un utilisateur. Il faut dans
+                                ce cas le supprimer et lui demmander de se réinscrire.</p>
+                            <div class="col-md-12 col-no-border">
+                                <label for="loginModify" class="control-label">Pseudo de l'utilisateur</label>
+                                <?php echo form_input('loginModify','','class="form-control" disabled="" placeholder="jdoe" id="loginModify" required')?>
+                            </div>
+                            <div class="col-md-12 col-no-border">
+                                <label for="nameModify" class="control-label">Nom de l'utilisateur</label>
+                                <?php echo form_input('nameModify','','class="form-control" disabled="" placeholder="John" id="nameModify" required')?>
+                            </div>
+                            <div class="col-md-12 col-no-border">
+                                <label for="prenomModify" class="control-label">Prénom de l'utilisateur</label>
+                                <?php echo form_input('prenomModify','','class="form-control" disabled="" placeholder="Doe" id="prenomModify" required')?>
+                            </div>
+                            <div class="col-md-12 col-no-border">
+                                <label for="heuresModify" class="control-label">Nombre d'heures allouées</label>
+                                <?php echo form_input('heuresModify','','class="form-control" placeholder="heures" id="heuresModify" required')?>
+                            </div>
+                            <div class="col-md-12 col-no-border">
+                                <label for="actifModify" class="control-label">Actif</label>
+                                <select class="form-control" id="actifModify" name="actifModify">
+                                    <option value="0">Non</option>
+                                    <option value="1">Oui</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 col-no-border">
+                                <label for="select_statutModify" class="control-label">Statut</label>
+                                <select name="select_statutModify" class="form-control" id="select_statutModify">
+                                    <?php foreach ($status as $lestatut){
+                                        echo "<option value=\"$lestatut->statut\"";
+                                        echo set_select('status_select', $lestatut->statut);
+                                        echo ">";
+                                        echo ucfirst($lestatut->statut);
+                                        echo "</option>";
+                                    }?>
+                                    <option value="autre" <?php echo set_select('status_selectModify','autre'); ?>>Autre</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 col-no-border customHide" id="StatusPerso">
+                                <label for="inputStatusPerso" class="control-label">Statut personnalisé</label>
+                                <?php echo form_input('status_perso','','class="form-control" placeholder="Statut" id="inputStatusPerso"')?>
+                            </div>
+                            <div class="col-md-12 col-no-border text-right">
+                                <?php echo form_submit('submit','valider','class="btn btn-success"')?>
                             </div>
                         </div>
                     </fieldset>
@@ -326,7 +374,7 @@
                                 <select name="supprimer_news" class="form-control" id="supprimer_news">
                                     <option value="no">Veuillez choisir</option>
                                     <?php foreach($allnews as $onenews):?>
-                                        <option value="<?php echo $onenews['DATE'];?>">
+                                        <option value="<?php echo $onenews['ID'];?>">
                                             <?php echo  substr($onenews['DATE'],0,16).' : '.
                                                 substr($onenews['INFORMATION'],0,120).'...'
                                             ;?></option>
@@ -356,7 +404,7 @@
                                 <select name="modifier_news" class="form-control" id="modifier_news">
                                     <option value="no">Veuillez choisir</option>
                                     <?php foreach($allnews as $onenews):?>
-                                        <option value="<?php echo $onenews['DATE'];?>">
+                                        <option value="<?php echo $onenews['ID'];?>">
                                             <?php echo  substr($onenews['DATE'],0,16).' : '.
                                                 substr($onenews['INFORMATION'],0,120).'...'
                                             ;?></option>
