@@ -155,7 +155,6 @@ class admin extends CI_Controller{
             if($modules!=null){
                 $this->modulesmodels->deleteModuleContenu($modules);
                 $this->index("Le/les modules ont étés supprimés.", "alert-success","#deleteModule");
-                //TODO Debug la boucle
                 foreach ($modules as $MODULE) {
                     $this->news->addNews($this->session->userdata('username'), "module", "Le module " . $MODULE . " vient d'être supprimé.");
                 }
@@ -196,6 +195,9 @@ class admin extends CI_Controller{
             if($array['module']!=null && $array['partie']!=null){
                 $this->contenu->deleteContenuModule($array);
                 $this->index("Les parties ont bien été supprimées.","alert-success","#deleteContenu");
+                foreach ($this->input->post('selectContenuModule') as $coucou){
+                    $this->news->addNews($this->session->userdata('username'),"contenu", "Le contenu " .$coucou." vient d'être supprimé");
+                }
             }else
                 $this->index("Veuillez remplir correctement les champs","alert-danger","#deleteContenu");
 
@@ -207,8 +209,10 @@ class admin extends CI_Controller{
             redirect('login');
         }else {
             $res=$this->modulesmodels->addContenuToModule();
-            if($res=="good")
-                $this->index("Votre contenu a été rajouté.","alert-success","#addContenu");
+            if($res=="good") {
+                $this->index("Votre contenu a été rajouté.", "alert-success", "#addContenu");
+                $this->news->addNews($this->session->userdata('username'), "contenu", "Le contenu " . $this->input->post('moduleType') . " a été ajouté au module " . $this->input->post('selectModule') . ".");
+            }
             else
                 $this->index($res['ErrorMessage']." ".$res['ErrorNumber'],"alert-danger","#addContenu");
         }
