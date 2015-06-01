@@ -66,10 +66,10 @@ body {
   background-color: #ffffff;
 }
 body a {
-  color: #e62a64;
+  color: #2c3e50;
 }
 body a:hover {
-  color: #e7336b;
+  color: #2980b9;
   text-decoration: none;
 }
 /* Title Section */
@@ -517,7 +517,8 @@ fieldset[disabled] .btn-other.active {
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
   color: #ffffff;
-  background-color: #e62a64;
+  background-color: #2980b9;
+  border-radius: 0 !important;
 }
 .badge {
   background-color: #e62a64;
@@ -590,19 +591,18 @@ a.list-group-item.active > .badge,
 }
 /* Panel */
 .panel {
+  border-radius: 0 !important;
   border-style: solid;
   border-width: 1px;
   border-color: #dddddd;
 }
 .panel-heading {
   color: #FFF !important;
+  border-radius: 0;
 }
 .panel-default > .panel-heading {
   color: #FFF;
-  background-color: #ff4c83;
-  -webkit-box-shadow: 0 4px 0 0 #ff99b8;
-  -moz-box-shadow: 0 4px 0 0 #ff99b8;
-  box-shadow: 0 4px 0 0 #ff99b8;
+  background-color: #2980b9;
   border-style: solid;
   border-width: 0px;
   border-color: transparent !important;
@@ -770,10 +770,10 @@ a.list-group-item.active > .badge,
   margin: 0 0 40px 0;
 }
 .carousel-control {
-  color: #e62a64;
+  color: #2c3e50;
 }
 .carousel-control:hover {
-  color: #e7336b;
+  color: #2980b9;
 }
 .carousel-control.left {
   background-image: -webkit-linear-gradient(left, color-stop(rgba(0, 0, 0, 0.7) 0%), color-stop(rgba(0, 0, 0, 0.0001) 100%));

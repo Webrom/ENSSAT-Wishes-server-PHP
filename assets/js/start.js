@@ -32,12 +32,19 @@ $(function(){
         }
     });
     $("#resetFormSearch").click(function(e){
-        $("#modules_result").addClass("animated zoomOut");
+        $("#modules_result").remove();
         $('.form-control').each(function () {
             $(this).val("");
             if($(this).attr("id")=="selectTeacher")
                 $(this).val("no");
+            if($(this).attr('id')=='selectSemester')
+                $(this).val("noSemester");
+            if($(this).attr('id')=='selectPromotion')
+                $(this).val("noProm");
         });
+    });
+    $('a#displayMyModules').click(function(){
+        $("#modules_result").remove();
     });
     $('.navbar-nav li a').each(function(){
         if($(this).text()==$('#activePage').text()){

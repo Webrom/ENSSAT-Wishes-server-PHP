@@ -9,7 +9,7 @@
 ?>
 <div class="bp-docs-section">
     <div class="row">
-        <p id="affiche" class="customHide"><?php echo(($active!="")?$active:"#addModulde");?></p>
+        <p id="affiche" class="customHide"><?php echo(($activeOnglet!="")?$activeOnglet:"#addModulde");?></p>
     </div>
     <div class="row">
         <div class="col-md-2 col-no-border">
@@ -175,7 +175,7 @@
                 </div>
             </div>
             <div id="acceptUsers" class="row">
-                <div class="col-md-12 col-no-border <?php if(!$enAttente){echo "customHide";}?>">
+                <div class="col-md-12 col-no-border">
                     <fieldset>
                         <legend>Utilisateur(s) en attente(s) d'acceptation</legend>
                         <div class="bp-component">
@@ -192,6 +192,11 @@
                                     </div>
                                 </div>
                             <?php endforeach;?>
+                            <?php if(!$enAttente):?>
+                                <p>
+                                    <span class="text-primary">Il n'y a pas d'utilisateurs en attente d'acceptation.</span>
+                                </p>
+                            <?php endif;?>
                         </div>
                     </fieldset>
                 </div>

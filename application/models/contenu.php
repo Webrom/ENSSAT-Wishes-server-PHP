@@ -65,40 +65,47 @@ class Contenu extends CI_Model{
         }
     }
 
-    public function getModuleTeacher($data,$promotion,$semester){
-        $this->db->select("*");
-        $this->db->from("contenu,module");
-        $this->db->where("module",$data['module']);
-        $this->db->where("enseignant",$data['teacher']);
-        if($promotion!="noProm")
-            $this->db->where("public",$promotion);
-        if($semester!="noSemester")
-            $this->db->where("semestre",$semester);
-        $query = $this->db->get();
+    public function getModuleTeacher($data,$promotion=null,$semester=null){
+        if($data['module']!=null && $data['teacher']!=null && $semester!="noSemester")
+            $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module where ident='".$data['module']."' AND semestre='".$semester."' AND enseignant='".$data['teacher']."'");
+        else if ($data['module']!=null && $data['teacher']==null)
+            $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module AND ident='".$data['module']."' AND enseignant IS NULL");
+        else if ($data['module']!=null)
+            $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module AND ident='".$data['module']."'");
         return $query->result_array();
     }
 
     public function getModuleByModule($data,$promotion,$semester){
-        $this->db->select("*");
-        $this->db->from("contenu,module");
-        $this->db->where("module",$data['module']);
-        if($promotion!="noProm")
-            $this->db->where("public",$promotion);
-        if($semester!="noSemester")
-            $this->db->where("semestre",$semester);
-        $query = $this->db->get();
+        if($semester!="noSemester" && $data['module']!=null){
+            $query = $this->db->query("SELECT * FROM contenu join module WHERE contenu.module= '".$data['module']."' and module.ident=contenu.module and semestre='".$semester."'");
+        }else{
+            $this->db->select("*");
+            $this->db->from("contenu");
+            $this->db->where("module",$data['module']);
+            $query = $this->db->get();
+        }
         return $query->result_array();
     }
 
-    public function getModuleByTeacher($data,$promotion,$semester){
-        $this->db->select("*");
-        $this->db->from("contenu,module");
-        $this->db->where("enseignant",$data['teacher']);
-        if($promotion!="noProm")
-            $this->db->where("public",$promotion);
-        if($semester!="noSemester")
-            $this->db->where("semestre",$semester);
-        $query = $this->db->get();
+    public function getModuleByElse($data,$promotion,$semester){
+        if($promotion!="noProm") {
+            $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module where public='".$promotion."'");
+        }else if($data['teacher']==null){
+            $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module AND contenu.enseignant IS NULL");
+
+            /*$this->db->select("*");
+            $this->db->from("contenu,module");
+            $this->db->where("enseignant",$data['teacher']);
+            if($promotion!="noProm")
+                $this->db->where("public",$promotion);
+            if($semester!="noSemester")
+                $this->db->where("semestre",$semester);
+            $query = $this->db->get();*/
+        }else if($data['teacher']!=null){
+            $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module AND contenu.enseignant='".$data['teacher']."'");
+        }else {
+            $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module");
+        }
         return $query->result_array();
     }
 

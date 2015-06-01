@@ -454,7 +454,8 @@
 		& > li.active > a:hover,
 		& > li.active > a:focus{
 			color: @button-color;
-			background-color: @button-primary-bg;
+			background-color: @navbar-bg;
+            border-radius: 0 !important;
 		}
 
 	}
@@ -531,14 +532,17 @@
 
 	/* Panel */
 	.panel {
+      border-radius: 0 !important;
 		.border (1px, #ddd);
 
-		&-heading { color: #FFF !important; }
+		&-heading {
+          color: #FFF !important;
+          border-radius: 0;
+        }
 
 		&-default > &-heading {
 			color: #FFF;
-			background-color: @panel-heading-default-bg;
-			.box-shadow(0 4px 0 0 lighten(@panel-heading-default-bg, 15%));
+			background-color: @navbar-bg;
 			.border();
 			h1,
 			h2,

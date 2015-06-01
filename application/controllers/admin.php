@@ -36,7 +36,7 @@ class admin extends CI_Controller{
                 "status" =>  $status = $this->users->getStatus(),
                 "moduleTypes" => $this->contenu->getAllModuleTypes(),
                 "enAttente" => $this->users->ifSomeoneWait(),
-                "active" => $active,
+                "activeOnglet" => $active,
                 "allnews" => $this->news->getGeneralesNews()
             );
             $this->load->view('header',$data);
@@ -148,7 +148,7 @@ class admin extends CI_Controller{
         }else {
             $modules = $this->input->post('module');
             if($modules!=null){
-                $this->modulesmodels->deleteModuleContenu();
+                $this->modulesmodels->deleteModuleContenu($modules);
                 $this->index("Le/les modules ont étés supprimés.", "alert-success","#deleteModule");
             }else
                 $this->index("Veuillez remplir correctement le formulaire", "alert-danger","#deleteModule");
@@ -185,7 +185,7 @@ class admin extends CI_Controller{
                 "partie" => $this->input->post('selectContenuModule')
             );
             if($array['module']!=null && $array['partie']!=null){
-                $this->contenu->deleteContenuModule();
+                $this->contenu->deleteContenuModule($array);
                 $this->index("Les parties ont bien été supprimées.","alert-success","#deleteContenu");
             }else
                 $this->index("Veuillez remplir correctement les champs","alert-danger","#deleteContenu");

@@ -31,7 +31,7 @@ class modules extends CI_Controller{
                 "semSelected" => ($infosmodule==null)?"noSemester":$infosmodule["semSelected"],
                 "promSelected" => ($infosmodule==null)?"noProm":$infosmodule["promSelected"],
                 "admin" => $this->session->userdata['admin'],
-                "active" => "Rechercher",
+                "active" => "Modules",
                 "checked" => $infosmodule['checked'],
                 "success" => $infos['success'],
                 "msg" => $infos['msg'],
@@ -56,11 +56,14 @@ class modules extends CI_Controller{
                 "teacher" => (!$this->input->post('checkboxSansEnseignant'))?$this->input->post('teacher'):null
             );
             if($data['module'] != "" && $data['teacher'] != "no") {
+                //echo'1';die();
                 $result = $this->contenu->getModuleTeacher($data,$data["promotion"],$data["semester"]);
             } elseif ($data['module'] != "") {
+                //echo'2';die();
                 $result = $this->contenu->getModuleByModule($data,$data["promotion"],$data["semester"]);
             } else  {
-                $result = $this->contenu->getModuleByTeacher($data,$data["promotion"],$data["semester"]);
+                //echo'3';die();
+                $result = $this->contenu->getModuleByElse($data,$data["promotion"],$data["semester"]);
             }
             $data=array(
                 "module" => $this->input->post('module'),
