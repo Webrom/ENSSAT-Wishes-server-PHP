@@ -62,7 +62,7 @@
                     </div>
                     <div class="tab-pane fade <?php if($onglet=="Recherche") echo "active in"?>" id="recherche">
                         <div class="row">
-                            <legend>Ajouter un module</legend>
+                            <legend>Rechercher un module</legend>
                             <?php echo form_open('modules/displayModule')?>
                             <div class="row">
                                 <div class="col-md-6 col-no-border">
