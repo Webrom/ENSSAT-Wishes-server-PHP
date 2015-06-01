@@ -318,6 +318,10 @@
                                 <?php echo form_input('heuresModify','','class="form-control" placeholder="heures" id="heuresModify" required')?>
                             </div>
                             <div class="col-md-12 col-no-border">
+                                <label for="dechargeModify" class="control-label">Nombre d'heures de décharge</label>
+                                <?php echo form_input('dechargeModify','','class="form-control" placeholder="heures" id="dechargeModify" required')?>
+                            </div>
+                            <div class="col-md-12 col-no-border">
                                 <label for="actifModify" class="control-label">Actif</label>
                                 <select class="form-control" id="actifModify" name="actifModify">
                                     <option value="0">Non</option>
@@ -329,7 +333,7 @@
                                 <select name="select_statutModify" class="form-control" id="select_statutModify">
                                     <?php foreach ($status as $lestatut){
                                         echo "<option value=\"$lestatut->statut\"";
-                                        echo set_select('status_select', $lestatut->statut);
+                                        echo set_select('status_selectModify', $lestatut->statut);
                                         echo ">";
                                         echo ucfirst($lestatut->statut);
                                         echo "</option>";

@@ -299,7 +299,12 @@ class admin extends CI_Controller{
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
             redirect('login');
         }else {
-            echo json_encode($this->users->getUserDataByUsername($this->input->get('gData')));
+            if(!$this->decharge->getHoursDecharge($this->input->get('login'))) {
+                echo json_encode($this->users->getUserDataByUsername($this->input->get('login')));
+            }
+            else{
+                echo json_encode($this->users->getUserDataByUsernameJoinDecharge($this->input->get('login')));
+            }
         }
     }
 
@@ -307,7 +312,12 @@ class admin extends CI_Controller{
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
             redirect('login');
         }else {
-            $this->users->modifyUser($this->input->post("enseignantsModify"),$this->input->post('heuresModify'),$this->input->post('actifModify'),$this->input->post('select_statutModify'));
+            if($this->users->modifyUser($this->input->post("enseignantsModify"),$this->input->post('heuresModify'),
+                $this->input->post('actifModify'),$this->input->post('select_statutModify'),
+                $this->input->post('dechargeModify')))
+                $this->index("Modification effectuée", "alert-success");
+            else
+                $this->index("Modification pas effectuée, problème", "alert-danger");
         }
     }
 }

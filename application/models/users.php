@@ -24,14 +24,36 @@ class Users extends CI_Model{
         }
     }
 
-
-    /**Permet d'obtenir les informations d'un utlisateur
-     * @param $username
-     * @return mixed Tableau avec les infos du user
+    /**
+     * @return mixed
      */
-    public function getUserDataByUsername($username){
+    public function getUserData($user){
         $this->db->select("login,nom, prenom, statut, statutaire");
         $this->db->from ("enseignant");
+        $this->db->where("login",$user);
+        $query =  $this->db->get();
+        //TODO ENLEVER LOL PD
+        return $query->result_array();
+    }
+
+    /**
+     * @param $username
+     * @return mixed
+     */
+    public function getUserDataByUsername($username){
+        $this->db->select("login, nom, prenom, statut, statutaire, actif");
+        $this->db->from ("enseignant");
+        $this->db->where("login",$username);
+        $query =  $this->db->get();
+
+        return $query->result_array();
+    }
+
+    public function getUserDataByUsernameJoinDecharge($username){
+        //SELECT login,nom,prenom,statut,statutaire,decharge from enseignant inner join decharge on login=enseignant where enseignant='bvozel';
+        $this->db->select("login, nom, prenom, statut, statutaire, actif, decharge");
+        $this->db->from ("enseignant");
+        $this->db->join("decharge","login=enseignant");
         $this->db->where("login",$username);
         $query =  $this->db->get();
 
@@ -241,5 +263,24 @@ class Users extends CI_Model{
         else{
             return false;
         }
+    }
+
+    public function modifyUser($login,$newStatutaire,$newActif,$newStatut,$newDecharge){
+        $data = array(
+            'statut' => $newStatut,
+            'statutaire' => $newStatutaire,
+            'actif' => $newActif,
+            'administrateur' => ($newStatut=="Administrateur")?1:0
+        );
+        $this->db->where('login',$login);
+        $result1 = $this->db->update('enseignant',$data);
+
+        $data = array(
+            'decharge' => $newDecharge,
+        );
+        $this->db->where('enseignant',$login);
+        $result2 = $this->db->update('decharge',$data);
+
+        return ($result1 && $result2);
     }
 }
