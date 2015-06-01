@@ -811,9 +811,6 @@ a.list-group-item.active > .badge,
   background-color: transparent !important;
 }
 /* ProgressBar */
-.progress {
-  background-color: #b1244f;
-}
 .progress-bar {
   background-color: #ea4a7b;
 }
