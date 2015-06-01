@@ -17,7 +17,7 @@ class News extends CI_Model{
     }
 
     public function getGeneralesNews(){
-        $this->db->select('DATE,INFORMATION');
+        $this->db->select('ID,DATE,INFORMATION');
         $this->db->from('news');
         $this->db->where('TYPE','generale');
         $query = $this->db->get();
@@ -27,13 +27,13 @@ class News extends CI_Model{
     public function getInformation($date){
         $this->db->select('INFORMATION');
         $this->db->from('news');
-        $this->db->where('DATE',$date);
+        $this->db->where('ID',$date);
         $query = $this->db->get();
         return $query->row()->INFORMATION;
     }
 
     public function removeNews($date){
-        $this->db->where('DATE', $date);
+        $this->db->where('ID', $date);
         return $this->db->delete('news');
     }
 
@@ -41,7 +41,7 @@ class News extends CI_Model{
         $data = array(
             'INFORMATION'=>$information
         );
-        $this->db->where('DATE', $date);
+        $this->db->where('ID', $date);
         return $this->db->update('news',$data);
     }
 }

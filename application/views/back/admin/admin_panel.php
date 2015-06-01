@@ -374,7 +374,7 @@
                                 <select name="supprimer_news" class="form-control" id="supprimer_news">
                                     <option value="no">Veuillez choisir</option>
                                     <?php foreach($allnews as $onenews):?>
-                                        <option value="<?php echo $onenews['DATE'];?>">
+                                        <option value="<?php echo $onenews['ID'];?>">
                                             <?php echo  substr($onenews['DATE'],0,16).' : '.
                                                 substr($onenews['INFORMATION'],0,120).'...'
                                             ;?></option>
@@ -404,7 +404,7 @@
                                 <select name="modifier_news" class="form-control" id="modifier_news">
                                     <option value="no">Veuillez choisir</option>
                                     <?php foreach($allnews as $onenews):?>
-                                        <option value="<?php echo $onenews['DATE'];?>">
+                                        <option value="<?php echo $onenews['ID'];?>">
                                             <?php echo  substr($onenews['DATE'],0,16).' : '.
                                                 substr($onenews['INFORMATION'],0,120).'...'
                                             ;?></option>
