@@ -173,8 +173,12 @@ textarea {
 .navbar-dark {
   background-color: #2980b9;
   border-style: solid;
-  border-width: 0 0 1px 0;
+  border-width: 0px;
   border-color: #2980b9;
+  -moz-box-shadow: 0px 0px 10px 1px #000000;
+  -webkit-box-shadow: 0px 0px 10px 1px #000000;
+  -o-box-shadow: 0px 0px 10px 1px #000000;
+  box-shadow: 0px 0px 10px 1px #000000;
 }
 .navbar-dark a {
   color: #ffffff;
@@ -198,23 +202,45 @@ textarea {
 /* 	Containers | CommentBox type list */
 .comment-box .pull-left img,
 .comment-box .pull-right img {
-  border: 3px solid #000000;
+  border: 2px solid #2980b9;
 }
 .comment-box p {
+  margin: 15px  ;
   padding: 15px;
-  background: #ff4c83;
-  color: #ffffff;
-  border-radius: 5px;
+  color: #000000;
 }
-.comment-box p:before {
-  content: '';
-  position: absolute;
-  margin-left: -23px;
-  width: 0;
-  height: 0;
-  border-right: 8px solid #ff4c83;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
+.comment-box p.generale {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #2ecc71;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.comment-box p.contenu {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #f1c40f;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.comment-box p.module {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e74c3c;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
 }
 .comment-box ul,
 .comment-box span {
@@ -841,6 +867,10 @@ a.list-group-item.active > .badge,
   border-style: solid;
   border-width: 0;
   border-color: transparent !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
 }
 .col-lg-12,
 .col-md-12,

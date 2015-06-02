@@ -44,4 +44,22 @@ class News extends CI_Model{
         $this->db->where('ID', $date);
         return $this->db->update('news',$data);
     }
+
+    public function getNewsCount(){
+        return $this->db->count_all('news');
+    }
+
+    public function getNews($nb, $start = 0){
+        if(!is_integer($nb) OR $nb < 1 OR !is_integer($start) OR $start < 0)
+        {
+            return false;
+        }
+        return $this->db->select('`avatar`,`nom`,`prenom`,`ID`,`TYPE`, `ENSEIGNANT`, `INFORMATION`, DATE_FORMAT(`DATE`,\'%d/%m/%Y &agrave; %H:%i:%s\') AS \'date\'', false)
+            ->from('news')
+            ->join('enseignant','news.ENSEIGNANT=enseignant.login')
+            ->order_by('id', 'desc')
+            ->limit($nb, $start)
+            ->get()
+            ->result_array();
+    }
 }
