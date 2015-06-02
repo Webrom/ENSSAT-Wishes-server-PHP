@@ -19,7 +19,7 @@ class Contenu extends CI_Model{
     public function getTypeContenu(){
         $this->db->select('partie');
         $this->db->from('contenu');
-        $this->db->where('module',$this->input->get('gData'));
+        $this->db->where('module',$this->input->get('gData')); // TODO refacto norme MVC
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -27,15 +27,15 @@ class Contenu extends CI_Model{
     public function getModuleContenus(){
         $this->db->select('*');
         $this->db->from("contenu");
-        $this->db->where('module',$this->input->get('gData'));
+        $this->db->where('module',$this->input->get('gData')); // TODO refacto norme MVC
         $query = $this->db->get();
         return $query->result_array();
     }
 
     public function getModuleContenusByPartieModule(){
         $array = array(
-            "partie" => $this->input->get('gData'),
-            "module" => $this->input->get('bData')
+            "partie" => $this->input->get('gData'),  // TODO refacto norme MVC
+            "module" => $this->input->get('bData')   // TODO refacto norme MVC
         );
         $this->db->select('*');
         $this->db->from("contenu");
@@ -61,10 +61,11 @@ class Contenu extends CI_Model{
     public function deleteContenuModule($array){
         foreach($array['partie'] as $partie){
             $this->db->where('partie',$partie);
-            $query = $this->db->delete('contenu');
+            $query = $this->db->delete('contenu');  // TODO refacto vérification ?
         }
     }
 
+    // TODO supprimer fonction de la mort
     public function getModuleTeacher($data,$promotion=null,$semester=null){
         if($data['module']!=null && $data['teacher']!=null && $semester!="noSemester")
             $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module where ident='".$data['module']."' AND semestre='".$semester."' AND enseignant='".$data['teacher']."'");
@@ -75,6 +76,7 @@ class Contenu extends CI_Model{
         return $query->result_array();
     }
 
+    // TODO supprimer fonciton de la mort 2
     public function getModuleByModule($data,$promotion,$semester){
         if($semester!="noSemester" && $data['module']!=null){
             $query = $this->db->query("SELECT * FROM contenu join module WHERE contenu.module= '".$data['module']."' and module.ident=contenu.module and semestre='".$semester."'");
@@ -87,6 +89,7 @@ class Contenu extends CI_Model{
         return $query->result_array();
     }
 
+    // TODO supprimer fonction de la mort 3
     public function getModuleByElse($data,$promotion,$semester){
         if($promotion!="noProm") {
             $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module where public='".$promotion."'");
@@ -166,7 +169,7 @@ class Contenu extends CI_Model{
 
     public function addEnseignanttoContenu($module,$partie){
         $data = array(
-            'enseignant' => $this->session->userdata('username')
+            'enseignant' => $this->session->userdata('username') // TODO refacto norme MVC
         );
         //$this->db->set('enseignant',$this->session->userdata('username'));
         $this->db->where('module',$module);
@@ -232,7 +235,7 @@ class Contenu extends CI_Model{
         //$this->db->set('enseignant',$this->session->userdata('username'));
         $this->db->where('module',$module);
         $this->db->where('partie',$partie);
-        $this->db->where('enseignant',$this->session->userdata('username'));
+        $this->db->where('enseignant',$this->session->userdata('username')); // TODO refacto norme MVC
         $query = $this->db->update('contenu',$data);
         return $query;
     }

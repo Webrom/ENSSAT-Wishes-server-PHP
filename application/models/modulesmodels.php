@@ -37,7 +37,7 @@ class modulesmodels extends CI_Model {
     public function getAllMyModules(){
         $this->db->select("module,partie,type,hed");
         $this->db->from("contenu");
-        $this->db->where("enseignant",$this->session->userdata('username'));
+        $this->db->where("enseignant",$this->session->userdata('username')); // TODO refacto norme MVC
         $query = $this->db->get();
 
         if(!$query) {

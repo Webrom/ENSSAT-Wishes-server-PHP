@@ -81,16 +81,15 @@ class Users extends CI_Model{
      * @param int $accepted
      * @return string
      */
-    //TODO modifier pour faire tout passer en paramètre de la fonction
     public function addUser($pwd="servicesENSSAT",$activity=0,$accepted=0){
-        $test_login = strtolower(substr($this->input->post('prenom'),0,1));
+        $test_login = strtolower(substr($this->input->post('prenom'),0,1)); // TODO refacto norme MVC
         if (strlen($this->input->post('name'))>7){
             $taille = 7;
         }
         else{
-            $taille = strlen($this->input->post('name'));
+            $taille = strlen($this->input->post('name')); // TODO refacto norme MVC
         }
-        $test_login = $test_login.strtolower(substr($this->input->post('name'),0,$taille));
+        $test_login = $test_login.strtolower(substr($this->input->post('name'),0,$taille)); // TODO refacto norme MVC
         $this->db->select('login');
         $this->db->from('enseignant');
         $this->db->where('login',$test_login);
@@ -121,10 +120,10 @@ class Users extends CI_Model{
         }
         $this->db->set('login',$test_login);
         $this->db->set('pwd',$pwd);
-        $this->db->set('nom',$this->input->post('name'));
-        $this->db->set('prenom',$this->input->post('prenom'));
+        $this->db->set('nom',$this->input->post('name')); // TODO refacto norme MVC
+        $this->db->set('prenom',$this->input->post('prenom')); // TODO refacto norme MVC
         $this->db->set('statut',$statut);
-        $this->db->set('statutaire',$this->input->post('heures'));
+        $this->db->set('statutaire',$this->input->post('heures')); // TODO refacto norme MVC
         $this->db->set('actif',$activity);
         $this->db->set('administrateur',0);
         $this->db->set('accepted',$accepted);
@@ -156,7 +155,7 @@ class Users extends CI_Model{
         $data = array(
             'pwd' => $newPass,
         );
-        $this->db->where('login', $this->session->userdata('username'));
+        $this->db->where('login', $this->session->userdata('username')); // TODO refacto norme MVC
         $this->db->update('enseignant', $data);
     }
 
@@ -247,7 +246,7 @@ class Users extends CI_Model{
     public function getAvatar(){
         $this->db->select('avatar');
         $this->db->from('enseignant');
-        $this->db->where('login',$this->session->userdata('username'));
+        $this->db->where('login',$this->session->userdata('username')); // TODO refacto norme MVC
         $query = $this->db->get();
         return $query->row()->avatar;
     }

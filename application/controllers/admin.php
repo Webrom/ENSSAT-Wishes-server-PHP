@@ -25,12 +25,11 @@ class admin extends CI_Controller
         }
     }
 
+    // TODO comment : ça fait quoi ça ? AJAX ?
     public function setModuleContenusType()
     {
         echo json_encode($this->contenu->getTypeContenu());
     }
-
-    // TODO comment : ça fait quoi ça ? AJAX ?
 
     /**
      * Modifie le contenu d'un module, modifie l'enseignant si ce dernier peut encore effectuer des heures,
