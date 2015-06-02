@@ -10,6 +10,11 @@ class admin extends CI_Controller{
 
     function __construct() {
         parent::__construct();
+        $this->load-> model('modulesmodels');
+        $this->load-> model('users');
+        $this->load-> model('contenu');
+        $this->load-> model('news');
+        $this->load-> model('decharge');
     }
 
     public function index($msg=null,$success=null,$active=null){
