@@ -32,7 +32,7 @@ class Users extends CI_Model{
         $this->db->from ("enseignant");
         $this->db->where("login",$user);
         $query =  $this->db->get();
-        //TODO ENLEVER LOL PD
+        //TODO ENLEVER ça
         return $query->result_array();
     }
 
