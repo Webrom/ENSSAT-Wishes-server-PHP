@@ -17,6 +17,24 @@ class Upload extends CI_Controller
         }
     }
 
+    function index($data)
+    {
+        // TODO 6EME FOIS QUON VOIS CETTE FONCTION
+        /* CALCUL POURCENTAGE HEURES PRISES */
+        $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
+        $heurestotales = $this->users->getHeures($this->session->userdata('username')) - $this->decharge->getHoursDecharge($this->session->userdata('username'));
+        $pourcentage = round(($heuresprises / $heurestotales) * 100, 0);
+        $data['pourcentage'] = $pourcentage;
+        $data['heuresprises'] = $heuresprises;
+        $data['heurestotales'] = $heurestotales;
+        /* FIN CALCUL */
+
+        $this->load->view('header');
+        $this->load->view('back/template/header', $data);
+        $this->load->view('back/upload/upload', $data);
+        $this->load->view('footer');
+    }
+
     function do_upload()
     {
         $config['upload_path'] = getcwd() . '/uploads/';
@@ -40,24 +58,6 @@ class Upload extends CI_Controller
             $this->uploadmodel->changeAvatar($upload_data, $this->session->userdata('username'));
         }
         $this->index($data);
-    }
-
-    function index($data)
-    {
-        // TODO 6EME FOIS QUON VOIS CETTE FONCTION
-        /* CALCUL POURCENTAGE HEURES PRISES */
-        $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
-        $heurestotales = $this->users->getHeures($this->session->userdata('username')) - $this->decharge->getHoursDecharge($this->session->userdata('username'));
-        $pourcentage = round(($heuresprises / $heurestotales) * 100, 0);
-        $data['pourcentage'] = $pourcentage;
-        $data['heuresprises'] = $heuresprises;
-        $data['heurestotales'] = $heurestotales;
-        /* FIN CALCUL */
-
-        $this->load->view('header');
-        $this->load->view('back/template/header', $data);
-        $this->load->view('back/upload/upload', $data);
-        $this->load->view('footer');
     }
 
     public function remove()

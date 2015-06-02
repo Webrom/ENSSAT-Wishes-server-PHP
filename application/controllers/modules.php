@@ -23,31 +23,6 @@ class modules extends CI_Controller
         }
     }
 
-    public function displayModule()
-    {
-        $data = array(
-            "module" => $this->input->post('module'),
-            "promotion" => $this->input->post("prom"),
-            "semester" => $this->input->post("semester"),
-            "teacher" => (!$this->input->post('checkboxSansEnseignant')) ? $this->input->post('teacher') : null
-        );
-        if ($this->input->post('searchType') == 'module') {
-            $result = $this->contenu->getContenuByModule($data);
-            $recherche = 'module';
-        } else {
-            $result = $this->contenu->getContenuByPromo($data);
-            $recherche = 'promo';
-        }
-        $data = array(
-            "module" => $this->input->post('module'),
-            "teacher" => ($this->input->post('teacher')) ? $this->users->getUserDataByUsername($this->input->post('teacher')) : "no",
-            "promSelected" => ($this->input->post("prom") != "noProm") ? $this->input->post("prom") : "noProm",
-            "semSelected" => ($this->input->post("semester") != "noSemester") ? $this->input->post("semester") : "noSemester",
-            "checked" => $this->input->post('checkboxSansEnseignant')
-        );
-        $this->index($result, $data, null, "Recherche", $recherche);
-    }
-
     public function index($result = null, $infosmodule = null, $infos = null, $onglet = null, $recherche = null)
     {
         $data = array(
@@ -85,6 +60,32 @@ class modules extends CI_Controller
         $this->load->view('back/modules/showmodules', $data);
         $this->load->view('footer');
     }
+
+    public function displayModule()
+    {
+        $data = array(
+            "module" => $this->input->post('module'),
+            "promotion" => $this->input->post("prom"),
+            "semester" => $this->input->post("semester"),
+            "teacher" => (!$this->input->post('checkboxSansEnseignant')) ? $this->input->post('teacher') : null
+        );
+        if ($this->input->post('searchType') == 'module') {
+            $result = $this->contenu->getContenuByModule($data);
+            $recherche = 'module';
+        } else {
+            $result = $this->contenu->getContenuByPromo($data);
+            $recherche = 'promo';
+        }
+        $data = array(
+            "module" => $this->input->post('module'),
+            "teacher" => ($this->input->post('teacher')) ? $this->users->getUserDataByUsername($this->input->post('teacher')) : "no",
+            "promSelected" => ($this->input->post("prom") != "noProm") ? $this->input->post("prom") : "noProm",
+            "semSelected" => ($this->input->post("semester") != "noSemester") ? $this->input->post("semester") : "noSemester",
+            "checked" => $this->input->post('checkboxSansEnseignant')
+        );
+        $this->index($result, $data, null, "Recherche", $recherche);
+    }
+
     // TODO commenter cette fonction de la mort ........
     public function inscriptionModule()
     {

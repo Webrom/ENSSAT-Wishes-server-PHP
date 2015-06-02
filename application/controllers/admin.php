@@ -25,47 +25,12 @@ class admin extends CI_Controller
         }
     }
 
-    public function index($msg = null, $success = null, $active = null)
-    {
-        $data = array(
-            "admin" => $this->session->userdata['admin'],
-            "active" => "Administration",
-            "enseignants" => $this->users->getAllEnseignants(),
-            "enseignantsContenu" => $this->users->getAllEnseignants(), // TODO Es-ce utile d'avoir ça en double ?
-            "enseignantsModify" => $this->users->getAllEnseignants(),  // TODO
-            "enseignantsToAccept" => $this->users->getAllEnseignantsToAccept(),
-            "semestres" => array("S1", "S2", "S3", "S4", "S5", "S6"),
-            "publics" => $this->modulesmodels->getAllPublic(),         // TODO mettre tout les modules proposés a l'ENSSAT; ARRAY pret ici :
-                                                                       // "allProm" => array("IMR1", "IMR2", "IMR3", "EII1", "EII2", "EII3", "TC", "LSI1", "LSI2", "LSI3", "OPT1", "OPT2", "OPT3","commun IMR1 et EII2"),
-            "modules" => $this->modulesmodels->getAllModules(),
-            "msg" => $msg,
-            "success" => $success,
-            "status" => $status = $this->users->getStatus(),           // TODO c'est quoi ce $status qui traine, esce utile ?
-            "moduleTypes" => $this->contenu->getAllModuleTypes(),
-            "enAttente" => $this->users->ifSomeoneWait(),
-            "activeOnglet" => $active,
-            "allnews" => $this->news->getGeneralesNews()
-        );
-
-        /* CALCUL POURCENTAGE HEURES PRISES */
-        $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
-        $heurestotales = $this->users->getHeures($this->session->userdata('username')) - $this->decharge->getHoursDecharge($this->session->userdata('username'));
-        $pourcentage = round(($heuresprises / $heurestotales) * 100, 0);
-        $data['pourcentage'] = $pourcentage;
-        $data['heuresprises'] = $heuresprises;
-        $data['heurestotales'] = $heurestotales;
-        /* FIN CALCUL */
-
-        $this->load->view('header', $data);
-        $this->load->view('back/template/header');
-        $this->load->view('back/admin/admin_panel', $data);
-        $this->load->view('footer');
-    }
-    // TODO comment : ça fait quoi ça ? AJAX ?
     public function setModuleContenusType()
     {
         echo json_encode($this->contenu->getTypeContenu());
     }
+
+    // TODO comment : ça fait quoi ça ? AJAX ?
 
     /**
      * Modifie le contenu d'un module, modifie l'enseignant si ce dernier peut encore effectuer des heures,
@@ -110,7 +75,46 @@ class admin extends CI_Controller
         } else
             $this->index($data['enseignant'] . " n'a pas assé d'heure de disponible pour ce contenu", 'alert-danger', '#modifyContenu');
     }
+
+    public function index($msg = null, $success = null, $active = null)
+    {
+        $data = array(
+            "admin" => $this->session->userdata['admin'],
+            "active" => "Administration",
+            "enseignants" => $this->users->getAllEnseignants(),
+            "enseignantsContenu" => $this->users->getAllEnseignants(), // TODO Es-ce utile d'avoir ça en double ?
+            "enseignantsModify" => $this->users->getAllEnseignants(),  // TODO
+            "enseignantsToAccept" => $this->users->getAllEnseignantsToAccept(),
+            "semestres" => array("S1", "S2", "S3", "S4", "S5", "S6"),
+            "publics" => $this->modulesmodels->getAllPublic(),         // TODO mettre tout les modules proposés a l'ENSSAT; ARRAY pret ici :
+            // "allProm" => array("IMR1", "IMR2", "IMR3", "EII1", "EII2", "EII3", "TC", "LSI1", "LSI2", "LSI3", "OPT1", "OPT2", "OPT3","commun IMR1 et EII2"),
+            "modules" => $this->modulesmodels->getAllModules(),
+            "msg" => $msg,
+            "success" => $success,
+            "status" => $status = $this->users->getStatus(),           // TODO c'est quoi ce $status qui traine, esce utile ?
+            "moduleTypes" => $this->contenu->getAllModuleTypes(),
+            "enAttente" => $this->users->ifSomeoneWait(),
+            "activeOnglet" => $active,
+            "allnews" => $this->news->getGeneralesNews()
+        );
+
+        /* CALCUL POURCENTAGE HEURES PRISES */
+        $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
+        $heurestotales = $this->users->getHeures($this->session->userdata('username')) - $this->decharge->getHoursDecharge($this->session->userdata('username'));
+        $pourcentage = round(($heuresprises / $heurestotales) * 100, 0);
+        $data['pourcentage'] = $pourcentage;
+        $data['heuresprises'] = $heuresprises;
+        $data['heurestotales'] = $heurestotales;
+        /* FIN CALCUL */
+
+        $this->load->view('header', $data);
+        $this->load->view('back/template/header');
+        $this->load->view('back/admin/admin_panel', $data);
+        $this->load->view('footer');
+    }
+
     // TODO comment : a quoi ca sert ?
+
     public function setModuleContenus()
     {
         echo json_encode($this->contenu->getModuleContenusByPartieModule());

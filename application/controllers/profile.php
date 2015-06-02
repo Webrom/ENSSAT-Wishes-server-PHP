@@ -22,37 +22,6 @@ class profile extends CI_Controller
     }
 
     /**
-     * Changement password, avec des vérifications :
-     *   Si l'ancien password entré est le bon,
-     *     Si les deux nouveaux password coincident et sont non nuls
-     *       alors changer pwd
-     *     sinon renvoyer message d'erreur
-     *   sinon renvoyer message d'erreur
-     */
-    public function changePass()
-    {
-        $oldPass = $this->input->post("oldPass");
-        $newPass1 = $this->input->post("newPass1");
-        $newPass2 = $this->input->post("newPass2");
-
-        if ($this->users->verifyUser($this->session->userdata('username'), $oldPass)) {
-            if ($newPass1 == $newPass2) {
-                if ($newPass1 != '') {
-                    $this->users->changePassword($newPass1, $this->session->userdata('username'));
-                    $this->index(null, "Votre mot de passe a été changé", "alert-success");
-                } else {
-                    $this->index(null, "Merci de donner un nouveau mot de passe non vide !", "alert-danger");
-                }
-            } else {
-                $this->index(null, "Les nouveaux mots de passe ne correspondent pas ! ", "alert-danger");
-            }
-        } else {
-            $this->index(null, "Votre ancien mot de passe n'est pas bon ! ", "alert-danger");
-        }
-    }
-
-
-    /**
      * @param null $uploadError
      * @param null $msg
      * @param null $success
@@ -85,9 +54,38 @@ class profile extends CI_Controller
         $this->load->view('footer');
     }
 
+    /**
+     * Changement password, avec des vérifications :
+     *   Si l'ancien password entré est le bon,
+     *     Si les deux nouveaux password coincident et sont non nuls
+     *       alors changer pwd
+     *     sinon renvoyer message d'erreur
+     *   sinon renvoyer message d'erreur
+     */
+    public function changePass()
+    {
+        $oldPass = $this->input->post("oldPass");
+        $newPass1 = $this->input->post("newPass1");
+        $newPass2 = $this->input->post("newPass2");
 
-    public
-    function modifyDecharge()
+        if ($this->users->verifyUser($this->session->userdata('username'), $oldPass)) {
+            if ($newPass1 == $newPass2) {
+                if ($newPass1 != '') {
+                    $this->users->changePassword($newPass1, $this->session->userdata('username'));
+                    $this->index(null, "Votre mot de passe a été changé", "alert-success");
+                } else {
+                    $this->index(null, "Merci de donner un nouveau mot de passe non vide !", "alert-danger");
+                }
+            } else {
+                $this->index(null, "Les nouveaux mots de passe ne correspondent pas ! ", "alert-danger");
+            }
+        } else {
+            $this->index(null, "Votre ancien mot de passe n'est pas bon ! ", "alert-danger");
+        }
+    }
+
+
+    public function modifyDecharge()
     {
         if ($this->decharge->isPresentInTable($this->session->userdata('username'))) {
             if ($this->input->post("inputDecharge") < $this->users->getHeures($this->session->userdata('username')) && $this->input->post("inputDecharge") <= $this->users->getHeures($this->session->userdata('username')) - $this->contenu->getHeuresPrises($this->session->userdata("username"))) {
