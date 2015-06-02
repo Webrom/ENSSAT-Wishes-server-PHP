@@ -42,7 +42,7 @@ class admin extends CI_Controller{
 
             /* CALCUL POURCENTAGE HEURES PRISES */
             $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
-            $heurestotales = $this->users->getHeures()-$this->decharge->getHoursDecharge($this->session->userdata('username'));
+            $heurestotales = $this->users->getHeures($this->session->userdata('username'))-$this->decharge->getHoursDecharge($this->session->userdata('username'));
             $pourcentage = round(($heuresprises/$heurestotales)*100,0);
             $data['pourcentage'] = $pourcentage;
             $data['heuresprises'] = $heuresprises;
@@ -83,7 +83,7 @@ class admin extends CI_Controller{
                 "partie" => $this->input->post('selectContenuModuleModification')
             );
             $hours = array(
-                "teacherHours" => $this->users->getHeures(),
+                "teacherHours" => $this->users->getHeures($this->session->userdata('username')),
                 "effectiveTeacherHours" => $this->contenu->getHeuresPrises($data['enseignant']),
                 "decharge" => $this->decharge->getHoursDecharge($data['enseignant']),
                 "hedContenu" => $this->contenu->getHeurePourUnContenu($keys['module'],$keys['partie'])
@@ -334,22 +334,32 @@ class admin extends CI_Controller{
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
             redirect('login');
         }else {
-            if($this->input->post('dechargeModify')>0){
-                $data = array(
-                    'decharge' => $this->input->post('dechargeModify'),
-                    'enseignant' =>$this->input->post("enseignantsModify")
-                );
-                $this->decharge->addNewDecharge($data);
-            }
-            if($this->users->modifyUser(
-                $this->input->post("enseignantsModify"),
-                $this->input->post('heuresModify'),
-                $this->input->post('actifModify'),
-                $this->input->post('select_statutModify')))
+            $decharge = $this->input->post('dechargeModify');
+            $enseignant = $this->input->post("enseignantsModify");
+            $statutaire = $this->users->getHeures($enseignant);
+            $heuresprises = $this->contenu->getHeuresPrises($enseignant);
 
-                $this->index("Modification effectuée", "alert-success","#modifyUsers");
+            if($statutaire-$decharge>$heuresprises){
+                if($decharge>0){
+                    if($this->decharge->isPresentInTable($enseignant)){
+                        $this->decharge->setDecharge($enseignant,$decharge);
+                    }
+                    else {
+                        $this->decharge->addNewDecharge($enseignant,$decharge);
+                    }
+                }
+                if($this->users->modifyUser(
+                    $this->input->post("enseignantsModify"),
+                    $this->input->post('heuresModify'),
+                    $this->input->post('actifModify'),
+                    $this->input->post('select_statutModify')))
+
+                    $this->index("Modification effectuée", "alert-success","#modifyUsers");
+                else
+                    $this->index("Modification pas effectuée, problème", "alert-danger","#modifyUsers");
+            }
             else
-                $this->index("Modification pas effectuée, problème", "alert-danger","#modifyUsers");
+                $this->index("Modification pas effectuée, trop de décharge tue la décharge...", "alert-danger","#modifyUsers");
         }
     }
 }

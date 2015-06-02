@@ -36,12 +36,9 @@ class profile extends CI_Controller{
         if(!$this->session->userdata('is_logged_in')){
             redirect('login');
         }else{
-            $this->load->model('contenu');
-            $this->load->model('decharge');
-
             /* CALCUL POURCENTAGE HEURES PRISES */
             $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
-            $heurestotales = $this->users->getHeures()-$this->decharge->getHoursDecharge($this->session->userdata('username'));
+            $heurestotales = $this->users->getHeures($this->session->userdata('username'))-$this->decharge->getHoursDecharge($this->session->userdata('username'));
             $pourcentage = round(($heuresprises/$heurestotales)*100,0);
             $data['pourcentage'] = $pourcentage;
             $data['heuresprises'] = $heuresprises;
@@ -87,9 +84,9 @@ class profile extends CI_Controller{
     }
 
     public function modifyDecharge(){
-        if($this->decharge->isPresentInTable()){
-            if($this->input->post("inputDecharge")<$this->users->getHeures() && $this->input->post("inputDecharge")<=$this->users->getHeures()-$this->contenu->getHeuresPrises($this->session->userdata("username"))){
-                $this->decharge->setDecharge();
+        if($this->decharge->isPresentInTable($this->session->userdata('username'))){
+            if($this->input->post("inputDecharge")<$this->users->getHeures($this->session->userdata('username')) && $this->input->post("inputDecharge")<=$this->users->getHeures($this->session->userdata('username'))-$this->contenu->getHeuresPrises($this->session->userdata("username"))){
+                $this->decharge->setDecharge($this->session->userdata('username'),$this->input->post("inputDecharge"));
                 $msg = "Votre decharge a été modifiée";
                 $msgbox = "alert-success";
             }
@@ -98,15 +95,12 @@ class profile extends CI_Controller{
                 $msgbox = "alert-danger";
             }
         }
-        else if($this->input->post("inputDecharge")<$this->users->getHeures() && $this->input->post("inputDecharge")<=$this->users->getHeures()-$this->contenu->getHeuresPrises($this->session->userdata("username"))){
-                $data = array(
-                    'enseignant' => $this->session->userdata('username') ,
-                    'decharge' => $this->input->post("inputDecharge")
-                );
-                $this->decharge->addNewDecharge($data);
+        //TODO commenter : ça fait quoi ça ?
+        else if($this->input->post("inputDecharge")<$this->users->getHeures($this->session->userdata('username')) &&
+            $this->input->post("inputDecharge")<=$this->users->getHeures($this->session->userdata('username'))-$this->contenu->getHeuresPrises($this->session->userdata("username"))){
+                $this->decharge->addNewDecharge($this->session->userdata('username'),$this->input->post("inputDecharge"));
                 $msg="Votre decharge a été modifiée";
                 $msgbox="alert-success";
-
         }
         else{
             $msg = "Trop de décharge tue la décharge... Merci d'indiquer un nombre raisonable";

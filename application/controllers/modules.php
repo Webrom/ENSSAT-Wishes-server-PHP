@@ -43,7 +43,7 @@ class modules extends CI_Controller{
 
             /* CALCUL POURCENTAGE HEURES PRISES */
             $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
-            $heurestotales = $this->users->getHeures()-$this->decharge->getHoursDecharge($this->session->userdata('username'));
+            $heurestotales = $this->users->getHeures($this->session->userdata('username'))-$this->decharge->getHoursDecharge($this->session->userdata('username'));
             $pourcentage = round(($heuresprises/$heurestotales)*100,0);
             $data['pourcentage'] = $pourcentage;
             $data['heuresprises'] = $heuresprises;
@@ -92,7 +92,7 @@ class modules extends CI_Controller{
             if ($this->input->get('module')&&$this->input->get('partie')) {
                 if ($this->contenu->ifContenuExist($this->input->get('module'), $this->input->get('partie'))) {
                     if (!$this->contenu->ifThereIsTeacher($this->input->get('module'), $this->input->get('partie'))) {
-                        $statutaire = $this->users->getHeures();
+                        $statutaire = $this->users->getHeures($this->session->userdata('username'));
                         $heuresdecharge = $this->decharge->getHoursDecharge($this->session->userdata('username'));
                         $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
                         $heureducontenu = $this->contenu->getHeurePourUnContenu($this->input->get('module'), $this->input->get('partie'));

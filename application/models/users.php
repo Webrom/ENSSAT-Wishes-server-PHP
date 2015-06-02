@@ -228,10 +228,10 @@ class Users extends CI_Model{
      * Retourne le nombre d'heure qu'un enseignant à à effecter
      * @return mixed
      */
-    public function getHeures(){
+    public function getHeures($user){
         $this->db->select('statutaire');
         $this->db->from('enseignant');
-        $this->db->where('login',$this->session->userdata('username'));
+        $this->db->where('login',$user);
         $query = $this->db->get();
         return $query->row()->statutaire;
     }

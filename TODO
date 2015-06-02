@@ -1,29 +1,12 @@
+MAJOR FIX TO DO ------------------------------
+- SUPPRIMER UN ENSEIGNANT CA NE MARCHE PAS
 - COMMENT + REFACTO
    - MVC COHERENT
 - CSS / COULEUR
-- PROMPT DE CONFIRMATION POUR CHAQUE SUPPRESSION
+- RENDRE UN UTILISATEUR ACTIF DES QU'ON L'ACCEPTE ? AVOIR LE CHOIX DE FAIRE CA CA SERAIT PAS MAL
+- NOTICE D'UTILISATION
+- METTRE DES PHRASES EXPLICITES POUR EXPLIQUER COMMENT ça FONCTIONNE
 - EXPORT CVS
-
-
-ACCUEIL
-- AFFICHER NEWS
-- AFFICHER DEGRES DE PROGRESSION EN POURCENTAGE
-
-MODULE
-- CORRIGER MA REQUETE FOIREUSE (JOIN DANS 3 FONCTIONS :
-- AFFICHER PAR SEMESTRES !
-
-ADMIN
-- MODIFIER MODULE (reponsable, ...)
-- MODIFIER USER
-
-
-NEWS
-- MODIFIER NEWS
-- GENERATION NEWS AUTOMATIQUEMENT
-
-PROFIL
-- ACTIF / INACTIF
 
 
 OTHERS ----------------------------------------
@@ -31,3 +14,26 @@ if(!$this->session->userdata('is_logged_in')){
     redirect('login');
 }else { ...
 ailleurs ?
+
+
+DESIGN ----------------------------------------
+
+Afficher pourcentage / nombre total d'heure prise sur nombre total d'heure a prendre dans le panel du haut
+
+MODULES
+    - DANS AJOUTER MODULE : possibilité d'ajouter un module pour l'intégralité des promotion de l'enssat; un array est pret quelque part,
+    là ca récupère juste les modules qui ont déjà étés utilisés dans la base, c'est pas exactement ce qu'on veut !
+    - Afficher le nom + le prénom dans les affichettes de modules prises c'est plus mignon !
+    - Afficher les modules non pris en orange
+
+ADMINISTRATION :
+    - Ajouter des boutons reset : si je me plante dès le début, je dois pouvoir relancer le truc sans recharger la page ! (je pense
+    notamment a l'onglet modifier cours
+    - STATUT
+News :
+    - revoir l'affichage / espaces...
+
+SI ON A LE TEMPS -----------------------------
+- PROMPT DE CONFIRMATION POUR CHAQUE SUPPRESSION
+- REFAIRE PANNEL HELP (ou du moins son positionnement)
+- CHAMPS NUMERAIRES

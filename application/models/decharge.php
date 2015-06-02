@@ -21,10 +21,10 @@ class Decharge extends CI_Model{
         }
     }
 
-    public function isPresentInTable(){
+    public function isPresentInTable($user){
         $this->db->select('decharge');
         $this->db->from('decharge');
-        $this->db->where('enseignant',$this->session->userdata('username'));
+        $this->db->where('enseignant',$user);
         $query = $this->db->get();
         if ($query->num_rows==1){
             return "1";
@@ -34,15 +34,19 @@ class Decharge extends CI_Model{
         }
     }
 
-    public function setDecharge(){
+    public function setDecharge($user,$decharge){
         $data = array(
-            'decharge' => $this->input->post("inputDecharge")
+            'decharge' => $decharge
         );
-        $this->db->where("enseignant",$this->session->userdata('username'));
+        $this->db->where("enseignant",$user);
         $this->db->update('decharge',$data);
     }
 
-    public function addNewDecharge($data){
+    public function addNewDecharge($enseignant,$decharge){
+        $data = array(
+            'decharge' => $decharge,
+            'enseignant' =>$enseignant
+        );
         $this->db->insert('decharge', $data);
     }
 }
