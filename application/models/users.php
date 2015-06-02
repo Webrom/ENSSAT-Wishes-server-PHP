@@ -1,61 +1,52 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+
 /**
  * Fonctions pour les connexions utilisateurs
  */
-
-class Users extends CI_Model{
+class Users extends CI_Model
+{
 
 
     /**
      * Permet de savoir si un utilisateur existe, et si oui si le mot de passe est le bon
      * @return bool Vrai si l'utilisateur et le mdp existe, sinon faux
      */
-    public function verifyUser($name,$oldpass){
+    public function verifyUser($name, $oldpass)
+    {
         $this->db->from('enseignant');
-        $this->db->where('login',$name);
-        $this->db->where('pwd',$oldpass);
+        $this->db->where('login', $name);
+        $this->db->where('pwd', $oldpass);
         $query = $this->db->get();
 
-        if ($query->num_rows==1){
+        if ($query->num_rows == 1) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUserData($user){
-        $this->db->select("login,nom, prenom, statut, statutaire");
-        $this->db->from ("enseignant");
-        $this->db->where("login",$user);
-        $query =  $this->db->get();
-        //TODO ENLEVER ça
-        return $query->result_array();
     }
 
     /**
      * @param $username
      * @return mixed
      */
-    public function getUserDataByUsername($username){
+    public function getUserDataByUsername($username)
+    {
         $this->db->select("login, nom, prenom, statut, statutaire, actif");
-        $this->db->from ("enseignant");
-        $this->db->where("login",$username);
-        $query =  $this->db->get();
+        $this->db->from("enseignant");
+        $this->db->where("login", $username);
+        $query = $this->db->get();
 
         return $query->result_array();
     }
 
-    public function getUserDataByUsernameJoinDecharge($username){
+    public function getUserDataByUsernameJoinDecharge($username)
+    {
         //SELECT login,nom,prenom,statut,statutaire,decharge from enseignant inner join decharge on login=enseignant where enseignant='bvozel';
         $this->db->select("login, nom, prenom, statut, statutaire, actif, decharge");
-        $this->db->from ("enseignant");
-        $this->db->join("decharge","login=enseignant");
-        $this->db->where("login",$username);
-        $query =  $this->db->get();
+        $this->db->from("enseignant");
+        $this->db->join("decharge", "login=enseignant");
+        $this->db->where("login", $username);
+        $query = $this->db->get();
 
         return $query->result_array();
     }
@@ -65,10 +56,11 @@ class Users extends CI_Model{
      * @param $name
      * @return le contenu de 'actif' de la base
      */
-    public function verifyActivity($name){
+    public function verifyActivity($name)
+    {
         $this->db->select('actif');
         $this->db->from('enseignant');
-        $this->db->where('login',$name);
+        $this->db->where('login', $name);
         $query = $this->db->get();
         return $query->row()->actif;
     }
@@ -81,52 +73,50 @@ class Users extends CI_Model{
      * @param int $accepted
      * @return string
      */
-    public function addUser($pwd="servicesENSSAT",$activity=0,$accepted=0){
-        $test_login = strtolower(substr($this->input->post('prenom'),0,1)); // TODO refacto norme MVC
-        if (strlen($this->input->post('name'))>7){
+    public function addUser($pwd = "servicesENSSAT", $activity = 0, $accepted = 0, $prenom, $nom, $heures)
+    {
+        $test_login = strtolower(substr($prenom, 0, 1));
+        if (strlen($nom) > 7) {
             $taille = 7;
+        } else {
+            $taille = strlen($nom);
         }
-        else{
-            $taille = strlen($this->input->post('name')); // TODO refacto norme MVC
-        }
-        $test_login = $test_login.strtolower(substr($this->input->post('name'),0,$taille)); // TODO refacto norme MVC
+        $test_login = $test_login . strtolower(substr($nom, 0, $taille));
         $this->db->select('login');
         $this->db->from('enseignant');
-        $this->db->where('login',$test_login);
+        $this->db->where('login', $test_login);
         $query = $this->db->get();
 
-        if ($query->num_rows==1){
+        if ($query->num_rows == 1) {
             $x = 1;
             $pourwhile = 0;
-            while ($pourwhile == 0){
+            while ($pourwhile == 0) {
                 $this->db->select('login');
                 $this->db->from('enseignant');
-                $this->db->where('login',$test_login.$x);
+                $this->db->where('login', $test_login . $x);
                 $querywhile = $this->db->get();
-                if ($querywhile->num_rows<1){
+                if ($querywhile->num_rows < 1) {
                     $pourwhile = 1;
-                    $test_login = $test_login.$x;
-                }
-                else{
+                    $test_login = $test_login . $x;
+                } else {
                     $x++;
                 }
             }
         }
-        if ($this->input->post('status_select') == "autre"){
+        if ($this->input->post('status_select') == "autre") {
             $statut = $this->input->post('status_perso');
-        }
-        else{
+        } else {
             $statut = $this->input->post('status_select');
         }
-        $this->db->set('login',$test_login);
-        $this->db->set('pwd',$pwd);
-        $this->db->set('nom',$this->input->post('name')); // TODO refacto norme MVC
-        $this->db->set('prenom',$this->input->post('prenom')); // TODO refacto norme MVC
-        $this->db->set('statut',$statut);
-        $this->db->set('statutaire',$this->input->post('heures')); // TODO refacto norme MVC
-        $this->db->set('actif',$activity);
-        $this->db->set('administrateur',0);
-        $this->db->set('accepted',$accepted);
+        $this->db->set('login', $test_login);
+        $this->db->set('pwd', $pwd);
+        $this->db->set('nom', $nom);
+        $this->db->set('prenom', $prenom);
+        $this->db->set('statut', $statut);
+        $this->db->set('statutaire', $heures);
+        $this->db->set('actif', $activity);
+        $this->db->set('administrateur', 0);
+        $this->db->set('accepted', $accepted);
         $this->db->insert('enseignant');
         return $test_login;
     }
@@ -134,28 +124,32 @@ class Users extends CI_Model{
     /**
      * Supprime un utilisateur de la base
      */
-    public function deleteUsers($data){
+    public function deleteUsers($data)
+    {
         //DELETE FROM `voeux`.`enseignant` WHERE `enseignant`.`login` = 'bvozel'
-        foreach($data as $enseignants) {
+        foreach ($data as $enseignants) {
             $this->db->where('login', $enseignants);
             $this->db->delete('enseignant');
         }
     }
 
-    public function refuseUsers($login){
+    public function refuseUsers($login)
+    {
         $this->db->where('login', $login);
         return $this->db->delete('enseignant');
     }
+
     /**
      * Fonction utilisée pour mettre a jour le password de l'utilisateur,
      * depuis sa page profil
      */
-    public function changePassword($newPass){
+    public function changePassword($newPass, $login)
+    {
         //$this->db->query('UPDATE enseignant SET pwd ="'.$newPass.'" WHERE login="'.$userName.'";');
         $data = array(
             'pwd' => $newPass,
         );
-        $this->db->where('login', $this->session->userdata('username')); // TODO refacto norme MVC
+        $this->db->where('login', $login);
         $this->db->update('enseignant', $data);
     }
 
@@ -172,7 +166,8 @@ class Users extends CI_Model{
         return $query->result();
     }
 
-    public function getAllInactifUsers(){
+    public function getAllInactifUsers()
+    {
         $this->db->select('login');
         $this->db->from('enseignant');
         $this->db->where('actif', 0);
@@ -185,10 +180,11 @@ class Users extends CI_Model{
      * @param $username
      * @return mixed
      */
-    public function isAdmin($username){
+    public function isAdmin($username)
+    {
         $this->db->select('administrateur');
         $this->db->from('enseignant');
-        $this->db->where('login',$username);
+        $this->db->where('login', $username);
         $query = $this->db->get();
         return $query->row()->administrateur;
     }
@@ -197,29 +193,32 @@ class Users extends CI_Model{
      * Retourne liste de tout les enseignants sous format array
      * @return mixed
      */
-    public function getAllEnseignants(){
+    public function getAllEnseignants()
+    {
         $this->db->select('login, nom, prenom');
         $this->db->from('enseignant');
-        $this->db->where('accepted',1);
+        $this->db->where('accepted', 1);
         $this->db->order_by('nom');
-        $query=$this->db->get();
+        $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function getAllEnseignantsToAccept(){
+    public function getAllEnseignantsToAccept()
+    {
         $this->db->select('login, nom, prenom');
         $this->db->from('enseignant');
-        $this->db->where('accepted',0);
-        $query=$this->db->get();
+        $this->db->where('accepted', 0);
+        $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function acceptUsers($login){
+    public function acceptUsers($login)
+    {
         $data = array(
             'accepted' => 1
         );
-        $this->db->where('login',$login);
-        $result = $this->db->update('enseignant',$data);
+        $this->db->where('login', $login);
+        $result = $this->db->update('enseignant', $data);
         return $result;
     }
 
@@ -227,10 +226,11 @@ class Users extends CI_Model{
      * Retourne le nombre d'heure qu'un enseignant à à effecter
      * @return mixed
      */
-    public function getHeures($user){
+    public function getHeures($user)
+    {
         $this->db->select('statutaire');
         $this->db->from('enseignant');
-        $this->db->where('login',$user);
+        $this->db->where('login', $user);
         $query = $this->db->get();
         return $query->row()->statutaire;
     }
@@ -243,36 +243,38 @@ class Users extends CI_Model{
      * Retoune le nom du fichier avatar de l'utilisateur (pour afficher cet avatar dans la page login)
      * @return mixed
      */
-    public function getAvatar(){
+    public function getAvatar($login)
+    {
         $this->db->select('avatar');
         $this->db->from('enseignant');
-        $this->db->where('login',$this->session->userdata('username')); // TODO refacto norme MVC
+        $this->db->where('login', $login);
         $query = $this->db->get();
         return $query->row()->avatar;
     }
 
-    public function ifSomeoneWait(){
+    public function ifSomeoneWait()
+    {
         $this->db->from('enseignant');
-        $this->db->where('accepted',0);
+        $this->db->where('accepted', 0);
         $query = $this->db->get();
 
-        if ($query->num_rows>0){
+        if ($query->num_rows > 0) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    public function modifyUser($login,$newStatutaire,$newActif,$newStatut){
+    public function modifyUser($login, $newStatutaire, $newActif, $newStatut)
+    {
         $data = array(
             'statut' => $newStatut,
             'statutaire' => $newStatutaire,
             'actif' => $newActif,
-            'administrateur' => ($newStatut=="Administrateur")?1:0
+            'administrateur' => ($newStatut == "Administrateur") ? 1 : 0
         );
-        $this->db->where('login',$login);
-        $result1 = $this->db->update('enseignant',$data);
+        $this->db->where('login', $login);
+        $result1 = $this->db->update('enseignant', $data);
 
         return ($result1);
     }

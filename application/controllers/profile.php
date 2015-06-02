@@ -34,7 +34,7 @@ class profile extends CI_Controller
             "msg" => $msg,
             "uploadError" => $uploadError,
             "admin" => $this->session->userdata["admin"],
-            "avatar" => $this->users->getAvatar(),
+            "avatar" => $this->users->getAvatar($this->session->userdata('username')),
             "active" => "Profil",
             "decharge" => $this->decharge->getHoursDecharge($this->session->userdata('username'))
         );
