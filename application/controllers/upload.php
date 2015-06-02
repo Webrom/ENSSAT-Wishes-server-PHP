@@ -8,6 +8,8 @@ class Upload extends CI_Controller {
         $this->load->helper(array('form', 'url'));
         $this->load-> model('users');
         $this->load-> model('uploadmodel');
+        $this->load-> model('contenu');
+        $this->load-> model('decharge');
     }
 
     function index($data)
@@ -15,8 +17,17 @@ class Upload extends CI_Controller {
         if(!$this->session->userdata('is_logged_in')){
             redirect('login');
         }else {
+            /* CALCUL POURCENTAGE HEURES PRISES */
+            $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
+            $heurestotales = $this->users->getHeures()-$this->decharge->getHoursDecharge($this->session->userdata('username'));
+            $pourcentage = round(($heuresprises/$heurestotales)*100,0);
+            $data['pourcentage'] = $pourcentage;
+            $data['heuresprises'] = $heuresprises;
+            $data['heurestotales'] = $heurestotales;
+            /* FIN CALCUL */
+
             $this->load->view('header');
-            $this->load->view('back/template/header');
+            $this->load->view('back/template/header',$data);
             $this->load->view('back/upload/upload',$data);
             $this->load->view('footer');
         }

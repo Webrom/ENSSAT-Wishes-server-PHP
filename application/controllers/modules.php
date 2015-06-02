@@ -10,10 +10,11 @@ class modules extends CI_Controller{
 
     function __construct() {
         parent::__construct();
-        $this->load->model('modulesmodels');
-        $this->load->model('users');
-        $this->load->model('contenu');
-        $this->load->model('decharge');
+        $this->load-> model('modulesmodels');
+        $this->load-> model('users');
+        $this->load-> model('contenu');
+        $this->load-> model('news');
+        $this->load-> model('decharge');
     }
 
     public function index($result=null,$infosmodule=null,$infos=null,$onglet=null,$recherche=null){
@@ -135,6 +136,9 @@ class modules extends CI_Controller{
                     'msg' => "Il y a eu une erreur dans l'inscription au module."
                 );
             }
+            $this->news->addNews($this->session->userdata('username'), "user",
+                " s'est inscrit au contenu :".$this->input->get('partie'). " du module : ". $this->input->get('module')
+                ,$this->input->get('module')." ".$this->input->get('partie'));
             $this->index(null,null,$info,"Recherche");
         }
     }
@@ -152,6 +156,9 @@ class modules extends CI_Controller{
                     'success' => "alert-success",
                     'msg' => "Vous êtes bien désinscrit de ce module."
                 );
+                $this->news->addNews($this->session->userdata('username'), "user",
+                    " s'est désinscrit du contenu :".$this->input->get('partie'). " du module : ". $this->input->get('module')
+                    ,$this->input->get('module')." ".$this->input->get('partie'));
             }
             $this->index(null, null, $info);
         }

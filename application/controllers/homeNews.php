@@ -62,5 +62,10 @@ class homeNews extends CI_Controller {
             $this->load->view('back/home/news',$data);
             $this->load->view('footer');
         }
+
+
+    }
+    public function getInfo(){
+        return 'lol';
     }
 }
