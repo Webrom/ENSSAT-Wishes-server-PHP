@@ -8,11 +8,12 @@
 
 class News extends CI_Model{
 
-    public function addNews ($login,$type,$information){
+    public function addNews ($login,$type,$information,$idExt = null){
         $this->db->set('DATE','NOW()',false);
         $this->db->set('TYPE',$type);
         $this->db->set('INFORMATION',$information);
         $this->db->set('ENSEIGNANT',$login);
+        $this->db->set('idExt',$idExt);
         return $this->db->insert('news');
     }
 

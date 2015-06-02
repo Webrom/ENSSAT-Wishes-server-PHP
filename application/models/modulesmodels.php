@@ -76,14 +76,7 @@ class modulesmodels extends CI_Model {
     }
 
     //TODO modifier pour faire tout passer en paramètre de la fonction
-    public function addModule(){
-        $module= array(
-            "ident" => $this->input->post('inputIdent'),
-            "public" => $this->input->post('selectPublic'),
-            "semestre" => $this->input->post('selectSemestre'),
-            "libelle" => $this->input->post('inputLibelle'),
-            "responsable" => strlen($this->input->post('selectResponsable')!=0)?$this->input->post('selectResponsable'):null
-        );
+    public function addModule($module){
         $query = $this->db->insert('module',$module);
         if(!$query){
             $ret= array(

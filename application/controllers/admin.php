@@ -146,10 +146,18 @@ class admin extends CI_Controller{
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0" ){
             redirect('login');
         }else{
-            $res= $this->modulesmodels->addModule();
+            $module= array(
+                "ident" => $this->input->post('inputIdent'),
+                "public" => $this->input->post('selectPublic'),
+                "semestre" => $this->input->post('selectSemestre'),
+                "libelle" => $this->input->post('inputLibelle'),
+                "responsable" => strlen($this->input->post('selectResponsable')!=0)?$this->input->post('selectResponsable'):null
+            );
+            $res= $this->modulesmodels->addModule($module);
             if($res=="good") {
                 $this->index("Votre module a été rajouté.", "alert-success", "");
-                $this->news->addNews($this->session->userdata('username'), "module", "Le module " . $this->input->post('inputIdent') . " pour la promotion " . $this->input->post('selectPublic') . " vient d'être ajouté.");
+                $this->news->addNews($this->session->userdata('username'), "module",
+                    "Le module " . $this->input->post('inputIdent') . " vient d'être ajouté.",$module['ident']);
             }
             else {
                 $this->index($res['ErrorMessage'] . " " . $res['ErrorNumber'], "alert-danger", "");
@@ -206,7 +214,7 @@ class admin extends CI_Controller{
                 $this->contenu->deleteContenuModule($array);
                 $this->index("Les parties ont bien été supprimées.","alert-success","#deleteContenu");
                 foreach ($this->input->post('selectContenuModule') as $coucou){
-                    $this->news->addNews($this->session->userdata('username'),"contenu", "Le contenu " .$coucou." vient d'être supprimé");
+                    $this->news->addNews($this->session->userdata('username'),"contenu", "Le contenu " .$coucou." vient d'être supprimé du module : ".$array['module'],$array['module']);
                 }
             }else
                 $this->index("Veuillez remplir correctement les champs","alert-danger","#deleteContenu");
@@ -221,7 +229,9 @@ class admin extends CI_Controller{
             $res=$this->modulesmodels->addContenuToModule();
             if($res=="good") {
                 $this->index("Votre contenu a été rajouté.", "alert-success", "#addContenu");
-                $this->news->addNews($this->session->userdata('username'), "contenu", "Le contenu " . $this->input->post('moduleType') . " a été ajouté au module " . $this->input->post('selectModule') . ".");
+                $this->news->addNews($this->session->userdata('username'), "contenu",
+                    "Le contenu " . $this->input->post('moduleType') . " a été ajouté au module "
+                    . $this->input->post('selectModule') . ".",$this->input->post('selectModule'));
             }
             else
                 $this->index($res['ErrorMessage']." ".$res['ErrorNumber'],"alert-danger","#addContenu");
@@ -235,9 +245,10 @@ class admin extends CI_Controller{
             if ($this->input->post('news')) {
                 $result = $this->news->addNews($this->session->userdata('username'), "generale", $this->input->post('news'));
                 if ($result) {
-                    $this->index("Votre nouvelle a étée rajoutée.", "alert-success","#addNews");
+                    $this->index("Votre news a étée rajoutée.", "alert-success","#addNews");
                 } else {
-                    $this->index("Il y a une erreur... C'est surement à cause de dev incompétents !", "alert-danger","#addNews");
+                    $this->index("Il y a une erreur... C'est surement à cause de dev incompétents !",
+                        "alert-danger","#addNews");
                 }
             }
             else{
