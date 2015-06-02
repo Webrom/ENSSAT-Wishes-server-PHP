@@ -15,15 +15,7 @@ class modulesmodels extends CI_Model {
         return $query->result_array();
     }
 
-    //TODO modifier pour faire tout passer en paramètre de la fonction
-    public function addContenuToModule(){
-        $contenu = array(
-            "module" => $this->input->post('selectModule'),
-            "partie" => $this->input->post('moduleType'),
-            "type" =>  $this->input->post('selectType'),
-            "hed" => $this->input->post('moduleHed'),
-            "enseignant" => null,
-        );
+    public function addContenuToModule($contenu){
         $query = $this->db->insert('contenu',$contenu);
         if(!$query){
             $ret= array(
@@ -65,7 +57,6 @@ class modulesmodels extends CI_Model {
     }
 
 
-    //TODO séparer modèle contenu et module dans cette fonction
     public function deleteModuleContenu($modules){
         foreach($modules as $module){
             $this->db->where('module',$module);
@@ -75,7 +66,6 @@ class modulesmodels extends CI_Model {
         }
     }
 
-    //TODO modifier pour faire tout passer en paramètre de la fonction
     public function addModule($module){
         $query = $this->db->insert('module',$module);
         if(!$query){

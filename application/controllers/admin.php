@@ -98,8 +98,11 @@ class admin extends CI_Controller{
                 $res = $hours['teacherHours']-$hours['decharge']+$hours['effectiveTeacherHours'];
             if($res>=$data['hed'] || $data['enseignant']==null){
                 $ret =$this->contenu->modifyModuleContenu($data,$keys);
-                if($ret=="good")
+                if($ret=="good"){
+                    $this->news->addNews($this->session->userdata('username'),"contenu",
+                        "Le contenu du module : ".$keys['module']." a été modifié.",$keys['module']. " ".$keys['partie']);
                     $this->index('Le contenu du module a été modifié.',"alert-success","#modifyContenu");
+                }
                 else
                     $this->index($ret['ErrorMessage'].$ret['ErrorNumber'],'alert-danger','#modifyContenu');
             }else
@@ -157,7 +160,8 @@ class admin extends CI_Controller{
             if($res=="good") {
                 $this->index("Votre module a été rajouté.", "alert-success", "");
                 $this->news->addNews($this->session->userdata('username'), "module",
-                    "Le module " . $this->input->post('inputIdent') . " vient d'être ajouté.",$module['ident']);
+                    "Le module " . $this->input->post('inputIdent') . " vient d'être ajouté.",
+                    $module['ident']);
             }
             else {
                 $this->index($res['ErrorMessage'] . " " . $res['ErrorNumber'], "alert-danger", "");
@@ -226,12 +230,19 @@ class admin extends CI_Controller{
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
             redirect('login');
         }else {
-            $res=$this->modulesmodels->addContenuToModule();
+            $contenu = array(
+                "module" => $this->input->post('selectModule'),
+                "partie" => $this->input->post('moduleType'),
+                "type" =>  $this->input->post('selectType'),
+                "hed" => $this->input->post('moduleHed'),
+                "enseignant" => null,
+            );
+            $res=$this->modulesmodels->addContenuToModule($contenu);
             if($res=="good") {
                 $this->index("Votre contenu a été rajouté.", "alert-success", "#addContenu");
                 $this->news->addNews($this->session->userdata('username'), "contenu",
                     "Le contenu " . $this->input->post('moduleType') . " a été ajouté au module "
-                    . $this->input->post('selectModule') . ".",$this->input->post('selectModule'));
+                    . $this->input->post('selectModule') . ".",$contenu['module']." ".$contenu['partie']);
             }
             else
                 $this->index($res['ErrorMessage']." ".$res['ErrorNumber'],"alert-danger","#addContenu");
