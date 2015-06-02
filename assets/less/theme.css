@@ -242,6 +242,17 @@ textarea {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
+.comment-box p.user {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #9b59b6;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
 .comment-box ul,
 .comment-box span {
   font-size: 12px;
