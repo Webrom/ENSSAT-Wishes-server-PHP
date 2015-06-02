@@ -23,9 +23,16 @@
                 <li>
                     <a href="<?php echo base_url()?>index.php/modules">Modules</a>
                 </li>
-                <li class="progress progress-striped active" style="margin: 15px;width: 100px">
-                        <div class="progress-bar progress-bar-success" style="width: <?php echo $pourcentage; ?>%">
-                        </div>
+                <li>
+                    <ul class="navbar-nav">
+                        <li class="progress progress-striped" style="margin: 15px;width: 100px"><div class="progress-bar progress-bar-success" style="width: <?php echo $pourcentage; ?>%">
+                            </div>
+                        </li>
+                        <li style="margin: 15px;list-style: none;">
+                            <p style="color:#fff;margin: 0"><?php echo $pourcentage; ?>% : <?php echo $heuresprises;?>/<?php echo $heurestotales;?> h</p>
+                        </li>
+                    </ul>
+
                 </li>
                 <?php if(isset($admin) && $admin=="1"): ?>
                     <li class="hideMenu">
