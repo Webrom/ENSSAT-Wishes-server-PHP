@@ -297,7 +297,7 @@
                                 <?php echo form_button('submit','valider','id="modifyUser" class="btn btn-success"')?>
                             </div>
                         </div>
-                        <div class="col-md-12 col-no-border">
+                        <div class="col-md-12 col-no-border customHide" id="displayUserInfoModify">
                             <p>Pour modifier un utilisateur, merci d'utiliser le panel ci-contre.</p>
                             <p>A noter : vous ne pouvez pas modifier le nom, le prénom et le pseudo d'un utilisateur. Il faut dans
                                 ce cas le supprimer et lui demmander de se réinscrire.</p>

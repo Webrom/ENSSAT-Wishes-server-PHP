@@ -305,7 +305,7 @@ class admin extends CI_Controller{
             }
         }
     }
-    //TODO modif user ... a revoir : animations / détails / création d'un enregistrement dans table decharge si il n'y est pas présent
+    
     public function getUserToModify(){
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
             redirect('login');
@@ -323,12 +323,22 @@ class admin extends CI_Controller{
         if(!$this->session->userdata('is_logged_in') || $this->session->userdata['admin']=="0"){
             redirect('login');
         }else {
-            if($this->users->modifyUser($this->input->post("enseignantsModify"),$this->input->post('heuresModify'),
-                $this->input->post('actifModify'),$this->input->post('select_statutModify'),
-                $this->input->post('dechargeModify')))
-                $this->index("Modification effectuée", "alert-success");
+            if($this->input->post('dechargeModify')>0){
+                $data = array(
+                    'decharge' => $this->input->post('dechargeModify'),
+                    'enseignant' =>$this->input->post("enseignantsModify")
+                );
+                $this->decharge->addNewDecharge($data);
+            }
+            if($this->users->modifyUser(
+                $this->input->post("enseignantsModify"),
+                $this->input->post('heuresModify'),
+                $this->input->post('actifModify'),
+                $this->input->post('select_statutModify')))
+
+                $this->index("Modification effectuée", "alert-success","#modifyUsers");
             else
-                $this->index("Modification pas effectuée, problème", "alert-danger");
+                $this->index("Modification pas effectuée, problème", "alert-danger","#modifyUsers");
         }
     }
 }

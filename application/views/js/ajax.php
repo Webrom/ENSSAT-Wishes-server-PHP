@@ -154,27 +154,28 @@
     );
 
     $("#modifyUser").click(function(e){
-                var login = $('#enseignantsModify').val();
-                var base_url = '<?php echo base_url()?>';
-                var controler = "admin";
-                var method = "getUserToModify";
-                $.ajax({
-                    url  : base_url+'index.php/'+controler+'/'+method,
-                    type : 'GET',
-                    data : 'login='+login,
-                    cache: false,
-                    'success':
-                        function(data){
-                            var array = JSON.parse(data);
-                            $("#loginModify").val(array['0'].login);
-                            $("#actifModify").val(array['0'].actif);
-                            $("#select_statutModify").val(array['0'].statut);
-                            $("#heuresModify").val(array['0'].statutaire);
-                            $("#nameModify").val(array['0'].nom);
-                            $("#dechargeModify").val((array['0'].decharge)?array['0'].decharge:0);
-                            $("#prenomModify").val(array['0'].prenom);
-                        }
-                });
+            $('#displayUserInfoModify').addClass('animated bounceInUp').removeClass('customHide');
+            var login = $('#enseignantsModify').val();
+            var base_url = '<?php echo base_url()?>';
+            var controler = "admin";
+            var method = "getUserToModify";
+            $.ajax({
+                url  : base_url+'index.php/'+controler+'/'+method,
+                type : 'GET',
+                data : 'login='+login,
+                cache: false,
+                'success':
+                    function(data){
+                        var array = JSON.parse(data);
+                        $("#loginModify").val(array['0'].login);
+                        $("#actifModify").val(array['0'].actif);
+                        $("#select_statutModify").val(array['0'].statut);
+                        $("#heuresModify").val(array['0'].statutaire);
+                        $("#nameModify").val(array['0'].nom);
+                        $("#dechargeModify").val((array['0'].decharge)?array['0'].decharge:0);
+                        $("#prenomModify").val(array['0'].prenom);
+                    }
+            });
         }
     );
 </script>

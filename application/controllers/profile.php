@@ -99,8 +99,11 @@ class profile extends CI_Controller{
             }
         }
         else if($this->input->post("inputDecharge")<$this->users->getHeures() && $this->input->post("inputDecharge")<=$this->users->getHeures()-$this->contenu->getHeuresPrises($this->session->userdata("username"))){
-
-                $this->decharge->addNewDecharge();
+                $data = array(
+                    'enseignant' => $this->session->userdata('username') ,
+                    'decharge' => $this->input->post("inputDecharge")
+                );
+                $this->decharge->addNewDecharge($data);
                 $msg="Votre decharge a été modifiée";
                 $msgbox="alert-success";
 

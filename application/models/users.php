@@ -265,7 +265,7 @@ class Users extends CI_Model{
         }
     }
 
-    public function modifyUser($login,$newStatutaire,$newActif,$newStatut,$newDecharge){
+    public function modifyUser($login,$newStatutaire,$newActif,$newStatut){
         $data = array(
             'statut' => $newStatut,
             'statutaire' => $newStatutaire,
@@ -275,12 +275,6 @@ class Users extends CI_Model{
         $this->db->where('login',$login);
         $result1 = $this->db->update('enseignant',$data);
 
-        $data = array(
-            'decharge' => $newDecharge,
-        );
-        $this->db->where('enseignant',$login);
-        $result2 = $this->db->update('decharge',$data);
-
-        return ($result1 && $result2);
+        return ($result1);
     }
 }

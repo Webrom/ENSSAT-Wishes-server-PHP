@@ -42,11 +42,7 @@ class Decharge extends CI_Model{
         $this->db->update('decharge',$data);
     }
 
-    public function addNewDecharge(){
-        $data = array(
-            'enseignant' => $this->session->userdata('username') ,
-            'decharge' => $this->input->post("inputDecharge")
-        );
+    public function addNewDecharge($data){
         $this->db->insert('decharge', $data);
     }
 }
