@@ -96,7 +96,7 @@ class profile extends CI_Controller
                 $msg = "Trop de décharge tue la décharge... Merci d'indiquer un nombre raisonable";
                 $msgbox = "alert-danger";
             }
-        } //TODO commenter : ça fait quoi ça ?
+        } //On vérifie si la décharge est compatible
         else if ($this->input->post("inputDecharge") < $this->users->getHeures($this->session->userdata('username')) &&
             $this->input->post("inputDecharge") <= $this->users->getHeures($this->session->userdata('username')) - $this->contenu->getHeuresPrises($this->session->userdata("username"))
         ) {

@@ -34,10 +34,10 @@ class modulesmodels extends CI_Model {
         return $query->result_array();
     }
 
-    public function getAllMyModules(){
+    public function getAllMyModules($username){
         $this->db->select("module,partie,type,hed");
         $this->db->from("contenu");
-        $this->db->where("enseignant",$this->session->userdata('username')); // TODO refacto norme MVC
+        $this->db->where("enseignant",$username);
         $query = $this->db->get();
 
         if(!$query) {

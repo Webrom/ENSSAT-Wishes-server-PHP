@@ -25,10 +25,12 @@ class admin extends CI_Controller
         }
     }
 
-    // TODO comment : ça fait quoi ça ? AJAX ?
+    /**
+     * Permet de recuperer le contenu
+     */
     public function setModuleContenusType()
     {
-        echo json_encode($this->contenu->getTypeContenu());
+        echo json_encode($this->contenu->getTypeContenu($this->input->get('gData')));
     }
 
     /**
@@ -41,7 +43,7 @@ class admin extends CI_Controller
             "partie" => $this->input->post('modulePartieAjax'),
             "type" => $this->input->post('selectTypeAjax'),
             "hed" => $this->input->post('moduleHedAjax'),
-            // TODO comment : a quoi ca sert ?
+            // S'il n'y a pas d'enseignant retourne null
             "enseignant" => ($this->input->post('selectTeacher') != "") ? $this->input->post('selectTeacher') : null,
         );
         $keys = array(
@@ -54,7 +56,7 @@ class admin extends CI_Controller
             "decharge" => $this->decharge->getHoursDecharge($data['enseignant']),
             "hedContenu" => $this->contenu->getHeurePourUnContenu($keys['module'], $keys['partie'])
         );
-        // TODO comment : a quoi ca sert ?
+        // Permet de savoir si l'enseignant était déja dans le module, utile pour le calcul de la décharge
         if ($data['enseignant'] == $this->contenu->getModuleTeacher(array(
                 "module" => $keys['module'],
                 "teacher" => $data['enseignant']
@@ -81,8 +83,8 @@ class admin extends CI_Controller
             "admin" => $this->session->userdata['admin'],
             "active" => "Administration",
             "enseignants" => $this->users->getAllEnseignants(),
-            "enseignantsContenu" => $this->users->getAllEnseignants(), // TODO Es-ce utile d'avoir ça en double ?
-            "enseignantsModify" => $this->users->getAllEnseignants(),  // TODO
+            "enseignantsContenu" => $this->users->getAllEnseignants(), // obligé d'avoir en double car on a plusieurs boucles dans la vue
+            "enseignantsModify" => $this->users->getAllEnseignants(),
             "enseignantsToAccept" => $this->users->getAllEnseignantsToAccept(),
             "semestres" => array("S1", "S2", "S3", "S4", "S5", "S6"),
             "publics" => $this->modulesmodels->getAllPublic(),         // TODO mettre tout les modules proposés a l'ENSSAT; ARRAY pret ici :
@@ -90,7 +92,7 @@ class admin extends CI_Controller
             "modules" => $this->modulesmodels->getAllModules(),
             "msg" => $msg,
             "success" => $success,
-            "status" => $status = $this->users->getStatus(),           // TODO c'est quoi ce $status qui traine, esce utile ?
+            "status" => $status = $this->users->getStatus(),           // recupere les differents status
             "moduleTypes" => $this->contenu->getAllModuleTypes(),
             "enAttente" => $this->users->ifSomeoneWait(),
             "activeOnglet" => $active,
@@ -112,11 +114,16 @@ class admin extends CI_Controller
         $this->load->view('footer');
     }
 
-    // TODO comment : a quoi ca sert ?
+    // Permet de recuperer le contenu d'un module grâce à son module et sa partie utilisée par une fonction ajax
 
     public function setModuleContenus()
     {
-        echo json_encode($this->contenu->getModuleContenusByPartieModule());
+        echo json_encode($this->contenu->getModuleContenusByPartieModule(
+            $array = array(
+                "partie" => $this->input->get('gData'),
+                "module" => $this->input->get('bData')
+            )
+        ));
     }
 
     /**
@@ -206,7 +213,7 @@ class admin extends CI_Controller
      */
     public function getModuleContenus()
     {
-        echo json_encode($this->contenu->getModuleContenus());
+        echo json_encode($this->contenu->getModuleContenus($this->input->get('gData')));
     }
 
     /**
@@ -221,7 +228,7 @@ class admin extends CI_Controller
         if ($array['module'] != null && $array['partie'] != null) {
             $this->contenu->deleteContenuModule($array);
             $this->index("Les parties ont bien été supprimées.", "alert-success", "#deleteContenu");
-            foreach ($this->input->post('selectContenuModule') as $coucou) {  //TODO coucou ?
+            foreach ($this->input->post('selectContenuModule') as $coucou) {  //TODO coucou je trouve ça rigolo lol ?
                 $this->news->addNews($this->session->userdata('username'), "contenu", "Le contenu " . $coucou . " vient d'être supprimé du module : " . $array['module'], $array['module']);
             }
         } else

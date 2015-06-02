@@ -40,7 +40,7 @@ class modules extends CI_Controller
             "checked" => $infosmodule['checked'],
             "success" => $infos['success'],
             "msg" => $infos['msg'],
-            "myModules" => $this->modulesmodels->getAllMyModules(),
+            "myModules" => $this->modulesmodels->getAllMyModules($this->session->userdata('username')),
             "onglet" => $onglet,
             "rechercheonglet" => $recherche
         );
@@ -97,7 +97,11 @@ class modules extends CI_Controller
                     $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
                     $heureducontenu = $this->contenu->getHeurePourUnContenu($this->input->get('module'), $this->input->get('partie'));
                     if (($statutaire - ($heuresprises + $heuresdecharge)) >= $heureducontenu) {
-                        $result = $this->contenu->addEnseignanttoContenu($this->input->get('module'), $this->input->get('partie'));
+                        $result = $this->contenu->addEnseignanttoContenu($this->input->get('module'), $this->input->get('partie'),
+                            $data = array(
+                                'enseignant' => $this->session->userdata('username') // TODO refacto norme MVC
+                            )
+                        );
                         if ($result) {
                             $info = array(
                                 'success' => "alert-success",
@@ -142,7 +146,7 @@ class modules extends CI_Controller
 
     public function desinscriptionModule()
     {
-        if (!$this->contenu->desinscriptionModule($this->input->get('module'), $this->input->get('partie'))) {
+        if (!$this->contenu->desinscriptionModule($this->input->get('module'), $this->input->get('partie'),$this->session->userdata('username'))) {
             $info = array(
                 'success' => "alert-danger",
                 'msg' => "Il y a eu une erreur dans la désinscription au module."

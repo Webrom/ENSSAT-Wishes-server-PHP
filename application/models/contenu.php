@@ -16,27 +16,23 @@ class Contenu extends CI_Model{
         return $query->result_array();
     }
 
-    public function getTypeContenu(){
+    public function getTypeContenu($data){
         $this->db->select('partie');
         $this->db->from('contenu');
-        $this->db->where('module',$this->input->get('gData')); // TODO refacto norme MVC
+        $this->db->where('module',$data);
         $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function getModuleContenus(){
+    public function getModuleContenus($data){
         $this->db->select('*');
         $this->db->from("contenu");
-        $this->db->where('module',$this->input->get('gData')); // TODO refacto norme MVC
+        $this->db->where('module',$data);
         $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function getModuleContenusByPartieModule(){
-        $array = array(
-            "partie" => $this->input->get('gData'),  // TODO refacto norme MVC
-            "module" => $this->input->get('bData')   // TODO refacto norme MVC
-        );
+    public function getModuleContenusByPartieModule($array){
         $this->db->select('*');
         $this->db->from("contenu");
         $this->db->where($array);
@@ -65,52 +61,6 @@ class Contenu extends CI_Model{
         }
     }
 
-    // TODO supprimer fonction de la mort
-    public function getModuleTeacher($data,$promotion=null,$semester=null){
-        if($data['module']!=null && $data['teacher']!=null && $semester!="noSemester")
-            $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module where ident='".$data['module']."' AND semestre='".$semester."' AND enseignant='".$data['teacher']."'");
-        else if ($data['module']!=null && $data['teacher']==null)
-            $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module AND ident='".$data['module']."' AND enseignant IS NULL");
-        else if ($data['module']!=null)
-            $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module AND ident='".$data['module']."'");
-        return $query->result_array();
-    }
-
-    // TODO supprimer fonciton de la mort 2
-    public function getModuleByModule($data,$promotion,$semester){
-        if($semester!="noSemester" && $data['module']!=null){
-            $query = $this->db->query("SELECT * FROM contenu join module WHERE contenu.module= '".$data['module']."' and module.ident=contenu.module and semestre='".$semester."'");
-        }else{
-            $this->db->select("*");
-            $this->db->from("contenu");
-            $this->db->where("module",$data['module']);
-            $query = $this->db->get();
-        }
-        return $query->result_array();
-    }
-
-    // TODO supprimer fonction de la mort 3
-    public function getModuleByElse($data,$promotion,$semester){
-        if($promotion!="noProm") {
-            $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module where public='".$promotion."'");
-        }else if($data['teacher']==null){
-            $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module AND contenu.enseignant IS NULL");
-
-            /*$this->db->select("*");
-            $this->db->from("contenu,module");
-            $this->db->where("enseignant",$data['teacher']);
-            if($promotion!="noProm")
-                $this->db->where("public",$promotion);
-            if($semester!="noSemester")
-                $this->db->where("semestre",$semester);
-            $query = $this->db->get();*/
-        }else if($data['teacher']!=null){
-            $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module AND contenu.enseignant='".$data['teacher']."'");
-        }else {
-            $query = $this->db->query("SELECT * FROM module inner join contenu on module.ident=contenu.module");
-        }
-        return $query->result_array();
-    }
 
     public function getContenuByModule($array){
         $this->db->select('*');
@@ -167,10 +117,7 @@ class Contenu extends CI_Model{
         return $query->row()->hed;
     }
 
-    public function addEnseignanttoContenu($module,$partie){
-        $data = array(
-            'enseignant' => $this->session->userdata('username') // TODO refacto norme MVC
-        );
+    public function addEnseignanttoContenu($module,$partie,$data){
         //$this->db->set('enseignant',$this->session->userdata('username'));
         $this->db->where('module',$module);
         $this->db->where('partie',$partie);
@@ -228,14 +175,14 @@ class Contenu extends CI_Model{
         }
     }
 
-    public function desinscriptionModule($module,$partie){
+    public function desinscriptionModule($module,$partie,$username){
         $data = array(
             'enseignant' => null
         );
         //$this->db->set('enseignant',$this->session->userdata('username'));
         $this->db->where('module',$module);
         $this->db->where('partie',$partie);
-        $this->db->where('enseignant',$this->session->userdata('username')); // TODO refacto norme MVC
+        $this->db->where('enseignant',$username);
         $query = $this->db->update('contenu',$data);
         return $query;
     }
