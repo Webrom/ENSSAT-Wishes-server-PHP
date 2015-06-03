@@ -1,25 +1,16 @@
 MAJOR FIX TO DO ------------------------------
-- SUPPRIMER UN ENSEIGNANT CA NE MARCHE PAS
+
 - COMMENT + REFACTO
    - MVC COHERENT
 - CSS / COULEUR
-- RENDRE UN UTILISATEUR ACTIF DES QU'ON L'ACCEPTE ? AVOIR LE CHOIX DE FAIRE CA CA SERAIT PAS MAL
 - NOTICE D'UTILISATION
 - METTRE DES PHRASES EXPLICITES POUR EXPLIQUER COMMENT ça FONCTIONNE
 - EXPORT CVS
 
 
-OTHERS ----------------------------------------
-if(!$this->session->userdata('is_logged_in')){
-    redirect('login');
-}else { ...
-ailleurs ?
-
 
 DESIGN ----------------------------------------
-
-Afficher pourcentage / nombre total d'heure prise sur nombre total d'heure a prendre dans le panel du haut
-
+=
 MODULES
     - DANS AJOUTER MODULE : possibilité d'ajouter un module pour l'intégralité des promotion de l'enssat; un array est pret quelque part,
     là ca récupère juste les modules qui ont déjà étés utilisés dans la base, c'est pas exactement ce qu'on veut !
