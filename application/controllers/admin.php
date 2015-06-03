@@ -253,7 +253,7 @@ class admin extends CI_Controller
             $this->index("Votre contenu a été rajouté.", "alert-success", "#addContenu");
             $this->news->addNews($this->session->userdata('username'), "contenu",
                 "Le contenu " . $this->input->post('moduleType') . " a été ajouté au module "
-                . $this->input->post('selectModule') . ".", $contenu['module'] . " " . $contenu['partie']);
+                . $this->input->post('selectModule') . ".", $contenu['module'], $contenu['partie']);
         } else
             $this->index($res['ErrorMessage'] . " " . $res['ErrorNumber'], "alert-danger", "#addContenu");
     }

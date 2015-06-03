@@ -142,7 +142,7 @@ class modules extends CI_Controller
         }
         $this->news->addNews($this->session->userdata('username'), "user",
             " s'est inscrit au contenu :" . $this->input->get('partie') . " du module : " . $this->input->get('module')
-            , $this->input->get('module') . " " . $this->input->get('partie'));
+            , $this->input->get('module'),$this->input->get('partie'));
         $this->index(null, null, $info, "Recherche");
 
     }
@@ -161,7 +161,7 @@ class modules extends CI_Controller
             );
             $this->news->addNews($this->session->userdata('username'), "user",
                 " s'est désinscrit du contenu :" . $this->input->get('partie') . " du module : " . $this->input->get('module')
-                , $this->input->get('module') . " " . $this->input->get('partie'));
+                , $this->input->get('module'),$this->input->get('partie'));
         }
         $this->index(null, null, $info);
     }

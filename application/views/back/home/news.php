@@ -5,7 +5,8 @@
     </div>
     <div class="row">
         <ul class="media-list">
-            <?php foreach($newsInformations as $newsInformation): ?>
+            <?php var_dump($news);
+            /*foreach($newsInformations as $newsInformation): ?>
             <li class="media comment-box">
                 <a class="pull-left" href="#">
                     <img class="media-object img-circle" alt="64x64" src="<?php echo base_url()?>uploads/<?php echo $newsInformation['avatar'];?>" style="width: 64px; height: 64px;">
@@ -19,7 +20,7 @@
                     </ul>
                 </div>
             </li>
-            <?php endforeach; ?>
+            <?php endforeach; */?>
         </ul>
     </div>
     <div class="row">
