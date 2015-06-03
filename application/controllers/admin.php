@@ -59,12 +59,13 @@ class admin extends CI_Controller
         // Permet de savoir si l'enseignant était déja dans le module, utile pour le calcul de la décharge
         if ($data['enseignant'] == $this->contenu->getModuleTeacher(array(
                 "module" => $keys['module'],
+                "partie" => $keys['partie'],
                 "teacher" => $data['enseignant']
             ))
         )
             $res = $hours['teacherHours'] - $hours['decharge'] + $hours['effectiveTeacherHours'] - $hours['hedContenu'];
         else
-            $res = $hours['teacherHours'] - $hours['decharge'] + $hours['effectiveTeacherHours'];
+            $res = $hours['teacherHours'] - $hours['decharge'] - $hours['effectiveTeacherHours'];
         if ($res >= $data['hed'] || $data['enseignant'] == null) {
             $ret = $this->contenu->modifyModuleContenu($data, $keys);
             if ($ret == "good") {
