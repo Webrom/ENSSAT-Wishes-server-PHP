@@ -122,7 +122,7 @@ class Login extends CI_Controller
             $login = $this->users->addUser($this->input->post('password'),$this->input->post("actif"), "0",$this->input->post('prenom'),$this->input->post('name'),$this->input->post('heures'));
             $data = array(
                 'success' => "alert-success",
-                'msg' => "Inscription terminée. Votre login est " . $login . " , vous devez maintenant attendre la validation de votre compte par un administrateur."
+                'msg' => "Inscription terminée. Votre login est " . $login . ", vous devez maintenant attendre la validation de votre compte par un administrateur."
             );
             $this->index($data);
         }
