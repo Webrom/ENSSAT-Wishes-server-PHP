@@ -54,6 +54,16 @@ class Contenu extends CI_Model{
 
     }
 
+    public function getModuleTeacher($array){
+        $this->db->select('enseignant')
+            ->from('contenu')
+            ->where('module',$array['module'])
+            ->where('partie',$array['partie'])
+            ->where('enseignant',$array['teacher']);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function deleteContenuModule($array){
         foreach($array['partie'] as $partie){
             $this->db->where('partie',$partie);
