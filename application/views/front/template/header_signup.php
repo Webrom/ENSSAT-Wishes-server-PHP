@@ -20,9 +20,6 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
-                <li>
-                    <a id="linkHelp" href="#">Help</a>
-                </li>
                 <li class="hideMenu">
                     <a href="<?php echo base_url()?>index.php/login">Connexion</a>
                 </li>
