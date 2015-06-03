@@ -12,6 +12,8 @@ class uploadmodel extends CI_Model{
             unlink("./uploads/".$userName.".jpg");
         rename("./uploads/".$upload_data['file_name'], "./uploads/".$userName.".jpg");
 
+        $this->cropImage("./uploads/".$userName.".jpg");
+
         $data = array(
             'avatar' => $userName . ".jpg"
         );
@@ -29,6 +31,26 @@ class uploadmodel extends CI_Model{
 
         $this->db->where('login', $userName);
         $this->db->update('enseignant', $data);
+    }
+
+    public function cropImage($filename){
+        // Create a blank image and add some text
+        $ini_filename = $filename;
+        $im = imagecreatefromjpeg($ini_filename);
+
+        $ini_x_size = getimagesize($ini_filename)[0];
+        $ini_y_size = getimagesize($ini_filename)[1];
+
+        //the minimum of xlength and ylength to crop.
+        $crop_measure = min($ini_x_size, $ini_y_size);
+
+        // Set the content type header - in this case image/jpeg
+        //header('Content-Type: image/jpeg');
+
+        $to_crop_array = array('x' =>0 , 'y' => 0, 'width' => $crop_measure, 'height'=> $crop_measure);
+        $thumb_im = imagecrop($im, $to_crop_array);
+
+        imagejpeg($thumb_im, $filename, 100);
     }
 }
 ?>
