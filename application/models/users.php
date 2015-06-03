@@ -215,7 +215,8 @@ class Users extends CI_Model
     public function acceptUsers($login)
     {
         $data = array(
-            'accepted' => 1
+            'accepted' => 1,
+            'actif' => 1
         );
         $this->db->where('login', $login);
         $result = $this->db->update('enseignant', $data);
