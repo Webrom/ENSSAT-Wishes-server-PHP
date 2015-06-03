@@ -140,10 +140,10 @@ class admin extends CI_Controller
 
     /**
      * Fonction pour accepter les utilisateurs via le pannel d'administration
+     * Le echo est là pour renvoyer le résultat à la fonction Ajax
      */
     public function acceptUsers()
     {
-        // TODO à quoi sert ce echo ?
         echo $this->users->acceptUsers($this->input->get('login'));
         $this->news->addNews($this->session->userdata('username'), "user", "L'utilisateur : " . $this->input->get('login') . " a été accepté.");
     }
