@@ -62,5 +62,7 @@ class News extends CI_Model{
             ->limit($nb, $start)
             ->get()
             ->result_array();
+
+
     }
 }
