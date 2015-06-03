@@ -99,7 +99,7 @@ class modules extends CI_Controller
                     if (($statutaire - ($heuresprises + $heuresdecharge)) >= $heureducontenu) {
                         $result = $this->contenu->addEnseignanttoContenu($this->input->get('module'), $this->input->get('partie'),
                             $data = array(
-                                'enseignant' => $this->session->userdata('username') // TODO refacto norme MVC
+                                'enseignant' => $this->session->userdata('username')
                             )
                         );
                         if ($result) {
