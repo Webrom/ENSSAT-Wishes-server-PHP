@@ -1,9 +1,3 @@
-
-
-
-
-
-
 <div class="col-md-2 col-no-border"></div>
 <div class="col-md-8 col-no-border">
     <div class="row">
