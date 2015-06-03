@@ -54,15 +54,58 @@ class News extends CI_Model{
         if(!is_integer($nb) OR $nb < 1 OR !is_integer($start) OR $start < 0)
         {
             return false;
+        };
+        $this->db->select('TYPE,idExt')
+                ->distinct()
+                ->from('news');
+        $news = $this->db->get()->result_array();
+        foreach($news as $new){
+            switch($new['TYPE']){
+                case 'generale':
+                    $this->db->select('`avatar`,`nom`,`prenom`,`ID`,`TYPE`, `ENSEIGNANT`, `INFORMATION`, DATE_FORMAT(`DATE`,\'%d/%m/%Y &agrave; %H:%i:%s\') AS \'date\'', false)
+                        ->from('news')
+                        ->join('enseignant','news.ENSEIGNANT=enseignant.login')
+                        ->order_by('id', 'desc')
+                        ->where('TYPE','generale');
+                    $newsGenerale = $this->db->get()->result_array();
+                    break;
+                case 'module':
+                    $this->db->select('module.public,module.semestre,module.libelle,module.responsable,news.INFORMATION,enseignant.nom,enseignant.prenom`ID`,`TYPE`, `ENSEIGNANT`, `INFORMATION`, DATE_FORMAT(`DATE`,\'%d/%m/%Y &agrave; %H:%i:%s\') AS \'date\'', false)
+                            ->from('news')
+                            ->join('module','news.idExt=module.ident')
+                            ->join('enseignant','news.ENSEIGNANT=enseignant.login')
+                            ->where('news.TYPE','module');
+                    $newsModule = $this->db->get()->result_array();
+                    break;
+                case 'contenu':
+                   /* $contenu = explode(" ",$new['idExt']);
+                    $selPartie = array(
+                        "module" => $contenu[0],
+                        "partie" => $contenu[1]
+                    );
+                    $this->db->select('module.public,module.semestre,module.libelle,module.responsable,news.INFORMATION,enseignant.nom,enseignant.prenom`ID`,`TYPE`, `ENSEIGNANT`, `INFORMATION`, DATE_FORMAT(`DATE`,\'%d/%m/%Y &agrave; %H:%i:%s\') AS \'date\'', false)
+                        ->from('news')
+                        ->join('module','news.idExt=module.ident')
+                        ->join('enseignant','news.ENSEIGNANT=enseignant.login')
+                        ->where('news.TYPE','module');
+                    $newsContenu = $this->db->get()->result_array();*/
+                    break;
+                case 'user':
+                    break;
+                case 'generale':
+                    break;
+                default:
+                    break;
+            }
         }
-        return $this->db->select('`avatar`,`nom`,`prenom`,`ID`,`TYPE`, `ENSEIGNANT`, `INFORMATION`, DATE_FORMAT(`DATE`,\'%d/%m/%Y &agrave; %H:%i:%s\') AS \'date\'', false)
+        //var_dump($newsModule);
+        /*return $this->db->select('`avatar`,`nom`,`prenom`,`ID`,`TYPE`, `ENSEIGNANT`, `INFORMATION`, DATE_FORMAT(`DATE`,\'%d/%m/%Y &agrave; %H:%i:%s\') AS \'date\'', false)
             ->from('news')
             ->join('enseignant','news.ENSEIGNANT=enseignant.login')
             ->order_by('id', 'desc')
             ->limit($nb, $start)
             ->get()
             ->result_array();
-
-
+*/
     }
 }

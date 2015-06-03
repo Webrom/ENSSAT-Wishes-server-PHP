@@ -162,7 +162,7 @@ class admin extends CI_Controller
     public function addModule()
     {
         $module = array(
-            "ident" => $this->input->post('inputIdent'),
+            "ident" => substr($this->input->post('inputIdent'),0,10),
             "public" => $this->input->post('selectPublic'),
             "semestre" => $this->input->post('selectSemestre'),
             "libelle" => $this->input->post('inputLibelle'),
@@ -189,7 +189,7 @@ class admin extends CI_Controller
             $this->modulesmodels->deleteModuleContenu($modules);
             $this->index("Le/les modules ont étés supprimés.", "alert-success", "#deleteModule");
             foreach ($modules as $MODULE) {
-                $this->news->addNews($this->session->userdata('username'), "module", "Le module " . $MODULE . " vient d'être supprimé.");
+                $this->news->addNews($this->session->userdata('username'), "delete-module", "Le module " . $MODULE . " vient d'être supprimé.");
             }
         } else
             $this->index("Veuillez remplir correctement le formulaire", "alert-danger", "#deleteModule");
@@ -230,7 +230,7 @@ class admin extends CI_Controller
             $this->contenu->deleteContenuModule($array);
             $this->index("Les parties ont bien été supprimées.", "alert-success", "#deleteContenu");
             foreach ($this->input->post('selectContenuModule') as $coucou) {  //TODO coucou je trouve ça rigolo lol ?
-                $this->news->addNews($this->session->userdata('username'), "contenu", "Le contenu " . $coucou . " vient d'être supprimé du module : " . $array['module'], $array['module']);
+                $this->news->addNews($this->session->userdata('username'), "delete-contenu", "Le contenu " . $coucou . " vient d'être supprimé du module : " . $array['module']);
             }
         } else
             $this->index("Veuillez remplir correctement les champs...", "alert-danger", "#deleteContenu");

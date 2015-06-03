@@ -49,7 +49,7 @@ class homeNews extends CI_Controller
 
         $data['pagination'] = $this->pagination->create_links();
         $data['newsInformations'] = $this->news->getNews(self::NB_NEWS_PER_PAGE, $nb_news - 1);
-
+        die();
         //TODO fonction en doublon... faire une fonction dédiée  c'est ce que j'ai mis sur un commit?
         /* CALCUL POURCENTAGE HEURES PRISES */
         $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
