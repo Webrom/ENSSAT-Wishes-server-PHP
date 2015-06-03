@@ -91,6 +91,7 @@ class Contenu extends CI_Model{
     }
 
     /**
+     * @param $teacher
      * @return int nombre d'heure qu'un professeur a
      */
     public function getHeuresPrises($teacher){
@@ -108,6 +109,11 @@ class Contenu extends CI_Model{
         return $heures;
     }
 
+    /**
+     * @param $module
+     * @param $partie
+     * @return mixed
+     */
     public function getHeurePourUnContenu($module,$partie){
         $this->db->select('hed');
         $this->db->from('contenu');
