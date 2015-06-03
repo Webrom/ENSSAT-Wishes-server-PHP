@@ -140,6 +140,14 @@
                                         <?php echo form_submit('submit','Rechercher','class="btn btn-success"')?>
                                     </div>
                                 </div>
+                                <div class="col-md-12 col-no-border">
+                                    <div class="col-md-8 col-no-border">
+                                        <label for="checkboxExport">Export & téléchargement resultat recherche, format .CVS</label>
+                                        <input type="checkbox" name="checkboxExport" id="checkboxExport" <?php if($checked) echo 'checked="checked"'?>/>
+                                    </div>
+                                    <div class="col-md-4 col-no-border text-right">
+                                    </div>
+                                </div>
                                 <input type="text" name="searchType" hidden="hidden" value="<?php if($rechercheonglet)echo $rechercheonglet; else echo 'module';?>" id="searchType"/>
                                 <?php echo form_close()?>
                             </div>

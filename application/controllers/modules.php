@@ -83,6 +83,9 @@ class modules extends CI_Controller
             "semSelected" => ($this->input->post("semester") != "noSemester") ? $this->input->post("semester") : "noSemester",
             "checked" => $this->input->post('checkboxSansEnseignant')
         );
+        if($this->input->post('checkboxExport')){
+            $export = "Il y a plus qu'à exporter pelo moi j'y arrive pas"; //TODO
+        }
         $this->index($result, $data, null, "Recherche", $recherche);
     }
 
