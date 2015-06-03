@@ -51,7 +51,7 @@ class admin extends CI_Controller
             "partie" => $this->input->post('selectContenuModuleModification')
         );
         $hours = array(
-            "teacherHours" => $this->users->getHeures($this->session->userdata('username')),
+            "teacherHours" => $this->users->getStatutaire($this->session->userdata('username')),
             "effectiveTeacherHours" => $this->contenu->getHeuresPrises($data['enseignant']),
             "decharge" => $this->decharge->getHoursDecharge($data['enseignant']),
             "hedContenu" => $this->contenu->getHeurePourUnContenu($keys['module'], $keys['partie'])
@@ -102,7 +102,7 @@ class admin extends CI_Controller
 
         /* CALCUL POURCENTAGE HEURES PRISES */
         $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
-        $heurestotales = $this->users->getHeures($this->session->userdata('username')) - $this->decharge->getHoursDecharge($this->session->userdata('username'));
+        $heurestotales = $this->users->getStatutaire($this->session->userdata('username')) - $this->decharge->getHoursDecharge($this->session->userdata('username'));
         $pourcentage = round(($heuresprises / $heurestotales) * 100, 0);
         $data['pourcentage'] = $pourcentage;
         $data['heuresprises'] = $heuresprises;
@@ -339,7 +339,7 @@ class admin extends CI_Controller
     {
         $decharge = $this->input->post('dechargeModify');
         $enseignant = $this->input->post("enseignantsModify");
-        $statutaire = $this->users->getHeures($enseignant);
+        $statutaire = $this->users->getStatutaire($enseignant);
         $heuresprises = $this->contenu->getHeuresPrises($enseignant);
 
         if ($statutaire - $decharge > $heuresprises) {

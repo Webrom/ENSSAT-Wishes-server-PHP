@@ -51,10 +51,16 @@
                                     <label for="inputStatut" class="2 col-no-border control-label">Votre statut :</label>
                                     <input disabled class="form-control" id="inputStatut" value="<?php echo $userInfo['statut'];?>" type="text">
                                 </div>
+                                <?php echo form_open('profile/modifyStatutaire','class="form-horizontal"')?>
                                 <div class="col-md-12 col-no-border">
                                     <label for="inputStatutaire" class="2 col-no-border control-label">Total d'heure à effectuer :</label>
-                                    <input disabled class="form-control" id="inputStatutaire" value="<?php echo $userInfo['statutaire'];?>" type="text">
+                                    <input class="form-control" id="inputStatutaire" name="inputStatutaire" value="<?php echo $userInfo['statutaire'];?>" type="text">
                                 </div>
+                                <div class="col-md-12 col-no-border text-right">
+                                    <?php echo form_submit('submit','Changer votre statutaire','class="btn btn-success"')?>
+                                </div>
+                                <?php echo form_close(); ?>
+
                                 <?php echo form_open('profile/modifyDecharge','class="form-horizontal"')?>
                                 <div class="col-md-12 col-no-border">
                                     <label for="inputDecharge" class="2 col-no-border control-label">Decharge :</label>

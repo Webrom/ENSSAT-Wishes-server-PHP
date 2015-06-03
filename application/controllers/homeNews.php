@@ -53,7 +53,7 @@ class homeNews extends CI_Controller
         //TODO fonction en doublon... faire une fonction dédiée  c'est ce que j'ai mis sur un commit?
         /* CALCUL POURCENTAGE HEURES PRISES */
         $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
-        $heurestotales = $this->users->getHeures($this->session->userdata('username')) - $this->decharge->getHoursDecharge($this->session->userdata('username'));
+        $heurestotales = $this->users->getStatutaire($this->session->userdata('username')) - $this->decharge->getHoursDecharge($this->session->userdata('username'));
         $pourcentage = round(($heuresprises / $heurestotales) * 100, 0);
         $data['pourcentage'] = $pourcentage;
         $data['heuresprises'] = $heuresprises;

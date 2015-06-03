@@ -41,7 +41,7 @@ class profile extends CI_Controller
         // TODO CINQUIEME FOIS QU'ON VOIS CETTE FOCNTION !!
         /* CALCUL POURCENTAGE HEURES PRISES */
         $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
-        $heurestotales = $this->users->getHeures($this->session->userdata('username')) - $this->decharge->getHoursDecharge($this->session->userdata('username'));
+        $heurestotales = $this->users->getStatutaire($this->session->userdata('username')) - $this->decharge->getHoursDecharge($this->session->userdata('username'));
         $pourcentage = round(($heuresprises / $heurestotales) * 100, 0);
         $data['pourcentage'] = $pourcentage;
         $data['heuresprises'] = $heuresprises;
@@ -84,27 +84,50 @@ class profile extends CI_Controller
         }
     }
 
+    public function modifyStatutaire()
+    {
+        $newStatutaire = $this->input->post("inputStatutaire");
+
+        if(is_numeric($newStatutaire)) {
+            if ($newStatutaire > 0) {
+                if ($this->users->setStatutaire($newStatutaire, $this->session->userdata('username'))) {
+                    $msg = "Votre statutaire a été modifié.";
+                    $msgbox = "alert-success";
+                } else {
+                    $msg = "Votre statutaire n'est pas modifiable.";
+                    $msgbox = "alert-danger";
+                }
+            } else {
+                $msg = "Ca existe, le statutaire négatif ?!";
+                $msgbox = "alert-danger";
+            }
+        }else{
+            $msg = "le statutaire s'exprime en nombres, du genre : 100.";
+            $msgbox = "alert-danger";
+        }
+            $this->index(null, $msg, $msgbox);
+    }
 
     public function modifyDecharge()
     {
         if ($this->decharge->isPresentInTable($this->session->userdata('username'))) {
-            if ($this->input->post("inputDecharge") < $this->users->getHeures($this->session->userdata('username')) && $this->input->post("inputDecharge") <= $this->users->getHeures($this->session->userdata('username')) - $this->contenu->getHeuresPrises($this->session->userdata("username"))) {
+            if ($this->input->post("inputDecharge") < $this->users->getStatutaire($this->session->userdata('username')) && $this->input->post("inputDecharge") <= $this->users->getStatutaire($this->session->userdata('username')) - $this->contenu->getHeuresPrises($this->session->userdata("username"))) {
                 $this->decharge->setDecharge($this->session->userdata('username'), $this->input->post("inputDecharge"));
-                $msg = "Votre decharge a été modifiée";
+                $msg = "Votre decharge a été modifiée.";
                 $msgbox = "alert-success";
             } else {
-                $msg = "Trop de décharge tue la décharge... Merci d'indiquer un nombre raisonable";
+                $msg = "Trop de décharge tue la décharge... Merci d'indiquer un nombre raisonable.";
                 $msgbox = "alert-danger";
             }
         } //On vérifie si la décharge est compatible
-        else if ($this->input->post("inputDecharge") < $this->users->getHeures($this->session->userdata('username')) &&
-            $this->input->post("inputDecharge") <= $this->users->getHeures($this->session->userdata('username')) - $this->contenu->getHeuresPrises($this->session->userdata("username"))
+        else if ($this->input->post("inputDecharge") < $this->users->getStatutaire($this->session->userdata('username')) &&
+            $this->input->post("inputDecharge") <= $this->users->getStatutaire($this->session->userdata('username')) - $this->contenu->getHeuresPrises($this->session->userdata("username"))
         ) {
             $this->decharge->addNewDecharge($this->session->userdata('username'), $this->input->post("inputDecharge"));
-            $msg = "Votre decharge a été modifiée";
+            $msg = "Votre decharge a été modifiée.";
             $msgbox = "alert-success";
         } else {
-            $msg = "Trop de décharge tue la décharge... Merci d'indiquer un nombre raisonable";
+            $msg = "Trop de décharge tue la décharge... Merci d'indiquer un nombre raisonable.";
             $msgbox = "alert-danger";
         }
         $this->index(null, $msg, $msgbox);
