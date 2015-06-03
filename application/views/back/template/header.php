@@ -25,7 +25,7 @@
                 </li>
                 <li>
                     <ul class="navbar-nav">
-                        <li class="active progress progress-striped" style="margin: 15px;width: 100px"><div class="progress-bar progress-bar-success" style="width: <?php echo $pourcentage; ?>%">
+                        <li class="active progress progress-striped" style="margin: 15px;width: 100px;list-style: none"><div class="progress-bar progress-bar-success" style="width: <?php echo $pourcentage; ?>%">
                             </div>
                         </li>
                         <li style="margin: 15px;list-style: none;">
