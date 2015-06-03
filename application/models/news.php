@@ -65,13 +65,7 @@ class News extends CI_Model{
         {
             return false;
         };
-        $data = array(
-            'newsGenerale'=> array(),
-            'newsModule' => array(),
-            'newsUserContenu' => array(),
-            'newsContenu' => array(),
-            'newsUser' => array()
-        );
+        $data =array();
         $this->db->select('ID,TYPE,module,partie')
                 ->from('news')
                 ->order_by('id', 'desc')
@@ -85,7 +79,7 @@ class News extends CI_Model{
                                 enseignant.nom,
                                 enseignant.prenom,
                                 news.ID,
-                                news.TYPE,
+                                news.TYPE AS classe,
                                 news.ENSEIGNANT,
                                 news.INFORMATION,
                                 DATE_FORMAT(news.DATE,\'%d/%m/%Y &agrave; %H:%i:%s\') AS \'date\'', false)
@@ -93,7 +87,7 @@ class News extends CI_Model{
                         ->join('enseignant','news.ENSEIGNANT=enseignant.login')
                         ->where('news.TYPE','generale')
                         ->where('news.ID',$new['ID']);
-                    array_push($data['newsGenerale'],$this->db->get()->result_array());
+                    array_push($data,$this->db->get()->result_array());
                     break;
                 case 'module':
                     if($new['module']!=null && $new['partie']!=null){
@@ -107,7 +101,7 @@ class News extends CI_Model{
                                     enseignant.prenom,
                                     enseignant.avatar,
                                     news.ID,
-                                    news.TYPE,
+                                    news.TYPE AS classe,
                                     news.ENSEIGNANT,
                                     news.INFORMATION,
                                     DATE_FORMAT(news.DATE,\'%d/%m/%Y &agrave; %H:%i:%s\') AS \'date\'', false)
@@ -116,7 +110,7 @@ class News extends CI_Model{
                             ->join('enseignant','news.ENSEIGNANT=enseignant.login')
                             ->where('news.TYPE','module')
                             ->where('news.ID',$new['ID']);
-                        array_push($data['newsModule'],$this->db->get()->result_array());
+                        array_push($data,$this->db->get()->result_array());
                     }
                     break;
                 case 'contenu':
@@ -135,6 +129,7 @@ class News extends CI_Model{
                                         enseignant.avatar,
                                         news.ID,
                                         news.INFORMATION,
+                                        news.TYPE AS classe,
                                         DATE_FORMAT(news.DATE,\'%d/%m/%Y &agrave; %H:%i:%s\') AS \'date\'', FALSE)
                             ->from('news')
                             ->join('module', 'news.module=module.ident')
@@ -142,7 +137,7 @@ class News extends CI_Model{
                             ->join('enseignant', 'news.ENSEIGNANT=enseignant.login')
                             ->where('news.TYPE', 'contenu')
                             ->where('news.ID',$new['ID']);
-                        array_push($data['newsContenu'],$this->db->get()->result_array());
+                        array_push($data,$this->db->get()->result_array());
 
                     }
                     break;
@@ -162,6 +157,7 @@ class News extends CI_Model{
                                         enseignant.avatar,
                                         news.ID,
                                         news.INFORMATION,
+                                        news.TYPE AS classe,
                                         DATE_FORMAT(news.DATE,\'%d/%m/%Y &agrave; %H:%i:%s\') AS \'date\'', FALSE)
                             ->from('news')
                             ->join('module', 'news.module=module.ident')
@@ -169,7 +165,7 @@ class News extends CI_Model{
                             ->join('enseignant', 'news.ENSEIGNANT=enseignant.login')
                             ->where('news.TYPE', 'user')
                             ->where('news.ID',$new['ID']);
-                        array_push($data['newsUserContenu'],$this->db->get()->result_array());
+                        array_push($data,$this->db->get()->result_array());
 
                     }else{
                         $this->db->select('
@@ -178,6 +174,7 @@ class News extends CI_Model{
                                         enseignant.avatar,
                                         news.ID,
                                         news.INFORMATION,
+                                        news.TYPE AS classe,
                                         DATE_FORMAT(news.DATE,\'%d/%m/%Y &agrave; %H:%i:%s\') AS \'date\'', FALSE)
                             ->from('news')
                             ->join('enseignant', 'news.ENSEIGNANT=enseignant.login')
@@ -185,7 +182,7 @@ class News extends CI_Model{
                             ->where('news.module', null)
                             ->where('news.partie', null)
                             ->where('news.ID',$new['ID']);
-                        array_push($data['newsUser'],$this->db->get()->result_array());
+                        array_push($data,$this->db->get()->result_array());
 
                     }
                     break;
@@ -196,6 +193,7 @@ class News extends CI_Model{
                                         enseignant.avatar,
                                         news.ID,
                                         news.INFORMATION,
+                                        news.TYPE AS classe,
                                         DATE_FORMAT(news.DATE,\'%d/%m/%Y &agrave; %H:%i:%s\') AS \'date\'', FALSE)
                         ->from('news')
                         ->join('enseignant', 'news.ENSEIGNANT=enseignant.login')
@@ -203,7 +201,7 @@ class News extends CI_Model{
                         ->where('news.module', null)
                         ->where('news.partie', null)
                         ->where('news.ID',$new['ID']);
-                    array_push($data['newsGenerale'],$this->db->get()->result_array());
+                    array_push($data,$this->db->get()->result_array());
                     break;
             }
         }
