@@ -132,7 +132,7 @@
                                 <label for="selectPublic" class="control-label">Promotion</label>
                                 <select name="selectPublic" class="form-control" id="selectPublic">
                                     <?php foreach($publics as $public):?>
-                                        <option value="<?php echo $public["public"];?>"><?php echo $public["public"];?></option>
+                                        <option value="<?php echo $public;?>"><?php echo $public;?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>

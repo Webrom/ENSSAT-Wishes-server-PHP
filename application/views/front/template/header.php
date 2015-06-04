@@ -20,7 +20,7 @@
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
                 <li>
-                    <button class="btn btn-primary" data-toggle="modal" data-target=".bp-example-modal-sm">Aide</button>
+                    <button class="navbar-brand navbar-title" data-toggle="modal" data-target=".bp-example-modal-sm">Aide</button>
                 </li>
                 <li class="hideMenu">
                     <a href="<?php echo base_url()?>index.php/login/signUp">Inscription</a>
