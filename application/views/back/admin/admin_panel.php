@@ -105,15 +105,15 @@
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
                                 <label for="inputIdent" class="2 col-no-border control-label">Identifiant du module</label>
-                                <?php echo form_input('inputIdent','','class="form-control" id="inputIdent" placeholder="ex : ALGOC1" required')?>
+                                <?php echo form_input('inputIdent','','class="form-control stuffToReinit" id="inputIdent" placeholder="ex : ALGOC1" required')?>
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="inputLibelle" class="2 col-no-border control-label">Description du module</label>
-                                <?php echo form_input('inputLibelle','','class="form-control" id="inputIdent" placeholder="ex : Algorithmique et language C 1" required')?>
+                                <?php echo form_input('inputLibelle','','class="form-control stuffToReinit" id="inputLibelle" placeholder="ex : Algorithmique et language C 1" required')?>
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="selectResponsable" class="control-label">Responsable</label>
-                                <select name="selectResponsable" class="form-control" id="selectResponsable">
+                                <select name="selectResponsable" class="form-control stuffToReinit" id="selectResponsable">
                                     <option value="">...</option>
                                     <?php foreach($enseignants as $enseignant):?>
                                         <option value="<?php echo $enseignant['login'];?>"><?php echo $enseignant['nom']. " ".$enseignant['prenom'];?></option>
@@ -122,7 +122,7 @@
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="selectSemestre" class="control-label">Semestre</label>
-                                <select name="selectSemestre" class="form-control" id="selectSemestre">
+                                <select name="selectSemestre" class="form-control stuffToReinit" id="selectSemestre">
                                     <?php foreach($semestres as $semestre):?>
                                         <option value="<?php echo $semestre;?>"><?php echo $semestre;?></option>
                                     <?php endforeach;?>
@@ -130,9 +130,9 @@
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="selectPublic" class="control-label">Promotion</label>
-                                <select name="selectPublic" class="form-control" id="selectPublic">
+                                <select name="selectPublic" class="form-control stuffToReinit" id="selectPublic">
                                     <?php foreach($publics as $public):?>
-                                        <option value="<?php echo $public["public"];?>"><?php echo $public["public"];?></option>
+                                        <option value="<?php echo $public;?>"><?php echo $public;?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>
@@ -140,6 +140,7 @@
                         <div class="form-group">
                             <div class="col-md-12 col-no-border text-right">
                                     <?php echo form_submit('submit','Valider','class="btn btn-success"')?>
+                                    <button name="reset" type="button" id="resetAdminFields" class="btn btn-info">reset</button>
                             </div>
                         </div>
                     </fieldset>
@@ -294,7 +295,7 @@
                                 </select>
                             </div>
                             <div class="col-md-12 col-no-border text-right">
-                                <?php echo form_button('submit','valider','id="modifyUser" class="btn btn-success"')?>
+                                <?php echo form_button('submit','valider','id="modifyUser" class="btn btn-info"')?>
                             </div>
                         </div>
                         <div class="col-md-12 col-no-border customHide" id="displayUserInfoModify">
@@ -435,7 +436,7 @@
                         <legend>Ajouter un contenu à un module</legend>
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
-                                <label for="selectModule" class="control-label">Selectionnez Module</label>
+                                <label for="selectModule" class="control-label">Selectionnez un module</label>
                                 <select name="selectModule" class="form-control" id="selectModule">
                                     <?php foreach($modules as $module):?>
                                         <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
@@ -473,7 +474,7 @@
                         <legend>Supprimer un contenu d'un module</legend>
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
-                                <label for="selectModuleShowContenu" class="control-label">Selectionnez Module</label>
+                                <label for="selectModuleShowContenu" class="control-label">Selectionnez un moodule</label>
                                 <select name="selectModuleShowContenu" class="form-control" id="getContenu">
                                     <?php foreach($modules as $module):?>
                                         <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
@@ -485,7 +486,7 @@
                             </div>
                             <div id="displaygetModuleContenus" class="customHide">
                                 <div  class=" col-md-12 col-no-border">
-                                    <label for="selectContenuModule" class="control-label">Selectionnez la/les partie(s)</label>
+                                    <label for="selectContenuModule" class="control-label">Selectionnez la/les partie(s) à supprimer</label>
                                     <select name="selectContenuModule[]" class="form-control" id="selectContenuModule" multiple>
                                     </select>
                                 </div>

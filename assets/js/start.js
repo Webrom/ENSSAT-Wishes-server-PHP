@@ -45,6 +45,16 @@ $(function(){
                 $(this).val("noProm");
         });
     });
+    $("#resetAdminFields").click(function(e){
+        $('.stuffToReinit').each(function () {
+            $(this).val("");
+            if($(this).attr("id")=="selectSemestre")
+                $(this).val("S1");
+            if($(this).attr("id")=="selectPublic")
+                $(this).val("IMR1");
+        })
+        console.log("here");
+    });
 
     $('a#displayMyModules').click(function(){
         $("#modules_result").remove();

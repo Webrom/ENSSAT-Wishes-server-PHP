@@ -1,32 +1,33 @@
 MAJOR FIX TO DO ------------------------------
 
 - COMMENT + REFACTO
-   - MVC COHERENT
 - CSS / COULEUR
 - NOTICE D'UTILISATION
 - METTRE DES PHRASES EXPLICITES POUR EXPLIQUER COMMENT ça FONCTIONNE
 - EXPORT CVS
 
+DANS LE RECLONE DU PROJET,
+- il faut fournir le fichier config.php super important sinon ça marche pas !
+- rendre le dossier des images 'uploads' readble & writable (chmod 777 lol)
+
+FONCTIONNEL
+- Graphiques & stuff
+- Pouvoir inscrire un prof depuis le module recherche ?
 
 
 DESIGN ----------------------------------------
-=
 MODULES
-    - DANS AJOUTER MODULE : possibilité d'ajouter un module pour l'intégralité des promotion de l'enssat; un array est pret quelque part,
-    là ca récupère juste les modules qui ont déjà étés utilisés dans la base, c'est pas exactement ce qu'on veut !
     - Afficher le nom + le prénom dans les affichettes de modules prises c'est plus mignon !
     - Afficher les modules non pris en orange
+    - HELP PANEL
 
 ADMINISTRATION :
     - Ajouter des boutons reset : si je me plante dès le début, je dois pouvoir relancer le truc sans recharger la page ! (je pense
     notamment a l'onglet modifier cours
-    - STATUT
-News :
-    - revoir l'affichage / espaces...
+
 
 SI ON A LE TEMPS -----------------------------
 - PROMPT DE CONFIRMATION POUR CHAQUE SUPPRESSION
-- REFAIRE PANNEL HELP (ou du moins son positionnement)
 - CHAMPS NUMERAIRES
 - CRYPTAGE MDP
 
