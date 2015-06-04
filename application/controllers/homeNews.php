@@ -44,7 +44,25 @@ class homeNews extends CI_Controller
         $this->pagination->initialize(array(
             'base_url' => base_url() . 'index.php/homeNews/index/',
             'total_rows' => $data['nbTotalNews'],
-            'per_page' => self::NB_NEWS_PER_PAGE
+            'per_page' => self::NB_NEWS_PER_PAGE,
+            'display_pages' => TRUE,
+            'full_tag_open' => '<ul class="pagination pagination-sm">',
+            'full_tag_close' => '</ul>',
+            'first_tag_open' => '<li class="disabled">',
+            'first_tag_close' => '</li>',
+            'last_tag_open' => '<li>',
+            'last_tag_close' => '</li>',
+            'next_tag_open' => '<li>',
+            'next_tag_close' => '</li>',
+            'prev_tag_open' => '<li>',
+            'prev_tag_close' => '</li>',
+            'cur_tag_open' => '<li class="active"><a href="#">',
+            'cur_tag_close' => '</a></li>',
+            'num_tag_open' => '<li>',
+            'num_tag_close' => '</li>'
+
+
+
         ));
 
         $data['pagination'] = $this->pagination->create_links();

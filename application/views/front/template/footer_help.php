@@ -7,7 +7,7 @@
  */
 ?>
 <div class="modal fade bp-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -27,7 +27,7 @@
                 <p>Vous avez oublié votre mot de passe ? Contactez l'administrateur par mail en lui fournissant votre identifiant !</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal">Fermer</button>
             </div>
         </div>
     </div>

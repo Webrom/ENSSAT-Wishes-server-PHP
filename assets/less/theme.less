@@ -150,25 +150,46 @@
 			.pull-left img,
 			.pull-right img { border: 2px solid  @navbar-bg; }
 			
-			p {
-                margin: 15px  ;
+			div {
 				padding: 15px;
 				color: @color-comment;
-              &.generale{
-                .border (@grid-col-border-width, @bg-border-generale);
-                .border-radius (0);
+                margin-bottom: 5px;
+              &.list-group{
+                padding: 0;
+              }
+              &.bp-component{
+                padding: 0;
+              }
+              &.generale,&.contenu,&.module,&.user, {
+                h5 {
+                  background: @bg-border-generale;
+                }
+                border: none;
+                -moz-box-shadow: 0px 5px 5px 0px #656565;
+                -webkit-box-shadow: 0px 5px 5px 0px #656565;
+                -o-box-shadow: 0px 5px 5px 0px #656565;
+                box-shadow: 0px 5px 5px 0px #656565;
+              }
+              &.delete-module,&.delete-contenu{
+                h5 {
+                  background: @alert-danger-color;
+                }
+                border: none;
               }
               &.contenu{
-                .border (@grid-col-border-width, @bg-border-contenu);
-                .border-radius (0);
+                h5 {
+                  background: @bg-border-contenu;
+                }
               }
               &.module{
-                .border (@grid-col-border-width, @bg-border-module);
-                .border-radius (0);
+                h5 {
+                  background: @bg-border-module;
+                }
               }
               &.user{
-                .border (@grid-col-border-width, @bg-border-user);
-                .border-radius (0);
+                h5 {
+                  background: @bg-border-user;
+                }
               }
 			}
 
@@ -181,18 +202,44 @@
 				right: 0;
 				margin-top: -20px;
 				padding: 0 6px;
+              &.list-group{
+                position: inherit;
+                right: inherit;
+                margin-top: 0px;
+                padding: 0;
+              }
+              &.n-info {
+                list-style: circle;
+                position: inherit;
+                right: inherit;
+                font-size: 14px;
+                & li {
+                  float: none;
+                  border-right: inherit;
+                }
+              }
 
 				li {
 
 					float: left;
 					padding: 0 10px;
 					border-right: 1px solid darken( @bg-comment, 30% );
-
+                  &.list-group-item{
+                    float: none;
+                    padding: 10px 15px;
+                    border: 1px solid #ddd !important;
+                  }
 				}
+
 
 				li:last-child { border-right: none; }
 			}
-			span { padding: 0 10px; }
+			span {
+              padding: 0 10px;
+              &.badge {
+                padding: 3px 7px;
+              }
+            }
 		}
 
 	/* Text Colors */
@@ -479,12 +526,12 @@
 			a {
 				padding: @pagination-padding;
 				color: @pagination-color;
-				background-color: @pagination-bg;
-				.border (@pagination-list-element-border-width, transparent @pagination-list-element-border-right-color transparent @pagination-list-element-border-left-color);
+				background-color: @navbar-border-color;
+				.border (@pagination-list-element-border-width, transparent #fff transparent @navbar-list-element-hover-bg);
 				&:hover {
 					color: @pagination-color;
-					background-color: @pagination-hover-bg;
-					.border (@pagination-list-element-border-width, transparent @pagination-list-element-border-right-color transparent @pagination-list-element-border-left-color);
+					background-color: @navbar-bg;
+					.border (@pagination-list-element-border-width, transparent #fff transparent #fff);
 				}
 			}
 		}
@@ -495,7 +542,7 @@
 		& > .active > span:hover,
 		& > .active > a:focus,
 		& > .active > span:focus {
-			background-color: @pagination-active-bg;
+			background-color: @navbar-bg;
 			.border ()
 		}
 
@@ -755,6 +802,7 @@
 	/* Grid Modifications */
 	.row { margin: @grid-row-margin; }
 
+
 	.col {
 
 		&-no-border {
@@ -811,6 +859,13 @@
 			margin: @grid-col-lg-md-4-second;
 		}
 	}
+    .custom-box {
+      border: none;
+      -moz-box-shadow: 0px 5px 5px 0px #656565;
+      -webkit-box-shadow: 0px 5px 5px 0px #656565;
+      -o-box-shadow: 0px 5px 5px 0px #656565;
+      box-shadow: 0px 5px 5px 0px #656565;
+    }
 
 	// Media Queries
 	//## Define the breakpoints at which your layout will change, adapting to different screen sizes.

@@ -14,7 +14,7 @@
 
     <div class="row">
         <div class="col-md-4 col-no-border"></div>
-        <div id="loginForm" class="col-md-4">
+        <div id="loginForm" class="col-md-4 custom-box">
             <?php if(isset($msg)):?>
                 <div class="alert alert-dismissable <?php if(isset($success)){ echo $success; } ?>">
                     <button type="button" class="close" data-dismiss="alert">×</button>

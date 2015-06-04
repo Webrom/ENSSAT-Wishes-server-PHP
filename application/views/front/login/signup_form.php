@@ -13,7 +13,7 @@
 
     <div class="row">
         <div class="col-md-3 col-no-border"></div>
-        <div class="col-md-6" id="signUpForm">
+        <div class="col-md-6 custom-box" id="signUpForm">
             <?php if(isset($msg)):?>
                 <div class="alert alert-dismissable alert-danger">
                     <button type="button" class="close" data-dismiss="alert">×</button>
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-10 col-md-offset-2">
+                            <div class="col-md-12 col-no-border text-center">
                                 <?php echo form_submit('submit','Inscription','class="btn btn-success"')?>
                                 <?php echo anchor('login/','Retour','class="btn btn-info"');?>
                             </div>

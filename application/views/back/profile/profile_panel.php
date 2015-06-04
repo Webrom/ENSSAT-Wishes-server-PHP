@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-1 col-no-border"></div>
         <div class="col-md-10 col-no-border">
-            <div class="col-md-12">
+            <div class="col-md-12 custom-box">
                 <div class="col-md-12 col-no-border">
                     <div class="col-md-12 col-no-border">
                         <div class="col-md-2">

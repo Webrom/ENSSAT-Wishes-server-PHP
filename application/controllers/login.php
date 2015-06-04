@@ -92,6 +92,7 @@ class Login extends CI_Controller
             'status' => $this->users->getStatus()
         );
         $this->load->view('front/login/signup_form', $data);
+        $this->load->view('front/template/footer_help');
         $this->load->view('footer');
     }
 

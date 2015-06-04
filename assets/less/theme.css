@@ -174,7 +174,7 @@ textarea {
   background-color: #2980b9;
   border-style: solid;
   border-width: 0px;
-  border-color: #2980b9;
+  border-color: #2c9ee8;
   -moz-box-shadow: 0px 0px 10px 1px #000000;
   -webkit-box-shadow: 0px 0px 10px 1px #000000;
   -o-box-shadow: 0px 0px 10px 1px #000000;
@@ -204,54 +204,49 @@ textarea {
 .comment-box .pull-right img {
   border: 2px solid #2980b9;
 }
-.comment-box p {
-  margin: 15px  ;
+.comment-box div {
   padding: 15px;
   color: #000000;
+  margin-bottom: 5px;
 }
-.comment-box p.generale {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #2ecc71;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
+.comment-box div.list-group {
+  padding: 0;
 }
-.comment-box p.contenu {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #f1c40f;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
+.comment-box div.bp-component {
+  padding: 0;
 }
-.comment-box p.module {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #e74c3c;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
+.comment-box div.generale,
+.comment-box div.contenu,
+.comment-box div.module,
+.comment-box div.user {
+  border: none;
+  -moz-box-shadow: 0px 5px 5px 0px #656565;
+  -webkit-box-shadow: 0px 5px 5px 0px #656565;
+  -o-box-shadow: 0px 5px 5px 0px #656565;
+  box-shadow: 0px 5px 5px 0px #656565;
 }
-.comment-box p.user {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #9b59b6;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
+.comment-box div.generale h5,
+.comment-box div.contenu h5,
+.comment-box div.module h5,
+.comment-box div.user h5 {
+  background: #2ecc71;
+}
+.comment-box div.delete-module,
+.comment-box div.delete-contenu {
+  border: none;
+}
+.comment-box div.delete-module h5,
+.comment-box div.delete-contenu h5 {
+  background: #d92b66;
+}
+.comment-box div.contenu h5 {
+  background: #f1c40f;
+}
+.comment-box div.module h5 {
+  background: #e74c3c;
+}
+.comment-box div.user h5 {
+  background: #9b59b6;
 }
 .comment-box ul,
 .comment-box span {
@@ -264,16 +259,40 @@ textarea {
   margin-top: -20px;
   padding: 0 6px;
 }
+.comment-box ul.list-group {
+  position: inherit;
+  right: inherit;
+  margin-top: 0px;
+  padding: 0;
+}
+.comment-box ul.n-info {
+  list-style: circle;
+  position: inherit;
+  right: inherit;
+  font-size: 14px;
+}
+.comment-box ul.n-info li {
+  float: none;
+  border-right: inherit;
+}
 .comment-box ul li {
   float: left;
   padding: 0 10px;
   border-right: 1px solid #b20037;
+}
+.comment-box ul li.list-group-item {
+  float: none;
+  padding: 10px 15px;
+  border: 1px solid #ddd !important;
 }
 .comment-box ul li:last-child {
   border-right: none;
 }
 .comment-box span {
   padding: 0 10px;
+}
+.comment-box span.badge {
+  padding: 3px 7px;
 }
 /* Text Colors */
 .text-primary,
@@ -571,17 +590,17 @@ a.list-group-item.active > .badge,
 .pagination li a {
   padding: 6px 11px;
   color: #ffffff;
-  background-color: #e62a64;
+  background-color: #2c9ee8;
   border-style: solid;
   border-width: 0 1px;
-  border-color: transparent #ea4a7b transparent #ea4a7b;
+  border-color: transparent #ffffff transparent #1c4e6f;
 }
 .pagination li a:hover {
   color: #ffffff;
-  background-color: #ea4a7b;
+  background-color: #2980b9;
   border-style: solid;
   border-width: 0 1px;
-  border-color: transparent #ea4a7b transparent #ea4a7b;
+  border-color: transparent #ffffff transparent #ffffff;
 }
 .pagination > .active > a,
 .pagination > .active > span,
@@ -589,7 +608,7 @@ a.list-group-item.active > .badge,
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-  background-color: #ea4a7b;
+  background-color: #2980b9;
   border-style: solid;
   border-width: 0px;
   border-color: transparent !important;
@@ -935,6 +954,13 @@ a.list-group-item.active > .badge,
 }
 .col-lg-4:nth-child(2) {
   margin: 0 1% 0 3%;
+}
+.custom-box {
+  border: none;
+  -moz-box-shadow: 0px 5px 5px 0px #656565;
+  -webkit-box-shadow: 0px 5px 5px 0px #656565;
+  -o-box-shadow: 0px 5px 5px 0px #656565;
+  box-shadow: 0px 5px 5px 0px #656565;
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .col-lg-8,
