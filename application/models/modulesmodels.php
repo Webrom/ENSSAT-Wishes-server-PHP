@@ -26,14 +26,6 @@ class modulesmodels extends CI_Model {
         return ($query)?"good":$ret;
     }
 
-    public function getAllPublic(){
-        $this->db->select("public");
-        $this->db->distinct();
-        $this->db->from("module");
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
     public function getAllMyModules($username){
         $this->db->select("module,partie,type,hed");
         $this->db->from("contenu");

@@ -90,7 +90,6 @@ class admin extends CI_Controller
             "semestres" => array("S1", "S2", "S3", "S4", "S5", "S6"),
             "publics" => array("IMR1", "IMR2", "IMR3", "EII1", "EII2", "EII3", "TC", "LSI1", "LSI2", "LSI3", "OPT1", "OPT2", "OPT3","commun IMR1 et EII2"),
             //"publics" => $this->modulesmodels->getAllPublic(),         // TODO mettre tout les modules proposés a l'ENSSAT; ARRAY pret en dessous :
-            // "allProm" => array("IMR1", "IMR2", "IMR3", "EII1", "EII2", "EII3", "TC", "LSI1", "LSI2", "LSI3", "OPT1", "OPT2", "OPT3","commun IMR1 et EII2"),
             "modules" => $this->modulesmodels->getAllModules(),
             "msg" => $msg,
             "success" => $success,
