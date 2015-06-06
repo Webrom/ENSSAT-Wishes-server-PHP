@@ -87,6 +87,13 @@
                             </div>
                         </div>
                     </div>
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a href="admin">RESET PAGE</a>
+                            </h4>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -140,7 +147,6 @@
                         <div class="form-group">
                             <div class="col-md-12 col-no-border text-right">
                                     <?php echo form_submit('submit','Valider','class="btn btn-success"')?>
-                                    <button name="reset" type="button" id="resetAdminFields" class="btn btn-info">reset</button>
                             </div>
                         </div>
                     </fieldset>
