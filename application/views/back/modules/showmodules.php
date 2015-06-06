@@ -7,16 +7,6 @@
  */?>
 <div class="bp-docs-section">
     <div class="row">
-        <div class="col-md-12 title-section">
-            <?php /*if($module!=""): ?>
-                <?php echo $module;?>
-            <?php endif; ?>
-            <?php if(count($teacher)>0):?>
-                <?php echo $teacher[0]['nom']." ".$teacher[0]['prenom'];?>
-            <?php endif*/?>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-1 col-no-border"></div>
         <div class="col-md-10 col-no-border ">
             <?php if(isset($msg)):?>
@@ -143,7 +133,7 @@
                                 <div class="col-md-12 col-no-border">
                                     <div class="col-md-8 col-no-border">
                                         <label for="checkboxExport">Export & téléchargement resultat recherche, format .CVS</label>
-                                        <input type="checkbox" name="checkboxExport" id="checkboxExport" <?php if($checked) echo 'checked="checked"'?>/>
+                                        <input type="checkbox" name="checkboxExport" id="checkboxExport" <?php if($checked) echo 'exportChecked="checked"'?>/>
                                     </div>
                                     <div class="col-md-4 col-no-border text-right">
                                     </div>
