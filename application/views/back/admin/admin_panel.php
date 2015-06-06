@@ -221,7 +221,7 @@
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <label for="inputHours" class="control-label">Nombre d'heures allouées</label>
-                                    <?php echo form_input('heures','','class="form-control" placeholder="heures" id="inputHours" required')?>
+                                    <input type="number" min="0" class="form-control" id="inputHours" name="heures" placeholder="heures" required>
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <label for="actif" class="control-label">Actif</label>
@@ -322,11 +322,11 @@
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="heuresModify" class="control-label">Nombre d'heures allouées</label>
-                                <?php echo form_input('heuresModify','','class="form-control" placeholder="heures" id="heuresModify" required')?>
+                                <input type="number" min="0" class="form-control" id="heuresModify" name="heuresModify" placeholder="heures" required>
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="dechargeModify" class="control-label">Nombre d'heures de décharge</label>
-                                <?php echo form_input('dechargeModify','','class="form-control" placeholder="heures" id="dechargeModify" required')?>
+                                <input type="number" min="0" class="form-control" id="dechargeModify" name="dechargeModify" placeholder="heures" required>
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="actifModify" class="control-label">Actif</label>

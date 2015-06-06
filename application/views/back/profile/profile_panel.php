@@ -54,7 +54,7 @@
                                 <?php echo form_open('profile/modifyStatutaire','class="form-horizontal"')?>
                                 <div class="col-md-12 col-no-border">
                                     <label for="inputStatutaire" class="2 col-no-border control-label">Total d'heure à effectuer :</label>
-                                    <input type="number" min="0" class="form-control" id="inputStatutaire" name="inputStatutaire" value="<?php echo $userInfo['statutaire'];?>" type="text">
+                                    <input type="number" min="0" class="form-control" id="inputStatutaire" name="inputStatutaire" value="<?php echo $userInfo['statutaire'];?>">
                                 </div>
                                 <div class="col-md-12 col-no-border text-right">
                                     <?php echo form_submit('submit','Changer votre statutaire','class="btn btn-success"')?>
