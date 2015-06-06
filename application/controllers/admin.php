@@ -89,7 +89,7 @@ class admin extends CI_Controller
             "enseignantsToAccept" => $this->users->getAllEnseignantsToAccept(),
             "semestres" => array("S1", "S2", "S3", "S4", "S5", "S6"),
             "publics" => array("IMR1", "IMR2", "IMR3", "EII1", "EII2", "EII3", "TC", "LSI1", "LSI2", "LSI3", "OPT1", "OPT2", "OPT3","commun IMR1 et EII2"),
-            //"publics" => $this->modulesmodels->getAllPublic(),         // TODO mettre tout les modules proposés a l'ENSSAT; ARRAY pret en dessous :
+            //"publics" => $this->modulesmodels->getAllPublic(),
             "modules" => $this->modulesmodels->getAllModules(),
             "msg" => $msg,
             "success" => $success,
@@ -229,8 +229,8 @@ class admin extends CI_Controller
         if ($array['module'] != null && $array['partie'] != null) {
             $this->contenu->deleteContenuModule($array);
             $this->index("Les parties ont bien été supprimées.", "alert-success", "#deleteContenu");
-            foreach ($this->input->post('selectContenuModule') as $coucou) {  //TODO coucou je trouve ça rigolo lol ?
-                $this->news->addNews($this->session->userdata('username'), "delete-contenu", "Le contenu " . $coucou . " vient d'être supprimé du module : " . $array['module']);
+            foreach ($this->input->post('selectContenuModule') as $contenuModule) {
+                $this->news->addNews($this->session->userdata('username'), "delete-contenu", "Le contenu " . $contenuModule . " vient d'être supprimé du module : " . $array['module']);
             }
         } else
             $this->index("Veuillez remplir correctement les champs...", "alert-danger", "#deleteContenu");

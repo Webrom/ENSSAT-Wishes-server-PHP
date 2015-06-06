@@ -67,7 +67,7 @@ class Contenu extends CI_Model{
     public function deleteContenuModule($array){
         foreach($array['partie'] as $partie){
             $this->db->where('partie',$partie);
-            $query = $this->db->delete('contenu');  // TODO refacto vérification ?
+            $this->db->delete('contenu');
         }
     }
 

@@ -18,8 +18,6 @@ FONCTIONNEL
 DESIGN ----------------------------------------
 MODULES
     - Afficher le nom + le prénom dans les affichettes de modules prises c'est plus mignon !
-    - Afficher les modules non pris en orange
-    - HELP PANEL
 
 ADMINISTRATION :
     - Ajouter des boutons reset : si je me plante dès le début, je dois pouvoir relancer le truc sans recharger la page ! (je pense

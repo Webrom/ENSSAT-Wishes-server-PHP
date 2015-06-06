@@ -463,7 +463,7 @@
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="moduleHed" class="control-label">Indiquez le nombre d'heure</label>
-                                <input type="number" name="moduleHed" class="form-control" placeholder="ex : 12" id="moduleHed" required/>
+                                <input type="number" min="0" name="moduleHed" class="form-control" placeholder="ex : 12" id="moduleHed" required/>
                             </div>
                             <div class="col-md-12 col-no-border text-right">
                                 <?php echo form_submit('submit','valider','class="btn btn-success"')?>
@@ -564,7 +564,7 @@
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <label for="moduleHedAjax" class="control-label">Indiquez le nombre d'heure</label>
-                                    <input type="number" name="moduleHedAjax" class="form-control" placeholder="ex : 12" id="moduleHedAjax" required/>
+                                    <input type="number" min="0" name="moduleHedAjax" class="form-control" placeholder="ex : 12" id="moduleHedAjax" required/>
                                 </div>
                                 <div class="col-md-12 col-no-border text-right">
                                     <?php echo form_submit('submit','Modifier','id="getModuleContenus" class="  btn btn-success"')?>

@@ -13,7 +13,6 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="myModalLabel">Aide</h4>
             </div>
-            <?php //TODO css ?>
             <div class="modal-body">
                 <p>Connectez vous sur le panel de gestion de cours de l'ENSSAT
                     Identifiant : première lettre du prenom, suivis des 7 premières lettres de votre nom
