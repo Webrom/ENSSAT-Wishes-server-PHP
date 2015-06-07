@@ -5,8 +5,6 @@
  */
 class Users extends CI_Model
 {
-
-
     /**
      * Permet de savoir si un utilisateur existe, et si oui si le mot de passe est le bon
      * @return bool Vrai si l'utilisateur et le mdp existe, sinon faux
@@ -26,8 +24,9 @@ class Users extends CI_Model
     }
 
     /**
+     * Permet de récupérer login, nom, prenom, statut, statutaire, actif d'un utilisateur
      * @param $username
-     * @return mixed
+     * @return login, nom, prenom, statut, statutaire, actif
      */
     public function getUserDataByUsername($username)
     {
@@ -39,6 +38,12 @@ class Users extends CI_Model
         return $query->result_array();
     }
 
+    /**
+     * Permet de récupérer le login, nom, prenom, statut, statutaire, actif, decharge d'un utilisateur dont le pseudo
+     * est donné en paramètre ; jointure entre la table décharge et enseignant
+     * @param $username
+     * @return login, nom, prenom, statut, statutaire, actif, decharge
+     */
     public function getUserDataByUsernameJoinDecharge($username)
     {
         //SELECT login,nom,prenom,statut,statutaire,decharge from enseignant inner join decharge on login=enseignant where enseignant='bvozel';
@@ -133,6 +138,11 @@ class Users extends CI_Model
         }
     }
 
+    /**
+     * Refuse & supprime l'utilisateur non accepté de la base de donnée
+     * @param $login
+     * @return resultat de la requete de suppression
+     */
     public function refuseUsers($login)
     {
         $this->db->where('login', $login);
@@ -166,6 +176,10 @@ class Users extends CI_Model
         return $query->result();
     }
 
+    /**
+     * Récupère tout les utilisateurs inactifs
+     * @return inactif_users
+     */
     public function getAllInactifUsers()
     {
         $this->db->select('login');
@@ -203,6 +217,10 @@ class Users extends CI_Model
         return $query->result_array();
     }
 
+    /**
+     * Retourne une liste d'enseignant qui n'ont pas encore étés acceptés
+     * @return mixed
+     */
     public function getAllEnseignantsToAccept()
     {
         $this->db->select('login, nom, prenom');
@@ -212,6 +230,11 @@ class Users extends CI_Model
         return $query->result_array();
     }
 
+    /**
+     * Permet d'accepter les utilisateurs
+     * @param $login
+     * @return résultat de requète
+     */
     public function acceptUsers($login)
     {
         $data = array(
@@ -236,6 +259,12 @@ class Users extends CI_Model
         return $query->row()->statutaire;
     }
 
+    /**
+     * Permet de modifier le statutaire d'un utilisateur dont le login est fournit en paramètre
+     * @param $statutaire
+     * @param $login
+     * @return mixed
+     */
     public function setStatutaire($statutaire,$login){
         $data = array(
             'statutaire' => $statutaire
@@ -258,6 +287,10 @@ class Users extends CI_Model
         return $query->row()->avatar;
     }
 
+    /**
+     * Permet de savoir si un enseignant est en train d'attendre l'acceptation d'un administrateur
+     * @return bool
+     */
     public function ifSomeoneWait()
     {
         $this->db->from('enseignant');
@@ -271,6 +304,14 @@ class Users extends CI_Model
         }
     }
 
+    /**
+     * Permet de changer le statutaire, le statut, l'activité d'un utilisateur dont le login est donné en paramètre
+     * @param $login
+     * @param $newStatutaire
+     * @param $newActif
+     * @param $newStatut
+     * @return mixed
+     */
     public function modifyUser($login, $newStatutaire, $newActif, $newStatut)
     {
         $data = array(

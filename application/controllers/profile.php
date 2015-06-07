@@ -84,6 +84,9 @@ class profile extends CI_Controller
         }
     }
 
+    /**
+     * fonction pour modifier le statutaire de l'utilisateur courrant
+     */
     public function modifyStatutaire()
     {
         $newStatutaire = $this->input->post("inputStatutaire");
@@ -99,6 +102,9 @@ class profile extends CI_Controller
         $this->index(null, $msg, $msgbox);
     }
 
+    /**
+     * fonction pour modifer la décharge de l'utilisateur courant
+     */
     public function modifyDecharge()
     {
         if ($this->decharge->isPresentInTable($this->session->userdata('username'))) {
