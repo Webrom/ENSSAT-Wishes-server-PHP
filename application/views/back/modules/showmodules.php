@@ -15,7 +15,7 @@
                     <?php echo $msg; ?>
                 </div>
             <?php endif;?>
-            <div class="col-md-12 custom-box">
+            <div class="row custom-box">
                 <ul class="nav nav-tabs" style="margin-bottom: 15px;">
                     <li class='<?php if($onglet==null) echo "active";?>'><a id="displayMyModules" href="#mymodules" data-toggle="tab">Mes modules</a></li>
                     <li class='<?php if($onglet=="Recherche") echo "active";?>'><a href="#recherche" data-toggle="tab">Recherche</a></li>

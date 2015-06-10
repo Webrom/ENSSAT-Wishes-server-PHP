@@ -54,7 +54,7 @@
                                 <?php echo form_open('profile/modifyStatutaire','class="form-horizontal"')?>
                                 <div class="col-md-12 col-no-border">
                                     <label for="inputStatutaire" class="2 col-no-border control-label">Total d'heure à effectuer :</label>
-                                    <input type="number" min="0" class="form-control" id="inputStatutaire" name="inputStatutaire" value="<?php echo $userInfo['statutaire'];?>">
+                                    <input class="form-control" id="inputStatutaire" name="inputStatutaire" value="<?php echo $userInfo['statutaire'];?>" type="text">
                                 </div>
                                 <div class="col-md-12 col-no-border text-right">
                                     <?php echo form_submit('submit','Changer votre statutaire','class="btn btn-success"')?>
@@ -64,7 +64,7 @@
                                 <?php echo form_open('profile/modifyDecharge','class="form-horizontal"')?>
                                 <div class="col-md-12 col-no-border">
                                     <label for="inputDecharge" class="2 col-no-border control-label">Decharge :</label>
-                                    <input type="number" min="0" class="form-control" id="inputDecharge" name="inputDecharge" value="<?php echo $decharge;?>" type="text">
+                                    <input class="form-control" id="inputDecharge" name="inputDecharge" value="<?php echo $decharge;?>" type="text">
                                 </div>
                                 <div class="col-md-12 col-no-border text-right">
                                     <?php echo form_submit('submit','Changer votre décharge','class="btn btn-success"')?>

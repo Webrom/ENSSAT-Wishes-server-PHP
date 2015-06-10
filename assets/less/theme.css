@@ -219,6 +219,7 @@ textarea {
 .comment-box div.module,
 .comment-box div.user {
   border: none;
+  margin: 5px;
   -moz-box-shadow: 0px 5px 5px 0px #656565;
   -webkit-box-shadow: 0px 5px 5px 0px #656565;
   -o-box-shadow: 0px 5px 5px 0px #656565;
@@ -962,6 +963,8 @@ a.list-group-item.active > .badge,
   -webkit-box-shadow: 0px 5px 5px 0px #656565;
   -o-box-shadow: 0px 5px 5px 0px #656565;
   box-shadow: 0px 5px 5px 0px #656565;
+  margin: 5px;
+  padding: 0 10px;
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .col-lg-8,
