@@ -1,12 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Created by PhpStorm.
- * User: colinleverger
- * Date: 28/05/15
- * Time: 10:47
+ * Permet l'upload des photos
  */
 class uploadmodel extends CI_Model{
-    //ALTER TABLE enseignant ADD avatar VARCHAR(30) DEFAULT 'avatar_defaut.jpg'
+
+    /**
+     * Permet l'upload de l'image et l'ajout de son url à la base
+     * @param $upload_data, image à uploader
+     * @param $userName String, login de l'enseignant
+     */
     public function changeAvatar($upload_data,$userName){
         if(file_exists("./uploads/".$userName.".jpg"))
             unlink("./uploads/".$userName.".jpg");
@@ -22,6 +24,10 @@ class uploadmodel extends CI_Model{
         $this->db->update('enseignant', $data);
     }
 
+    /**
+     * Permet de supprimer un avatar
+     * @param $userName String, login de l'enseignant
+     */
     public function delAvatar($userName){
         if(file_exists("./uploads/".$userName.".jpg"))
             unlink("./uploads/".$userName.".jpg");
@@ -33,6 +39,7 @@ class uploadmodel extends CI_Model{
         $this->db->update('enseignant', $data);
     }
 
+    //TODO : je ne sais pas trop si cette fonction sert à quelque chose, si oui je vous laisse la commenter
     public function cropImage($filename){
         // Create a blank image and add some text
         $ini_filename = $filename;

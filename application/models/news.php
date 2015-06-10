@@ -1,13 +1,19 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: romain
- * Date: 30/05/15
- * Time: 02:23
+ * Toutes les requêtes pour la table news
  */
 
 class News extends CI_Model{
 
+    /**
+     * Permet d'ajouter une news
+     * @param $login String, login de l'enseignant à l'orgine de la news
+     * @param $type String, si elle concerne les modules, les contenus, etc...
+     * @param $information String, message de la news
+     * @param null $module String, si module, le nom
+     * @param null $partie String, si contenu, la partie
+     * @return boolean, true si l'ajout s'est bien passé
+     */
     public function addNews ($login,$type,$information,$module = null,$partie= null){
         $this->db->set('DATE','NOW()',false);
         $this->db->set('TYPE',$type);
@@ -18,6 +24,10 @@ class News extends CI_Model{
         return $this->db->insert('news');
     }
 
+    /**
+     * Permet de retourner toutes les news ajoutées par un administrateur qui sont des informations générales non générées automatiquement
+     * @return tableau avec toutes les news "générales"
+     */
     public function getGeneralesNews(){
         $this->db->select('ID,DATE,INFORMATION');
         $this->db->from('news');
@@ -26,27 +36,47 @@ class News extends CI_Model{
         return $query->result_array();
     }
 
-    public function getInformation($date){
+    /**
+     * Permet d'obtenir le contenu de la news à partir de son ID
+     * @param $id int, numéro de ref de la news
+     * @return String, contenu de la news
+     */
+    public function getInformation($id){
         $this->db->select('INFORMATION');
         $this->db->from('news');
-        $this->db->where('ID',$date);
+        $this->db->where('ID',$id);
         $query = $this->db->get();
         return $query->row()->INFORMATION;
     }
 
-    public function removeNews($date){
-        $this->db->where('ID', $date);
+    /**
+     * Permet de supprimer une news avec son id
+     * @param $id int, numéro de ref de la news
+     * @return true si la supression a fonctionnée, false sinon
+     */
+    public function removeNews($id){
+        $this->db->where('ID', $id);
         return $this->db->delete('news');
     }
 
-    public function modifyNews($date,$information){
+    /**
+     * Permet de modifier le contenu d'une news
+     * @param $id int, numéro de ref de la news
+     * @param $information String, contenu de la news
+     * @return true si la modif est ok, false sinon
+     */
+    public function modifyNews($id,$information){
         $data = array(
             'INFORMATION'=>$information
         );
-        $this->db->where('ID', $date);
+        $this->db->where('ID', $id);
         return $this->db->update('news',$data);
     }
 
+    /**
+     * Permet de connaitre le nombre de news dans la base
+     * @return int, nombre de news
+     */
     public function getNewsCount(){
         return $this->db->count_all('news');
     }
@@ -211,6 +241,11 @@ class News extends CI_Model{
         return $data;
     }
 
+    /**
+     * Permet d'obtenir  une news avec son id, le join sert à obtenir le nom et prenom plutot que le login
+     * @param $id int, numéro de ref de la news
+     * @return La news
+     */
     public function getNormalNews($id){
         $this->db->select('
                                         news.TYPE AS classe,
