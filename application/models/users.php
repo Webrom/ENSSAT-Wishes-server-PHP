@@ -25,7 +25,7 @@ class Users extends CI_Model
 
     /**
      * Permet de récupérer login, nom, prenom, statut, statutaire, actif d'un utilisateur
-     * @param $username
+     * @param $username String, login de l'enseignant
      * @return login, nom, prenom, statut, statutaire, actif
      */
     public function getUserDataByUsername($username)
@@ -58,7 +58,7 @@ class Users extends CI_Model
 
     /**
      * Permet de savoir si un compte est actif ou inactif
-     * @param $name
+     * @param $name String, login d'un enseignant
      * @return le contenu de 'actif' de la base
      */
     public function verifyActivity($name)
@@ -76,7 +76,7 @@ class Users extends CI_Model
      * @param string $pwd
      * @param int $activity
      * @param int $accepted
-     * @return string
+     * @return string, le login de l'utilisateur que l'on vient de créer (car 1er lettre du prénom + 7 premières du nom de famille + 1 chiffre si déjà login existant)
      */
     public function addUser($pwd = "servicesENSSAT", $activity = 0, $accepted = 0, $prenom, $nom, $heures)
     {
@@ -127,7 +127,7 @@ class Users extends CI_Model
     }
 
     /**
-     * Supprime un utilisateur de la base
+     * Supprime une liste  d'utilisateur de la base
      */
     public function deleteUsers($data)
     {
@@ -140,7 +140,7 @@ class Users extends CI_Model
 
     /**
      * Refuse & supprime l'utilisateur non accepté de la base de donnée
-     * @param $login
+     * @param $login String, login de l'enseignant
      * @return resultat de la requete de suppression
      */
     public function refuseUsers($login)
