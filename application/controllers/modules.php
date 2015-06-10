@@ -40,7 +40,7 @@ class modules extends CI_Controller
             "checked" => $infosmodule['checked'],
             "success" => $infos['success'],
             "msg" => $infos['msg'],
-            "myModules" => $this->modulesmodels->getAllMyModules($this->session->userdata('username')),
+            "myModules" => $this->contenu->getAllMyContenus($this->session->userdata('username')),
             "onglet" => $onglet,
             "rechercheonglet" => $recherche
         );

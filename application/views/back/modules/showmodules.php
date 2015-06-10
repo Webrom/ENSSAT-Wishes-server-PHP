@@ -34,10 +34,13 @@
                                             <li class='list-group-item'>
                                                 <?php echo $val['partie'];?>
                                             </li>
+                                            <li class='list-group-item'>
+                                                <?php echo $val['public'];?>
+                                            </li>
                                             <li class="list-group-item">
-                                        <span class="badge">
-                                            <?php echo $val['hed'];?>
-                                        </span>
+                                                <span class="badge">
+                                                    <?php echo $val['hed'];?>
+                                                </span>
                                                 Heures :
                                             </li>
                                             <li class="list-group-item">
@@ -161,13 +164,16 @@
                                     <li class='list-group-item'>
                                         <?php echo $val['partie']?>
                                     </li>
+                                    <li class='list-group-item'>
+                                        <?php echo $val['public']?>
+                                    </li>
                                     <li class="list-group-item">
                                         <span class="badge"><?php echo $val['hed']?></span>
                                         Heures :
                                     </li>
                                     <li class="list-group-item">
                                         <?php if($val['enseignant'])
-                                            echo $val['enseignant'];
+                                            echo $val['nom']." ".$val['prenom'];
                                         else
                                             echo '<a href="'.base_url().'index.php/modules/inscriptionModule?module='.$val['module'].'&partie='.$val['partie'].'"><button type="button" class="btn btn-warning">S\'inscrire</button></a>';?>
                                     </li>

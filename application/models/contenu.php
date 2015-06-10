@@ -8,6 +8,21 @@
 
 class Contenu extends CI_Model{
 
+    public function getAllMyContenus($username){
+        $this->db->select("*");
+        $this->db->from("contenu");
+        $this->db->join('module','module.ident=contenu.module');
+        $this->db->where("enseignant",$username);
+        $query = $this->db->get();
+
+        if(!$query) {
+            return null;
+        }
+        else {
+            return $query->result_array();
+        }
+    }
+
     public function getAllModuleTypes(){
         $this->db->select("type");
         $this->db->distinct();
@@ -73,29 +88,33 @@ class Contenu extends CI_Model{
 
 
     public function getContenuByModule($array){
-        $this->db->select('*');
-        $this->db->from('module');
-        $this->db->join('contenu','module.ident=contenu.module');
+        $this->db->select('module,partie,type,hed,nom,prenom,contenu.enseignant,module.public');
+        $this->db->from('contenu');
+        $this->db->join('module','module.ident=contenu.module');
+        $this->db->join('enseignant','contenu.enseignant = enseignant.login','left');
         if($array['module'])
             $this->db->where('module',$array['module']);
         if($array['semester']!='noSemester')
             $this->db->where('semestre',$array['semester']);
         if($array['teacher']!='no')
             $this->db->where('enseignant',$array['teacher']);
+        $this->db->order_by('enseignant', 'ASC');
         $query = $this->db->get();
         return $query->result_array();
     }
 
     public function getContenuByPromo($array){
-        $this->db->select('*');
-        $this->db->from('module');
-        $this->db->join('contenu','module.ident=contenu.module');
+        $this->db->select('module,partie,type,hed,nom,prenom,contenu.enseignant,module.public');
+        $this->db->from('contenu');
+        $this->db->join('module','module.ident=contenu.module');
+        $this->db->join('enseignant','contenu.enseignant = enseignant.login','left');
         if($array['promotion']!='noProm')
             $this->db->where('public',$array['promotion']);
         if($array['semester']!='noSemester')
             $this->db->where('semestre',$array['semester']);
         if($array['teacher']!='no')
             $this->db->where('enseignant',$array['teacher']);
+        $this->db->order_by('enseignant', 'ASC');
         $query = $this->db->get();
         return $query->result_array();
     }

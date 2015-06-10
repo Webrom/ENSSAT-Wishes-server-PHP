@@ -26,20 +26,6 @@ class modulesmodels extends CI_Model {
         return ($query)?"good":$ret;
     }
 
-    public function getAllMyModules($username){
-        $this->db->select("module,partie,type,hed");
-        $this->db->from("contenu");
-        $this->db->where("enseignant",$username);
-        $query = $this->db->get();
-
-        if(!$query) {
-            return null;
-        }
-        else {
-            return $query->result_array();
-        }
-    }
-
     public function getModuleByPromOrSemester($promOrSemester,$valueSent){
         $this->db->select("ident");
         $this->db->from("module");
