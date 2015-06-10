@@ -811,12 +811,10 @@ a.list-group-item.active > .badge,
   color: #FFF !important;
 }
 .module-not-taken {
-  /* background: #27ae60; */
-  background: rgb(211, 84, 0);
+  background: #27ae60;
 }
 .module-not-taken:hover {
-  /* background: #2ecc71 !important; */
-  background: #e67e22 !important;
+  background: #2ecc71 !important;
 }
 /* Thumbnail */
 .thumbnail {
