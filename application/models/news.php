@@ -151,7 +151,17 @@ class News extends CI_Model{
                     break;
                 case 'user':
                     if($new['module']!=null && $new['partie']!=null) {
-                        $this->db->select('
+                        $this->db->select('*')
+                            ->from('module')
+                            ->where('ident', $new['module']);
+                        $module = $this->db->get();
+                        $this->db->select('*')
+                            ->from('contenu')
+                            ->where('partie', $new['partie'])
+                            ->where('module', $new['module']);
+                        $partie = $this->db->get();
+                        if ($module->num_rows != 0 && $partie->num_rows != 0){
+                            $this->db->select('
                                         news.TYPE AS classe,
                                         contenu.module,
                                         module.libelle,
@@ -167,13 +177,15 @@ class News extends CI_Model{
                                         news.ID,
                                         news.INFORMATION,
                                         DATE_FORMAT(news.DATE,\'%d/%m/%Y &agrave; %H:%i:%s\') AS \'date\'', FALSE)
-                            ->from('news')
-                            ->join('module', 'news.module=module.ident')
-                            ->join('contenu', 'news.module=contenu.module and news.partie=contenu.partie')
-                            ->join('enseignant', 'news.ENSEIGNANT=enseignant.login')
-                            ->where('news.ID',$new['ID']);
-                        array_push($data,$this->db->get()->result_array());
-
+                                ->from('news')
+                                ->join('module', 'news.module=module.ident')
+                                ->join('contenu', 'news.module=contenu.module and news.partie=contenu.partie')
+                                ->join('enseignant', 'news.ENSEIGNANT=enseignant.login')
+                                ->where('news.ID',$new['ID']);
+                            array_push($data,$this->db->get()->result_array());
+                        }else{
+                            array_push($data,$this->getNormalNews($new['ID']));
+                        }
                     }else{
                         $this->db->select('
                                         news.TYPE AS classeUser,

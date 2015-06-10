@@ -60,9 +60,6 @@ class homeNews extends CI_Controller
             'cur_tag_close' => '</a></li>',
             'num_tag_open' => '<li>',
             'num_tag_close' => '</li>'
-
-
-
         ));
 
         $data['pagination'] = $this->pagination->create_links();
@@ -76,7 +73,6 @@ class homeNews extends CI_Controller
         $data['heuresprises'] = $heuresprises;
         $data['heurestotales'] = $heurestotales;
         /* FIN CALCUL */
-
         $this->load->view('header', $data);
         $this->load->view('back/template/header');
         $this->load->view('back/home/news', $data);

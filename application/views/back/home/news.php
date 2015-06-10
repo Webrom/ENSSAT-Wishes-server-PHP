@@ -24,6 +24,7 @@
                                         <h5><?php echo $n[0]['INFORMATION'];?></h5>
                                     </div>
                                     <div class="col-md-12 col-no-border">
+                                    <?php if(isset($n[0]['partie'])):?>
                                         <div class="col-no-border col-md-8">
                                             <ul class="n-info">
                                                 <li>Enseignant : <?php echo $n[0]['nom']." ".$n[0]['prenom'];?></li>
@@ -40,6 +41,9 @@
                                             };?>
                                             <?php $this->load->view('back/home/boxModule',$data);?>
                                         </div>
+                                    <?php else: ?>
+                                        <p>Le module à été supprimé, les informations ne sont plus disponibles.</p>
+                                    <?php endif;?>
                                     </div>
                                 <?php break;
                                 case 'module':?>
