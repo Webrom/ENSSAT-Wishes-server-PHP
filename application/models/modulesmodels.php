@@ -1,13 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Created by PhpStorm.
- * User: zahead
- * Date: 27/05/15
- * Time: 15:38
+ * Toutes les requêtes dans la table Module se font ici
  */
 
 class modulesmodels extends CI_Model {
 
+    /**
+     * Permet d'obtenir tous les modules présents dans la table
+     * @return tableau contenant chaque module
+     */
     public function getAllModules(){
         $this->db->select("ident,libelle,public");
         $this->db->from ("module");
@@ -15,6 +16,7 @@ class modulesmodels extends CI_Model {
         return $query->result_array();
     }
 
+    //TODO : je pense que cette fonction devrait être dans le model contenu et non module
     public function addContenuToModule($contenu){
         $query = $this->db->insert('contenu',$contenu);
         if(!$query){
@@ -26,6 +28,12 @@ class modulesmodels extends CI_Model {
         return ($query)?"good":$ret;
     }
 
+    /**
+     * Permet d'obtenir tous les identifiants des modules pour un semestre OU une promotion données
+     * @param $promOrSemester  String, indique si on veut la requête pour un semestre ou une promo
+     * @param $valueSent String, valeur à rechercher
+     * @return tableau avec les identifiants des modules
+     */
     public function getModuleByPromOrSemester($promOrSemester,$valueSent){
         $this->db->select("ident");
         $this->db->from("module");
@@ -35,6 +43,10 @@ class modulesmodels extends CI_Model {
     }
 
 
+    /**Permet de supprimer plusieurs un ou plusieurs modules.
+     * Commence par supprimer tous les contenus associés au module, puis supprime le module
+     * @param $modules String, nom du module à supprimer
+     */
     public function deleteModuleContenu($modules){
         foreach($modules as $module){
             $this->db->where('module',$module);
@@ -44,6 +56,12 @@ class modulesmodels extends CI_Model {
         }
     }
 
+
+    /**
+     * Permet de créer un module
+     * @param $module String, nom du module à ajouter
+     * @return array|string, résultat de la requête
+     */
     public function addModule($module){
         $query = $this->db->insert('module',$module);
         if(!$query){

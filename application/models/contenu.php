@@ -1,9 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Created by PhpStorm.
- * User: romain
- * Date: 27/05/15
- * Time: 17:14
+ * Toutes les décharges de la table Contenu se font ici
  */
 
 class Contenu extends CI_Model{

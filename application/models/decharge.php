@@ -1,13 +1,15 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: romain
- * Date: 29/05/15
- * Time: 22:35
+ * Toutes les requêtes dans la table Décharge se font ici
  */
 
 class Decharge extends CI_Model{
 
+    /**
+     * Permet d'obtenir le nombre d'heure de décharge d'un enseignant
+     * @param $enseignant String, le login d'un enseignant
+     * @return int, nombre d'heure(s) de décharge
+     */
     public function getHoursDecharge($enseignant){
         $this->db->select('decharge');
         $this->db->from('decharge');
@@ -21,6 +23,11 @@ class Decharge extends CI_Model{
         }
     }
 
+    /**
+     * Permet de savoir si un enseignant est présent dans la table des décharges
+     * @param $user String, login de l'enseignant
+     * @return boolean, 0 si il n'est pas présent, 1 sinon
+     */
     public function isPresentInTable($user){
         $this->db->select('decharge');
         $this->db->from('decharge');
@@ -34,6 +41,11 @@ class Decharge extends CI_Model{
         }
     }
 
+    /**
+     * Permet de modifier la décharge d'un enseignant
+     * @param $user String, login de l'enseignant
+     * @param $decharge int, le nouveau nombre d'heures de décharge
+     */
     public function setDecharge($user,$decharge){
         $data = array(
             'decharge' => $decharge
@@ -42,6 +54,11 @@ class Decharge extends CI_Model{
         $this->db->update('decharge',$data);
     }
 
+    /**
+     * Permet de créer une décharge pour un enseignant
+     * @param $enseignant String, login de l'enseignant
+     * @param $decharge int, le nouveau nombre d'heures de décharge
+     */
     public function addNewDecharge($enseignant,$decharge){
         $data = array(
             'decharge' => $decharge,
