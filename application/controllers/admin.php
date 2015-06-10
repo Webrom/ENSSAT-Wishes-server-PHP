@@ -166,7 +166,7 @@ class admin extends CI_Controller
             "public" => $this->input->post('selectPublic'),
             "semestre" => $this->input->post('selectSemestre'),
             "libelle" => $this->input->post('inputLibelle'),
-            "responsable" => strlen($this->input->post('selectResponsable') != 0) ? $this->input->post('selectResponsable') : null
+            "responsable" => ($this->input->post('selectResponsable') != NULL) ? $this->input->post('selectResponsable') : null
         );
         $res = $this->modulesmodels->addModule($module);
         if ($res == "good") {
