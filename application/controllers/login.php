@@ -9,6 +9,9 @@
 class Login extends CI_Controller
 {
 
+    /**
+     * Fonction permettant de se déconnecter
+     */
     function logout()
     {
         $this->session->unset_userdata('is_logged_in');
@@ -20,6 +23,9 @@ class Login extends CI_Controller
         $this->index($data);
     }
 
+    /**
+     * Page principale du controlleur login
+     */
     public function index($data = null)
     {
         $this->load->model('users');
@@ -48,6 +54,9 @@ class Login extends CI_Controller
         }
     }
 
+    /**
+     * Fonction pour savoir si un utilisateur peut se connecter
+     */
     public function validate_credentials()
     {
         $this->load->model('users');

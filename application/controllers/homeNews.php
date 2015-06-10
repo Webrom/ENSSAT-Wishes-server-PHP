@@ -64,7 +64,7 @@ class homeNews extends CI_Controller
 
         $data['pagination'] = $this->pagination->create_links();
         $data['news'] = $this->news->getNews(self::NB_NEWS_PER_PAGE, $nb_news - 1);
-        //TODO fonction en doublon... faire une fonction dédiée  c'est ce que j'ai mis sur un commit?
+        //TODO fonction en doublon... faire une fonction dédiée  c'est ce que j'ai mis sur un commit? Romain : On devrait faire le calcul dans le model ?
         /* CALCUL POURCENTAGE HEURES PRISES */
         $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
         $heurestotales = $this->users->getStatutaire($this->session->userdata('username')) - $this->decharge->getHoursDecharge($this->session->userdata('username'));

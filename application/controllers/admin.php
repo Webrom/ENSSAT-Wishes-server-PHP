@@ -115,8 +115,9 @@ class admin extends CI_Controller
         $this->load->view('footer');
     }
 
-    // Permet de recuperer le contenu d'un module grâce à son module et sa partie utilisée par une fonction ajax
-
+    /**
+     * Permet de recuperer le contenu d'un module grâce à son module et sa partie utilisée par une fonction ajax
+     */
     public function setModuleContenus()
     {
         echo json_encode($this->contenu->getModuleContenusByPartieModule(
