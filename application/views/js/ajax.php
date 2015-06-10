@@ -16,7 +16,6 @@
             "method": $(this).attr('id'),
             "gData": "#" + $(this).attr('class').substring(0, 10)
         };
-        console.log(param);
         $.ajax({
             url : param["base_url"]+'index.php/'+param["controler"]+'/'+param["method"],
             type : 'GET',
