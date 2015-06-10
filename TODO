@@ -27,3 +27,7 @@ SI ON A LE TEMPS -----------------------------
 - PROMPT DE CONFIRMATION POUR CHAQUE SUPPRESSION
 - CRYPTAGE MDP
 
+Critères recherche pour reporting :
+-Un prof donnée
+-Une promotion donnée (avec option d'année ou semestre)
+-Par module

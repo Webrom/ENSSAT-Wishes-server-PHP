@@ -19,6 +19,7 @@
                 <ul class="nav nav-tabs" style="margin-bottom: 15px;">
                     <li class='<?php if($onglet==null) echo "active";?>'><a id="displayMyModules" href="#mymodules" data-toggle="tab">Mes modules</a></li>
                     <li class='<?php if($onglet=="Recherche") echo "active";?>'><a href="#recherche" data-toggle="tab">Recherche</a></li>
+                    <li class='<?php if($onglet=="Reporting") echo "active";?>'><a href="#reporting" data-toggle="tab">Reporting</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div class='tab-pane fade <?php if($onglet==null) echo "active in"?>' id="mymodules">
@@ -145,6 +146,10 @@
                                 <?php echo form_close()?>
                             </div>
                         </div>
+                    </div>
+                    <div class='tab-pane fade <?php if($onglet=="Reporting") echo "active in"?>' id="reporting">
+                        <legend>Reporting</legend>
+
                     </div>
                 </div>
             </div>

@@ -8,6 +8,11 @@
 
 class Contenu extends CI_Model{
 
+    /**
+     * Permet d'obtenir tous les contenus pour un enseignant donné
+     * @param $username Il s'agit du login de l'enseignant
+     * @return null si l'enseignant n'a aucun contenu d'assigner, sinon retourne le résultat de la requête sous format tableau
+     */
     public function getAllMyContenus($username){
         $this->db->select("*");
         $this->db->from("contenu");
@@ -23,6 +28,10 @@ class Contenu extends CI_Model{
         }
     }
 
+    /**
+     * Cette fonction permet d'obtenir tous les types de contenu
+     * @return un tableau avec tous les types des contenus
+     */
     public function getAllModuleTypes(){
         $this->db->select("type");
         $this->db->distinct();
@@ -31,6 +40,11 @@ class Contenu extends CI_Model{
         return $query->result_array();
     }
 
+    /**
+     * Permet d'obtenir les différentes parties des contenus pour un module donné
+     * @param $data String, nom du module
+     * @return Tableau contenant les différentes parties (vide si il n'y a pas de contenu pour un module)
+     */
     public function getTypeContenu($data){
         $this->db->select('partie');
         $this->db->from('contenu');
@@ -39,6 +53,11 @@ class Contenu extends CI_Model{
         return $query->result_array();
     }
 
+    /**
+     * Permet d'obtenir tous les contenus pour un module donné
+     * @param $data String, nom du module
+     * @return tableau contenant tout les contenus pour un module donné
+     */
     public function getModuleContenus($data){
         $this->db->select('*');
         $this->db->from("contenu");
@@ -47,6 +66,11 @@ class Contenu extends CI_Model{
         return $query->result_array();
     }
 
+    /**
+     * Permet de recuperer le contenu d'un module grâce à son module et sa partie utilisée
+     * @param $array tableau contenant un module et une partie
+     * @return Les informations sur le contenu souhaitait
+     */
     public function getModuleContenusByPartieModule($array){
         $this->db->select('*');
         $this->db->from("contenu");
@@ -55,6 +79,12 @@ class Contenu extends CI_Model{
         return $query->result_array();
     }
 
+    /**
+     * Modifier un contenu pour un module et une partie précise
+     * @param $data les partie à modifier du contenu
+     * @param $keys tableau avec un String pour le module et un String pour la partie
+     * @return array|string "good" si la modification s'est passée comme prévu, le message et le numéro d'erreur dans le cas contraire
+     */
     public function modifyModuleContenu($data,$keys){
         $where = 'module = "'.$keys['module'].'" AND partie = "'.$keys['partie'].'"';
         $query = $this->db->query($this->db->update_string('contenu',$data,$where));
@@ -69,6 +99,7 @@ class Contenu extends CI_Model{
 
     }
 
+    //TODO : Je comprend pas bien, on récupére l'enseignant pour un contenu ou on lui passe en paramètre l'enseignant ?
     public function getModuleTeacher($array){
         $this->db->select('enseignant')
             ->from('contenu')
@@ -79,6 +110,10 @@ class Contenu extends CI_Model{
         return $query->result_array();
     }
 
+    /**
+     * Supprimer un contenu pour partie donnée
+     * @param $array
+     */
     public function deleteContenuModule($array){
         foreach($array['partie'] as $partie){
             $this->db->where('partie',$partie);
