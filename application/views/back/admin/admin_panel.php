@@ -104,7 +104,7 @@
                     <?php echo $msg ?>
                 </div>
             <?php endif;?>
-            <div id="addModulde" class="row classeUnique">
+            <div id="addModulde" class="row admin-custom-box classeUnique">
                 <div class="col-md-12 col-no-border">
                     <?php echo form_open('admin/addModule','class="form-horizontal"')?>
                     <fieldset>
@@ -153,7 +153,7 @@
                     <?php echo form_close()?>
                 </div>
             </div>
-            <div id="deleteModule" class="row">
+            <div id="deleteModule" class="row admin-custom-box">
                 <div class="col-md-12 col-no-border">
                     <?php echo form_open("admin/deleteModule",'class="form-horizontal"')?>
                     <fieldset>
@@ -175,7 +175,7 @@
                     <?php echo form_close()?>
                 </div>
             </div>
-            <div id="acceptUsers" class="row">
+            <div id="acceptUsers" class="row admin-custom-box">
                 <div class="col-md-12 col-no-border">
                     <fieldset>
                         <legend>Utilisateur(s) en attente(s) d'acceptation</legend>
@@ -202,7 +202,7 @@
                     </fieldset>
                 </div>
             </div>
-            <div id="addUser" class="row">
+            <div id="addUser" class="row admin-custom-box">
                 <div class="col-md-12 col-no-border">
                     <?php echo form_open("admin/addUser",'class="form-horizontal"')?>
                     <fieldset>
@@ -256,7 +256,7 @@
                     <?php echo form_close()?>
                 </div>
             </div>
-            <div id="deleteUsers" class="row">
+            <div id="deleteUsers" class="row admin-custom-box">
                 <div class="col-md-12 col-no-border">
                     <?php echo form_open("admin/deleteUser",'class="form-horizontal"')?>
                     <fieldset>
@@ -282,7 +282,7 @@
                     <?php echo form_close()?>
                 </div>
             </div>
-            <div id="modifyUsers" class="row">
+            <div id="modifyUsers" class="row admin-custom-box">
                 <div class="col-md-12 col-no-border">
                     <?php echo form_open("admin/modifyUser",'class="form-horizontal"')?>
                     <fieldset>
@@ -360,7 +360,7 @@
                     <?php echo form_close()?>
                 </div>
             </div>
-            <div id="addNews" class="row">
+            <div id="addNews" class="row admin-custom-box">
                 <div class="col-md-12 col-no-border">
                     <?php echo form_open("admin/createNews",'class="form-horizontal"')?>
                     <fieldset>
@@ -375,7 +375,7 @@
                     <?php echo form_close()?>
                 </div>
             </div>
-            <div id="deleteNews" class="row">
+            <div id="deleteNews" class="row admin-custom-box">
                 <div class="col-md-12 col-no-border">
                     <?php echo form_open("admin/removeNews",'class="form-horizontal"')?>
                     <fieldset>
@@ -392,7 +392,7 @@
                                     <?php endforeach;?>
                                 </select>
                             </div>
-                            <div class="row" id="afficheInformation">
+                            <div class="row admin-custom-box" id="afficheInformation">
                                 <div class="col-md-12 col-no-border" >
                                     <textarea id="informationNews" rows="8" style="width:100%" disabled></textarea>
                                 </div>
@@ -405,7 +405,7 @@
                     <?php echo form_close()?>
                 </div>
             </div>
-            <div id="modifyNews" class="row">
+            <div id="modifyNews" class="row admin-custom-box">
                 <div class="col-md-12 col-no-border">
                     <?php echo form_open("admin/modifyNews",'class="form-horizontal"')?>
                     <fieldset>
@@ -422,7 +422,7 @@
                                     <?php endforeach;?>
                                 </select>
                             </div>
-                            <div class="row customHide" id="afficheInformationtoModify">
+                            <div class="row admin-custom-box customHide" id="afficheInformationtoModify">
                                 <div class="col-md-12 col-no-border">
                                     <textarea name="informationNewstoModify" id="informationNewstoModify" rows="8" style="width:100%"></textarea>
                                 </div>
@@ -435,7 +435,7 @@
                     <?php echo form_close()?>
                 </div>
             </div>
-            <div id="addContenu" class="row">
+            <div id="addContenu" class="row admin-custom-box">
                 <div class="col-md-12 col-no-border">
                     <?php echo form_open("admin/addContenuToModule",'class="form-horizontal"')?>
                     <fieldset>
@@ -473,7 +473,7 @@
                     <?php echo form_close()?>
                 </div>
             </div>
-            <div id="deleteContenu" class="row">
+            <div id="deleteContenu" class="row admin-custom-box">
                 <div class="col-md-12 col-no-border">
                     <?php echo form_open("admin/deleteModuleContenu",'class="form-horizontal"')?>
                     <fieldset>
@@ -505,7 +505,7 @@
                     <?php echo form_close()?>
                 </div>
             </div>
-            <div id="modifyContenu" class="row">
+            <div id="modifyContenu" class="row admin-custom-box">
                 <div class="col-md-12 col-no-border">
                     <?php echo form_open("admin/modifyModuleContenu",'class="form-horizontal"')?>
                     <fieldset>

@@ -64,4 +64,5 @@
         </div>
     </div>
 </div>
+<div id="display-bg"></div>
 <div class="container" id="descendTop">

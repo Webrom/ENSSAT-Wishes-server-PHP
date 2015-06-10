@@ -143,7 +143,7 @@ class modules extends CI_Controller
         $this->news->addNews($this->session->userdata('username'), "user",
             "Inscription à un module"
             , $this->input->get('module'),$this->input->get('partie'));
-        if($this->input->get('page')!=null)
+        if($this->input->get('page')=='home')
             redirect('homeNews');
         $this->index(null, null, $info, "Recherche");
     }

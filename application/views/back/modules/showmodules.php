@@ -171,12 +171,15 @@
                                         <span class="badge"><?php echo $val['hed']?></span>
                                         Heures :
                                     </li>
-                                    <li class="list-group-item">
-                                        <?php if($val['enseignant'])
-                                            echo $val['nom']." ".$val['prenom'];
-                                        else
-                                            echo '<a href="'.base_url().'index.php/modules/inscriptionModule?module='.$val['module'].'&partie='.$val['partie'].'"><button type="button" class="btn btn-warning">S\'inscrire</button></a>';?>
-                                    </li>
+                                    <?php if($val['enseignant']):?>
+                                        <li class="list-group-item same-case">
+                                            <?php echo $val['nom']." ".$val['prenom'];?>
+                                        </li>
+                                    <?php else: ?>
+                                        <li class="list-group-item same-case text-center">
+                                            <a href="<?php echo base_url();?>index.php/modules/inscriptionModule?module=<?php echo $val['module'];?>&partie=<?php echo $val['partie'];?>"><button type="button" class="btn btn-warning">S'inscrire</button></a>
+                                        </li>
+                                    <?php endif;?>
                                 </ul>
                             </div>
                         </div>
