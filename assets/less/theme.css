@@ -239,6 +239,10 @@ textarea {
 .comment-box div.delete-contenu h5 {
   background: #d92b66;
 }
+.comment-box div.delete-contenu {
+  margin: 0;
+  padding: 0;
+}
 .comment-box div.contenu h5 {
   background: #f1c40f;
 }

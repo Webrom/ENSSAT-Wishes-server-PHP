@@ -99,9 +99,6 @@
                                     <div class="col-md-10 col-no-border">
                                         <h5><?php echo $n[0]['INFORMATION'];?></h5>
                                     </div>
-                                    <div class="col-md-12 col-no-border">
-                                        <p></p>
-                                    </div>
                                     <?php break;
                             endswitch;?>
                         </div>
