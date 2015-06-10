@@ -203,7 +203,7 @@ class admin extends CI_Controller
         $data = $this->input->post('enseignants');
         if ($data != null) {
             $this->users->deleteUsers($data);
-            $this->contenu->removeALotEnseignanttoContenu($data); //TODO wadafuck ce nom ?
+            $this->contenu->removeTeacherforEachContenu($data);
             $this->index("Le/les enseignant(s) ont étés supprimés.", "alert-success", "#deleteUsers");
         } else
             $this->index("Veuillez remplir correctement le formulaire", "alert-danger", "#deleteUsers");

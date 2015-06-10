@@ -99,7 +99,12 @@ class Contenu extends CI_Model{
 
     }
 
-    //TODO : Je comprend pas bien, on récupére l'enseignant pour un contenu ou on lui passe en paramètre l'enseignant ?
+    //TODO : Renvoyer un booléan suffirait, puisqu'elle ne sert qu'à savoir si un enseignant était déjà dans le module
+    /**
+     * Permet de savoir si l'enseignant était déja dans le module
+     * @param $array
+     * @return un tableau vide si le prof n'était déjà pas assigné au contenu, sinon renvoi le résultat
+     */
     public function getModuleTeacher($array){
         $this->db->select('enseignant')
             ->from('contenu')
@@ -112,8 +117,9 @@ class Contenu extends CI_Model{
 
     /**
      * Supprimer un contenu pour partie donnée
-     * @param $array
+     * @param $array String de la partie à supprimer
      */
+    //TODO : je pense qu'il y a une erreur ici, si jamais plusieurs contenus ont le même nom de partie on les suprimme tous... Je pense que l'on cherche plus à supprimer un contenu pour une partie et un module donné
     public function deleteContenuModule($array){
         foreach($array['partie'] as $partie){
             $this->db->where('partie',$partie);
@@ -122,6 +128,16 @@ class Contenu extends CI_Model{
     }
 
 
+    /**
+     * Cette fonction peut avoir plusieurs utilisations, elle permet de retrouver tous les contenus
+     * Paramètres optionnels :
+     * Pour un module en particulier
+     * Pour un semestre en particulier
+     * Pour un enseignant en particulier
+     * La jointure sert à récupérer le nom et le prénom des professeurs, plutot que d'afficher leur login
+     * @param $array
+     * @return mixed un tableau avec les différents résultats
+     */
     public function getContenuByModule($array){
         $this->db->select('module,partie,type,hed,nom,prenom,contenu.enseignant,module.public');
         $this->db->from('contenu');
@@ -138,6 +154,7 @@ class Contenu extends CI_Model{
         return $query->result_array();
     }
 
+    //TODO : cette fonction et celle précédente semblent faire la même chose, je pense qu'il suffirait d'ajouter if(promotion) dans la fonction précédente
     public function getContenuByPromo($array){
         $this->db->select('module,partie,type,hed,nom,prenom,contenu.enseignant,module.public');
         $this->db->from('contenu');
@@ -155,7 +172,8 @@ class Contenu extends CI_Model{
     }
 
     /**
-     * @param $teacher
+     * Permet d'obtenir le nombre d'heures de cours déjà affectées à un professeur
+     * @param $teacher String, le login de l'enseignant
      * @return int nombre d'heure qu'un professeur a
      */
     public function getHeuresPrises($teacher){
@@ -174,9 +192,10 @@ class Contenu extends CI_Model{
     }
 
     /**
-     * @param $module
-     * @param $partie
-     * @return mixed
+     * Permet d'obtenir le nombre d'heure d'un contenu pour un module et une partie donnés
+     * @param $module String, nom du module
+     * @param $partie String, nom de la partie
+     * @return Le nombre d'heure pour ce contenu
      */
     public function getHeurePourUnContenu($module,$partie){
         $this->db->select('hed');
@@ -187,15 +206,26 @@ class Contenu extends CI_Model{
         return $query->row()->hed;
     }
 
+
+    /**
+     * Permet d'affecter un enseignant à un contenu
+     * @param $module string, nom du module
+     * @param $partie String, nom de la partie
+     * @param $data, le login de l'enseignant à ajouter
+     * @return boolean, vrai si la requête s'est bien passée, faux sinon
+     */
     public function addEnseignanttoContenu($module,$partie,$data){
-        //$this->db->set('enseignant',$this->session->userdata('username'));
         $this->db->where('module',$module);
         $this->db->where('partie',$partie);
         $query = $this->db->update('contenu',$data);
         return $query;
     }
 
-    public function removeALotEnseignanttoContenu($tableau_enseignants){
+    /**
+     * Utiliser lors de la supression d'un utilisateur, permet de supprimer le professeur de chaque contenu auquels il était effecté
+     * @param $tableau_enseignants tableau de String, login des enseignants
+     */
+    public function removeTeacherforEachContenu($tableau_enseignants){
         foreach($tableau_enseignants as $enseignants) {
             $data = array(
                 'enseignant' => null
@@ -245,6 +275,13 @@ class Contenu extends CI_Model{
         }
     }
 
+    /**
+     * Permet de supprimer un enseignant d'un contenu
+     * @param $module String, module du contenu
+     * @param $partie String, nom de la partie
+     * @param $username String, login de l'enseignant à supprimer
+     * @return booelan, true si la desinscription à fonctionner, false sinon
+     */
     public function desinscriptionModule($module,$partie,$username){
         $data = array(
             'enseignant' => null
