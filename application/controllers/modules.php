@@ -143,8 +143,9 @@ class modules extends CI_Controller
         $this->news->addNews($this->session->userdata('username'), "user",
             "Inscription à un module"
             , $this->input->get('module'),$this->input->get('partie'));
+        if($this->input->get('page')!=null)
+            redirect('homeNews');
         $this->index(null, null, $info, "Recherche");
-
     }
 
     public function desinscriptionModule()
