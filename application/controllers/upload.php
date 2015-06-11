@@ -1,6 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Upload extends CI_Controller
+include 'SRV_Controller.php';
+
+class Upload extends SRV_Controller
 {
 
     function __construct()
@@ -30,14 +32,19 @@ class Upload extends CI_Controller
         $this->load->view('footer');
     }
 
+    /**
+     * permet l'upload d'images pour le profil utilisateur
+     * NOTE : les valeurs d'upload max seront à reconfigurer si le site est mis en production.
+     * Pour des soucis de simplicités, il n'y a pas de limites décentes, toutes les images vont s'uploader...!
+     */
     function do_upload()
     {
         $config['upload_path'] = getcwd() . '/uploads/';
         $config['allowed_types'] = 'jpg|jpeg';
-        $config['max_size'] = '10000000000000'; //TODO define a good size if the site go in prod
-        $config['max_width'] = '4000';
-        $config['max_width'] = '4000';
-        $config['max_height'] = '4000';
+        $config['max_size'] = '10000000000000';
+        $config['max_width'] = '8000';
+        $config['max_width'] = '8000';
+        $config['max_height'] = '8000';
 
         $this->load->library('upload', $config);
 
@@ -55,6 +62,9 @@ class Upload extends CI_Controller
         $this->index($data);
     }
 
+    /**
+     * permet de supprimer l'image de l'utilisateur et de revenir à l'image par défaut.
+     */
     public function remove()
     {
         $data = array(
