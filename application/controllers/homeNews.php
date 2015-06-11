@@ -67,15 +67,12 @@ class homeNews extends SRV_Controller
 
         $data['pagination'] = $this->pagination->create_links();
         $data['news'] = $this->news->getNews(self::NB_NEWS_PER_PAGE, $nb_news - 1);
-        //TODO fonction en doublon... faire une fonction dédiée  c'est ce que j'ai mis sur un commit? Romain : On devrait faire le calcul dans le model ?
-        /* CALCUL POURCENTAGE HEURES PRISES */
-        $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
-        $heurestotales = $this->users->getStatutaire($this->session->userdata('username')) - $this->decharge->getHoursDecharge($this->session->userdata('username'));
-        $pourcentage = round(($heuresprises / $heurestotales) * 100, 0);
-        $data['pourcentage'] = $pourcentage;
-        $data['heuresprises'] = $heuresprises;
-        $data['heurestotales'] = $heurestotales;
-        /* FIN CALCUL */
+
+        $dataPercentage = $this->getPercentage($this->session->userdata('username'));
+        $data['pourcentage'] = $dataPercentage['pourcentage'];
+        $data['heuresprises'] = $dataPercentage['heuresprises'];
+        $data['heurestotales'] = $dataPercentage['heurestotales'];
+
         $this->load->view('header', $data);
         $this->load->view('back/template/header');
         $this->load->view('back/home/news', $data);

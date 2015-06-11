@@ -19,15 +19,10 @@ class Upload extends CI_Controller
 
     function index($data)
     {
-        // TODO 6EME FOIS QUON VOIS CETTE FONCTION
-        /* CALCUL POURCENTAGE HEURES PRISES */
-        $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
-        $heurestotales = $this->users->getStatutaire($this->session->userdata('username')) - $this->decharge->getHoursDecharge($this->session->userdata('username'));
-        $pourcentage = round(($heuresprises / $heurestotales) * 100, 0);
-        $data['pourcentage'] = $pourcentage;
-        $data['heuresprises'] = $heuresprises;
-        $data['heurestotales'] = $heurestotales;
-        /* FIN CALCUL */
+        $dataPercentage = $this->getPercentage($this->session->userdata('username'));
+        $data['pourcentage'] = $dataPercentage['pourcentage'];
+        $data['heuresprises'] = $dataPercentage['heuresprises'];
+        $data['heurestotales'] = $dataPercentage['heurestotales'];
 
         $this->load->view('header');
         $this->load->view('back/template/header', $data);

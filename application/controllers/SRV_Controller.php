@@ -13,7 +13,7 @@ class SRV_Controller extends CI_Controller{
         parent::__construct();
     }
 
-    public function getPourcentage($userName){
+    public function getPercentage($userName){
         /* CALCUL POURCENTAGE HEURES PRISES */
         $heuresprises = $this->contenu->getHeuresPrises($userName);
         $heurestotales = $this->users->getStatutaire($userName) - $this->decharge->getHoursDecharge($userName);
