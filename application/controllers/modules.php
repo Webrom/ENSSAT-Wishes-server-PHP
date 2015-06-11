@@ -180,4 +180,11 @@ class modules extends SRV_Controller
         );
         $this->index($result, null, null, "Recherche");
     }
+
+    public function exportCSV(){
+        $data = array(
+            "export" => unserialize($this->session->userdata('dataExport'))
+        );
+        $this->load->view('back/modules/exportCSV',$data);
+    }
 }

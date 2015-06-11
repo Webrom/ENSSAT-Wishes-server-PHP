@@ -135,7 +135,7 @@ class Contenu extends CI_Model{
      * @return mixed un tableau avec les différents résultats
      */
     public function getContenuByModule($array){
-        $this->db->select('module,partie,type,hed,nom,prenom,contenu.enseignant,module.public');
+        $this->db->select('module,partie,type,hed,module.semestre,module.public,nom,prenom,contenu.enseignant');
         $this->db->from('contenu');
         $this->db->join('module','module.ident=contenu.module');
         $this->db->join('enseignant','contenu.enseignant = enseignant.login','left');
@@ -152,7 +152,7 @@ class Contenu extends CI_Model{
 
     //TODO : cette fonction et celle précédente semblent faire la même chose, je pense qu'il suffirait d'ajouter if(promotion) dans la fonction précédente
     public function getContenuByPromo($array){
-        $this->db->select('module,partie,type,hed,nom,prenom,contenu.enseignant,module.public');
+        $this->db->select('module,partie,type,hed,module.semestre,module.public,nom,prenom,contenu.enseignant');
         $this->db->from('contenu');
         $this->db->join('module','module.ident=contenu.module');
         $this->db->join('enseignant','contenu.enseignant = enseignant.login','left');

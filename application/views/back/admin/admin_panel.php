@@ -422,7 +422,7 @@
                                     <?php endforeach;?>
                                 </select>
                             </div>
-                            <div class="row admin-custom-box customHide" id="afficheInformationtoModify">
+                            <div class="row customHide" id="afficheInformationtoModify">
                                 <div class="col-md-12 col-no-border">
                                     <textarea name="informationNewstoModify" id="informationNewstoModify" rows="8" style="width:100%"></textarea>
                                 </div>

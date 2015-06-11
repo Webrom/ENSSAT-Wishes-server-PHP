@@ -143,7 +143,10 @@
                                         <?php echo $val['partie']?>
                                     </li>
                                     <li class='list-group-item'>
-                                        <?php echo $val['public']?>
+                                        <?php echo "Public : ".$val['public']?>
+                                    </li>
+                                    <li class='list-group-item'>
+                                        <?php echo "Semestre : ".$val['semestre']?>
                                     </li>
                                     <li class="list-group-item">
                                         <span class="badge"><?php echo $val['hed']?></span>
@@ -165,6 +168,10 @@
                 <?php endforeach; ?>
             </div>
             <div class="col-md-1 col-no-border"></div>
+            <div id="exportResult">
+                <?php $this->session->set_userdata($dataExport=array("dataExport"=>serialize($result)));?>
+                <?php echo anchor('modules/exportCSV','Recuperer au format CSV','class="btn btn-info"');?>
+            </div>
         </div>
     <?php endif;?>
 </div>
