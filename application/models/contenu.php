@@ -112,13 +112,14 @@ class Contenu extends CI_Model{
     }
 
     /**
-     * Supprimer un contenu pour partie donnée
+     * Supprimer un ou plusieurs contenu(s) pour partie donnée
      * @param $array String de la partie à supprimer
      */
-    //TODO : je pense qu'il y a une erreur ici, si jamais plusieurs contenus ont le même nom de partie on les suprimme tous... Je pense que l'on cherche plus à supprimer un contenu pour une partie et un module donné
     public function deleteContenuModule($array){
+        $module = $array['module'];
         foreach($array['partie'] as $partie){
             $this->db->where('partie',$partie);
+            $this->db->where('module',$module);
             $this->db->delete('contenu');
         }
     }
@@ -134,28 +135,13 @@ class Contenu extends CI_Model{
      * @param $array
      * @return mixed un tableau avec les différents résultats
      */
-    public function getContenuByModule($array){
+    public function getContenus($array){
         $this->db->select('module,partie,type,hed,module.semestre,module.public,nom,prenom,contenu.enseignant');
         $this->db->from('contenu');
         $this->db->join('module','module.ident=contenu.module');
         $this->db->join('enseignant','contenu.enseignant = enseignant.login','left');
         if($array['module'])
             $this->db->where('module',$array['module']);
-        if($array['semester']!='noSemester')
-            $this->db->where('semestre',$array['semester']);
-        if($array['teacher']!='no')
-            $this->db->where('enseignant',$array['teacher']);
-        $this->db->order_by('enseignant', 'ASC');
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
-    //TODO : cette fonction et celle précédente semblent faire la même chose, je pense qu'il suffirait d'ajouter if(promotion) dans la fonction précédente
-    public function getContenuByPromo($array){
-        $this->db->select('module,partie,type,hed,module.semestre,module.public,nom,prenom,contenu.enseignant');
-        $this->db->from('contenu');
-        $this->db->join('module','module.ident=contenu.module');
-        $this->db->join('enseignant','contenu.enseignant = enseignant.login','left');
         if($array['promotion']!='noProm')
             $this->db->where('public',$array['promotion']);
         if($array['semester']!='noSemester')

@@ -223,7 +223,8 @@ textarea {
 .comment-box div.generale,
 .comment-box div.contenu,
 .comment-box div.module,
-.comment-box div.user {
+.comment-box div.user,
+.comment-box div.delete-contenu {
   background: #fff;
   border: none;
   margin: 5px;
@@ -237,7 +238,8 @@ textarea {
 .comment-box div.generale h5,
 .comment-box div.contenu h5,
 .comment-box div.module h5,
-.comment-box div.user h5 {
+.comment-box div.user h5,
+.comment-box div.delete-contenu h5 {
   background: #2ecc71;
 }
 .comment-box div.delete-module,
@@ -247,10 +249,6 @@ textarea {
 .comment-box div.delete-module h5,
 .comment-box div.delete-contenu h5 {
   background: #d92b66;
-}
-.comment-box div.delete-contenu {
-  margin: 0;
-  padding: 0;
 }
 .comment-box div.contenu h5 {
   background: #f1c40f;

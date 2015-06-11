@@ -32,15 +32,15 @@ class modules extends SRV_Controller
             "modules" => $this->modulesmodels->getAllModules(),
             "enseignants" => $this->users->getAllEnseignants(),
             "result" => $result,
-            "moduleSelected" => $infosmodule['moduleSelected'],
-            "teacherSelected" => $infosmodule['teacherSelected'],
+            "moduleSelected" => ($infosmodule!=null)?$infosmodule['moduleSelected']:null,
+            "teacherSelected" => ($infosmodule!=null)?$infosmodule['teacherSelected']:null,
             "allSemesters" => array("S1", "S2", "S3", "S4", "S5", "S6"),
             "allProm" => array("IMR1", "IMR2", "IMR3", "EII1", "EII2", "EII3", "TC", "LSI1", "LSI2", "LSI3", "OPT1", "OPT2", "OPT3", "commun IMR1 et EII2"),
             "semSelected" => ($infosmodule == null) ? "noSemester" : $infosmodule["semSelected"],
             "promSelected" => ($infosmodule == null) ? "noProm" : $infosmodule["promSelected"],
             "admin" => $this->session->userdata['admin'],
             "active" => "Modules",
-            "checked" => $infosmodule['checked'],
+            "checked" => ($infosmodule!=null)?$infosmodule['checked']:null,
             "success" => $infos['success'],
             "msg" => $infos['msg'],
             "myModules" => $this->contenu->getAllMyContenus($this->session->userdata('username')),
@@ -68,10 +68,10 @@ class modules extends SRV_Controller
             "teacher" => (!$this->input->post('checkboxSansEnseignant')) ? $this->input->post('teacher') : null
         );
         if ($this->input->post('searchType') == 'module') {
-            $result = $this->contenu->getContenuByModule($data);
+            $result = $this->contenu->getContenus($data);
             $recherche = 'module';
         } else {
-            $result = $this->contenu->getContenuByPromo($data);
+            $result = $this->contenu->getContenus($data);
             $recherche = 'promo';
         }
         $data = array(
@@ -81,9 +81,6 @@ class modules extends SRV_Controller
             "semSelected" => ($this->input->post("semester") != "noSemester") ? $this->input->post("semester") : "noSemester",
             "checked" => $this->input->post('checkboxSansEnseignant')
         );
-        if($this->input->post('checkboxExport')){
-            $export = "Il y a plus qu'à exporter pelo moi j'y arrive pas"; //TODO
-        }
         $this->index($result, $data, null, "Recherche", $recherche);
     }
 
@@ -186,5 +183,24 @@ class modules extends SRV_Controller
             "export" => unserialize($this->session->userdata('dataExport'))
         );
         $this->load->view('back/modules/exportCSV',$data);
+    }
+
+    public function retreiveChartModule(){
+        $data = array(
+            "module" => $this->input->post('module'),
+            "promotion" => "noProm",
+            "semester" => "noSemester",
+            "teacher" => "no"
+        );
+        $result = $this->contenu->getContenus($data);
+        $data = array(
+            "moduleSelected" => $this->input->post('module'),
+            "teacherSelected" => ($this->input->post('teacher')) ? $this->users->getUserDataByUsername($this->input->post('teacher')) : "no",
+            "promSelected" => ($this->input->post("prom") != "noProm") ? $this->input->post("prom") : "noProm",
+            "semSelected" => ($this->input->post("semester") != "noSemester") ? $this->input->post("semester") : "noSemester",
+            "checked" => $this->input->post('checkboxSansEnseignant')
+        );
+        $this->index($result, $data, null, "Reporting");
+
     }
 }

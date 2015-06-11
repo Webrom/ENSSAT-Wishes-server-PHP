@@ -2,6 +2,10 @@
     display:none;
 }
 
+.customHidePulginChosen{
+    display:none !important;
+}
+
 .reveal-important{
     display: inline-block !important;
 }

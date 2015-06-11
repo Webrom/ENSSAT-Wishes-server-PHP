@@ -67,13 +67,13 @@ $(function(){
     $("#checkboxSansEnseignant").click(function(e){
         if($("#checkboxSansEnseignant").prop('checked')){
             $("#selectTeacher").prop('disabled', true);
-            $('#selectTeacher_chosen').addClass("customHide");
+            $('#selectTeacher_chosen').addClass("customHidePulginChosen");
             $('#reveal-without-teacher').removeClass("customHide");
         }
         else{
             $("#selectTeacher").prop('disabled', false);
             $('#reveal-without-teacher').addClass("customHide");
-            $('#selectTeacher_chosen').removeClass("customHide");
+            $('#selectTeacher_chosen').removeClass("customHidePulginChosen");
         }
     });
     $('.nav-custom a').click(function(e){
@@ -102,6 +102,6 @@ $(function(){
 
     if($('#reveal-without-teacher').is(":visible")){
         $("#selectTeacher").prop('disabled', true);
-        $('#selectTeacher_chosen').addClass("customHide");
+        $('#selectTeacher_chosen').addClass("customHidePulginChosen");
     }
 });

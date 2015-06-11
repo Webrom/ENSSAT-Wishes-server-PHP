@@ -77,28 +77,37 @@
                                     <H5><?php echo $n[0]['INFORMATION'];?></H5>
                                 </div>
                             </div>
-                                <div class="row">
-                                <?php if(isset($n[0]['module']) && isset($n[0]['partie'])):?>
-                                    <div class="col-no-border col-md-8">
-                                        <ul class="n-info">
-                                            <li>Module : <?php echo $n[0]['module'];?></li>
-                                            <li>Description : <?php echo $n[0]['libelle'];?></li>
-                                            <li>Promotion : <?php echo $n[0]['public'];?></li>
-                                            <li>Partie : <?php echo $n[0]['partie'];?></li>
-                                            <li>Semestre : <?php echo $n[0]['semestre'];?></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-4 col-no-border bp-component">
-                                        <?php $data=array();
-                                        foreach($n[0] as $key => $value){
-                                            $data[$key]=$value;
-                                        };?>
-                                        <?php $this->load->view('back/home/boxModule',$data);?>
-                                    </div>
-                                <?php else : ?>
-                                    <p>Le module ou la partie à été supprimé, les informations ne sont plus disponibles.</p>
-                                <?php endif;?>
+                            <div class="row">
+                            <?php if(isset($n[0]['module']) && isset($n[0]['partie'])):?>
+                                <div class="col-no-border col-md-8">
+                                    <ul class="n-info">
+                                        <li>Module : <?php echo $n[0]['module'];?></li>
+                                        <li>Description : <?php echo $n[0]['libelle'];?></li>
+                                        <li>Promotion : <?php echo $n[0]['public'];?></li>
+                                        <li>Partie : <?php echo $n[0]['partie'];?></li>
+                                        <li>Semestre : <?php echo $n[0]['semestre'];?></li>
+                                    </ul>
                                 </div>
+                                <div class="col-md-4 col-no-border bp-component">
+                                    <?php $data=array();
+                                    foreach($n[0] as $key => $value){
+                                        $data[$key]=$value;
+                                    };?>
+                                    <?php $this->load->view('back/home/boxModule',$data);?>
+                                </div>
+                            <?php else : ?>
+                                <p>Le module ou la partie à été supprimé, les informations ne sont plus disponibles.</p>
+                            <?php endif;?>
+                            </div>
+                            <?php break;
+                            case 'delete-contenu':?>
+                                <div class="col-md-10 col-no-border">
+                                    <h5>Suppression</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <?php echo $n[0]['INFORMATION'];?>
+                            </div>
                                 <?php break;
                             default:?>
                                 <div class="col-md-10 col-no-border">

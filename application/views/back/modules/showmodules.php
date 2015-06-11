@@ -125,14 +125,64 @@
                     </div>
                     <div class='tab-pane fade <?php if($onglet=="Reporting") echo "active in"?>' id="reporting">
                         <legend>Reporting</legend>
-
+                        <div class="row">
+                            <?php echo form_open('modules/retreiveChartModule')?>
+                            <div id="chartSearchByModule" class="<?php if($rechercheonglet=='promo')echo  'customHide ';?>col-md-12 col-no-border">
+                                <label for="selectModule" class="control-label">Module</label>
+                                <select name="module" data-placeholder="Pas de module en particulier..." class="form-control chosen-select-deselect" id="selectModuleChart">
+                                    <option value=""></option>
+                                    <?php foreach($modules as $module):?>
+                                        <option value="<?php echo $module['ident'];?>" <?php if(isset($moduleSelected) && $moduleSelected == $module['ident']) echo 'selected="selected"';?>><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="col-md-12 col-no-border text-right">
+                                <?php echo form_submit('submit','Rechercher','class="btn btn-success"')?>
+                            </div>
+                            <?php echo form_close();?>
+                        </div>
+                        <?php if(isset($result)):?>
+                        <div class="row animated fadeIn<?php if(sizeof($result)==0) echo 'customHide'?>">
+                            <div id="chartContainer" style="height: 300px; width: 100%;">
+                            </div>
+                            <script type="text/javascript">
+                                data = <?php echo json_encode($result) ?>;
+                                window.onload = function () {
+                                    var chart = new CanvasJS.Chart("chartContainer",
+                                        {
+                                            theme: "theme2",
+                                            title: {
+                                                text: "test reporting"
+                                            },
+                                            data: [
+                                                {
+                                                    type: "pie",
+                                                    showInLegend: false,
+                                                    toolTipContent: "{y} - HED",
+                                                    yValueFormatString: "",
+                                                    legendText: "{indexLabel}",
+                                                    dataPoints: [
+                                                    ]
+                                                }
+                                            ]
+                                        });
+                                    data.forEach(function(v){
+                                        console.log(v);
+                                        chart.options.data[0].dataPoints.push({y:v.hed,indexLabel:v.partie});
+                                    });
+                                    console.log(chart);
+                                    chart.render();
+                                }
+                            </script>
+                        </div>
+                        <?php endif;?>
                     </div>
                 </div>
             </div>
         </div>
     <div class="col-md-1 col-no-border"></div>
     </div>
-    <?php if(count($result)>0):?>
+    <?php if(count($result)>0 && $onglet=="Recherche"):?>
         <div class="row" id="modules_result">
             <div class="col-md-1 col-no-border"></div>
             <div class="col-md-10 col-no-border">
