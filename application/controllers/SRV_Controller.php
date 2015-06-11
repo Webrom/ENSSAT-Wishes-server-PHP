@@ -10,14 +10,18 @@ class SRV_Controller extends CI_Controller{
 
     public function __construct()
     {
-        if (!$this->session->userdata('is_logged_in')) {
-            redirect('login');
-        }else {
-            parent::__construct();
-        }
+        parent::__construct();
     }
 
-    public function getPourcentage(){
-
+    public function getPourcentage($userName){
+        /* CALCUL POURCENTAGE HEURES PRISES */
+        $heuresprises = $this->contenu->getHeuresPrises($userName);
+        $heurestotales = $this->users->getStatutaire($userName) - $this->decharge->getHoursDecharge($userName);
+        $pourcentage = round(($heuresprises / $heurestotales) * 100, 0);
+        $data['pourcentage'] = $pourcentage;
+        $data['heuresprises'] = $heuresprises;
+        $data['heurestotales'] = $heurestotales;
+        /* FIN CALCUL */
+        return $data;
     }
 }
