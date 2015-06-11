@@ -134,7 +134,7 @@ class admin extends SRV_Controller
     {
         $this->users->addUser("servicesENSSAT", $this->input->post("actif"), "1",$this->input->post('prenom'),$this->input->post('name'),$this->input->post('heures'));
         $this->index("Utilisateur bien créé.", "alert-success", "#addUser");
-        $this->news->addNews($this->session->userdata('username'), "user", "L'utilisateur : " . $this->input->post('prenom') . $this->input->post('name') . " a été ajouté.");
+        $this->news->addNews($this->session->userdata('username'), "user", "L'utilisateur : " . $this->input->post('prenom') ." ". $this->input->post('name') . " a été ajouté.");
     }
 
     /**

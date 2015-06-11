@@ -107,8 +107,19 @@
                                 <?php break;
                             endswitch;?>
                         </div>
-                    <?php elseif(isset($n[0]['userClass'])):?>
-                        <div class="<?php echo $n[0]['userClass']?>">
+                    <?php elseif(isset($n[0]['classeUser'])):?>
+                        <div class="<?php echo $n[0]['classeUser']?>">
+                            <div class="row">
+                                <div class="col-md-2 col-no-border">
+                                    <img class="media-object img-circle" alt="64x64" src="<?php echo base_url()?>uploads/<?php echo $n[0]['avatar'];?>" style="width: 64px; height: 64px;">
+                                </div>
+                                <div class="col-md-10 col-no-border">
+                                    <h5>Ajout d'un nouvel utilisateur</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <?php echo $n[0]['INFORMATION'];?>
+                            </div>
                         </div>
                     <?php endif;?>
                     <span><?php echo $n[0]['date']; ?></span>
