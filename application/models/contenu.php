@@ -96,7 +96,6 @@ class Contenu extends CI_Model{
 
     }
 
-    //TODO : Renvoyer un booléan suffirait, puisqu'elle ne sert qu'à savoir si un enseignant était déjà dans le module
     /**
      * Permet de savoir si l'enseignant était déja dans le module
      * @param $array

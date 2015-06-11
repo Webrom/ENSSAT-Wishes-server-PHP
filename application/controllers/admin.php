@@ -102,14 +102,10 @@ class admin extends SRV_Controller
             "allnews" => $this->news->getGeneralesNews()
         );
 
-        /* CALCUL POURCENTAGE HEURES PRISES */
-        $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
-        $heurestotales = $this->users->getStatutaire($this->session->userdata('username')) - $this->decharge->getHoursDecharge($this->session->userdata('username'));
-        $pourcentage = round(($heuresprises / $heurestotales) * 100, 0);
-        $data['pourcentage'] = $pourcentage;
-        $data['heuresprises'] = $heuresprises;
-        $data['heurestotales'] = $heurestotales;
-        /* FIN CALCUL */
+        $dataPercentage = $this->getPercentage($this->session->userdata('username'));
+        $data['pourcentage'] = $dataPercentage['pourcentage'];
+        $data['heuresprises'] = $dataPercentage['heuresprises'];
+        $data['heurestotales'] = $dataPercentage['heurestotales'];
 
         $this->load->view('header', $data);
         $this->load->view('back/template/header');

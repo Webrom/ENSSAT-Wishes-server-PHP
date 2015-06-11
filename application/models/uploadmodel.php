@@ -39,7 +39,10 @@ class uploadmodel extends CI_Model{
         $this->db->update('enseignant', $data);
     }
 
-    //TODO : je ne sais pas trop si cette fonction sert à quelque chose, si oui je vous laisse la commenter
+    /**
+     * fonction pour couper l'image / la redimentionner à l'upload
+     * @param $filename
+     */
     public function cropImage($filename){
         // Create a blank image and add some text
         $ini_filename = $filename;

@@ -85,11 +85,13 @@ class profile extends SRV_Controller
 
     /**
      * fonction pour modifier le statutaire de l'utilisateur courrant
+     * a noter : l'utilisateur est une fois de plus considéré comme responsable: aucune vérification ne
+     * sera faite sur le statutaire qu'il s'ajoute (exemple : possible de changer à 10000 heures.)
      */
     public function modifyStatutaire()
     {
         $newStatutaire = $this->input->post("inputStatutaire");
-        // TODO verification avec la fonction en quintuplon ... parceque là le mec peut mettre n'importe quel statutaire à l'aise
+
         if ($this->users->setStatutaire($newStatutaire, $this->session->userdata('username'))) {
             $msg = "Votre statutaire a été modifié.";
             $msgbox = "alert-success";
