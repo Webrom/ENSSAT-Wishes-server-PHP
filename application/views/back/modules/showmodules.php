@@ -86,11 +86,11 @@
                                 </div>
                                 <div class="col-md-4 col-no-border">
                                     <label for="selectTeacher" class="control-label">Enseignant</label>
-                                    <p id="reveal-without-teacher" style="width: 100%;font-size: 13px;margin-bottom: 0px;line-height: 24px;" class="customHide">Sans enseignants</p>
-                                    <select name="teacher" data-placeholder="Pas d'enseignant en particulier..." class="form-control chosen-select-deselect" id="selectTeacher" <?php if($checked){echo 'disabled';} ?>>
+                                    <p id="reveal-without-teacher" style="width: 100%;font-size: 13px;margin-bottom: 0px;line-height: 24px;" class="<?php if(!$checked){echo 'customHide';} ?>">Sans enseignants</p>
+                                    <select name="teacher" data-placeholder="Pas d'enseignant en particulier..." class="form-control chosen-select-deselect" id="selectTeacher">
                                         <option value="no"></option>
                                         <?php foreach($enseignants as $teacher):?>
-                                            <option value="<?php echo $teacher['login'];?>" <?php if(isset($teacherSelected) && $teacherSelected[0]['login'] == $teacher['login']) echo 'selected="selected"';?>><?php echo $teacher['nom']." ".$teacher['prenom'];?></option>
+                                            <option value="<?php echo $teacher['login'];?>" <?php if(isset($teacherSelected[0]['login']) && $teacherSelected[0]['login'] == $teacher['login']) echo 'selected="selected"';?>><?php echo $teacher['nom']." ".$teacher['prenom'];?></option>
                                         <?php endforeach;?>
                                     </select>
                                 </div>

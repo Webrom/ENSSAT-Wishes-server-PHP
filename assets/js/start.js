@@ -99,4 +99,9 @@ $(function(){
         $(this.parentElement).addClass('active');
         $(this).addClass('btn');
     });
+
+    if($('#reveal-without-teacher').is(":visible")){
+        $("#selectTeacher").prop('disabled', true);
+        $('#selectTeacher_chosen').addClass("customHide");
+    }
 });
