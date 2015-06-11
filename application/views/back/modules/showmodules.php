@@ -19,7 +19,7 @@
                 <ul class="nav nav-tabs" style="margin-bottom: 15px;">
                     <li class='<?php if($onglet==null) echo "active";?>'><a id="displayMyModules" href="#mymodules" data-toggle="tab">Mes modules</a></li>
                     <li class='<?php if($onglet=="Recherche") echo "active";?>'><a href="#recherche" data-toggle="tab">Recherche</a></li>
-                    <li class='<?php if($onglet=="Reporting") echo "active";?>'><a href="#reporting" data-toggle="tab">Reporting</a></li>
+                    <li class='<?php if($onglet=="Reporting") echo "active";?>'><a id="displayReporting" href="#reporting" data-toggle="tab">Reporting</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div class='tab-pane fade <?php if($onglet==null) echo "active in"?>' id="mymodules">
@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <div class="col-md-4 col-no-border">
-                                        <?php echo form_button("reset","reset",'id="resetFormSearch" class="btn btn-info"');?>
+                                        <?php echo anchor("modules?page=Recherche","Reset",'title="Reset" class="btn btn-info"');?>
                                     </div>
                                     <div class="col-md-4 col-no-border">
                                         <label for="checkboxSansEnseignant">Sans enseignants</label>
@@ -113,14 +113,6 @@
                                     </div>
                                     <div class="col-md-4 col-no-border text-right">
                                         <?php echo form_submit('submit','Rechercher','class="btn btn-success"')?>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-no-border">
-                                    <div class="col-md-8 col-no-border">
-                                        <label for="checkboxExport">Export & téléchargement resultat recherche, format .CVS</label>
-                                        <input type="checkbox" name="checkboxExport" id="checkboxExport" <?php if($checked) echo 'exportChecked="checked"'?>/>
-                                    </div>
-                                    <div class="col-md-4 col-no-border text-right">
                                     </div>
                                 </div>
                                 <input type="text" name="searchType" hidden="hidden" value="<?php if($rechercheonglet)echo $rechercheonglet; else echo 'module';?>" id="searchType"/>

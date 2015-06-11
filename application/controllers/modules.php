@@ -41,7 +41,7 @@ class modules extends CI_Controller
             "success" => $infos['success'],
             "msg" => $infos['msg'],
             "myModules" => $this->contenu->getAllMyContenus($this->session->userdata('username')),
-            "onglet" => $onglet,
+            "onglet" => ($onglet)?$onglet:$this->input->get('page'),
             "rechercheonglet" => $recherche
         );
         // TODO tripplon !

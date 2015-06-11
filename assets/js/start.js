@@ -31,7 +31,7 @@ $(function(){
             $("#StatusPerso").fadeOut();
         }
     });
-    $("#resetFormSearch").click(function(e){
+    /*$("#resetFormSearch").click(function(e){
         $("#selectTeacher").prop('disabled', false);
         $("#checkboxSansEnseignant").removeProp('checked');
         $("#modules_result").remove();
@@ -44,6 +44,13 @@ $(function(){
             if($(this).attr('id')=='selectPromotion')
                 $(this).val("noProm");
         });
+        $('.search-choice-close').each(function(){
+            console.log($(this));
+            $(this).trigger('click');
+        });
+    });*/
+    $('.search-choice-close').click(function(){
+        console.log('azeazeaze');
     });
     $("#resetAdminFields").click(function(e){
         $('.stuffToReinit').each(function () {
@@ -57,6 +64,9 @@ $(function(){
     });
 
     $('a#displayMyModules').click(function(){
+        $("#modules_result").remove();
+    });
+    $('a#displayReporting').click(function(){
         $("#modules_result").remove();
     });
     $('.navbar-nav li a').each(function(){
