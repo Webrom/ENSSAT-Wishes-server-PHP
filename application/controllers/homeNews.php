@@ -6,7 +6,10 @@
  * Date: 26/05/15
  * Time: 15:35
  */
-class homeNews extends CI_Controller
+
+include 'SRV_Controller.php';
+
+class homeNews extends SRV_Controller
 {
     const NB_NEWS_PER_PAGE = 10;
 

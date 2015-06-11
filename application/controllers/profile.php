@@ -6,7 +6,10 @@
  * Date: 26/05/15
  * Time: 12:52
  */
-class profile extends CI_Controller
+
+include 'SRV_Controller.php';
+
+class profile extends SRV_Controller
 {
     function __construct()
     {

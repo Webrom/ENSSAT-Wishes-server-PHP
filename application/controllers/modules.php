@@ -6,7 +6,10 @@
  * Date: 27/05/15
  * Time: 15:20
  */
-class modules extends CI_Controller
+
+include 'SRV_Controller.php';
+
+class modules extends SRV_Controller
 {
     function __construct()
     {

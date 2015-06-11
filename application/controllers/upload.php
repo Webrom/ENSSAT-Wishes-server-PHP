@@ -38,11 +38,11 @@ class Upload extends CI_Controller
     function do_upload()
     {
         $config['upload_path'] = getcwd() . '/uploads/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = '1000000';
-        $config['max_width'] = '1024';
-        $config['max_width'] = '1024';
-        $config['max_height'] = '768';
+        $config['allowed_types'] = 'jpg|jpeg';
+        $config['max_size'] = '10000000000000';
+        $config['max_width'] = '4000';
+        $config['max_width'] = '4000';
+        $config['max_height'] = '4000';
 
         $this->load->library('upload', $config);
 

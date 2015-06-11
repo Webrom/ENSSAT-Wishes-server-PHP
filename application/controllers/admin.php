@@ -6,7 +6,9 @@
  * Date: 26/05/15
  * Time: 12:52
  */
-class admin extends CI_Controller
+include 'SRV_Controller.php';
+
+class admin extends SRV_Controller
 {
 
     function __construct()
