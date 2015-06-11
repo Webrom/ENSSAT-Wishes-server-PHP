@@ -67,11 +67,13 @@ $(function(){
     $("#checkboxSansEnseignant").click(function(e){
         if($("#checkboxSansEnseignant").prop('checked')){
             $("#selectTeacher").prop('disabled', true);
-            $('#selectTeacher_chosen').addClass("chosen-disabled");
+            $('#selectTeacher_chosen').addClass("customHide");
+            $('#reveal-without-teacher').removeClass("customHide");
         }
         else{
             $("#selectTeacher").prop('disabled', false);
-            $('#selectTeacher_chosen').removeClass("chosen-disabled");
+            $('#reveal-without-teacher').addClass("customHide");
+            $('#selectTeacher_chosen').removeClass("customHide");
         }
     });
     $('.nav-custom a').click(function(e){
@@ -81,14 +83,15 @@ $(function(){
             $(this).removeClass('btn');
         });
         if($(this).attr('href')=="#searchByModule"){
-            $("#searchByPromo").stop().slideUp('fast',function(){
-                $('#searchByModule').stop().slideDown();
+            $("#searchByPromo").stop().fadeOut('fast',function(){
+                $('#searchByModule').stop().fadeIn();
             });
             $('#selectModule').val("");
             $('#searchType').val('module');
         }else{
-            $("#searchByModule").stop().slideUp('fast',function(){
-                $('#searchByPromo').stop().slideDown();
+            console.log($("#searchByModule"));
+            $("#searchByModule").stop().fadeOut('fast',function(){
+                $('#searchByPromo').stop().fadeIn();
             });
             $('#selectPromotion').val("noProm");
             $('#searchType').val('promo');

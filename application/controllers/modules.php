@@ -29,8 +29,8 @@ class modules extends CI_Controller
             "modules" => $this->modulesmodels->getAllModules(),
             "enseignants" => $this->users->getAllEnseignants(),
             "result" => $result,
-            "module" => $infosmodule['module'],
-            "teacher" => $infosmodule['teacher'],
+            "moduleSelected" => $infosmodule['moduleSelected'],
+            "teacherSelected" => $infosmodule['teacherSelected'],
             "allSemesters" => array("S1", "S2", "S3", "S4", "S5", "S6"),
             "allProm" => array("IMR1", "IMR2", "IMR3", "EII1", "EII2", "EII3", "TC", "LSI1", "LSI2", "LSI3", "OPT1", "OPT2", "OPT3", "commun IMR1 et EII2"),
             "semSelected" => ($infosmodule == null) ? "noSemester" : $infosmodule["semSelected"],
@@ -44,7 +44,6 @@ class modules extends CI_Controller
             "onglet" => $onglet,
             "rechercheonglet" => $recherche
         );
-
         // TODO tripplon !
         /* CALCUL POURCENTAGE HEURES PRISES */
         $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
@@ -77,8 +76,8 @@ class modules extends CI_Controller
             $recherche = 'promo';
         }
         $data = array(
-            "module" => $this->input->post('module'),
-            "teacher" => ($this->input->post('teacher')) ? $this->users->getUserDataByUsername($this->input->post('teacher')) : "no",
+            "moduleSelected" => $this->input->post('module'),
+            "teacherSelected" => ($this->input->post('teacher')) ? $this->users->getUserDataByUsername($this->input->post('teacher')) : "no",
             "promSelected" => ($this->input->post("prom") != "noProm") ? $this->input->post("prom") : "noProm",
             "semSelected" => ($this->input->post("semester") != "noSemester") ? $this->input->post("semester") : "noSemester",
             "checked" => $this->input->post('checkboxSansEnseignant')

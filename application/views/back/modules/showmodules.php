@@ -68,57 +68,38 @@
                                 <?php echo form_open('modules/displayModule')?>
                                 <div id="searchByModule" class="<?php if($rechercheonglet=='promo')echo  'customHide ';?>col-md-4 col-no-border">
                                     <label for="selectModule" class="control-label">Module</label>
-                                    <select name="module" data-placeholder="Choississez un module..." class="form-control chosen-select-deselect" id="selectModule">
-                                        <?php if($module!=""): ?>
-                                            <option value="<?php echo $module;?>"><?php echo $module;?></option>
-                                            <option value="">Pas de module en particulier</option>
-                                        <?php else: ?>
-                                            <option value=""></option>
-                                        <?php endif;?>
+                                    <select name="module" data-placeholder="Pas de module en particulier..." class="form-control chosen-select-deselect" id="selectModule">
+                                        <option value=""></option>
                                         <?php foreach($modules as $module):?>
-                                            <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
+                                            <option value="<?php echo $module['ident'];?>" <?php if(isset($moduleSelected) && $moduleSelected == $module['ident']) echo 'selected="selected"';?>><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
                                         <?php endforeach;?>
                                     </select>
                                 </div>
-                                <div id="searchByPromo" class="<?php if($rechercheonglet=='module' || $rechercheonglet==null)echo  'customHide';?> col-md-4 col-no-border">
+                                <div id="searchByPromo" <?php if($rechercheonglet=='module' || $rechercheonglet==null)echo  'style="display:none;"';?> class="col-md-4 col-no-border">
                                     <label for="selectPromotion" class="control-label">Promotion</label>
-                                    <select name="prom" data-placeholder="Choississez une promotion..." class="form-control chosen-select-deselect" id="selectPromotion">
-                                        <?php if($promSelected!="noProm"): ?>
-                                            <option value="<?php echo $promSelected;?>"><?php echo $promSelected;?></option>
-                                            <option value="noProm">Pas de promotion en particulier</option>
-                                        <?php else:?>
-                                            <option value="noProm">Pas de promotion en particulier</option>
-                                        <?php endif;?>
+                                    <select name="prom" data-placeholder="Pas de promotion en particulier..." class="form-control chosen-select-deselect" id="selectPromotion">
+                                        <option value="noProm"></option>
                                         <?php foreach($allProm as $allProm):?>
-                                            <option value="<?php echo $allProm;?>"><?php echo $allProm;?></option>
+                                            <option value="<?php echo $allProm;?>" <?php if(isset($promSelected) && $promSelected == $allProm) echo 'selected="selected"';?>><?php echo $allProm;?></option>
                                         <?php endforeach;?>
                                     </select>
                                 </div>
                                 <div class="col-md-4 col-no-border">
                                     <label for="selectTeacher" class="control-label">Enseignant</label>
-                                    <select name="teacher" data-placeholder="Choississez un enseignant..." class="form-control chosen-select-deselect" id="selectTeacher" <?php if($checked){echo 'disabled';} ?>>
-                                        <?php if(count($teacher)>0 && $teacher!="no"): ?>
-                                            <option value="<?php echo $teacher[0]['login'];?>"><?php echo $teacher[0]['nom']." ".$teacher[0]['prenom'];?></option>
-                                            <option value="no">Pas d'enseignant en particulier</option>
-                                        <?php else: ?>
-                                            <option value="no">Pas d'enseignant en particulier</option>
-                                        <?php endif?>
+                                    <p id="reveal-without-teacher" style="width: 100%;font-size: 13px;margin-bottom: 0px;line-height: 24px;" class="customHide">Sans enseignants</p>
+                                    <select name="teacher" data-placeholder="Pas d'enseignant en particulier..." class="form-control chosen-select-deselect" id="selectTeacher" <?php if($checked){echo 'disabled';} ?>>
+                                        <option value="no"></option>
                                         <?php foreach($enseignants as $teacher):?>
-                                            <option value="<?php echo $teacher['login'];?>"><?php echo $teacher['nom']." ".$teacher['prenom'];?></option>
+                                            <option value="<?php echo $teacher['login'];?>" <?php if(isset($teacherSelected) && $teacherSelected[0]['login'] == $teacher['login']) echo 'selected="selected"';?>><?php echo $teacher['nom']." ".$teacher['prenom'];?></option>
                                         <?php endforeach;?>
                                     </select>
                                 </div>
                                 <div class="col-md-4 col-no-border">
                                     <label for="selectSemester" class="control-label">Semestre</label>
-                                    <select name="semester" data-placeholder="Choississez un semestre..." class="form-control chosen-select-deselect" id="selectSemester">
-                                        <?php if($semSelected!="noSemester"): ?>
-                                            <option value="<?php echo $semSelected;?>"><?php echo $semSelected;?></option>
-                                            <option value="noSemester">Pas de semestre en particulier</option>
-                                        <?php else:?>
-                                            <option value="noSemester">Pas de semestre en particulier</option>
-                                        <?php endif;?>
+                                    <select name="semester" data-placeholder="Pas de semestre en particulier..." class="form-control chosen-select-deselect" id="selectSemester">
+                                        <option value="noSemester"></option>
                                         <?php foreach($allSemesters as $allSemester):?>
-                                            <option value="<?php echo $allSemester;?>"><?php echo $allSemester;?></option>
+                                            <option value="<?php echo $allSemester;?>" <?php if(isset($semSelected) && $semSelected == $allSemester) echo 'selected="selected"';?>><?php echo $allSemester;?></option>
                                         <?php endforeach;?>
                                     </select>
                                 </div>
@@ -127,7 +108,7 @@
                                         <?php echo form_button("reset","reset",'id="resetFormSearch" class="btn btn-info"');?>
                                     </div>
                                     <div class="col-md-4 col-no-border">
-                                        <label for="checkboxSansEnseignant">Sans enseignant</label>
+                                        <label for="checkboxSansEnseignant">Sans enseignants</label>
                                         <input type="checkbox" name="checkboxSansEnseignant" id="checkboxSansEnseignant" <?php if($checked) echo 'checked="checked"'?>/>
                                     </div>
                                     <div class="col-md-4 col-no-border text-right">
