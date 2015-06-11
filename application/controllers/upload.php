@@ -39,7 +39,7 @@ class Upload extends CI_Controller
     {
         $config['upload_path'] = getcwd() . '/uploads/';
         $config['allowed_types'] = 'jpg|jpeg';
-        $config['max_size'] = '10000000000000';
+        $config['max_size'] = '10000000000000'; //TODO define a good size if the site go in prod
         $config['max_width'] = '4000';
         $config['max_width'] = '4000';
         $config['max_height'] = '4000';
