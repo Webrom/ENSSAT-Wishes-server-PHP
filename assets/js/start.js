@@ -31,24 +31,14 @@ $(function(){
             $("#StatusPerso").fadeOut();
         }
     });
-    /*$("#resetFormSearch").click(function(e){
-        $("#selectTeacher").prop('disabled', false);
-        $("#checkboxSansEnseignant").removeProp('checked');
-        $("#modules_result").remove();
-        $('.form-control').each(function () {
-            $(this).val("");
-            if($(this).attr("id")=="selectTeacher")
-                $(this).val("no");
-            if($(this).attr('id')=='selectSemester')
-                $(this).val("noSemester");
-            if($(this).attr('id')=='selectPromotion')
-                $(this).val("noProm");
-        });
-        $('.search-choice-close').each(function(){
-            console.log($(this));
-            $(this).trigger('click');
-        });
-    });*/
+    $("#select_statutModify").change(function(e){
+        if ($("#select_statutModify").val() == "autre"){
+            $("#StatusPersoModify").fadeIn();
+        }
+        else{
+            $("#StatusPersoModify").fadeOut();
+        }
+    });
     $('.search-choice-close').click(function(){
         console.log('azeazeaze');
     });

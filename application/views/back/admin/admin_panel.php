@@ -348,7 +348,7 @@
                                     <option value="autre" <?php echo set_select('status_selectModify','autre'); ?>>Autre</option>
                                 </select>
                             </div>
-                            <div class="col-md-12 col-no-border customHide" id="StatusPerso">
+                            <div class="col-md-12 col-no-border customHide" id="StatusPersoModify">
                                 <label for="inputStatusPerso" class="control-label">Statut personnalisé</label>
                                 <?php echo form_input('status_perso','','class="form-control" placeholder="Statut" id="inputStatusPerso"')?>
                             </div>

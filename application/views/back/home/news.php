@@ -85,6 +85,7 @@
                                             <li>Description : <?php echo $n[0]['libelle'];?></li>
                                             <li>Promotion : <?php echo $n[0]['public'];?></li>
                                             <li>Partie : <?php echo $n[0]['partie'];?></li>
+                                            <li>Semestre : <?php echo $n[0]['semestre'];?></li>
                                         </ul>
                                     </div>
                                     <div class="col-md-4 col-no-border bp-component">

@@ -38,6 +38,9 @@
                                             <li class='list-group-item'>
                                                 <?php echo $val['public'];?>
                                             </li>
+                                            <li class='list-group-item'>
+                                                <?php echo $val['semestre'];?>
+                                            </li>
                                             <li class="list-group-item">
                                                 <span class="badge">
                                                     <?php echo $val['hed'];?>
@@ -143,7 +146,7 @@
                                         <?php echo $val['partie']?>
                                     </li>
                                     <li class='list-group-item'>
-                                        <?php echo "Public : ".$val['public']?>
+                                        <?php echo $val['public']?>
                                     </li>
                                     <li class='list-group-item'>
                                         <?php echo "Semestre : ".$val['semestre']?>
