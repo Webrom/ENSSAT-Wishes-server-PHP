@@ -630,7 +630,7 @@ a.list-group-item.active > .badge,
 .pagination > .disabled > a:hover,
 .pagination > .disabled > a:focus {
   color: #ffffff;
-  background-color: #b1244f;
+  background-color: #2980b9;
   border-style: solid;
   border-width: 0;
   border-color: transparent !important;
@@ -845,7 +845,7 @@ a.list-group-item.active > .badge,
   color: #2c3e50;
 }
 .carousel-control:hover {
-  color: #2980b9;
+  color: #f1c40f;
 }
 .carousel-control.left {
   background-image: -webkit-linear-gradient(left, color-stop(rgba(0, 0, 0, 0.7) 0%), color-stop(rgba(0, 0, 0, 0.0001) 100%));

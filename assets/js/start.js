@@ -67,9 +67,11 @@ $(function(){
     $("#checkboxSansEnseignant").click(function(e){
         if($("#checkboxSansEnseignant").prop('checked')){
             $("#selectTeacher").prop('disabled', true);
+            $('#selectTeacher_chosen').addClass("chosen-disabled");
         }
         else{
             $("#selectTeacher").prop('disabled', false);
+            $('#selectTeacher_chosen').removeClass("chosen-disabled");
         }
     });
     $('.nav-custom a').click(function(e){

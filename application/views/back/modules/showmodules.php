@@ -44,7 +44,7 @@
                                                 </span>
                                                 Heures :
                                             </li>
-                                            <li class="list-group-item">
+                                            <li class="list-group-item text-center">
                                                 <?php echo '<a href="'.base_url().'index.php/modules/desinscriptionModule?module='.$val['module'].'&partie='.$val['partie'].'"><button type="button" class="btn btn-danger">Se désinscrire</button></a>';?>
                                             </li>
                                         </ul>
@@ -68,12 +68,12 @@
                                 <?php echo form_open('modules/displayModule')?>
                                 <div id="searchByModule" class="<?php if($rechercheonglet=='promo')echo  'customHide ';?>col-md-4 col-no-border">
                                     <label for="selectModule" class="control-label">Module</label>
-                                    <select name="module" class="form-control" id="selectModule">
+                                    <select name="module" data-placeholder="Choississez un module..." class="form-control chosen-select-deselect" id="selectModule">
                                         <?php if($module!=""): ?>
                                             <option value="<?php echo $module;?>"><?php echo $module;?></option>
                                             <option value="">Pas de module en particulier</option>
                                         <?php else: ?>
-                                            <option value="">Pas de module en particulier</option>
+                                            <option value=""></option>
                                         <?php endif;?>
                                         <?php foreach($modules as $module):?>
                                             <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
@@ -82,7 +82,7 @@
                                 </div>
                                 <div id="searchByPromo" class="<?php if($rechercheonglet=='module' || $rechercheonglet==null)echo  'customHide';?> col-md-4 col-no-border">
                                     <label for="selectPromotion" class="control-label">Promotion</label>
-                                    <select name="prom" class="form-control" id="selectPromotion">
+                                    <select name="prom" data-placeholder="Choississez une promotion..." class="form-control chosen-select-deselect" id="selectPromotion">
                                         <?php if($promSelected!="noProm"): ?>
                                             <option value="<?php echo $promSelected;?>"><?php echo $promSelected;?></option>
                                             <option value="noProm">Pas de promotion en particulier</option>
@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="col-md-4 col-no-border">
                                     <label for="selectTeacher" class="control-label">Enseignant</label>
-                                    <select name="teacher" class="form-control" id="selectTeacher" <?php if($checked){echo 'disabled';} ?>>
+                                    <select name="teacher" data-placeholder="Choississez un enseignant..." class="form-control chosen-select-deselect" id="selectTeacher" <?php if($checked){echo 'disabled';} ?>>
                                         <?php if(count($teacher)>0 && $teacher!="no"): ?>
                                             <option value="<?php echo $teacher[0]['login'];?>"><?php echo $teacher[0]['nom']." ".$teacher[0]['prenom'];?></option>
                                             <option value="no">Pas d'enseignant en particulier</option>
@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="col-md-4 col-no-border">
                                     <label for="selectSemester" class="control-label">Semestre</label>
-                                    <select name="semester" class="form-control" id="selectSemester">
+                                    <select name="semester" data-placeholder="Choississez un semestre..." class="form-control chosen-select-deselect" id="selectSemester">
                                         <?php if($semSelected!="noSemester"): ?>
                                             <option value="<?php echo $semSelected;?>"><?php echo $semSelected;?></option>
                                             <option value="noSemester">Pas de semestre en particulier</option>
