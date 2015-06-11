@@ -13,7 +13,6 @@ class SRV_Controller extends CI_Controller{
         parent::__construct();
     }
 
-<<<<<<< Updated upstream
     public function getPercentage($userName){
         /* CALCUL POURCENTAGE HEURES PRISES */
         $heuresprises = $this->contenu->getHeuresPrises($userName);
@@ -24,9 +23,5 @@ class SRV_Controller extends CI_Controller{
         $data['heurestotales'] = $heurestotales;
         /* FIN CALCUL */
         return $data;
-=======
-    public function getPourcentage(){
-
->>>>>>> Stashed changes
     }
 }
