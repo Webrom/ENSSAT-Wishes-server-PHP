@@ -118,12 +118,12 @@
                     'success':
                         function(data){
                             $("#informationNews").text(data);
-                            $("#afficheInformation").show();
+                            $("#afficheInformation").removeClass('customHide');
                         }
                 });
             }
             else{
-                $("#afficheInformation").hide();
+                $("#afficheInformation").addClass('customHide');
             }
         }
     );
@@ -142,12 +142,12 @@
                     'success':
                         function(data){
                             $("#informationNewstoModify").text(data);
-                            $("#afficheInformationtoModify").show();
+                            $("#afficheInformationtoModify").removeClass('customHide');
                         }
                 });
             }
             else{
-                $("#afficheInformationtoModify").hide();
+                $("#afficheInformationtoModify").addClass('customHide');
             }
         }
     );

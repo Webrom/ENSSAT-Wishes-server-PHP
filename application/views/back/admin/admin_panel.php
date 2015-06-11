@@ -392,7 +392,7 @@
                                     <?php endforeach;?>
                                 </select>
                             </div>
-                            <div class="row admin-custom-box" id="afficheInformation">
+                            <div class="row" id="afficheInformation">
                                 <div class="col-md-12 col-no-border" >
                                     <textarea id="informationNews" rows="8" style="width:100%" disabled></textarea>
                                 </div>
