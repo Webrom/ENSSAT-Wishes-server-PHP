@@ -120,7 +120,7 @@
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="selectResponsable" class="control-label">Responsable</label>
-                                <select name="selectResponsable" class="form-control stuffToReinit" id="selectResponsable">
+                                <select name="selectResponsable" class="form-control stuffToReinit chosen-select" id="selectResponsable">
                                     <option value="">...</option>
                                     <?php foreach($enseignants as $enseignant):?>
                                         <option value="<?php echo $enseignant['login'];?>"><?php echo $enseignant['nom']. " ".$enseignant['prenom'];?></option>
@@ -129,7 +129,7 @@
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="selectSemestre" class="control-label">Semestre</label>
-                                <select name="selectSemestre" class="form-control stuffToReinit" id="selectSemestre">
+                                <select name="selectSemestre" class="form-control stuffToReinit chosen-select" id="selectSemestre">
                                     <?php foreach($semestres as $semestre):?>
                                         <option value="<?php echo $semestre;?>"><?php echo $semestre;?></option>
                                     <?php endforeach;?>
@@ -137,7 +137,7 @@
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="selectPublic" class="control-label">Promotion</label>
-                                <select name="selectPublic" class="form-control stuffToReinit" id="selectPublic">
+                                <select name="selectPublic" class="form-control stuffToReinit chosen-select" id="selectPublic">
                                     <?php foreach($publics as $public):?>
                                         <option value="<?php echo $public;?>"><?php echo $public;?></option>
                                     <?php endforeach;?>
@@ -161,7 +161,7 @@
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
                                 <label for="selectModule" class="control-label">Module</label>
-                                <select name="module[]" class="form-control" id="selectModule" multiple style="height: 380.5px">
+                                <select name="module[]" class="form-control chosen-select" id="selectModule" multiple style="height: 380.5px" data-placeholder="Veuillez choisir">
                                     <?php foreach($modules as $module):?>
                                         <option value="<?php echo $module['ident'];?>"><?php echo $module['ident'];?></option>
                                     <?php endforeach;?>
@@ -232,7 +232,7 @@
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <label for="select_statut" class="control-label">Statut</label>
-                                    <select name="status_select" class="form-control" id="status_select">
+                                    <select name="status_select" class="form-control chosen-select" id="status_select">
                                         <?php foreach ($status as $lestatut){
                                             echo "<option value=\"$lestatut->statut\"";
                                             echo set_select('status_select', $lestatut->statut);
@@ -260,11 +260,11 @@
                 <div class="col-md-12 col-no-border">
                     <?php echo form_open("admin/deleteUser",'class="form-horizontal"')?>
                     <fieldset>
-                        <legend>Supprimer un utilisateur</legend>
+                        <legend>Suppression utilisateur(s)</legend>
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
                                 <label for="selectEnseignant" class="control-label">Enseignants</label>
-                                <select name="enseignants[]" class="form-control" id="selectEnseignant" multiple style="height: 380.5px">
+                                <select name="enseignants[]" class="form-control chosen-select" id="selectEnseignant" multiple style="height: 380.5px" data-placeholder="Veuillez choisir un ou plusieurs enseignant(s)">
                                     <?php foreach($enseignants as $enseignants):?>
                                         <option value="<?php echo $enseignants['login'];?>">
                                             <?php echo  $enseignants['nom'].' '.
@@ -290,7 +290,7 @@
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
                                 <label for="enseignantsModify" class="control-label">Enseignants</label>
-                                <select name="enseignantsModify" class="form-control" id="enseignantsModify">
+                                <select name="enseignantsModify" class="form-control chosen-select" id="enseignantsModify">
                                     <?php foreach($enseignantsModify as $enseignants):?>
                                         <option value="<?php echo $enseignants['login'];?>">
                                             <?php echo  $enseignants['nom'].' '.
@@ -337,7 +337,7 @@
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="select_statutModify" class="control-label">Statut</label>
-                                <select name="select_statutModify" class="form-control" id="select_statutModify">
+                                <select name="select_statutModify" class="form-control chosen-select" id="select_statutModify">
                                     <?php foreach ($status as $lestatut){
                                         echo "<option value=\"$lestatut->statut\"";
                                         echo set_select('status_selectModify', $lestatut->statut);
@@ -382,7 +382,7 @@
                         <legend>Supprimer une news</legend>
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
-                                <select name="supprimer_news" class="form-control" id="supprimer_news">
+                                <select name="supprimer_news" class="form-control chosen-select" id="supprimer_news">
                                     <option value="no">Veuillez choisir</option>
                                     <?php foreach($allnews as $onenews):?>
                                         <option value="<?php echo $onenews['ID'];?>">
@@ -412,7 +412,7 @@
                         <legend>Modifier une news</legend>
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
-                                <select name="modifier_news" class="form-control" id="modifier_news">
+                                <select name="modifier_news" class="form-control chosen-select" id="modifier_news">
                                     <option value="no">Veuillez choisir</option>
                                     <?php foreach($allnews as $onenews):?>
                                         <option value="<?php echo $onenews['ID'];?>">
@@ -443,7 +443,7 @@
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
                                 <label for="selectModule" class="control-label">Selectionnez un module</label>
-                                <select name="selectModule" class="form-control" id="selectModule">
+                                <select name="selectModule" class="form-control chosen-select" id="selectModule">
                                     <?php foreach($modules as $module):?>
                                         <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
                                     <?php endforeach;?>
@@ -455,7 +455,7 @@
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="selectType" class="control-label">Type</label>
-                                <select name="selectType" class="form-control" id="selectType">
+                                <select name="selectType" class="form-control chosen-select" id="selectType">
                                     <?php foreach($moduleTypes as $moduleType):?>
                                         <option value="<?php echo $moduleType['type'];?>"><?php echo $moduleType['type'];?></option>
                                     <?php endforeach;?>
@@ -480,8 +480,8 @@
                         <legend>Supprimer un contenu d'un module</legend>
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
-                                <label for="selectModuleShowContenu" class="control-label">Selectionnez un moodule</label>
-                                <select name="selectModuleShowContenu" class="form-control" id="getContenu">
+                                <label for="selectModuleShowContenu" class="control-label">Selectionnez un module</label>
+                                <select name="selectModuleShowContenu" class="form-control chosen-select-deselect" id="getContenu">
                                     <?php foreach($modules as $module):?>
                                         <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
                                     <?php endforeach;?>
@@ -493,12 +493,15 @@
                             <div id="displaygetModuleContenus" class="customHide">
                                 <div  class=" col-md-12 col-no-border">
                                     <label for="selectContenuModule" class="control-label">Selectionnez la/les partie(s) à supprimer</label>
-                                    <select name="selectContenuModule[]" class="form-control" id="selectContenuModule" multiple>
+                                    <select name="selectContenuModule[]" class="form-control" id="selectContenuModule" multiple data-placeholder="Veuillez choisir">
                                     </select>
                                 </div>
                                 <div  class=" col-md-12 col-no-border text-right">
                                     <?php echo form_submit('submit','Supprimer','id="deleteModuleContenu" class="delContenu btn btn-danger"')?>
                                 </div>
+                            </div>
+                            <div id="noContenuRemove" class="customHide">
+                                <p>Aucun contenu pour ce module</p>
                             </div>
                         </div>
                     </fieldset>
@@ -515,7 +518,7 @@
                                 <div class="col-md-6 col-no-border">
                                     <div class="col-md-12 col-no-border">
                                         <label for="selectModuleShowContenu" class="control-label">Selectionnez Module</label>
-                                        <select name="selectModuleShowContenu" class="form-control" id="obtContenu">
+                                        <select name="selectModuleShowContenu" class="form-control chosen-select" id="obtContenu">
                                             <?php foreach($modules as $module):?>
                                                 <option value="<?php echo $module['ident'];?>"><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
                                             <?php endforeach;?>
@@ -538,6 +541,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div id="noContenuModify" class="customHide col-md-6 col-no-border customHide">
+                                    <p>Aucun contenu pour ce module</p>
+                                </div>
                             </div>
                             <div id="displaysetModuleContenus" class="customHide">
                                 <div class="col-md-12 col-no-border">
@@ -546,7 +552,7 @@
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <label for="selectTypeAjax" class="control-label">Type</label>
-                                    <select name="selectTypeAjax" class="form-control" id="selectTypeAjax">
+                                    <select name="selectTypeAjax" class="form-control chosen-select" id="selectTypeAjax">
                                         <?php foreach($moduleTypes as $moduleType):?>
                                             <option class="typeModuleAjax" value="<?php echo $moduleType['type'];?>"><?php echo $moduleType['type'];?></option>
                                         <?php endforeach;?>
@@ -554,7 +560,7 @@
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <label for="selectTeacher" class="control-label">Professeur</label>
-                                    <select name="selectTeacher" class="form-control" id="selectTeacher">
+                                    <select name="selectTeacher" class="form-control chosen-select" id="selectTeacher">
                                         <option id="teacherModuleAjax" value=""></option>
                                         <?php foreach($enseignantsContenu as $enseignant2):?>
                                             <option value="<?php echo $enseignant2['login'];?>"><?php echo $enseignant2['nom']." ".$enseignant2['prenom'];?></option>
