@@ -201,10 +201,10 @@
                 </div>
             </div>
         </div>
-    <?php if(count($result)>0 && $onglet=="Recherche"):?>
+    <?php if(count($this->session->userdata('result'))>0 && $onglet=="Recherche"):?>
         <div class="row piiiich" id="modules_result">
             <div class="col-md-12 col-no-border">
-                <?php foreach($result as $val):?>
+                <?php foreach($this->session->userdata('result') as $val):?>
                     <div class="col-md-4 col-no-border bp-component">
                         <div class="list-group">
                             <div class="list-group-item <?php if(!$val['enseignant']){echo "module-not-taken";}?>">
