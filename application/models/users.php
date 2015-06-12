@@ -167,7 +167,7 @@ class Users extends CI_Model
             'pwd' => password_hash($newPass,PASSWORD_DEFAULT)
         );
         $this->db->where('login', $login);
-        $this->db->update('enseignant', $data);
+        return $this->db->update('enseignant', $data);
     }
 
     /**

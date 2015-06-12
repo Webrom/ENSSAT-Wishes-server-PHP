@@ -92,7 +92,7 @@ class admin extends SRV_Controller
             "enseignantsToAccept" => $this->users->getAllEnseignantsToAccept(),
             "enseignantsModifyModule" => $this->users->getAllEnseignants(),
             "semestres" => array("S1", "S2", "S3", "S4", "S5", "S6"),
-            "publics" => array("IMR1", "IMR2", "IMR3", "EII1", "EII2", "EII3", "TC", "LSI1", "LSI2", "LSI3", "OPT1", "OPT2", "OPT3","commun IMR1 et EII2"),
+            "publics" => array("IMR1", "IMR2", "IMR3", "EII1", "EII2", "EII3", "TC", "LSI1", "LSI2", "LSI3", "OPT1", "OPT2", "OPT3", "commun IMR1 et EII2"),
             //"publics" => $this->modulesmodels->getAllPublic(),
             "modules" => $this->modulesmodels->getAllModules(),
             "msg" => $msg,
@@ -134,9 +134,9 @@ class admin extends SRV_Controller
      */
     public function addUser()
     {
-        $login = $this->users->addUser("servicesENSSAT", $this->input->post("actif"),$this->input->post("admin"), "1",$this->input->post('prenom'),$this->input->post('name'),$this->input->post('heures'));
-        $this->index("Utilisateur créé avec le login ".$login, "alert-success", "#addUser");
-        $this->news->addNews($this->session->userdata('username'), "user", "L'utilisateur : " . $this->input->post('prenom') ." ". $this->input->post('name') . " a été ajouté.");
+        $login = $this->users->addUser("servicesENSSAT", $this->input->post("actif"), $this->input->post("admin"), "1", $this->input->post('prenom'), $this->input->post('name'), $this->input->post('heures'));
+        $this->index("Utilisateur créé avec le login " . $login, "alert-success", "#addUser");
+        $this->news->addNews($this->session->userdata('username'), "user", "L'utilisateur : " . $this->input->post('prenom') . " " . $this->input->post('name') . " a été ajouté.");
     }
 
     /**
@@ -163,7 +163,7 @@ class admin extends SRV_Controller
     public function addModule()
     {
         $module = array(
-            "ident" => substr($this->input->post('inputIdent'),0,10),
+            "ident" => substr($this->input->post('inputIdent'), 0, 10),
             "public" => $this->input->post('selectPublic'),
             "semestre" => $this->input->post('selectSemestre'),
             "libelle" => $this->input->post('inputLibelle'),
@@ -371,26 +371,27 @@ class admin extends SRV_Controller
                     $this->index("Modification pas effectuée, problème...", "alert-danger", "#modifyUsers");
             } else
                 $this->index("Modification pas effectuée, trop de décharge tue la décharge...", "alert-danger", "#modifyUsers");
-        }
-        else{
-            $this->index("Impossible de modifier le total d'heure. Vous avez choisi un total inférieur à la décharge et/ou inférieur au nombre d'heure déjà affecté.","alert-danger","#modifyUsers");
+        } else {
+            $this->index("Impossible de modifier le total d'heure. Vous avez choisi un total inférieur à la décharge et/ou inférieur au nombre d'heure déjà affecté.", "alert-danger", "#modifyUsers");
         }
     }
 
     /**
      * Recupere les informations d'un module pour ensuite l'afficher
      */
-    public function modifyModuleAjax(){
-       if($this->input->get('gData')!=null)
-           echo json_encode($this->modulesmodels->getModule($this->input->get('gData')));
-       else
-           return false;
+    public function modifyModuleAjax()
+    {
+        if ($this->input->get('gData') != null)
+            echo json_encode($this->modulesmodels->getModule($this->input->get('gData')));
+        else
+            return false;
     }
 
     /**
      * Modifie un module : responsable et libellé
      */
-    public function modifyModule(){
+    public function modifyModule()
+    {
         $keys = array(
             "ident" => $this->input->post('selectModModule')
         );
@@ -398,13 +399,25 @@ class admin extends SRV_Controller
             "libelle" => $this->input->post('inputLibelle'),
             "responsable" => $this->input->post('selectResponsable')
         );
-        $res = $this->modulesmodels->modifyModule($keys,$data);
-        if($res == "good")
+        $res = $this->modulesmodels->modifyModule($keys, $data);
+        if ($res == "good")
             $this->index("Le module a bien été modifié", "alert-success", "#modifyModule");
         else
             $this->index("Un problème est survenu, veuillez réessayer ultérieurement.", "alert-danger", "#modifyModule");
-
-
     }
+
+    /**
+     * Permet de réinitialiser le mot de passe d'un enseignant
+     */
+    public
+    function reinitMDP()
+    {
+        if ($this->users->changePassword("servicesENSSAT", $this->input->post('enseignantsInit'))) {
+            $this->index("Mot de passe réinitialiser, il s'agit maintenant de servicesENSSAT", "alert-success", "#reinitUsers");
+        } else {
+            $this->index("Echec, c'est surement que vous êtes un petit malin qui essaye d'envoyer de fausses infos en post ;)", "alert-danger", "#reinitUsers");
+        }
+    }
+
 
 }
