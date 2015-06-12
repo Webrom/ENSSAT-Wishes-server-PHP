@@ -340,10 +340,10 @@ class admin extends SRV_Controller
     {
         $decharge = $this->input->post('dechargeModify');
         $enseignant = $this->input->post("enseignantsModify");
-        $statutaire = $this->users->getStatutaire($enseignant);
         $heuresprises = $this->contenu->getHeuresPrises($enseignant);
 
-        if ($this->input->post('heuresModify') > $decharge) {
+        if ($this->input->post('heuresModify') > $decharge && $this->input->post('heuresModify') > $heuresprises) {
+            $statutaire = $this->input->post('heuresModify');
             if ($statutaire - $decharge > $heuresprises) {
                 if ($decharge > 0) {
                     if ($this->decharge->isPresentInTable($enseignant)) {
