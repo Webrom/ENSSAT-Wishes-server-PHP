@@ -9,11 +9,12 @@ class Users extends CI_Model
      * Permet de savoir si un utilisateur existe, et si oui si le mot de passe est le bon
      * @return bool Vrai si l'utilisateur et le mdp existe, sinon faux
      */
-    public function verifyUser($name, $oldpass)
+    public function verifyUser($name, $pwd)
     {
+        $this->load->library('encrypt');
         $this->db->from('enseignant');
         $this->db->where('login', $name);
-        $this->db->where('pwd', $oldpass);
+        $this->db->where('pwd', $this->encrypt->decode($pwd));
         $query = $this->db->get();
 
         if ($query->num_rows == 1) {
@@ -80,6 +81,7 @@ class Users extends CI_Model
      */
     public function addUser($pwd = "servicesENSSAT", $activity = 0, $accepted = 0, $prenom, $nom, $heures)
     {
+        $this->load->library('encrypt');
         $test_login = strtolower(substr($prenom, 0, 1));
         if (strlen($nom) > 7) {
             $taille = 7;
@@ -114,7 +116,7 @@ class Users extends CI_Model
             $statut = $this->input->post('status_select');
         }
         $this->db->set('login', $test_login);
-        $this->db->set('pwd', $pwd);
+        $this->db->set('pwd', $this->encrypt->encode($pwd));
         $this->db->set('nom', $nom);
         $this->db->set('prenom', $prenom);
         $this->db->set('statut', $statut);
@@ -155,9 +157,10 @@ class Users extends CI_Model
      */
     public function changePassword($newPass, $login)
     {
+        $this->load->library('encrypt');
         //$this->db->query('UPDATE enseignant SET pwd ="'.$newPass.'" WHERE login="'.$userName.'";');
         $data = array(
-            'pwd' => $newPass,
+            'pwd' => $this->encrypt->encode($newPass)
         );
         $this->db->where('login', $login);
         $this->db->update('enseignant', $data);
