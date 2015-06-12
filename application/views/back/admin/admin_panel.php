@@ -345,15 +345,22 @@
                             </div>
                             <div class="col-md-12 col-no-border">
                                 <label for="select_statutModify" class="control-label">Statut</label>
-                                <select name="select_statutModify" class="form-control chosen-select" id="select_statutModify">
+                                <select name="select_statutModify" class="form-control" id="select_statutModify">
                                     <?php foreach ($status as $lestatut){
-                                        echo "<option value=\"$lestatut->statut\"";
+                                        echo "<option value=\"$lestatut->statut\" ";
                                         echo set_select('status_selectModify', $lestatut->statut);
                                         echo ">";
                                         echo ucfirst($lestatut->statut);
                                         echo "</option>";
                                     }?>
                                     <option value="autre" <?php echo set_select('status_selectModify','autre'); ?>>Autre</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 col-no-border">
+                                <label for="select_admin" class="control-label">Administrateur</label>
+                                <select name="select_admin" class="form-control" id="select_admin">
+                                    <option value="0" <?php echo set_select('status_admin','0'); ?>>Non</option>
+                                    <option value="1" <?php echo set_select('status_admin','1'); ?>>Oui</option>
                                 </select>
                             </div>
                             <div class="col-md-12 col-no-border customHide" id="StatusPersoModify">

@@ -38,7 +38,7 @@ class Users extends CI_Model
      */
     public function getUserDataByUsername($username)
     {
-        $this->db->select("login, nom, prenom, statut, statutaire, actif");
+        $this->db->select("login, nom, prenom, statut, statutaire, actif, administrateur");
         $this->db->from("enseignant");
         $this->db->where("login", $username);
         $query = $this->db->get();
@@ -319,13 +319,13 @@ class Users extends CI_Model
      * @param $newStatut
      * @return mixed
      */
-    public function modifyUser($login, $newStatutaire, $newActif, $newStatut)
+    public function modifyUser($login, $newStatutaire, $newActif, $newStatut, $ifadmin)
     {
         $data = array(
             'statut' => $newStatut,
             'statutaire' => $newStatutaire,
             'actif' => $newActif,
-            'administrateur' => ($newStatut == "Administrateur") ? 1 : 0
+            'administrateur' => $ifadmin
         );
         $this->db->where('login', $login);
         $result1 = $this->db->update('enseignant', $data);

@@ -345,31 +345,36 @@ class admin extends SRV_Controller
         $statutaire = $this->users->getStatutaire($enseignant);
         $heuresprises = $this->contenu->getHeuresPrises($enseignant);
 
-        if ($statutaire - $decharge > $heuresprises) {
-            if ($decharge > 0) {
-                if ($this->decharge->isPresentInTable($enseignant)) {
-                    $this->decharge->setDecharge($enseignant, $decharge);
-                } else {
-                    $this->decharge->addNewDecharge($enseignant, $decharge);
+        if ($this->input->post('heuresModify') > $decharge) {
+            if ($statutaire - $decharge > $heuresprises) {
+                if ($decharge > 0) {
+                    if ($this->decharge->isPresentInTable($enseignant)) {
+                        $this->decharge->setDecharge($enseignant, $decharge);
+                    } else {
+                        $this->decharge->addNewDecharge($enseignant, $decharge);
+                    }
                 }
-            }
-            if ($this->input->post('select_statutModify') != "autre"){
-                $statut = $this->input->post('select_statutModify');
-            }
-            else{
-                $statut = $this->input->post('status_perso');
-            }
-            if ($this->users->modifyUser(
-                $this->input->post("enseignantsModify"),
-                $this->input->post('heuresModify'),
-                $this->input->post('actifModify'),
-                $statut)
-            )
-                $this->index("Modification effectuée", "alert-success", "#modifyUsers");
-            else
-                $this->index("Modification pas effectuée, problème...", "alert-danger", "#modifyUsers");
-        } else
-            $this->index("Modification pas effectuée, trop de décharge tue la décharge...", "alert-danger", "#modifyUsers");
+                if ($this->input->post('select_statutModify') != "autre") {
+                    $statut = $this->input->post('select_statutModify');
+                } else {
+                    $statut = $this->input->post('status_perso');
+                }
+                if ($this->users->modifyUser(
+                    $this->input->post("enseignantsModify"),
+                    $this->input->post('heuresModify'),
+                    $this->input->post('actifModify'),
+                    $statut,
+                    $this->input->post("select_admin"))
+                )
+                    $this->index("Modification effectuée", "alert-success", "#modifyUsers");
+                else
+                    $this->index("Modification pas effectuée, problème...", "alert-danger", "#modifyUsers");
+            } else
+                $this->index("Modification pas effectuée, trop de décharge tue la décharge...", "alert-danger", "#modifyUsers");
+        }
+        else{
+            $this->index("Impossible de modifier le total d'heure. Vous avez choisi un total inférieur à la décharge et/ou inférieur au nombre d'heure déjà affecté.","alert-danger","#modifyUsers");
+        }
     }
 
     /**
