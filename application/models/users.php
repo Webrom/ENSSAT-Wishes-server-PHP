@@ -86,7 +86,7 @@ class Users extends CI_Model
      * @param int $accepted
      * @return string, le login de l'utilisateur que l'on vient de créer (car 1er lettre du prénom + 7 premières du nom de famille + 1 chiffre si déjà login existant)
      */
-    public function addUser($pwd = "servicesENSSAT", $activity = 0, $accepted = 0, $prenom, $nom, $heures)
+    public function addUser($pwd = "servicesENSSAT", $activity = 0,$admin=0, $accepted = 0, $prenom, $nom, $heures)
     {
         $this->load->library('encrypt');
         $test_login = strtolower(substr($prenom, 0, 1));
@@ -129,7 +129,7 @@ class Users extends CI_Model
         $this->db->set('statut', $statut);
         $this->db->set('statutaire', $heures);
         $this->db->set('actif', $activity);
-        $this->db->set('administrateur', 0);
+        $this->db->set('administrateur', $admin);
         $this->db->set('accepted', $accepted);
         $this->db->insert('enseignant');
         return $test_login;

@@ -75,12 +75,7 @@ class Login extends SRV_Controller
             $actif = $this->users->verifyActivity($data['username']);
 
             if ($actif == "1") {
-                if($this->input->post("password") != "servicesENSSAT") {
-                    redirect('homeNews');
-                }
-                else {
-                    redirect('homeNews');//TODO prompt pwd ? optionnel
-                }
+                redirect('homeNews');
             } else {
                 $data = array(
                     'success' => "alert-danger",

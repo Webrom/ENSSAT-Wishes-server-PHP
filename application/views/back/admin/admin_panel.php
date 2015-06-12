@@ -213,15 +213,22 @@
                                     Votre utilisateur aura le mot de passe par défaut, soit "servicesENSSAT".</p>
                                 <div class="col-md-12 col-no-border">
                                     <label for="name" class="control-label">Nom de l'utilisateur</label>
-                                    <?php echo form_input('name','','class="form-control" placeholder="John" id="name" required')?>
+                                    <?php echo form_input('name','','class="form-control" placeholder="Doe" id="name" required')?>
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <label for="prenom" class="control-label">Prénom de l'utilisateur</label>
-                                    <?php echo form_input('prenom','','class="form-control" placeholder="Doe" id="prenom" required')?>
+                                    <?php echo form_input('prenom','','class="form-control" placeholder="John" id="prenom" required')?>
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <label for="inputHours" class="control-label">Nombre d'heures allouées</label>
                                     <input type="number" min="0" class="form-control" id="inputHours" name="heures" placeholder="heures" required>
+                                </div>
+                                <div class="col-md-12 col-no-border">
+                                    <label for="admin" class="control-label">Admin</label>
+                                    <select class="form-control" id="select" name="admin">
+                                        <option value="0">Non</option>
+                                        <option value="1">Oui</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <label for="actif" class="control-label">Actif</label>
