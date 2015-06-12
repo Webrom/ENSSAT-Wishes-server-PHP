@@ -589,7 +589,41 @@
                     <?php echo form_close()?>
                 </div>
             </div>
-        </div>
+            <div id="modifyModule" class="row admin-custom-box">
+                <div class="col-md-12 col-no-border">
+                    <fieldset>
+                        <legend>Modifier un module</legend>
+                        <?php echo form_open();?>
+                        <div class="form-group">
+                            <div class="col-md-12 col-no-border">
+                                <label for="selectModifyModule" class="control-label">Module</label>
+                                <select name="module" class="form-control chosen-select" id="selectModModule" data-placeholder="Veuillez choisir">
+                                    <?php foreach($modules as $module):?>
+                                        <option value="<?php echo $module['ident'];?>"><?php echo $module['ident'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-no-border text-right">
+                            <?php echo anchor('#','Rechercher','id="modifyModuleAjax" class="selectModModule ajaxFunction btn btn-info"')?>
+                        </div>
+                        <div class="col-md-12 col-no-border">
+                            <label for="inputLibelle" class="2 col-no-border control-label">Description du module</label>
+                            <?php echo form_input('inputLibelle','','class="form-control stuffToReinit" id="inputLibelle" placeholder="ex : Algorithmique et language C 1" required')?>
+                        </div>
+                        <div class="col-md-12 col-no-border">
+                            <label for="selectResponsable" class="control-label">Responsable</label>
+                            <select name="selectResponsable" class="form-control stuffToReinit chosen-select" id="selectResponsable">
+                                <option value="">...</option>
+                                <?php foreach($enseignantsModifyModule as $enseignant):?>
+                                    <option value="<?php echo $enseignant['login'];?>"><?php echo $enseignant['nom']. " ".$enseignant['prenom'];?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                        <?php echo form_close();?>
+                    </fieldset>
+                </div>
+            </div>
     </div>
 </div>
 

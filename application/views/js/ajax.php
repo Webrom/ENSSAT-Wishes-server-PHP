@@ -16,6 +16,7 @@
             "method": $(this).attr('id'),
             "gData": "#" + $(this).attr('class').substring(0, 10)
         };
+        console.log(param);
         if (!$("#display" + param["method"]).hasClass('customHide')){
             $("#display" + param["method"]).addClass('customHide');
         }
@@ -84,17 +85,11 @@
                             $("#teacherModuleAjax").text((array[0].enseignant!=null)?array[0].enseignant:"aucun");
                             $("#moduleHedAjax").val(array[0].hed);
                             break;
+                        case 'modifyModuleAjax':
+                            alert(data);
+                            break;
                     }
-                    var config = {
-                        '.chosen-select'           : {},
-                        '.chosen-select-deselect'  : {allow_single_deselect:true},
-                        '.chosen-select-no-single' : {disable_search_threshold:10},
-                        '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-                        '.chosen-select-width'     : {width:"95%"}
-                    }
-                    for (var selector in config) {
-                        $(selector).chosen(config[selector]);
-                    }
+                    reChosenselect();
                 }
         });
     });
@@ -211,5 +206,18 @@
             });
         }
     );
+
+    function reChosenselect(){
+        var config = {
+            '.chosen-select'           : {},
+            '.chosen-select-deselect'  : {allow_single_deselect:true},
+            '.chosen-select-no-single' : {disable_search_threshold:10},
+            '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+            '.chosen-select-width'     : {width:"95%"}
+        }
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+    };
 </script>
 

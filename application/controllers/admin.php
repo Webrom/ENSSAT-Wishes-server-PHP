@@ -82,6 +82,7 @@ class admin extends SRV_Controller
 
     public function index($msg = null, $success = null, $active = null)
     {
+        //on est obligé d'envoyer des tableaux séparés pour pouvoir utiliser la liste des enseignants/modules/etc... plusieurs fois
         $data = array(
             "admin" => $this->session->userdata['admin'],
             "active" => "Administration",
@@ -89,6 +90,7 @@ class admin extends SRV_Controller
             "enseignantsContenu" => $this->users->getAllEnseignants(), // obligé d'avoir en double car on a plusieurs boucles dans la vue
             "enseignantsModify" => $this->users->getAllEnseignants(),
             "enseignantsToAccept" => $this->users->getAllEnseignantsToAccept(),
+            "enseignantsModifyModule" => $this->users->getAllEnseignants(),
             "semestres" => array("S1", "S2", "S3", "S4", "S5", "S6"),
             "publics" => array("IMR1", "IMR2", "IMR3", "EII1", "EII2", "EII3", "TC", "LSI1", "LSI2", "LSI3", "OPT1", "OPT2", "OPT3","commun IMR1 et EII2"),
             //"publics" => $this->modulesmodels->getAllPublic(),
@@ -368,6 +370,13 @@ class admin extends SRV_Controller
                 $this->index("Modification pas effectuée, problème...", "alert-danger", "#modifyUsers");
         } else
             $this->index("Modification pas effectuée, trop de décharge tue la décharge...", "alert-danger", "#modifyUsers");
+    }
+
+    /**
+     * Recupere les informations d'un module pour ensuite l'afficher
+     */
+    public function modifyModuleAjax(){
+        echo 'lol';
     }
 
 }
