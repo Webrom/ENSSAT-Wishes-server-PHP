@@ -91,12 +91,17 @@ class profile extends SRV_Controller
     public function modifyStatutaire()
     {
         $newStatutaire = $this->input->post("inputStatutaire");
-
-        if ($this->users->setStatutaire($newStatutaire, $this->session->userdata('username'))) {
-            $msg = "Votre statutaire a été modifié.";
-            $msgbox = "alert-success";
-        } else {
-            $msg = "Votre statutaire n'est pas modifiable.";
+        if ($newStatutaire > $this->decharge->getHoursDecharge($this->session->userdata('username')) && $newStatutaire > $this->contenu->getHeuresPrises($this->session->userdata('username'))) {
+            if ($this->users->setStatutaire($newStatutaire, $this->session->userdata('username'))) {
+                $msg = "Votre statutaire a été modifié.";
+                $msgbox = "alert-success";
+            } else {
+                $msg = "Votre statutaire n'est pas modifiable.";
+                $msgbox = "alert-danger";
+            }
+        }
+        else{
+            $msg = "Impossible de modifier votre total d'heure. Vous avez choisi un total inférieur à votre décharge et/ou inférieur au nombre d'heure déjà affecté.";
             $msgbox = "alert-danger";
         }
 

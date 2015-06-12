@@ -9,16 +9,24 @@ class Users extends CI_Model
      * Permet de savoir si un utilisateur existe, et si oui si le mot de passe est le bon
      * @return bool Vrai si l'utilisateur et le mdp existe, sinon faux
      */
-    public function verifyUser($name, $oldpass)
+    public function verifyUser($name, $pwd)
     {
         $this->db->from('enseignant');
         $this->db->where('login', $name);
-        $this->db->where('pwd', $oldpass);
         $query = $this->db->get();
 
-        if ($query->num_rows == 1) {
-            return true;
-        } else {
+        if($query->num_rows == 1) {
+            $this->db->select('pwd');
+            $this->db->from('enseignant');
+            $this->db->where('login', $name);
+            $query = $this->db->get();
+            $passInBase = $query->row()->pwd;
+
+            if(password_verify($pwd,$passInBase)){
+                return true;
+            }
+        }
+        else {
             return false;
         }
     }
@@ -78,8 +86,9 @@ class Users extends CI_Model
      * @param int $accepted
      * @return string, le login de l'utilisateur que l'on vient de créer (car 1er lettre du prénom + 7 premières du nom de famille + 1 chiffre si déjà login existant)
      */
-    public function addUser($pwd = "servicesENSSAT", $activity = 0, $accepted = 0, $prenom, $nom, $heures)
+    public function addUser($pwd = "servicesENSSAT", $activity = 0,$admin=0, $accepted = 0, $prenom, $nom, $heures)
     {
+        $this->load->library('encrypt');
         $test_login = strtolower(substr($prenom, 0, 1));
         if (strlen($nom) > 7) {
             $taille = 7;
@@ -114,13 +123,13 @@ class Users extends CI_Model
             $statut = $this->input->post('status_select');
         }
         $this->db->set('login', $test_login);
-        $this->db->set('pwd', $pwd);
+        $this->db->set('pwd', password_hash($pwd,PASSWORD_DEFAULT));
         $this->db->set('nom', $nom);
         $this->db->set('prenom', $prenom);
         $this->db->set('statut', $statut);
         $this->db->set('statutaire', $heures);
         $this->db->set('actif', $activity);
-        $this->db->set('administrateur', 0);
+        $this->db->set('administrateur', $admin);
         $this->db->set('accepted', $accepted);
         $this->db->insert('enseignant');
         return $test_login;
@@ -131,7 +140,6 @@ class Users extends CI_Model
      */
     public function deleteUsers($data)
     {
-        //DELETE FROM `voeux`.`enseignant` WHERE `enseignant`.`login` = 'bvozel'
         foreach ($data as $enseignants) {
             $this->db->where('login', $enseignants);
             $this->db->delete('enseignant');
@@ -157,7 +165,7 @@ class Users extends CI_Model
     {
         //$this->db->query('UPDATE enseignant SET pwd ="'.$newPass.'" WHERE login="'.$userName.'";');
         $data = array(
-            'pwd' => $newPass,
+            'pwd' => password_hash($newPass,PASSWORD_DEFAULT)
         );
         $this->db->where('login', $login);
         $this->db->update('enseignant', $data);

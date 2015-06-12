@@ -72,4 +72,19 @@ class modulesmodels extends CI_Model {
         }
         return ($query)?"good":$ret;
     }
+
+    /**
+     * Permet de suppprimer les responsables d'un module
+     * @param $tableau_enseignants
+     */
+    public function deleteResponsables($tableau_enseignants)
+    {
+        foreach ($tableau_enseignants as $enseignants) {
+            $data = array(
+                'responsable' => null
+            );
+            $this->db->where('responsable', $enseignants);
+            $this->db->update('module', $data);
+        }
+    }
 }

@@ -31,9 +31,25 @@ class homeNews extends SRV_Controller
 
     public function index($start = 1)
     {
+        if (isset($this->session->userdata['success'])){
+            $success = $this->session->userdata['success'];
+        }
+        else{
+            $success = null;
+        }
+        if (isset($this->session->userdata['msg'])){
+            $msg = $this->session->userdata['msg'];
+        }
+        else{
+            $msg = null;
+        }
+        $this->session->unset_userdata('success');
+        $this->session->unset_userdata('msg');
         $data = array(
             "admin" => $this->session->userdata['admin'],
             'nbTotalNews' => $this->news->getNewsCount(),
+            'success' => $success,
+            'msg' => $msg
         );
 
         if ($start > 1) {
@@ -77,5 +93,7 @@ class homeNews extends SRV_Controller
         $this->load->view('back/template/header');
         $this->load->view('back/home/news', $data);
         $this->load->view('footer');
+
+
     }
 }

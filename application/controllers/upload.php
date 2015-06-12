@@ -42,15 +42,9 @@ class Upload extends SRV_Controller
         $config['upload_path'] = getcwd() . '/uploads/';
         $config['allowed_types'] = 'jpg|jpeg';
         $config['max_size'] = '10000000000000';
-<<<<<<< Updated upstream
         $config['max_width'] = '8000';
         $config['max_width'] = '8000';
         $config['max_height'] = '8000';
-=======
-        $config['max_width'] = '4000';
-        $config['max_width'] = '4000';
-        $config['max_height'] = '4000';
->>>>>>> Stashed changes
 
         $this->load->library('upload', $config);
 

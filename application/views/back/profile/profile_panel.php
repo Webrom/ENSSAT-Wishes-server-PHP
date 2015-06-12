@@ -97,8 +97,8 @@
                                     <div class="col-md-6 col-no-border">
                                         <?php echo form_open_multipart('upload/do_upload');?>
                                         <div class="col-md-12 col-no-border">
-                                            <p>Télécharger image profil : format JPG / PNG / GIF </p>
-                                            <p>Taille max : 1 MO</p>
+                                            <p>Télécharger image profil : format JPG / JPEG </p>
+                                            <p>Taille max : 100 MO</p>
                                         </div>
                                         <div class="col-md-12 col-no-border">
                                             <input type="file" name="userfile" size="20" />

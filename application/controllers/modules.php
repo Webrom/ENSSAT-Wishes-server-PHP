@@ -102,6 +102,9 @@ class modules extends SRV_Controller
                             )
                         );
                         if ($result) {
+                            $this->news->addNews($this->session->userdata('username'), "user",
+                                "Inscription à un module"
+                                , $this->input->get('module'),$this->input->get('partie'));
                             $info = array(
                                 'success' => "alert-success",
                                 'msg' => "Vous êtes maintenant inscrit à ce contenu"
@@ -136,12 +139,14 @@ class modules extends SRV_Controller
                 'msg' => "Il y a eu une erreur dans l'inscription au module."
             );
         }
-        $this->news->addNews($this->session->userdata('username'), "user",
-            "Inscription à un module"
-            , $this->input->get('module'),$this->input->get('partie'));
-        if($this->input->get('page')=='home')
+
+        if($this->input->get('page')=='home'){
+            $this->session->set_userdata($info);
             redirect('homeNews');
-        $this->index(null, null, $info, "Recherche");
+        }
+        else {
+            $this->index(null, null, $info, "Recherche");
+        }
     }
 
     public function desinscriptionModule()

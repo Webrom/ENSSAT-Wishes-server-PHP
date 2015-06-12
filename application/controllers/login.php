@@ -73,6 +73,7 @@ class Login extends SRV_Controller
             );
             $this->session->set_userdata($data);
             $actif = $this->users->verifyActivity($data['username']);
+
             if ($actif == "1") {
                 redirect('homeNews');
             } else {
@@ -80,15 +81,14 @@ class Login extends SRV_Controller
                     'success' => "alert-danger",
                     'msg' => "Votre compte est inactif, veuillez contacter l'administrateur."
                 );
-                $this->index($data);
             }
         } else {
             $data = array(
                 'success' => "alert-danger",
                 'msg' => "Ce couple login / pwd n'existe pas, merci de vérifier vos identifiants !"
             );
-            $this->index($data);
         }
+        $this->index($data);
     }
 
     /**

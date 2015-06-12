@@ -132,7 +132,7 @@ class admin extends SRV_Controller
      */
     public function addUser()
     {
-        $this->users->addUser("servicesENSSAT", $this->input->post("actif"), "1",$this->input->post('prenom'),$this->input->post('name'),$this->input->post('heures'));
+        $this->users->addUser("servicesENSSAT", $this->input->post("actif"),$this->input->post("admin"), "1",$this->input->post('prenom'),$this->input->post('name'),$this->input->post('heures'));
         $this->index("Utilisateur bien créé.", "alert-success", "#addUser");
         $this->news->addNews($this->session->userdata('username'), "user", "L'utilisateur : " . $this->input->post('prenom') ." ". $this->input->post('name') . " a été ajouté.");
     }
@@ -201,8 +201,11 @@ class admin extends SRV_Controller
     {
         $data = $this->input->post('enseignants');
         if ($data != null) {
-            $this->users->deleteUsers($data);
+            $this->news->deleteNewsForUsers($data);
+            $this->modulesmodels->deleteResponsables($data);
+            $this->decharge->removeTeachersDecharge($data);
             $this->contenu->removeTeacherforEachContenu($data);
+            $this->users->deleteUsers($data);
             $this->index("Le/les enseignant(s) ont étés supprimés.", "alert-success", "#deleteUsers");
         } else
             $this->index("Veuillez remplir correctement le formulaire", "alert-danger", "#deleteUsers");
@@ -348,11 +351,17 @@ class admin extends SRV_Controller
                     $this->decharge->addNewDecharge($enseignant, $decharge);
                 }
             }
+            if ($this->input->post('select_statutModify') != "autre"){
+                $statut = $this->input->post('select_statutModify');
+            }
+            else{
+                $statut = $this->input->post('status_perso');
+            }
             if ($this->users->modifyUser(
                 $this->input->post("enseignantsModify"),
                 $this->input->post('heuresModify'),
                 $this->input->post('actifModify'),
-                $this->input->post('select_statutModify'))
+                $statut)
             )
                 $this->index("Modification effectuée", "alert-success", "#modifyUsers");
             else

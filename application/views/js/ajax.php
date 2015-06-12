@@ -16,6 +16,16 @@
             "method": $(this).attr('id'),
             "gData": "#" + $(this).attr('class').substring(0, 10)
         };
+        if (!$("#display" + param["method"]).hasClass('customHide')){
+            $("#display" + param["method"]).addClass('customHide');
+        }
+        if (!$('#noContenuRemove').hasClass('customHide')){
+            $('#noContenuRemove').addClass('customHide');
+        }
+        if (!$('#noContenuModify').hasClass('customHide')){
+            $('#noContenuModify').addClass('customHide');
+        }
+        console.log($(param["gData"]).val());
         $.ajax({
             url : param["base_url"]+'index.php/'+param["controler"]+'/'+param["method"],
             type : 'GET',
@@ -23,34 +33,48 @@
             cache: false,
             'success':
                 function(data){
-                    console.log(data);
-                    $("#display"+param["method"]).addClass('animated bounceInUp').removeClass('customHide');
+                    console.log(data.length);
+                    if(data.length>2) {
+                        $("#display" + param["method"]).addClass('animated bounceInUp').removeClass('customHide');
+                    }
                     var array = JSON.parse(data);
                     switch (param["method"]){
                         case "getModuleContenus":
-                            $(".ajaxContenuModule").each(function(){
-                                $(this).remove();
-                            });
-                            for(var i = 0; i<array.length;i++){
-                                var mytext = array[i].partie;
-                                var option = document.createElement('option');
-                                $(option).attr('value',mytext);
-                                $(option).addClass('ajaxContenuModule');
-                                $(option).text(mytext);
-                                $("#selectContenuModule").append($(option));
+                            if (data.length>2) {
+                                $(".ajaxContenuModule").each(function(){
+                                    $(this).remove();
+                                });
+                                for(var i = 0; i<array.length;i++){
+                                    var mytext = array[i].partie;
+                                    var option = document.createElement('option');
+                                    $(option).attr('value',mytext);
+                                    $(option).addClass('ajaxContenuModule');
+                                    $(option).text(mytext);
+                                    $("#selectContenuModule").append($(option));
+                                }
+                                    $('#selectContenuModule').addClass('chosen-select');
+                            }
+                            else{
+                                $('#noContenuRemove').removeClass('customHide');
                             }
                             break;
                         case "setModuleContenusType":
-                            $(".ajaxContenuType").each(function(){
-                                $(this).remove();
-                            });
-                            for(var i = 0; i<array.length;i++){
-                                var mytext = array[i].partie;
-                                var option = document.createElement('option');
-                                $(option).attr('value',mytext);
-                                $(option).addClass('ajaxContenuType');
-                                $(option).text(mytext);
-                                $("#dtcContenu").append($(option));
+                            if (data.length>2) {
+                                $(".ajaxContenuType").each(function () {
+                                    $(this).remove();
+                                });
+                                for (var i = 0; i < array.length; i++) {
+                                    var mytext = array[i].partie;
+                                    var option = document.createElement('option');
+                                    $(option).attr('value', mytext);
+                                    $(option).addClass('ajaxContenuType');
+                                    $(option).text(mytext);
+                                    $("#dtcContenu").append($(option));
+                                }
+                                $('#dtcContenu').addClass('chosen-select');
+                            }
+                            else{
+                                $('#noContenuModify').removeClass('customHide');
                             }
                             break;
                         case "setModuleContenus":
@@ -60,6 +84,16 @@
                             $("#teacherModuleAjax").text((array[0].enseignant!=null)?array[0].enseignant:"aucun");
                             $("#moduleHedAjax").val(array[0].hed);
                             break;
+                    }
+                    var config = {
+                        '.chosen-select'           : {},
+                        '.chosen-select-deselect'  : {allow_single_deselect:true},
+                        '.chosen-select-no-single' : {disable_search_threshold:10},
+                        '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+                        '.chosen-select-width'     : {width:"95%"}
+                    }
+                    for (var selector in config) {
+                        $(selector).chosen(config[selector]);
                     }
                 }
         });
