@@ -140,7 +140,6 @@ class Users extends CI_Model
      */
     public function deleteUsers($data)
     {
-        //DELETE FROM `voeux`.`enseignant` WHERE `enseignant`.`login` = 'bvozel'
         foreach ($data as $enseignants) {
             $this->db->where('login', $enseignants);
             $this->db->delete('enseignant');

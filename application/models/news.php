@@ -261,4 +261,15 @@ class News extends CI_Model{
         $data = $this->db->get()->result_array();
         return $data;
     }
+
+    /**
+     * Permet de supprimer toutes les news pour un/plusieurs utilisateur(s)
+     * @param $tableau_enseignants
+     */
+    public function deleteNewsForUsers($tableau_enseignants){
+        foreach($tableau_enseignants as $enseignants){
+            $this->db->where('ENSEIGNANT', $enseignants);
+            $this->db->delete('news');
+        }
+    }
 }
