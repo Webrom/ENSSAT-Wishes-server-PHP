@@ -38,7 +38,7 @@ class Users extends CI_Model
      */
     public function getUserDataByUsername($username)
     {
-        $this->db->select("login, nom, prenom, statut, statutaire, actif");
+        $this->db->select("login, nom, prenom, statut, statutaire, actif, administrateur");
         $this->db->from("enseignant");
         $this->db->where("login", $username);
         $query = $this->db->get();

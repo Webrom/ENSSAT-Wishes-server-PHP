@@ -202,11 +202,13 @@
                         var array = JSON.parse(data);
                         $("#loginModify").val(array['0'].login);
                         $("#actifModify").val(array['0'].actif);
-                        $("#select_statutModify").val(array['0'].statut);
+                        //$("#select_statutModify").val(array['0'].statut);
                         $("#heuresModify").val(array['0'].statutaire);
                         $("#nameModify").val(array['0'].nom);
                         $("#dechargeModify").val((array['0'].decharge)?array['0'].decharge:0);
                         $("#prenomModify").val(array['0'].prenom);
+                        $('#select_statutModify option[value="'+array['0'].statut+'"]').prop('selected', true);
+                        $('#select_admin option[value="'+array['0'].administrateur+'"]').prop('selected', true);
                     }
             });
         }
