@@ -407,7 +407,7 @@ class admin extends SRV_Controller
     }
 
     /**
-     * Permet de réinitialiser le mot de passe d'un enseignant lkfjlksdjflksdfj
+     * Permet de réinitialiser le mot de passe d'un enseignant
      */
     public
     function reinitMDP()
