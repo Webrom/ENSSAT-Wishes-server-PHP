@@ -11,15 +11,22 @@ class Users extends CI_Model
      */
     public function verifyUser($name, $pwd)
     {
-        $this->load->library('encrypt');
         $this->db->from('enseignant');
         $this->db->where('login', $name);
-        $this->db->where('pwd', $this->encrypt->decode($pwd));
         $query = $this->db->get();
 
-        if ($query->num_rows == 1) {
-            return true;
-        } else {
+        if($query->num_rows == 1) {
+            $this->db->select('pwd');
+            $this->db->from('enseignant');
+            $this->db->where('login', $name);
+            $query = $this->db->get();
+            $passInBase = $query->row()->pwd;
+
+            if(password_verify($pwd,$passInBase)){
+                return true;
+            }
+        }
+        else {
             return false;
         }
     }
@@ -116,7 +123,7 @@ class Users extends CI_Model
             $statut = $this->input->post('status_select');
         }
         $this->db->set('login', $test_login);
-        $this->db->set('pwd', $this->encrypt->encode($pwd));
+        $this->db->set('pwd', password_hash($pwd,PASSWORD_DEFAULT));
         $this->db->set('nom', $nom);
         $this->db->set('prenom', $prenom);
         $this->db->set('statut', $statut);
