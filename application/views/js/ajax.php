@@ -51,7 +51,8 @@
                                     $(option).text(mytext);
                                     $("#selectContenuModule").append($(option));
                                 }
-                                    $('#selectContenuModule').addClass('chosen-select');
+                                $('#selectContenuModule').addClass('chosen-select');
+                                $('#selectContenuModule').trigger("chosen:updated");
                             }
                             else{
                                 $('#noContenuRemove').removeClass('customHide');
@@ -71,24 +72,29 @@
                                     $("#dtcContenu").append($(option));
                                 }
                                 $('#dtcContenu').addClass('chosen-select');
+                                $('#dtcContenu').trigger("chosen:updated");
                             }
                             else{
                                 $('#noContenuModify').removeClass('customHide');
                             }
                             break;
                         case "setModuleContenus":
+                            console.log('aze');
                             $("#modulePartieAjax").val(array[0].partie);
                             $("#selectTypeAjax").val(array[0].type);
                             $("#teacherModuleAjax").val(array[0].enseignant);
                             $("#teacherModuleAjax").text((array[0].enseignant!=null)?array[0].enseignant:"aucun");
                             $("#moduleHedAjax").val(array[0].hed);
+                            $('#selectTeacher').trigger("chosen:updated");
                             break;
                         case 'modifyModuleAjax':
-                            console.log(array[0].libelle);
+                            $('#displayModuleContentModify').addClass('fadeOut');
                             $('#selectResponsableModifyModule').val(array[0].responsable);
                             $('#inputLibelleModifyModule').val(array[0].libelle);
                             $('#selectResponsableModifyModule').addClass('chosen-select');
                             $('#selectResponsableModifyModule').chosen();
+                            $('#selectResponsableModifyModule').trigger("chosen:updated");
+                            $('#displayModuleContentModify').addClass('animated fadeIn').removeClass('customHide fadeOut');
                             break;
                     }
                     reChosenselect();

@@ -23,7 +23,7 @@
                                 </a>
                             </h4>
                         </div>
-                        <div id="collapseOne" class="#deleteModule #addModulde panel-collapse collapse in">
+                        <div id="collapseOne" class="#deleteModule #addModulde #modifyModule panel-collapse collapse in">
                             <div class="panel-body">
                                 <ul class="nav nav-tabs nav-pills nav-stacked" style="max-width: 300px;">
                                     <li class="active"><a href="#addModulde" class="adminChoice btn">Ajouter</a></li>
@@ -59,7 +59,7 @@
                                 </a>
                             </h4>
                         </div>
-                        <div  id="collapseThree" class="#modifyUsers #deleteUsers #addUser #acceptUsers panel-collapse collapse">
+                        <div  id="collapseThree" class="#modifyUsers #deleteUsers #addUser #acceptUsers #reinitUsers panel-collapse collapse">
                             <div class="panel-body">
                                 <ul class="nav nav-tabs nav-pills nav-stacked" style="max-width: 300px;">
                                     <li><a class="adminChoice" href="#acceptUsers">En attente</a></li>
@@ -641,21 +641,23 @@
                         <div class="col-md-12 col-no-border text-right">
                             <?php echo anchor('#','Rechercher','id="modifyModuleAjax" class="selectModModule ajaxFunction btn btn-info"')?>
                         </div>
-                        <div class="col-md-12 col-no-border">
-                            <label for="inputLibelle" class="2 col-no-border control-label">Description du module</label>
-                            <?php echo form_input('inputLibelle','','class="form-control" id="inputLibelleModifyModule" placeholder="ex : Algorithmique et language C 1" required')?>
-                        </div>
-                        <div class="col-md-12 col-no-border">
-                            <label for="selectResponsable" class="control-label">Responsable</label>
-                            <select name="selectResponsable" class="form-control" id="selectResponsableModifyModule">
-                                <option value="">...</option>
-                                <?php foreach($enseignantsModifyModule as $enseignant):?>
-                                    <option value="<?php echo $enseignant['login'];?>"><?php echo $enseignant['nom']. " ".$enseignant['prenom'];?></option>
-                                <?php endforeach;?>
-                            </select>
-                        </div>
-                        <div class="col-md-12 col-no-border text-right">
-                            <?php echo form_submit('submit','Valider','class="btn btn-success"');?>
+                        <div id="displayModuleContentModify" class="customHide">
+                            <div class="col-md-12 col-no-border">
+                                <label for="inputLibelle" class="2 col-no-border control-label">Description du module</label>
+                                <?php echo form_input('inputLibelle','','class="form-control" id="inputLibelleModifyModule" placeholder="ex : Algorithmique et language C 1" required')?>
+                            </div>
+                            <div class="col-md-12 col-no-border">
+                                <label for="selectResponsable" class="control-label">Responsable</label>
+                                <select name="selectResponsable" class="form-control" id="selectResponsableModifyModule">
+                                    <option value="">...</option>
+                                    <?php foreach($enseignantsModifyModule as $enseignant):?>
+                                        <option value="<?php echo $enseignant['login'];?>"><?php echo $enseignant['nom']. " ".$enseignant['prenom'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="col-md-12 col-no-border text-right">
+                                <?php echo form_submit('submit','Valider','class="btn btn-success"');?>
+                            </div>
                         </div>
                         <?php echo form_close();?>
                     </fieldset>
