@@ -22,7 +22,7 @@
     background: #fff !important;
 }
 
-#exportResult{
+.exportResult{
     position: fixed;
     bottom: 10%;
     right: 5%;

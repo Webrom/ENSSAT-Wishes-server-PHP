@@ -55,6 +55,10 @@
                                 </div>
                             </div>
                         <?php endforeach; ?>
+                        <div class="exportResult">
+                            <?php $this->session->set_userdata($dataExport=array("dataExport"=>serialize($myModules)));?>
+                            <?php echo anchor('modules/exportCSV','Recuperer au format CSV','class="btn btn-info"');?>
+                        </div>
                     </div>
                     <div class="tab-pane fade <?php if($onglet=="Recherche") echo "active in"?>" id="recherche">
                         <div class="row">
@@ -229,7 +233,7 @@
                     </div>
                 <?php endforeach; ?>
             </div>
-            <div id="exportResult">
+            <div class="exportResult">
                 <?php $this->session->set_userdata($dataExport=array("dataExport"=>serialize($result)));?>
                 <?php echo anchor('modules/exportCSV','Recuperer au format CSV','class="btn btn-info"');?>
             </div>
