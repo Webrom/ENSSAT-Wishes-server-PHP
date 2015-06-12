@@ -164,10 +164,9 @@ class Users extends CI_Model
      */
     public function changePassword($newPass, $login)
     {
-        $this->load->library('encrypt');
         //$this->db->query('UPDATE enseignant SET pwd ="'.$newPass.'" WHERE login="'.$userName.'";');
         $data = array(
-            'pwd' => $this->encrypt->encode($newPass)
+            'pwd' => password_hash($newPass,PASSWORD_DEFAULT)
         );
         $this->db->where('login', $login);
         $this->db->update('enseignant', $data);
