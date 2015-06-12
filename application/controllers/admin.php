@@ -24,6 +24,7 @@ class admin extends SRV_Controller
             $this->load->model('contenu');
             $this->load->model('news');
             $this->load->model('decharge');
+            $this->load->model('uploadmodel');
         }
     }
 
@@ -207,6 +208,7 @@ class admin extends SRV_Controller
             $this->modulesmodels->deleteResponsables($data);
             $this->decharge->removeTeachersDecharge($data);
             $this->contenu->removeTeacherforEachContenu($data);
+            $this->uploadmodel->delAvatarUsers($data);
             $this->users->deleteUsers($data);
             $this->index("Le/les enseignant(s) ont étés supprimés.", "alert-success", "#deleteUsers");
         } else

@@ -35,8 +35,20 @@ class uploadmodel extends CI_Model{
             'avatar' => "avatar_defaut.jpg"
         );
 
-        $this->db->where('login', $userName);
-        $this->db->update('enseignant', $data);
+            $this->db->where('login', $userName);
+            $this->db->update('enseignant', $data);
+    }
+
+    /**
+     * Permet de supprimer les avatars d'utilisateurs que l'on supprime
+     * @param $userName
+     */
+    public function delAvatarUsers($userName){
+        foreach ($userName as $login) {
+            if (file_exists("./uploads/" . $login . ".jpg"))
+                unlink("./uploads/" . $login . ".jpg");
+        }
+
     }
 
     /**
