@@ -115,6 +115,15 @@
                                 <?php echo $n[0]['INFORMATION'];?>
                             </div>
                                 <?php break;
+                            case 'delete-module':?>
+                                <div class="col-md-10 col-no-border">
+                                    <h5>Suppression</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <?php echo $n[0]['INFORMATION'];?>
+                            </div>
+                                <?php break;
                             default:?>
                                 <div class="col-md-10 col-no-border">
                                     <h5><?php echo $n[0]['INFORMATION'];?></h5>

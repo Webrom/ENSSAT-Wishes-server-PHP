@@ -224,7 +224,8 @@ textarea {
 .comment-box div.contenu,
 .comment-box div.module,
 .comment-box div.user,
-.comment-box div.delete-contenu {
+.comment-box div.delete-contenu,
+.comment-box div.delete-module {
   background: #fff;
   border: none;
   margin: 5px;
@@ -239,7 +240,8 @@ textarea {
 .comment-box div.contenu h5,
 .comment-box div.module h5,
 .comment-box div.user h5,
-.comment-box div.delete-contenu h5 {
+.comment-box div.delete-contenu h5,
+.comment-box div.delete-module h5 {
   background: #2ecc71;
 }
 .comment-box div.delete-module,
