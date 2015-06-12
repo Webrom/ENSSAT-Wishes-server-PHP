@@ -1,6 +1,6 @@
 // start functions boostraps js
 
-(function(){
+$(function(){
 	$('.bp-component [data-toggle="tooltip"]').tooltip();
 
 	$('[data-toggle="popover"]').popover('hide')
@@ -10,10 +10,9 @@
 	  btn.button('loading')
 	});
 
-})();
+});
 
 $(function(){
-
     $('.alert-dismissable').each(function(){
         $(this).delay(6000).slideUp();
     });
