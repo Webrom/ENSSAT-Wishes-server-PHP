@@ -84,8 +84,11 @@
                             $("#moduleHedAjax").val(array[0].hed);
                             break;
                         case 'modifyModuleAjax':
-                            console.log(array);
-
+                            console.log(array[0].libelle);
+                            $('#selectResponsableModifyModule').val(array[0].responsable);
+                            $('#inputLibelleModifyModule').val(array[0].libelle);
+                            $('#selectResponsableModifyModule').addClass('chosen-select');
+                            $('#selectResponsableModifyModule').chosen();
                             break;
                     }
                     reChosenselect();

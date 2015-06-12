@@ -27,6 +27,25 @@ class modulesmodels extends CI_Model {
     }
 
     /**
+     * Modifie un module resp et/ou libelle
+     * @param $keys
+     * @param $data
+     * @return array|string
+     */
+    public function modifyModule($keys, $data){
+        $where = 'ident = "'.$keys['ident'].'"';
+        $query = $this->db->query($this->db->update_string('module',$data,$where));
+        if(!$query){
+            $ret= array(
+                "ErrorMessage" => $this->db->_error_message(),
+                "ErrorNumber" => $this->db->_error_message()
+            );
+        }else
+            $ret = "good";
+        return $ret;
+    }
+
+    /**
      * Permet d'obtenir tous les identifiants des modules pour un semestre OU une promotion données
      * @param $promOrSemester  String, indique si on veut la requête pour un semestre ou une promo
      * @param $valueSent String, valeur à rechercher

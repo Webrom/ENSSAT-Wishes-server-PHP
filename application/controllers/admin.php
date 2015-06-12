@@ -387,4 +387,24 @@ class admin extends SRV_Controller
            return false;
     }
 
+    /**
+     * Modifie un module : responsable et libellé
+     */
+    public function modifyModule(){
+        $keys = array(
+            "ident" => $this->input->post('selectModModule')
+        );
+        $data = array(
+            "libelle" => $this->input->post('inputLibelle'),
+            "responsable" => $this->input->post('selectResponsable')
+        );
+        $res = $this->modulesmodels->modifyModule($keys,$data);
+        if($res == "good")
+            $this->index("Le module a bien été modifié", "alert-success", "#modifyModule");
+        else
+            $this->index("Un problème est survenu, veuillez réessayer ultérieurement.", "alert-danger", "#modifyModule");
+
+
+    }
+
 }

@@ -600,7 +600,7 @@
                 <div class="col-md-12 col-no-border">
                     <fieldset>
                         <legend>Modifier un module</legend>
-                        <?php echo form_open();?>
+                        <?php echo form_open('admin/modifyModule');?>
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
                                 <label for="selectModifyModule" class="control-label">Module</label>
@@ -616,16 +616,19 @@
                         </div>
                         <div class="col-md-12 col-no-border">
                             <label for="inputLibelle" class="2 col-no-border control-label">Description du module</label>
-                            <?php echo form_input('inputLibelle','','class="form-control stuffToReinit" id="inputLibelleModifyModule" placeholder="ex : Algorithmique et language C 1" required')?>
+                            <?php echo form_input('inputLibelle','','class="form-control" id="inputLibelleModifyModule" placeholder="ex : Algorithmique et language C 1" required')?>
                         </div>
                         <div class="col-md-12 col-no-border">
                             <label for="selectResponsable" class="control-label">Responsable</label>
-                            <select name="selectResponsable" class="form-control stuffToReinit chosen-select" id="selectResponsableModifyModule">
+                            <select name="selectResponsable" class="form-control" id="selectResponsableModifyModule">
                                 <option value="">...</option>
                                 <?php foreach($enseignantsModifyModule as $enseignant):?>
                                     <option value="<?php echo $enseignant['login'];?>"><?php echo $enseignant['nom']. " ".$enseignant['prenom'];?></option>
                                 <?php endforeach;?>
                             </select>
+                        </div>
+                        <div class="col-md-12 col-no-border text-right">
+                            <?php echo form_submit('submit','Valider','class="btn btn-success"');?>
                         </div>
                         <?php echo form_close();?>
                     </fieldset>
