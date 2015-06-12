@@ -201,8 +201,11 @@ class admin extends SRV_Controller
     {
         $data = $this->input->post('enseignants');
         if ($data != null) {
-            $this->users->deleteUsers($data);
+            $this->news->deleteNewsForUsers($data);
+            $this->modulesmodels->deleteResponsables($data);
+            $this->decharge->removeTeachersDecharge($data);
             $this->contenu->removeTeacherforEachContenu($data);
+            $this->users->deleteUsers($data);
             $this->index("Le/les enseignant(s) ont étés supprimés.", "alert-success", "#deleteUsers");
         } else
             $this->index("Veuillez remplir correctement le formulaire", "alert-danger", "#deleteUsers");

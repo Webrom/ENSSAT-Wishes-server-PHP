@@ -66,4 +66,16 @@ class Decharge extends CI_Model{
         );
         $this->db->insert('decharge', $data);
     }
+
+
+    /**
+     * Permet de supprimer la décharge de un/plusieurs enseignant(s)
+     * @param $tableau_enseignants
+     */
+    public function removeTeachersDecharge($tableau_enseignants){
+        foreach($tableau_enseignants as $enseignants){
+            $this->db->where('enseignant', $enseignants);
+            $this->db->delete('decharge');
+        }
+    }
 }
