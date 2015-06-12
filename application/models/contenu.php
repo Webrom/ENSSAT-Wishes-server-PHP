@@ -11,9 +11,10 @@ class Contenu extends CI_Model{
      * @return null si l'enseignant n'a aucun contenu d'assigner, sinon retourne le résultat de la requête sous format tableau
      */
     public function getAllMyContenus($username){
-        $this->db->select("*");
+        $this->db->select("module,partie,type,hed,semestre,public,nom,prenom,enseignant,responsable");
         $this->db->from("contenu");
         $this->db->join('module','module.ident=contenu.module');
+        $this->db->join('enseignant','contenu.enseignant = enseignant.login','left');
         $this->db->where("enseignant",$username);
         $query = $this->db->get();
 

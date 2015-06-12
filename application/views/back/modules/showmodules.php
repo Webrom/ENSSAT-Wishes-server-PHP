@@ -67,8 +67,8 @@
                         <?php endforeach; ?>
                         <?php if(sizeof($myModules)>0):?>
                         <div class="exportResult">
-                            <?php $this->session->set_userdata($dataExport=array("dataExport"=>serialize($myModules)));?>
-                            <?php echo anchor('modules/exportCSV','Recuperer au format CSV','class="btn btn-info" download="exportCSV"');?>
+                            <?php $this->session->set_userdata($dataExport=array("dataExportMyModules"=>serialize($myModules)));?>
+                            <?php echo anchor('modules/exportCSVMyModules','Recuperer au format CSV','class="btn btn-info" download="exportCSV"');?>
                         </div>
                         <?php endif;?>
                     </div>
@@ -208,10 +208,10 @@
                 </div>
             </div>
         </div>
-    <?php if(count($this->session->userdata('result'))>0 && $onglet=="Recherche"):?>
+    <?php if(count($result)>0 && $onglet=="Recherche"):?>
         <div class="row piiiich" id="modules_result">
             <div class="col-md-12 col-no-border">
-                <?php foreach($this->session->userdata('result') as $val):?>
+                <?php foreach($result as $val):?>
                     <div class="col-md-4 col-no-border bp-component">
                         <div class="list-group">
                             <div class="list-group-item <?php if(!$val['enseignant']){echo "module-not-taken";}?>">
@@ -253,8 +253,8 @@
                 <?php endforeach; ?>
             </div>
             <div class="exportResult">
-                <?php $this->session->set_userdata($dataExport=array("dataExport"=>serialize($result)));?>
-                <?php echo anchor('modules/exportCSV','Recuperer au format CSV','class="btn btn-info" download="exportCSV"');?>
+                <?php $this->session->set_userdata($dataExport=array("dataExportResult"=>serialize($result)));?>
+                <?php echo anchor('modules/exportCSVResult','Recuperer au format CSV','class="btn btn-info" download="exportCSV"');?>
             </div>
         </div>
     <?php endif;?>
