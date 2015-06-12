@@ -136,7 +136,7 @@ class Contenu extends CI_Model{
      * @return mixed un tableau avec les différents résultats
      */
     public function getContenus($array){
-        $this->db->select('module,partie,type,hed,module.semestre,module.public,nom,prenom,contenu.enseignant');
+        $this->db->select('module,partie,type,hed,module.semestre,module.public,nom,prenom,contenu.enseignant,responsable');
         $this->db->from('contenu');
         $this->db->join('module','module.ident=contenu.module');
         $this->db->join('enseignant','contenu.enseignant = enseignant.login','left');
@@ -277,7 +277,7 @@ class Contenu extends CI_Model{
     }
 
     /**
-     * Ajoute une partie à un module, retourne ggod si l'insert réussi sinon une erreur
+     * Ajoute une partie à un module, retourne ggod si l'insert réussi ou une errur
      * @param $contenu
      * @return array|string
      */

@@ -39,6 +39,13 @@
                                                 <?php echo $val['partie'];?>
                                             </li>
                                             <li class='list-group-item'>
+                                                <?php if($val['responsable']):
+                                                    echo "resp : ".$val['responsable'];
+                                                else:?>
+                                                    <span class="text-danger">pas de responsable</span>
+                                                <?php endif;?>
+                                            </li>
+                                            <li class='list-group-item'>
                                                 <?php echo $val['public'];?>
                                             </li>
                                             <li class='list-group-item'>
@@ -212,6 +219,13 @@
                                 <ul class="list-group">
                                     <li class='list-group-item'>
                                         <?php echo $val['partie']?>
+                                    </li>
+                                    <li class='list-group-item'>
+                                        <?php if($val['responsable']):
+                                            echo "resp : ".$val['responsable'];
+                                        else:?>
+                                            <span class="text-danger">pas de responsable</span>
+                                        <?php endif;?>
                                     </li>
                                     <li class='list-group-item'>
                                         <?php echo $val['public']?>

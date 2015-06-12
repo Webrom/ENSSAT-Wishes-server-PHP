@@ -35,7 +35,7 @@
                                                     showInLegend: true,
                                                     toolTipContent: "{y} - HED",
                                                     yValueFormatString: "",
-                                                    legendText: "{indexLabel} : {y} HETD",
+                                                    legendText: "{indexLabel}, HETD : {y}",
                                                     dataPoints: [
                                                     ]
                                                 }

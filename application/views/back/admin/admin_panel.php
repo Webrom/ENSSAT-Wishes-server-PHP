@@ -27,6 +27,7 @@
                             <div class="panel-body">
                                 <ul class="nav nav-tabs nav-pills nav-stacked" style="max-width: 300px;">
                                     <li class="active"><a href="#addModulde" class="adminChoice btn">Ajouter</a></li>
+                                    <li><a href="#modifyModule" class="adminChoice">Modifier</a></li>
                                     <li><a href="#deleteModule" class="adminChoice">Supprimer</a></li>
                                 </ul>
                             </div>
