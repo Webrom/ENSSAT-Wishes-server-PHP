@@ -88,7 +88,6 @@ class Users extends CI_Model
      */
     public function addUser($pwd = "servicesENSSAT", $activity = 0,$admin=0, $accepted = 0, $prenom, $nom, $heures)
     {
-        $this->load->library('encrypt');
         $test_login = strtolower(substr($prenom, 0, 1));
         if (strlen($nom) > 7) {
             $taille = 7;
