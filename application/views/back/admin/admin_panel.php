@@ -604,7 +604,7 @@
                         <div class="form-group">
                             <div class="col-md-12 col-no-border">
                                 <label for="selectModifyModule" class="control-label">Module</label>
-                                <select name="module" class="form-control chosen-select" id="selectModModule" data-placeholder="Veuillez choisir">
+                                <select name="selectModModule" class="form-control chosen-select" id="selectModM" data-placeholder="Veuillez choisir">
                                     <?php foreach($modules as $module):?>
                                         <option value="<?php echo $module['ident'];?>"><?php echo $module['ident'];?></option>
                                     <?php endforeach;?>
@@ -616,11 +616,11 @@
                         </div>
                         <div class="col-md-12 col-no-border">
                             <label for="inputLibelle" class="2 col-no-border control-label">Description du module</label>
-                            <?php echo form_input('inputLibelle','','class="form-control stuffToReinit" id="inputLibelle" placeholder="ex : Algorithmique et language C 1" required')?>
+                            <?php echo form_input('inputLibelle','','class="form-control stuffToReinit" id="inputLibelleModifyModule" placeholder="ex : Algorithmique et language C 1" required')?>
                         </div>
                         <div class="col-md-12 col-no-border">
                             <label for="selectResponsable" class="control-label">Responsable</label>
-                            <select name="selectResponsable" class="form-control stuffToReinit chosen-select" id="selectResponsable">
+                            <select name="selectResponsable" class="form-control stuffToReinit chosen-select" id="selectResponsableModifyModule">
                                 <option value="">...</option>
                                 <?php foreach($enseignantsModifyModule as $enseignant):?>
                                     <option value="<?php echo $enseignant['login'];?>"><?php echo $enseignant['nom']. " ".$enseignant['prenom'];?></option>

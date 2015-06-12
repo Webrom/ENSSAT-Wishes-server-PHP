@@ -381,7 +381,10 @@ class admin extends SRV_Controller
      * Recupere les informations d'un module pour ensuite l'afficher
      */
     public function modifyModuleAjax(){
-        echo 'lol';
+       if($this->input->get('gData')!=null)
+           echo json_encode($this->modulesmodels->getModule($this->input->get('gData')));
+       else
+           return false;
     }
 
 }

@@ -17,6 +17,16 @@ class modulesmodels extends CI_Model {
     }
 
     /**
+     * Retourne le detail d'un module
+     */
+    public function getModule($data){
+        $this->db->select("*");
+        $this->db->from("module");
+        $this->db->where("ident",$data);
+        return $this->db->get()->result_array();
+    }
+
+    /**
      * Permet d'obtenir tous les identifiants des modules pour un semestre OU une promotion données
      * @param $promOrSemester  String, indique si on veut la requête pour un semestre ou une promo
      * @param $valueSent String, valeur à rechercher

@@ -26,7 +26,6 @@
         if (!$('#noContenuModify').hasClass('customHide')){
             $('#noContenuModify').addClass('customHide');
         }
-        console.log($(param["gData"]).val());
         $.ajax({
             url : param["base_url"]+'index.php/'+param["controler"]+'/'+param["method"],
             type : 'GET',
@@ -34,7 +33,6 @@
             cache: false,
             'success':
                 function(data){
-                    console.log(data.length);
                     if(data.length>2) {
                         $("#display" + param["method"]).addClass('animated bounceInUp').removeClass('customHide');
                     }
@@ -86,7 +84,8 @@
                             $("#moduleHedAjax").val(array[0].hed);
                             break;
                         case 'modifyModuleAjax':
-                            alert(data);
+                            console.log(array);
+
                             break;
                     }
                     reChosenselect();
