@@ -722,19 +722,26 @@
 
 	/* list Group */
 
-	.list-group-item {
-		&.active {
-			background-color: @list-group-item-bg-active !important;
-			.border();
-			&:hover,
-			&:focus { background-color: @list-group-item-bg-active !important; }
-		}
-        &.same-case {
-          height: 54px;
-        }
-	}
+    .list-group-item {
+      border: none !important;
+      -moz-box-shadow: 0px 5px 5px 0px #656565;
+      -webkit-box-shadow: 0px 5px 5px 0px #656565;
+      -o-box-shadow: 0px 5px 5px 0px #656565;
+      box-shadow: 0px 5px 5px 0px #656565;
+      &.active {
+        background-color: @list-group-item-bg-active !important;
+        &:hover,
+        &:focus { background-color: @list-group-item-bg-active !important; }
+      }
+      &.same-case {
+        height: 54px;
+      }
+    }
+    li.list-group-item  {
+      box-shadow: none;
+    }
 
-	.list-group-item {
+    .list-group-item {
 		&-heading { color: #FFF !important; }
 	}
     .module-not-taken{

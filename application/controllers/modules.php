@@ -31,6 +31,7 @@ class modules extends SRV_Controller
         $data = array(
             "modules" => $this->modulesmodels->getAllModules(),
             "enseignants" => $this->users->getAllEnseignants(),
+            "enseignants2" => $this->users->getAllEnseignants(),
             "result" => $result,
             "moduleSelected" => ($infosmodule!=null)?$infosmodule['moduleSelected']:null,
             "teacherSelected" => ($infosmodule!=null)?$infosmodule['teacherSelected']:null,
@@ -185,22 +186,42 @@ class modules extends SRV_Controller
         $this->load->view('back/modules/exportCSV',$data);
     }
 
-    public function retreiveChartModule(){
-        $data = array(
-            "module" => $this->input->post('module'),
-            "promotion" => "noProm",
-            "semester" => "noSemester",
-            "teacher" => "no"
-        );
-        $result = $this->contenu->getContenus($data);
-        $data = array(
-            "moduleSelected" => $this->input->post('module'),
-            "teacherSelected" => ($this->input->post('teacher')) ? $this->users->getUserDataByUsername($this->input->post('teacher')) : "no",
-            "promSelected" => ($this->input->post("prom") != "noProm") ? $this->input->post("prom") : "noProm",
-            "semSelected" => ($this->input->post("semester") != "noSemester") ? $this->input->post("semester") : "noSemester",
-            "checked" => $this->input->post('checkboxSansEnseignant')
-        );
-        $this->index($result, $data, null, "Reporting");
+    public function retreiveChartContenuModule(){
+        if($this->input->get('gData')!=null) {
+            $data = array(
+                "module" => $this->input->get('gData'),
+                "promotion" => "noProm",
+                "semester" => "noSemester",
+                "teacher" => "no"
+            );
+            $result = $this->contenu->getContenus($data);
+            echo json_encode($result);
+        }else
+            return false;
 
+    }
+
+    public function retreiveChartTeacher(){
+        if($this->input->get('gData')!=null) {
+            $data = array(
+                "teacher" => $this->input->get('gData'),
+            );
+            echo json_encode($this->contenu->getAllMyContenus($data['teacher']));
+        }else
+            return false;
+    }
+
+    public function retreiveChartSemester(){
+        if($this->input->get('gData')!="noSemester") {
+            $data = array(
+                "module" => "",
+                "promotion" => "noProm",
+                "semester" => $this->input->get('gData'),
+                "teacher" => "no"
+            );
+            $result = $this->contenu->getContenus($data);
+            echo json_encode($result);
+        }else
+            return false;
     }
 }

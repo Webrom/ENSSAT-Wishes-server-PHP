@@ -805,11 +805,15 @@ a.list-group-item.active > .badge,
   padding: 20px;
 }
 /* list Group */
+.list-group-item {
+  border: none !important;
+  -moz-box-shadow: 0px 5px 5px 0px #656565;
+  -webkit-box-shadow: 0px 5px 5px 0px #656565;
+  -o-box-shadow: 0px 5px 5px 0px #656565;
+  box-shadow: 0px 5px 5px 0px #656565;
+}
 .list-group-item.active {
   background-color: #33b5e5 !important;
-  border-style: solid;
-  border-width: 0px;
-  border-color: transparent !important;
 }
 .list-group-item.active:hover,
 .list-group-item.active:focus {
@@ -817,6 +821,9 @@ a.list-group-item.active > .badge,
 }
 .list-group-item.same-case {
   height: 54px;
+}
+li.list-group-item {
+  box-shadow: none;
 }
 .list-group-item-heading {
   color: #FFF !important;

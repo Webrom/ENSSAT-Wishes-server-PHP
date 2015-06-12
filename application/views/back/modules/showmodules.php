@@ -124,68 +124,77 @@
                         </div>
                     </div>
                     <div class='tab-pane fade <?php if($onglet=="Reporting") echo "active in"?>' id="reporting">
-                        <legend>Reporting</legend>
                         <div class="row">
-                            <?php echo form_open('modules/retreiveChartModule')?>
-                            <div id="chartSearchByModule" class="<?php if($rechercheonglet=='promo')echo  'customHide ';?>col-md-12 col-no-border">
-                                <label for="selectModule" class="control-label">Module</label>
-                                <select name="module" data-placeholder="Pas de module en particulier..." class="form-control chosen-select-deselect" id="selectModuleChart">
-                                    <option value=""></option>
-                                    <?php foreach($modules as $module):?>
-                                        <option value="<?php echo $module['ident'];?>" <?php if(isset($moduleSelected) && $moduleSelected == $module['ident']) echo 'selected="selected"';?>><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
-                                    <?php endforeach;?>
-                                </select>
+                            <div class="col-md-6 col-no-border">
+                                <legend>Contenu d'un module</legend>
+                                <div class="row">
+                                    <div id="chartSearchByModule" class="col-md-12 col-no-border">
+                                        <label for="selectModule" class="control-label">Module</label>
+                                        <select data-placeholder="Selectionnez un module" name="module" data-placeholder="Pas de module en particulier..." class="form-control chosen-select-deselect" id="selectModu">
+                                            <option value=""></option>
+                                            <?php foreach($modules as $module):?>
+                                                <option value="<?php echo $module['ident'];?>" <?php if(isset($moduleSelected) && $moduleSelected == $module['ident']) echo 'selected="selected"';?>><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
+                                            <?php endforeach;?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 col-no-border text-right">
+                                        <?php echo anchor('#','Rechercher','id="retreiveChartContenuModule" class="selectModuleChart ajaxReporting btn btn-success"')?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div id="selectModuChart" style="height: 300px; width: 100%;"></div>
+                                </div>
                             </div>
-                            <div class="col-md-12 col-no-border text-right">
-                                <?php echo form_submit('submit','Rechercher','class="btn btn-success"')?>
+                            <div class="col-md-6 col-no-border">
+                                <legend>Contenu d'un professeur</legend>
+                                <div class="row">
+                                    <div class="col-md-12 col-no-border" id="chartTeacher">
+                                        <label for="selectTeacher" class="control-label">Professeur</label>
+                                        <select data-placeholder="Selectionnez un professeur" name="selectTeacher" class="form-control chosen-select-deselect" id="selectTeac">
+                                            <option id="teacherModuleAjax" value=""></option>
+                                            <?php foreach($enseignants2 as $enseignant2):?>
+                                                <option value="<?php echo $enseignant2['login'];?>"><?php echo $enseignant2['nom']." ".$enseignant2['prenom'];?></option>
+                                            <?php endforeach;?>
+                                            <option value="">Aucun</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 col-no-border text-right">
+                                        <?php echo anchor('#','Rechercher','id="retreiveChartTeacher" class="selectTeacherChart ajaxReporting btn btn-success"')?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div id="selectTeacChart" style="height: 300px; width: 100%;"></div>
+                                </div>
                             </div>
-                            <?php echo form_close();?>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-no-border">
+                            <legend>Detail d'un semestre</legend>
+                            <div class="row">
+                                <div class="col-md-6 col-no-border">
+                                    <label for="selectSeme" class="control-label">Semestre</label>
+                                    <select name="semester" data-placeholder="Pas de semestre en particulier..." class="form-control chosen-select-deselect" id="selectSeme">
+                                        <option value="noSemester"></option>
+                                        <?php foreach($allSemesters as $allSemester):?>
+                                            <option value="<?php echo $allSemester;?>" <?php if(isset($semSelected) && $semSelected == $allSemester) echo 'selected="selected"';?>><?php echo $allSemester;?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 col-no-border">
+                                    <?php echo anchor('#','Rechercher','id="retreiveChartSemester" class="selectSemesterChart ajaxReporting btn btn-success"')?>
+                                </div>
+                            </div>
                         </div>
-                        <?php if(isset($result)):?>
-                        <div class="row animated fadeIn<?php if(sizeof($result)==0) echo 'customHide'?>">
-                            <div id="chartContainer" style="height: 300px; width: 100%;">
-                            </div>
-                            <script type="text/javascript">
-                                data = <?php echo json_encode($result) ?>;
-                                window.onload = function () {
-                                    var chart = new CanvasJS.Chart("chartContainer",
-                                        {
-                                            theme: "theme2",
-                                            title: {
-                                                text: "test reporting"
-                                            },
-                                            data: [
-                                                {
-                                                    type: "pie",
-                                                    showInLegend: false,
-                                                    toolTipContent: "{y} - HED",
-                                                    yValueFormatString: "",
-                                                    legendText: "{indexLabel}",
-                                                    dataPoints: [
-                                                    ]
-                                                }
-                                            ]
-                                        });
-                                    data.forEach(function(v){
-                                        console.log(v);
-                                        chart.options.data[0].dataPoints.push({y:v.hed,indexLabel:v.partie});
-                                    });
-                                    console.log(chart);
-                                    chart.render();
-                                }
-                            </script>
+                        <div class="col-md-12 col-no-border">
+                            <div id="selectSemeChart" style="height: 300px; width: 100%;"></div>
                         </div>
-                        <?php endif;?>
                     </div>
                 </div>
             </div>
         </div>
-    <div class="col-md-1 col-no-border"></div>
-    </div>
     <?php if(count($result)>0 && $onglet=="Recherche"):?>
-        <div class="row" id="modules_result">
-            <div class="col-md-1 col-no-border"></div>
-            <div class="col-md-10 col-no-border">
+        <div class="row piiiich" id="modules_result">
+            <div class="col-md-12 col-no-border">
                 <?php foreach($result as $val):?>
                     <div class="col-md-4 col-no-border bp-component">
                         <div class="list-group">
@@ -220,7 +229,6 @@
                     </div>
                 <?php endforeach; ?>
             </div>
-            <div class="col-md-1 col-no-border"></div>
             <div id="exportResult">
                 <?php $this->session->set_userdata($dataExport=array("dataExport"=>serialize($result)));?>
                 <?php echo anchor('modules/exportCSV','Recuperer au format CSV','class="btn btn-info"');?>
@@ -228,3 +236,5 @@
         </div>
     <?php endif;?>
 </div>
+        <div class="col-md-1 col-no-border"></div>
+<?php $this->load->view('js/ajaxRechercherModule');?>

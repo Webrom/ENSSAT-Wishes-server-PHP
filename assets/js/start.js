@@ -40,7 +40,6 @@ $(function(){
         }
     });
     $('.search-choice-close').click(function(){
-        console.log('azeazeaze');
     });
     $("#resetAdminFields").click(function(e){
         $('.stuffToReinit').each(function () {
@@ -50,14 +49,13 @@ $(function(){
             if($(this).attr("id")=="selectPublic")
                 $(this).val("IMR1");
         })
-        console.log("here");
     });
 
     $('a#displayMyModules').click(function(){
-        $("#modules_result").remove();
+        $(".piiiich").remove();
     });
     $('a#displayReporting').click(function(){
-        $("#modules_result").remove();
+        $(".piiiich").remove();
     });
     $('.navbar-nav li a').each(function(){
         if($(this).text()==$('#activePage').text()){
@@ -89,7 +87,6 @@ $(function(){
             $('#selectModule').val("");
             $('#searchType').val('module');
         }else{
-            console.log($("#searchByModule"));
             $("#searchByModule").stop().fadeOut('fast',function(){
                 $('#searchByPromo').stop().fadeIn();
             });
