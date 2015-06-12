@@ -66,6 +66,7 @@
                                     <li><a class="adminChoice" href="#addUser">Ajouter</a></li>
                                     <li><a class="adminChoice" href="#deleteUsers">Supprimer</a></li>
                                     <li><a class="adminChoice" href="#modifyUsers">Modifier</a></li>
+                                    <li><a class="adminChoice" href="#reinitUsers">Réinitialiser mdp</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -369,6 +370,32 @@
                             </div>
                             <div class="col-md-12 col-no-border text-right">
                                 <?php echo form_submit('submit','valider','class="btn btn-success"')?>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <?php echo form_close()?>
+                </div>
+            </div>
+            <div id="reinitUsers" class="row admin-custom-box">
+                <div class="col-md-12 col-no-border">
+                    <?php echo form_open("admin/reinitMDP",'class="form-horizontal"')?>
+                    <fieldset>
+                        <legend>Réinitialiser le mot de passe d'un utilisateur</legend>
+                        <div class="form-group">
+                            <div class="col-md-12 col-no-border">
+                                <label for="enseignantsInit" class="control-label">Enseignants</label>
+                                <select name="enseignantsInit" class="form-control chosen-select" id="enseignantsModify">
+                                    <?php foreach($enseignantsModify as $enseignants):?>
+                                        <option value="<?php echo $enseignants['login'];?>">
+                                            <?php echo  $enseignants['nom'].' '.
+                                                $enseignants['prenom'] . " " .
+                                                " : ".
+                                                $enseignants['login'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="col-md-12 col-no-border text-right">
+                                <?php echo form_submit('submit','Réinitialiser le mot de passe','id="initUser" class="btn btn-danger"')?>
                             </div>
                         </div>
                     </fieldset>
