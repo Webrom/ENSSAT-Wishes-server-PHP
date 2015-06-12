@@ -348,11 +348,17 @@ class admin extends SRV_Controller
                     $this->decharge->addNewDecharge($enseignant, $decharge);
                 }
             }
+            if ($this->input->post('select_statutModify') != "autre"){
+                $statut = $this->input->post('select_statutModify');
+            }
+            else{
+                $statut = $this->input->post('status_perso');
+            }
             if ($this->users->modifyUser(
                 $this->input->post("enseignantsModify"),
                 $this->input->post('heuresModify'),
                 $this->input->post('actifModify'),
-                $this->input->post('select_statutModify'))
+                $statut)
             )
                 $this->index("Modification effectuée", "alert-success", "#modifyUsers");
             else
