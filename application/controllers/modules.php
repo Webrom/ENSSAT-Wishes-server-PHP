@@ -138,9 +138,13 @@ class modules extends SRV_Controller
         $this->news->addNews($this->session->userdata('username'), "user",
             "Inscription à un module"
             , $this->input->get('module'),$this->input->get('partie'));
-        if($this->input->get('page')=='home')
+        if($this->input->get('page')=='home'){
+            $this->session->set_userdata($info);
             redirect('homeNews');
-        $this->index(null, null, $info, "Recherche");
+        }
+        else {
+            $this->index(null, null, $info, "Recherche");
+        }
     }
 
     public function desinscriptionModule()
