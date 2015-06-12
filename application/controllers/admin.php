@@ -132,8 +132,8 @@ class admin extends SRV_Controller
      */
     public function addUser()
     {
-        $this->users->addUser("servicesENSSAT", $this->input->post("actif"),$this->input->post("admin"), "1",$this->input->post('prenom'),$this->input->post('name'),$this->input->post('heures'));
-        $this->index("Utilisateur bien créé.", "alert-success", "#addUser");
+        $login = $this->users->addUser("servicesENSSAT", $this->input->post("actif"),$this->input->post("admin"), "1",$this->input->post('prenom'),$this->input->post('name'),$this->input->post('heures'));
+        $this->index("Utilisateur créé avec le login ".$login, "alert-success", "#addUser");
         $this->news->addNews($this->session->userdata('username'), "user", "L'utilisateur : " . $this->input->post('prenom') ." ". $this->input->post('name') . " a été ajouté.");
     }
 
