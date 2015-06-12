@@ -1,4 +1,5 @@
 $(function(){
+    console.log('aze');
     hideAll();
     var show = $('#affiche').text();
     $(show).removeClass('customHide');
