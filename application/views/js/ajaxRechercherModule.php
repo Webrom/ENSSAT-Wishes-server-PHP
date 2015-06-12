@@ -1,6 +1,11 @@
 <script type="text/javascript">
+    //Permet de recuperer le contenu pour afficher les graphiques
     $('.ajaxReporting').click(function(e){
         e.preventDefault();
+        /* param permet d'uiliser une meme fonction plusieurs fois la methode est l'id du bouton sur
+           lequel on a cliqué, le gData permet de recuperer le champ qui nous interesse. Le champ est connu
+           car il a la meme id que la permiere classe du bouton
+         */
         var param = {
             "base_url": '<?php echo base_url()?>',
             "controller": "modules",
@@ -22,6 +27,9 @@
                                 case 'selectModuChart':
                                     var chart = new CanvasJS.Chart(idChart,
                                         {
+                                            animationEnabled: true,
+                                            exportEnabled: true,
+                                            theme: "theme2",
                                             title:{
                                                 text: "Detail module: "+data[0].module,
                                                 fontFamily: "Opensans",
@@ -42,12 +50,16 @@
                                             ]
                                         });
                                     data.forEach(function(v){
-                                        chart.options.data[0].dataPoints.push({y:v.hed,indexLabel:v.partie +" prof : "+ v.enseignant});
+                                        var te = (v.enseignant!=null)?v.enseignant:"aucun";
+                                        chart.options.data[0].dataPoints.push({y:v.hed,indexLabel:v.partie +" prof : "+ te });
                                     });
                                     break;
                                 case 'selectTeacChart':
                                     var chart = new CanvasJS.Chart(idChart,
                                         {
+                                            animationEnabled: true,
+                                            exportEnabled: true,
+                                            theme: "theme2",
                                             title:{
                                                 text: "Detail du professeur : "+data[0].enseignant,
                                                 fontFamily: "Opensans",
@@ -71,6 +83,9 @@
                                 case 'selectSemeChart':
                                     var chart = new CanvasJS.Chart(idChart,
                                         {
+                                            animationEnabled: true,
+                                            exportEnabled: true,
+                                            theme: "theme2",
                                             title:{
                                                 text: "Detail du semestre : "+data[0].semestre,
                                                 fontFamily: "Opensans",
@@ -86,10 +101,11 @@
                                             ]
                                         });
                                     var x = 0;
-                                    var ident = data[0].module;
+                                    var i=0;
+                                    var ident;
                                     data.forEach(function(v){
                                         if(v.module == ident){
-                                            chart.options.data[0].dataPoints.y= chart.options.data[0].dataPoints.y + parseInt(v.hed);
+                                            chart.options.data[0].dataPoints[i-1].y= chart.options.data[0].dataPoints[i-1].y + parseInt(v.hed);
                                         }else{
                                             x=x+10;
                                             chart.options.data[0].dataPoints.push({
@@ -98,8 +114,10 @@
                                                 label: v.module,
                                                 promotion: v.public
                                             });
+                                            i++;
                                         }
                                         ident = v.module;
+
                                     });
                                     break;
                             }
@@ -109,6 +127,7 @@
                             chart.render();
                         }else{
                             $("#"+idChart).removeClass('animated fadeIn').addClass('customHide');
+                            alert("Il n'y a pas de donnée à afficher.");
                         }
 
                     }

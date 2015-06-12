@@ -149,7 +149,7 @@ class Contenu extends CI_Model{
             $this->db->where('semestre',$array['semester']);
         if($array['teacher']!='no')
             $this->db->where('enseignant',$array['teacher']);
-        $this->db->order_by('enseignant', 'ASC');
+        $this->db->order_by('module', 'ASC');
         $query = $this->db->get();
         return $query->result_array();
     }

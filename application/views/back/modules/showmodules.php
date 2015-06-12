@@ -196,8 +196,8 @@
                                         <?php endforeach;?>
                                     </select>
                                 </div>
-                                <div class="col-md-6 col-no-border">
-                                    <?php echo anchor('#','Rechercher','id="retreiveChartSemester" class="selectSemesterChart ajaxReporting btn btn-success"')?>
+                                <div class="col-md-6 col-no-border text-center">
+                                    <?php echo anchor('#','Rechercher','id="retreiveChartSemester" class="selectSemesterChart ajaxReporting btn btn-success" style="margin-top: 18px;"')?>
                                 </div>
                             </div>
                         </div>
