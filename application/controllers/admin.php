@@ -388,13 +388,33 @@ class admin extends SRV_Controller
     }
 
     /**
+     * Modifie un module : responsable et libellé
+     */
+    public function modifyModule()
+    {
+        $keys = array(
+            "ident" => $this->input->post('selectModModule')
+        );
+        $data = array(
+            "libelle" => $this->input->post('inputLibelle'),
+            "responsable" => $this->input->post('selectResponsable')
+        );
+        $res = $this->modulesmodels->modifyModule($keys, $data);
+        if ($res == "good")
+            $this->index("Le module a bien été modifié", "alert-success", "#modifyModule");
+        else
+            $this->index("Un problème est survenu, veuillez réessayer ultérieurement.", "alert-danger", "#modifyModule");
+    }
+
+    /**
      * Permet de réinitialiser le mot de passe d'un enseignant
      */
-    public function reinitMDP (){
-        if($this->users->changePassword("servicesENSSAT",$this->input->post('enseignantsInit'))){
+    public
+    function reinitMDP()
+    {
+        if ($this->users->changePassword("servicesENSSAT", $this->input->post('enseignantsInit'))) {
             $this->index("Mot de passe réinitialiser, il s'agit maintenant de servicesENSSAT", "alert-success", "#reinitUsers");
-        }
-        else{
+        } else {
             $this->index("Echec, c'est surement que vous êtes un petit malin qui essaye d'envoyer de fausses infos en post ;)", "alert-danger", "#reinitUsers");
         }
     }
