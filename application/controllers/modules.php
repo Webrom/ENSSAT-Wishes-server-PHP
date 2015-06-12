@@ -60,6 +60,9 @@ class modules extends SRV_Controller
         $this->load->view('footer');
     }
 
+    /**
+     * Recherche des modules
+     */
     public function displayModule()
     {
         $data = array(
@@ -82,6 +85,10 @@ class modules extends SRV_Controller
             "semSelected" => ($this->input->post("semester") != "noSemester") ? $this->input->post("semester") : "noSemester",
             "checked" => $this->input->post('checkboxSansEnseignant')
         );
+        $initSession = array(
+            "result" => $result
+        );
+        $this->session->set_userdata($initSession);
         $this->index($result, $data, null, "Recherche", $recherche);
     }
 
@@ -184,6 +191,9 @@ class modules extends SRV_Controller
         $this->index($result, null, null, "Recherche");
     }
 
+    /**
+     * Fonction export CSV
+     */
     public function exportCSV(){
         $data = array(
             "export" => unserialize($this->session->userdata('dataExport'))
