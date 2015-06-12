@@ -80,7 +80,7 @@
                                     });
                                 var x = 0;
                                 var ident = data[0].module;
-                                data.forEach(function(v){//TODO ça marche po ffs
+                                data.forEach(function(v){
                                     if(v.module == ident){
                                         chart.options.data[0].dataPoints.y= chart.options.data[0].dataPoints.y + parseInt(v.hed);
                                         console.log(chart.options.data[0].dataPoints.y);

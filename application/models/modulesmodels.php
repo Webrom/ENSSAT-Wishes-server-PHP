@@ -16,18 +16,6 @@ class modulesmodels extends CI_Model {
         return $query->result_array();
     }
 
-    //TODO : je pense que cette fonction devrait être dans le model contenu et non module
-    public function addContenuToModule($contenu){
-        $query = $this->db->insert('contenu',$contenu);
-        if(!$query){
-            $ret= array(
-                "ErrorMessage" => $this->db->_error_message(),
-                "ErrorNumber" => $this->db->_error_message()
-            );
-        }
-        return ($query)?"good":$ret;
-    }
-
     /**
      * Permet d'obtenir tous les identifiants des modules pour un semestre OU une promotion données
      * @param $promOrSemester  String, indique si on veut la requête pour un semestre ou une promo

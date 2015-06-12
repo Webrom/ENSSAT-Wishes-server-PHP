@@ -275,4 +275,20 @@ class Contenu extends CI_Model{
         $query = $this->db->update('contenu',$data);
         return $query;
     }
+
+    /**
+     * Ajoute une partie à un module, retourne ggod si l'insert réussi sinon une erreur
+     * @param $contenu
+     * @return array|string
+     */
+    public function addContenuToModule($contenu){
+        $query = $this->db->insert('contenu',$contenu);
+        if(!$query){
+            $ret= array(
+                "ErrorMessage" => $this->db->_error_message(),
+                "ErrorNumber" => $this->db->_error_message()
+            );
+        }
+        return ($query)?"good":$ret;
+    }
 }

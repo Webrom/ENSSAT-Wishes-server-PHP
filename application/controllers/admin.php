@@ -250,7 +250,7 @@ class admin extends SRV_Controller
             "hed" => $this->input->post('moduleHed'),
             "enseignant" => null,
         );
-        $res = $this->modulesmodels->addContenuToModule($contenu);
+        $res = $this->contenu->addContenuToModule($contenu);
         if ($res == "good") {
             $this->index("Votre contenu a été rajouté.", "alert-success", "#addContenu");
             $this->news->addNews($this->session->userdata('username'), "contenu",
