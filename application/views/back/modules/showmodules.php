@@ -24,6 +24,9 @@
                 <div id="myTabContent" class="tab-content">
                     <div class='tab-pane fade <?php if($onglet==null) echo "active in"?>' id="mymodules">
                         <legend>Mes modules</legend>
+                        <?php if(!sizeof($myModules)>0):?>
+                            <p>Vous n'etes inscrit à aucun module.</p>
+                        <?php endif;?>
                         <?php foreach($myModules as $val):?>
                             <div class="col-md-4 col-no-border bp-component">
                                 <div class="list-group">
@@ -55,10 +58,12 @@
                                 </div>
                             </div>
                         <?php endforeach; ?>
+                        <?php if(sizeof($myModules)>0):?>
                         <div class="exportResult">
                             <?php $this->session->set_userdata($dataExport=array("dataExport"=>serialize($myModules)));?>
-                            <?php echo anchor('modules/exportCSV','Recuperer au format CSV','class="btn btn-info"');?>
+                            <?php echo anchor('modules/exportCSV','Recuperer au format CSV','class="btn btn-info" download="exportCSV"');?>
                         </div>
+                        <?php endif;?>
                     </div>
                     <div class="tab-pane fade <?php if($onglet=="Recherche") echo "active in"?>" id="recherche">
                         <div class="row">
@@ -146,7 +151,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div id="selectModuChart" style="height: 300px; width: 100%;"></div>
+                                    <div id="selectModuChart" class="customHide" style="height: 300px; width: 100%;"></div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-no-border">
@@ -167,7 +172,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div id="selectTeacChart" style="height: 300px; width: 100%;"></div>
+                                    <div id="selectTeacChart" class="customHide" style="height: 300px; width: 100%;"></div>
                                 </div>
                             </div>
                     </div>
@@ -190,7 +195,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 col-no-border">
-                            <div id="selectSemeChart" style="height: 300px; width: 100%;"></div>
+                            <div id="selectSemeChart" class="customHide" style="height: 300px; width: 100%;"></div>
                         </div>
                     </div>
                 </div>
@@ -235,7 +240,7 @@
             </div>
             <div class="exportResult">
                 <?php $this->session->set_userdata($dataExport=array("dataExport"=>serialize($result)));?>
-                <?php echo anchor('modules/exportCSV','Recuperer au format CSV','class="btn btn-info"');?>
+                <?php echo anchor('modules/exportCSV','Recuperer au format CSV','class="btn btn-info" download="exportCSV"');?>
             </div>
         </div>
     <?php endif;?>
