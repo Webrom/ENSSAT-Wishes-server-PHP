@@ -85,10 +85,6 @@ class modules extends SRV_Controller
             "semSelected" => ($this->input->post("semester") != "noSemester") ? $this->input->post("semester") : "noSemester",
             "checked" => $this->input->post('checkboxSansEnseignant')
         );
-        $initSession = array(
-            "result" => $result
-        );
-        $this->session->set_userdata($initSession);
         $this->index($result, $data, null, "Recherche", $recherche);
     }
 
@@ -193,12 +189,28 @@ class modules extends SRV_Controller
 
     /**
      * Fonction export CSV
+     * @param $data
      */
-    public function exportCSV(){
-        $data = array(
-            "export" => unserialize($this->session->userdata('dataExport'))
-        );
+    public function exportCSV($data){
         $this->load->view('back/modules/exportCSV',$data);
+    }
+
+    /**
+     * recuperation varaible session mymodules et transmission a la fonction export
+     */
+    public function exportCSVMyModules(){
+        $this->exportCSV($data = array(
+            "export" => unserialize($this->session->userdata('dataExportMyModules'))
+        ));
+    }
+
+    /**
+     * recuperation varaible session result et transmission a la fonction export
+     */
+    public function exportCSVResult(){
+        $this->exportCSV($data = array(
+            "export" => unserialize($this->session->userdata('dataExportResult'))
+        ));
     }
 
     public function retreiveChartContenuModule(){

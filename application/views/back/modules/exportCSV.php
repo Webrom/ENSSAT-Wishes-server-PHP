@@ -9,7 +9,7 @@
 header("Content-Type: text/csv; charset=UTF-8");
 header("Content-disposition: filename=resultat-recherche.csv");
 // Création de la ligne d'en-tête
-$entete = array("Module", "Partie", "Type", "HED","Semestre", "Public","Enseignant.nom","Enseignant.prenom","Enseignant.login");
+$entete = array("Module", "Partie", "Type", "HED","Semestre", "Public","Enseignant.nom","Enseignant.prenom","Enseignant.login","Responsable");
 
 
 $separateur = ";";
