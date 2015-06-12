@@ -26,6 +26,9 @@
         if (!$('#noContenuModify').hasClass('customHide')){
             $('#noContenuModify').addClass('customHide');
         }
+        if (!$('#displaysetModuleContenus').hasClass('customHide')){
+            $('#displaysetModuleContenus').addClass('customHide');
+        }
         $.ajax({
             url : param["base_url"]+'index.php/'+param["controler"]+'/'+param["method"],
             type : 'GET',
