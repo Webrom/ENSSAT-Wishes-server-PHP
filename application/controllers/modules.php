@@ -85,6 +85,10 @@ class modules extends SRV_Controller
             "semSelected" => ($this->input->post("semester") != "noSemester") ? $this->input->post("semester") : "noSemester",
             "checked" => $this->input->post('checkboxSansEnseignant')
         );
+        $initSession = array(
+            "result" => $result
+        );
+        $this->session->set_userdata($initSession);
         $this->index($result, $data, null, "Recherche", $recherche);
     }
 
@@ -112,6 +116,14 @@ class modules extends SRV_Controller
                                 'success' => "alert-success",
                                 'msg' => "Vous êtes maintenant inscrit à ce contenu"
                             );
+                            //supprime le module selectionné de la variable session
+                            $sessionArray =$this->session->userdata('result');
+                            $this->session->unset_userdata('result');
+                            array_splice($sessionArray,$this->input->get('key'),1);
+                            $initSession = array(
+                                "result" => $sessionArray
+                            );
+                            $this->session->set_userdata($initSession);
                         } else {
                             $info = array(
                                 'success' => "alert-danger",

@@ -169,6 +169,3 @@
         <a class="btn btn-user" href="<?php echo base_url('index.php/homeNews/index/user')?>">User</a>
     </div>
 </div>
-<script type="text/javascript">
-
-</script>

@@ -208,10 +208,10 @@
                 </div>
             </div>
         </div>
-    <?php if(count($result)>0 && $onglet=="Recherche"):?>
+    <?php if(count($this->session->userdata('result'))>0 && $onglet=="Recherche"):?>
         <div class="row piiiich" id="modules_result">
             <div class="col-md-12 col-no-border">
-                <?php foreach($result as $val):?>
+                <?php foreach($this->session->userdata('result') as $key => $val):?>
                     <div class="col-md-4 col-no-border bp-component">
                         <div class="list-group">
                             <div class="list-group-item <?php if(!$val['enseignant']){echo "module-not-taken";}?>">
@@ -243,7 +243,7 @@
                                         </li>
                                     <?php else: ?>
                                         <li class="list-group-item same-case text-center">
-                                            <a href="<?php echo base_url();?>index.php/modules/inscriptionModule?module=<?php echo $val['module'];?>&partie=<?php echo $val['partie'];?>"><button type="button" class="btn btn-warning">S'inscrire</button></a>
+                                            <a href="<?php echo base_url();?>index.php/modules/inscriptionModule?module=<?php echo $val['module'];?>&partie=<?php echo $val['partie'];?>&key=<?php echo $key;?>"><button type="button" class="btn btn-warning">S'inscrire</button></a>
                                         </li>
                                     <?php endif;?>
                                 </ul>
