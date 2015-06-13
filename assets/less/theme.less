@@ -188,7 +188,7 @@
               }
               &.contenu{
                 h5 {
-                  background: @bg-border-contenu;
+                  background: @bg-border-contenu !important;
                 }
               }
               &.module{
@@ -278,6 +278,25 @@
 		&-danger { color: @text-danger-bg; }
 	}
 
+
+
+    /*filtre news */
+    #filtre-news {
+      position: fixed;
+      bottom: 2%;
+      width: 84.5%;
+      z-index: 200;
+      a {
+        color : @button-color;
+        &.btn {
+          margin-right: 5px;
+          &:last-child {
+            margin: 0;
+          }
+        }
+      }
+    }
+
 	/* Buttons */
 	.btn {
 
@@ -295,6 +314,124 @@
 		}
 
 		&-default { .box-shadow(4px 4px 0 0 lighten(@button-bg, 15%)); }
+
+      &-all{
+        background: @button-info-bg;
+        .box-shadow(4px 4px 0 0 lighten(@button-info-bg, 15%));
+        &:hover,
+        &:active,
+        &:focus,
+        &.active,
+        &.disabled,
+        &[disabled],
+        fieldset[disabled] &,
+        &.disabled:hover,
+        &[disabled]:hover,
+        fieldset[disabled] &:hover,
+        &.disabled:focus,
+        &[disabled]:focus,
+        fieldset[disabled] &:focus,
+        &.disabled:active,
+        &[disabled]:active,
+        fieldset[disabled] &:active,
+        &.disabled.active,
+        &[disabled].active,
+        fieldset[disabled] &.active { background-color: @button-info-bg; }
+      }
+
+      &-generale{
+        background: @bg-border-generale;
+        .box-shadow(4px 4px 0 0 lighten(@bg-border-generale, 15%));
+        &:hover,
+        &:active,
+        &:focus,
+        &.active,
+        &.disabled,
+        &[disabled],
+        fieldset[disabled] &,
+        &.disabled:hover,
+        &[disabled]:hover,
+        fieldset[disabled] &:hover,
+        &.disabled:focus,
+        &[disabled]:focus,
+        fieldset[disabled] &:focus,
+        &.disabled:active,
+        &[disabled]:active,
+        fieldset[disabled] &:active,
+        &.disabled.active,
+        &[disabled].active,
+        fieldset[disabled] &.active { background-color: @bg-border-generale; }
+      }
+
+      &-contenu{
+        background: @bg-border-contenu;
+        .box-shadow(4px 4px 0 0 lighten(@bg-border-contenu, 15%));
+        &:hover,
+        &:active,
+        &:focus,
+        &.active,
+        &.disabled,
+        &[disabled],
+        fieldset[disabled] &,
+        &.disabled:hover,
+        &[disabled]:hover,
+        fieldset[disabled] &:hover,
+        &.disabled:focus,
+        &[disabled]:focus,
+        fieldset[disabled] &:focus,
+        &.disabled:active,
+        &[disabled]:active,
+        fieldset[disabled] &:active,
+        &.disabled.active,
+        &[disabled].active,
+        fieldset[disabled] &.active { background-color: @bg-border-contenu; }
+      }
+      &-module{
+        background: @bg-border-module;
+        .box-shadow(4px 4px 0 0 lighten(@bg-border-module, 15%));
+        &:hover,
+        &:active,
+        &:focus,
+        &.active,
+        &.disabled,
+        &[disabled],
+        fieldset[disabled] &,
+        &.disabled:hover,
+        &[disabled]:hover,
+        fieldset[disabled] &:hover,
+        &.disabled:focus,
+        &[disabled]:focus,
+        fieldset[disabled] &:focus,
+        &.disabled:active,
+        &[disabled]:active,
+        fieldset[disabled] &:active,
+        &.disabled.active,
+        &[disabled].active,
+        fieldset[disabled] &.active { background-color: @bg-border-module; }
+      }
+      &-user{
+        background: @bg-border-user;
+        .box-shadow(4px 4px 0 0 lighten(@bg-border-user, 15%));
+        &:hover,
+        &:active,
+        &:focus,
+        &.active,
+        &.disabled,
+        &[disabled],
+        fieldset[disabled] &,
+        &.disabled:hover,
+        &[disabled]:hover,
+        fieldset[disabled] &:hover,
+        &.disabled:focus,
+        &[disabled]:focus,
+        fieldset[disabled] &:focus,
+        &.disabled:active,
+        &[disabled]:active,
+        fieldset[disabled] &:active,
+        &.disabled.active,
+        &[disabled].active,
+        fieldset[disabled] &.active { background-color: @bg-border-user; }
+      }
 
 		&-primary {
 

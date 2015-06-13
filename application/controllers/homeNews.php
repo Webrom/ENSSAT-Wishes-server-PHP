@@ -29,7 +29,7 @@ class homeNews extends SRV_Controller
         }
     }
 
-    public function index($start = 1)
+    public function index($filtre="tous",$start = 1)
     {
         if (isset($this->session->userdata['success'])){
             $success = $this->session->userdata['success'];
@@ -47,7 +47,7 @@ class homeNews extends SRV_Controller
         $this->session->unset_userdata('msg');
         $data = array(
             "admin" => $this->session->userdata['admin'],
-            'nbTotalNews' => $this->news->getNewsCount(),
+            'nbTotalNews' => $this->news->getNewsCount($filtre),
             'success' => $success,
             'msg' => $msg
         );
@@ -61,7 +61,8 @@ class homeNews extends SRV_Controller
             $nb_news = 1;
 
         $this->pagination->initialize(array(
-            'base_url' => base_url() . 'index.php/homeNews/index/',
+            'base_url' => base_url() . 'index.php/homeNews/index/'.$filtre.'/',
+            'uri_segment' => 4,
             'total_rows' => $data['nbTotalNews'],
             'per_page' => self::NB_NEWS_PER_PAGE,
             'display_pages' => TRUE,
@@ -82,7 +83,7 @@ class homeNews extends SRV_Controller
         ));
 
         $data['pagination'] = $this->pagination->create_links();
-        $data['news'] = $this->news->getNews(self::NB_NEWS_PER_PAGE, $nb_news - 1);
+        $data['news'] = $this->news->getNews(self::NB_NEWS_PER_PAGE, $nb_news - 1,$filtre);
 
         $dataPercentage = $this->getPercentage($this->session->userdata('username'));
         $data['pourcentage'] = $dataPercentage['pourcentage'];

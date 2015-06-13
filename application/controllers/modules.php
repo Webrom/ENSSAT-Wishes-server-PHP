@@ -106,7 +106,7 @@ class modules extends SRV_Controller
                         );
                         if ($result) {
                             $this->news->addNews($this->session->userdata('username'), "user",
-                                "Inscription à un module"
+                                "Inscription à un contenu"
                                 , $this->input->get('module'),$this->input->get('partie'));
                             $info = array(
                                 'success' => "alert-success",
@@ -165,7 +165,7 @@ class modules extends SRV_Controller
                 'msg' => "Vous êtes bien désinscrit de ce module."
             );
             $this->news->addNews($this->session->userdata('username'), "user",
-                "Désincsription d'un module"
+                "Désincsription d'un contenu"
                 , $this->input->get('module'),$this->input->get('partie'));
         }
         $this->index(null, null, $info);

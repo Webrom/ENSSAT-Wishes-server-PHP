@@ -253,7 +253,7 @@ textarea {
   background: #d92b66;
 }
 .comment-box div.contenu h5 {
-  background: #f1c40f;
+  background: #f39c12 !important;
 }
 .comment-box div.module h5 {
   background: #e74c3c;
@@ -332,6 +332,22 @@ textarea {
 .text-danger {
   color: #e74c3c;
 }
+/*filtre news */
+#filtre-news {
+  position: fixed;
+  bottom: 2%;
+  width: 84.5%;
+  z-index: 200;
+}
+#filtre-news a {
+  color: #ffffff;
+}
+#filtre-news a.btn {
+  margin-right: 5px;
+}
+#filtre-news a.btn:last-child {
+  margin: 0;
+}
 /* Buttons */
 .btn {
   margin-left: 5px;
@@ -361,6 +377,141 @@ textarea {
   -moz-box-shadow: 4px 4px 0 0 #ee6e96;
   box-shadow: 4px 4px 0 0 #ee6e96;
 }
+.btn-all {
+  background: #3498db;
+  -webkit-box-shadow: 4px 4px 0 0 #75b9e7;
+  -moz-box-shadow: 4px 4px 0 0 #75b9e7;
+  box-shadow: 4px 4px 0 0 #75b9e7;
+}
+.btn-all:hover,
+.btn-all:active,
+.btn-all:focus,
+.btn-all.active,
+.btn-all.disabled,
+.btn-all[disabled],
+fieldset[disabled] .btn-all,
+.btn-all.disabled:hover,
+.btn-all[disabled]:hover,
+fieldset[disabled] .btn-all:hover,
+.btn-all.disabled:focus,
+.btn-all[disabled]:focus,
+fieldset[disabled] .btn-all:focus,
+.btn-all.disabled:active,
+.btn-all[disabled]:active,
+fieldset[disabled] .btn-all:active,
+.btn-all.disabled.active,
+.btn-all[disabled].active,
+fieldset[disabled] .btn-all.active {
+  background-color: #3498db;
+}
+.btn-generale {
+  background: #2ecc71;
+  -webkit-box-shadow: 4px 4px 0 0 #69dd9a;
+  -moz-box-shadow: 4px 4px 0 0 #69dd9a;
+  box-shadow: 4px 4px 0 0 #69dd9a;
+}
+.btn-generale:hover,
+.btn-generale:active,
+.btn-generale:focus,
+.btn-generale.active,
+.btn-generale.disabled,
+.btn-generale[disabled],
+fieldset[disabled] .btn-generale,
+.btn-generale.disabled:hover,
+.btn-generale[disabled]:hover,
+fieldset[disabled] .btn-generale:hover,
+.btn-generale.disabled:focus,
+.btn-generale[disabled]:focus,
+fieldset[disabled] .btn-generale:focus,
+.btn-generale.disabled:active,
+.btn-generale[disabled]:active,
+fieldset[disabled] .btn-generale:active,
+.btn-generale.disabled.active,
+.btn-generale[disabled].active,
+fieldset[disabled] .btn-generale.active {
+  background-color: #2ecc71;
+}
+.btn-contenu {
+  background: #f39c12;
+  -webkit-box-shadow: 4px 4px 0 0 #f7ba5b;
+  -moz-box-shadow: 4px 4px 0 0 #f7ba5b;
+  box-shadow: 4px 4px 0 0 #f7ba5b;
+}
+.btn-contenu:hover,
+.btn-contenu:active,
+.btn-contenu:focus,
+.btn-contenu.active,
+.btn-contenu.disabled,
+.btn-contenu[disabled],
+fieldset[disabled] .btn-contenu,
+.btn-contenu.disabled:hover,
+.btn-contenu[disabled]:hover,
+fieldset[disabled] .btn-contenu:hover,
+.btn-contenu.disabled:focus,
+.btn-contenu[disabled]:focus,
+fieldset[disabled] .btn-contenu:focus,
+.btn-contenu.disabled:active,
+.btn-contenu[disabled]:active,
+fieldset[disabled] .btn-contenu:active,
+.btn-contenu.disabled.active,
+.btn-contenu[disabled].active,
+fieldset[disabled] .btn-contenu.active {
+  background-color: #f39c12;
+}
+.btn-module {
+  background: #e74c3c;
+  -webkit-box-shadow: 4px 4px 0 0 #ef8b80;
+  -moz-box-shadow: 4px 4px 0 0 #ef8b80;
+  box-shadow: 4px 4px 0 0 #ef8b80;
+}
+.btn-module:hover,
+.btn-module:active,
+.btn-module:focus,
+.btn-module.active,
+.btn-module.disabled,
+.btn-module[disabled],
+fieldset[disabled] .btn-module,
+.btn-module.disabled:hover,
+.btn-module[disabled]:hover,
+fieldset[disabled] .btn-module:hover,
+.btn-module.disabled:focus,
+.btn-module[disabled]:focus,
+fieldset[disabled] .btn-module:focus,
+.btn-module.disabled:active,
+.btn-module[disabled]:active,
+fieldset[disabled] .btn-module:active,
+.btn-module.disabled.active,
+.btn-module[disabled].active,
+fieldset[disabled] .btn-module.active {
+  background-color: #e74c3c;
+}
+.btn-user {
+  background: #9b59b6;
+  -webkit-box-shadow: 4px 4px 0 0 #bb8ecd;
+  -moz-box-shadow: 4px 4px 0 0 #bb8ecd;
+  box-shadow: 4px 4px 0 0 #bb8ecd;
+}
+.btn-user:hover,
+.btn-user:active,
+.btn-user:focus,
+.btn-user.active,
+.btn-user.disabled,
+.btn-user[disabled],
+fieldset[disabled] .btn-user,
+.btn-user.disabled:hover,
+.btn-user[disabled]:hover,
+fieldset[disabled] .btn-user:hover,
+.btn-user.disabled:focus,
+.btn-user[disabled]:focus,
+fieldset[disabled] .btn-user:focus,
+.btn-user.disabled:active,
+.btn-user[disabled]:active,
+fieldset[disabled] .btn-user:active,
+.btn-user.disabled.active,
+.btn-user[disabled].active,
+fieldset[disabled] .btn-user.active {
+  background-color: #9b59b6;
+}
 .btn-primary {
   background-color: #e62a64;
   -webkit-box-shadow: 4px 4px 0 0 #ee6e96;
@@ -389,10 +540,10 @@ fieldset[disabled] .btn-primary.active {
   background-color: #e11a58;
 }
 .btn-info {
-  background-color: #33b5e5;
-  -webkit-box-shadow: 4px 4px 0 0 #77ceee;
-  -moz-box-shadow: 4px 4px 0 0 #77ceee;
-  box-shadow: 4px 4px 0 0 #77ceee;
+  background-color: #3498db;
+  -webkit-box-shadow: 4px 4px 0 0 #75b9e7;
+  -moz-box-shadow: 4px 4px 0 0 #75b9e7;
+  box-shadow: 4px 4px 0 0 #75b9e7;
 }
 .btn-info:hover,
 .btn-info:active,
@@ -413,7 +564,7 @@ fieldset[disabled] .btn-info:active,
 .btn-info.disabled.active,
 .btn-info[disabled].active,
 fieldset[disabled] .btn-info.active {
-  background-color: #21aee3;
+  background-color: #268fd5;
 }
 .btn-success {
   color: #485c26;
@@ -570,7 +721,7 @@ fieldset[disabled] .btn-other.active {
   background-color: #e11a58;
 }
 .open .dropdown-toggle.btn-info {
-  background-color: #21aee3;
+  background-color: #268fd5;
 }
 .open .dropdown-toggle.btn-success {
   background-color: #b1ce42;

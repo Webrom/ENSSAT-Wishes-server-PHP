@@ -77,8 +77,27 @@ class News extends CI_Model{
      * Permet de connaitre le nombre de news dans la base
      * @return int, nombre de news
      */
-    public function getNewsCount(){
-        return $this->db->count_all('news');
+    public function getNewsCount($filtre){
+        $this->db->from('news');
+        switch ($filtre){
+            case 'generale':
+                $this->db->where('TYPE',$filtre);
+                break;
+            case 'module':
+                $this->db->where('TYPE',$filtre);
+                $this->db->or_where('TYPE','delete-module');
+                break;
+            case 'contenu':
+                $this->db->where('TYPE',$filtre);
+                $this->db->or_where('TYPE','delete-contenu');
+                break;
+            case 'user':
+                $this->db->where('TYPE',$filtre);
+                break;
+            default:
+                break;
+        }
+        return $this->db->count_all_results();
     }
 
 
@@ -90,7 +109,7 @@ class News extends CI_Model{
      * @param int $start
      * @return array|bool|null
      */
-    public function getNews($nb, $start = 0){
+    public function getNews($nb, $start = 0,$filtre){
         if(!is_integer($nb) OR $nb < 1 OR !is_integer($start) OR $start < 0)
         {
             return false;
@@ -100,6 +119,24 @@ class News extends CI_Model{
                 ->from('news')
                 ->order_by('id', 'desc')
                 ->limit($nb, $start);
+        switch ($filtre){
+            case 'generale':
+                $this->db->where('TYPE',$filtre);
+                break;
+            case 'module':
+                $this->db->where('TYPE',$filtre);
+                $this->db->or_where('TYPE','delete-module');
+                break;
+            case 'contenu':
+                $this->db->where('TYPE',$filtre);
+                $this->db->or_where('TYPE','delete-contenu');
+                break;
+            case 'user':
+                $this->db->where('TYPE',$filtre);
+                break;
+            default:
+                break;
+        }
         $news = $this->db->get()->result_array();
         foreach($news as $new){
             switch($new['TYPE']){

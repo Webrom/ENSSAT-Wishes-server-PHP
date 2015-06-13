@@ -160,3 +160,15 @@
     </div>
 </div>
 <div class="col-md-1 col-no-border"></div>
+<div id="filtre-news" class="row text-center">
+    <div class="btn-group">
+        <a class="btn btn-all" href="<?php echo base_url('index.php/homeNews/index')?>">Toutes</a>
+        <a class="btn btn-generale" href="<?php echo base_url('index.php/homeNews/index/generale')?>">Generale</a>
+        <a class="btn btn-module" href="<?php echo base_url('index.php/homeNews/index/module')?>">Module</a>
+        <a class="btn btn-contenu" href="<?php echo base_url('index.php/homeNews/index/contenu')?>">Contenu</a>
+        <a class="btn btn-user" href="<?php echo base_url('index.php/homeNews/index/user')?>">User</a>
+    </div>
+</div>
+<script type="text/javascript">
+
+</script>
