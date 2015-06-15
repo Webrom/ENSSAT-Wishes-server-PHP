@@ -415,7 +415,7 @@ class admin extends SRV_Controller
     function reinitMDP()
     {
         if ($this->users->changePassword("servicesENSSAT", $this->input->post('enseignantsInit'))) {
-            $this->index("Mot de passe réinitialiser, il s'agit maintenant de servicesENSSAT", "alert-success", "#reinitUsers");
+            $this->index("Mot de passe réinitialisé, il s'agit maintenant de servicesENSSAT", "alert-success", "#reinitUsers");
         } else {
             $this->index("Echec, c'est surement que vous êtes un petit malin qui essaye d'envoyer de fausses infos en post ;)", "alert-danger", "#reinitUsers");
         }
