@@ -114,7 +114,8 @@ class modules extends SRV_Controller
                                 , $this->input->get('module'),$this->input->get('partie'));
                             $info = array(
                                 'success' => "alert-success",
-                                'msg' => "Vous êtes maintenant inscrit à ce contenu"
+                                'msg' => "Vous êtes maintenant inscrit à ce contenu."
+
                             );
                             //supprime le module selectionné de la variable session
                             $sessionArray =$this->session->userdata('result');
@@ -133,7 +134,7 @@ class modules extends SRV_Controller
                     } else {
                         $info = array(
                             'success' => "alert-danger",
-                            'msg' => "Désolé mais il ne vous reste plus assez d'heures libres pour ce contenu"
+                            'msg' => "Désolé, mais il ne vous reste plus assez d'heures libres pour ce contenu."
                         );
                     }
                 } else {

@@ -25,7 +25,7 @@
                     <div class='tab-pane fade <?php if($onglet==null) echo "active in"?>' id="mymodules">
                         <legend>Mes modules</legend>
                         <?php if(!sizeof($myModules)>0):?>
-                            <p>Vous n'etes inscrit à aucun module.</p>
+                            <p>Vous n'êtes inscrit à aucun module.</p>
                         <?php endif;?>
                         <?php foreach($myModules as $val):?>
                             <div class="col-md-4 col-no-border bp-component">
@@ -42,7 +42,7 @@
                                                 <?php if($val['responsable']):
                                                     echo "resp : ".$val['responsable'];
                                                 else:?>
-                                                    <span class="text-danger">pas de responsable</span>
+                                                    <span class="text-danger">Pas de responsable</span>
                                                 <?php endif;?>
                                             </li>
                                             <li class='list-group-item'>
