@@ -106,7 +106,7 @@ class modules extends SRV_Controller
                     $heuresdecharge = $this->decharge->getHoursDecharge($this->session->userdata('username'));
                     $heuresprises = $this->contenu->getHeuresPrises($this->session->userdata('username'));
                     $heureducontenu = $this->contenu->getHeurePourUnContenu($this->input->get('module'), $this->input->get('partie'));
-                    if (($statutaire - ($heuresprises + $heuresdecharge)) >= $heureducontenu) {
+                    if ($heuresdecharge==0 ||($statutaire - ($heuresprises + $heuresdecharge)) >= $heureducontenu) {
                         $result = $this->contenu->addEnseignanttoContenu($this->input->get('module'), $this->input->get('partie'),
                             $data = array(
                                 'enseignant' => $this->session->userdata('username')

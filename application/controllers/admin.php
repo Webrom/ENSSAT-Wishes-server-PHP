@@ -69,7 +69,7 @@ class admin extends SRV_Controller
             $res = $hours['teacherHours'] - $hours['decharge'] + $hours['effectiveTeacherHours'] - $hours['hedContenu'];
         else
             $res = $hours['teacherHours'] - $hours['decharge'] - $hours['effectiveTeacherHours'];
-        if ($res >= $data['hed'] || $data['enseignant'] == null) {
+        if ($hours['decharge']==0 || $res >= $data['hed'] || $data['enseignant'] == null) {
             $ret = $this->contenu->modifyModuleContenu($data, $keys);
             if ($ret == "good") {
                 $this->news->addNews($this->session->userdata('username'), "contenu",

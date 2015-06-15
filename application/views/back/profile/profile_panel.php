@@ -21,11 +21,11 @@
                 <div class="row">
                     <div class="col-md-8 col-no-border">
                         <div class="progress progress-striped active">
-                            <div class="progress-bar progress-bar-success" style="width: <?php echo $pourcentage; ?>%"></div>
+                            <div class="progress-bar <?php if($pourcentage>100) echo 'progress-bar-warning';else echo 'progress-bar-success';?>" style="width: <?php echo $pourcentage; ?>%"></div>
                         </div>
                     </div>
                     <div class="col-md-4 col-no-border text-center">
-                        <span class="text-success"><?php echo $pourcentage; ?>% : <?php echo $heuresprises;?>/<?php echo $heurestotales;?> h</span>
+                        <span class="<?php if($pourcentage>100) echo 'text-warning';else echo 'text-success';?>"><?php echo $pourcentage; ?>% : <?php echo $heuresprises;?>/<?php echo $heurestotales;?> h</span>
                     </div>
                 </div>
                 <?php if(isset($msg)):?>
