@@ -118,13 +118,15 @@ class modules extends SRV_Controller
 
                             );
                             //supprime le module selectionné de la variable session
-                            $sessionArray =$this->session->userdata('result');
-                            $this->session->unset_userdata('result');
-                            array_splice($sessionArray,$this->input->get('key'),1);
-                            $initSession = array(
-                                "result" => $sessionArray
-                            );
-                            $this->session->set_userdata($initSession);
+                            if(count($this->session->userdata('result'))>0){
+                                $sessionArray =$this->session->userdata('result');
+                                $this->session->unset_userdata('result');
+                                array_splice($sessionArray,$this->input->get('key'),1);
+                                $initSession = array(
+                                    "result" => $sessionArray
+                                );
+                                $this->session->set_userdata($initSession);
+                            }
                         } else {
                             $info = array(
                                 'success' => "alert-danger",
