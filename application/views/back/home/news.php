@@ -160,6 +160,7 @@
     </div>
 </div>
 <div class="col-md-1 col-no-border"></div>
+</div>
 <div id="filtre-news" class="row text-center">
     <div class="btn-group">
         <a class="btn btn-all" href="<?php echo base_url('index.php/homeNews/index')?>">Toutes</a>
