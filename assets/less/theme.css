@@ -327,7 +327,7 @@ textarea {
   background-color: #a9e247;
 }
 .text-warning {
-  background-color: #e2a947;
+  background-color: #e74c3c;
 }
 .text-danger {
   color: #e74c3c;
@@ -1051,7 +1051,7 @@ li.list-group-item {
   background-color: #33b5e5;
 }
 .progress-bar-warning {
-  background-color: #e67e22;
+  background-color: #e74c3c;
 }
 .progress-bar-danger {
   background-color: #e62a64;
