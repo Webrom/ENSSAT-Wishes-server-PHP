@@ -336,7 +336,7 @@ textarea {
 #filtre-news {
   position: fixed;
   bottom: 2%;
-  width: 84.5%;
+  width: 100%;
   z-index: 200;
 }
 #filtre-news a {
