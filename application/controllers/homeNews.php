@@ -29,6 +29,11 @@ class homeNews extends SRV_Controller
         }
     }
 
+    /**
+     * Affichage des news (10 par pages) en fonction du filtre de l'url
+     * @param string $filtre
+     * @param int $start
+     */
     public function index($filtre="tous",$start = 1)
     {
         if (isset($this->session->userdata['success'])){

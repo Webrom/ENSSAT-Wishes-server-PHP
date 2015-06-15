@@ -1,5 +1,6 @@
 <?php
 /**
+ * Fichier réalisant les requetes ajax du panel admin
  * Created by PhpStorm.
  * User: zahead
  * Date: 29/05/15
@@ -10,6 +11,10 @@
 <script type="text/javascript">
     $(".ajaxFunction").click(function(e){
         e.preventDefault();
+        /* param permet d'uiliser une meme fonction plusieurs fois la methode est l'id du bouton sur
+         lequel on a cliqué, le gData permet de recuperer le champ qui nous interesse. Le champ est connu
+         car il a la meme id que la permiere classe du bouton
+         */
         var param = {
             "base_url": '<?php echo base_url()?>',
             "controler": "admin",

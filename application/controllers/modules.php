@@ -71,6 +71,7 @@ class modules extends SRV_Controller
             "semester" => $this->input->post("semester"),
             "teacher" => (!$this->input->post('checkboxSansEnseignant')) ? $this->input->post('teacher') : null
         );
+        //La recherche peut etre divisée en : par promo ou par nom du module
         if ($this->input->post('searchType') == 'module') {
             $result = $this->contenu->getContenus($data);
             $recherche = 'module';
@@ -92,7 +93,10 @@ class modules extends SRV_Controller
         $this->index($result, $data, null, "Recherche", $recherche);
     }
 
-    // TODO commenter cette fonction de la mort ........
+    /**
+     * Inscription à un module, cette fonction vérifie si l'enseignant peut s'incrire
+     * ou non au contenu.
+     */
     public function inscriptionModule()
     {
         if ($this->input->get('module') && $this->input->get('partie')) {
@@ -118,6 +122,7 @@ class modules extends SRV_Controller
 
                             );
                             //supprime le module selectionné de la variable session
+                            //permet de laisser afficher le resultat de la recherche precedente
                             if(count($this->session->userdata('result'))>0){
                                 $sessionArray =$this->session->userdata('result');
                                 $this->session->unset_userdata('result');

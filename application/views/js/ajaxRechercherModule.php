@@ -1,3 +1,8 @@
+<?php /**
+ *
+ *  Fichier réalisant les requetes ajax du reporting du panel module
+ */
+?>
 <script type="text/javascript">
     //Permet de recuperer le contenu pour afficher les graphiques
     $('.ajaxReporting').click(function(e){

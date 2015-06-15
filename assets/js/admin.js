@@ -1,3 +1,7 @@
+/**
+ * Cache tous les panels au chargement de l'administration et affiche le panel
+ * qui se trouve dans $('#affiche').text()
+ */
 $(function(){
     hideAll();
     var show = $('#affiche').text();
@@ -12,12 +16,18 @@ $(function(){
     });
 });
 
+/**
+ * Permet de cacher tous les panels
+ */
 function hideAll(){
     $('.col-md-10 .row').each(function(e){
         $(this).addClass('customHide').removeClass('animated bounceInDown');
     });
 };
 
+/**
+ * Supprime le btn de la dom
+ */
 function removeBTN(){
     $('.adminChoice').each(function(){
         $(this).removeClass('btn');
@@ -25,6 +35,11 @@ function removeBTN(){
     $('.nav-pills li').removeClass('active');
 }
 
+/**
+ * Lorsqu'on envoit un formulaire, on envoit aussi des variables qui
+ * permettent d'ouvrir l'adminisatration à l'état t-1 avant l'envoit du formulaire.
+ * Grosso modo le panel d'avant (suppression contenu/modification/....) reste affiché.
+ */
 function activeRefresh(){
     $('.adminChoice').each(function(){
         if($(this).attr('href')==$('#affiche').text()){

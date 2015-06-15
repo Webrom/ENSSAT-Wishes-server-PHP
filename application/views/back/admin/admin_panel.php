@@ -274,12 +274,15 @@
                             <div class="col-md-12 col-no-border">
                                 <label for="selectEnseignant" class="control-label">Enseignants</label>
                                 <select name="enseignants[]" class="form-control chosen-select" id="selectEnseignant" multiple style="height: 380.5px" data-placeholder="Veuillez choisir un ou plusieurs enseignant(s)">
-                                    <?php foreach($enseignants as $enseignants):?>
-                                        <option value="<?php echo $enseignants['login'];?>">
-                                            <?php echo  $enseignants['nom'].' '.
-                                                $enseignants['prenom'] . " " .
+                                    <?php foreach($enseignants as $enseignant):?>
+                                        <?php if(!($enseignant['login']==$this->session->userdata('username'))):?>
+                                        <option value="<?php echo $enseignant['login'];?>">
+                                            <?php echo  $enseignant['nom'].' '.
+                                                $enseignant['prenom'] . " " .
                                                 " : ".
-                                                $enseignants['login'];?></option>
+                                                $enseignant['login'];?>
+                                        </option>
+                                        <?php endif;?>
                                     <?php endforeach;?>
                                 </select>
                             </div>

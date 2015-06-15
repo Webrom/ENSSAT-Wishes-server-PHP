@@ -1,4 +1,4 @@
-// start functions boostraps js
+// Jquery pour rajouter un peu de dynamisme à l'application
 
 $(function(){
 	$('.bp-component [data-toggle="tooltip"]').tooltip();

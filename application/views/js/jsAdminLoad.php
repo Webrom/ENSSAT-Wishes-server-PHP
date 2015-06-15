@@ -1,5 +1,6 @@
 <?php
 /**
+ * Permet de charger le js spécifique au panel admin
  * Created by PhpStorm.
  * User: zahead
  * Date: 29/05/15

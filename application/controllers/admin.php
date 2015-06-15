@@ -81,6 +81,12 @@ class admin extends SRV_Controller
             $this->index($data['enseignant'] . " n'a pas assé d'heure de disponible pour ce contenu", 'alert-danger', '#modifyContenu');
     }
 
+    /**
+     * gere l'affichage des vues
+     * @param null $msg
+     * @param null $success
+     * @param null $active
+     */
     public function index($msg = null, $success = null, $active = null)
     {
         //on est obligé d'envoyer des tableaux séparés pour pouvoir utiliser la liste des enseignants/modules/etc... plusieurs fois
