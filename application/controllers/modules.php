@@ -191,6 +191,9 @@ class modules extends SRV_Controller
         $this->index(null, null, $info);
     }
 
+    /**
+     * Fonction pour afficher les modules en fonction des promotions
+     */
     public function displayModuleByProm()
     {
         $result = array(
@@ -199,6 +202,9 @@ class modules extends SRV_Controller
         $this->index($result, null, null, "Recherche");
     }
 
+    /**
+     * Fonction pour aficher les modules en fonction des semestres
+     */
     public function displayModuleBySemester()
     {
         $result = array(
@@ -233,6 +239,10 @@ class modules extends SRV_Controller
         ));
     }
 
+    /**
+     * @return bool
+     * Fonction pour créer les graphiques modules
+     */
     public function retreiveChartContenuModule(){
         if($this->input->get('gData')!=null) {
             $data = array(
@@ -248,6 +258,10 @@ class modules extends SRV_Controller
 
     }
 
+    /**
+     * @return bool
+     * Fonction pour créer les graphiques professeurs
+     */
     public function retreiveChartTeacher(){
         if($this->input->get('gData')!=null) {
             $data = array(
@@ -258,6 +272,10 @@ class modules extends SRV_Controller
             return false;
     }
 
+    /**
+     * @return bool
+     * Fonction pour créer les graphiques semestres
+     */
     public function retreiveChartSemester(){
         if($this->input->get('gData')!="noSemester") {
             $data = array(

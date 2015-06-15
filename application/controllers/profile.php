@@ -84,8 +84,8 @@ class profile extends SRV_Controller
     }
 
     /**
-     * fonction pour modifier le statutaire de l'utilisateur courrant
-     * a noter : l'utilisateur est une fois de plus considéré comme responsable: aucune vérification ne
+     * Fonction pour modifier le statutaire de l'utilisateur courrant
+     * A noter : l'utilisateur est une fois de plus considéré comme responsable: aucune vérification ne
      * sera faite sur le statutaire qu'il s'ajoute (exemple : possible de changer à 10000 heures.)
      */
     public function modifyStatutaire()
@@ -109,7 +109,7 @@ class profile extends SRV_Controller
     }
 
     /**
-     * fonction pour modifer la décharge de l'utilisateur courant
+     * Fonction pour modifer la décharge de l'utilisateur courant
      */
     public function modifyDecharge()
     {

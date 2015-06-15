@@ -13,6 +13,12 @@ class SRV_Controller extends CI_Controller{
         parent::__construct();
     }
 
+    /**
+     * @param $userName
+     * @return mixed
+     * Fonction pour calculer le pourcentage d'heures prises par un professeur donné
+     * Fonction générique utilisée très souvent...
+     */
     public function getPercentage($userName){
         /* CALCUL POURCENTAGE HEURES PRISES */
         $heuresprises = $this->contenu->getHeuresPrises($userName);

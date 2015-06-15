@@ -33,7 +33,7 @@ class Upload extends SRV_Controller
     }
 
     /**
-     * permet l'upload d'images pour le profil utilisateur
+     * Permet l'upload d'images pour le profil utilisateur
      * NOTE : les valeurs d'upload max seront à reconfigurer si le site est mis en production.
      * Pour des soucis de simplicités, il n'y a pas de limites décentes, toutes les images vont s'uploader...!
      */
@@ -63,7 +63,7 @@ class Upload extends SRV_Controller
     }
 
     /**
-     * permet de supprimer l'image de l'utilisateur et de revenir à l'image par défaut.
+     * Permet de supprimer l'image de l'utilisateur et de revenir à l'image par défaut.
      */
     public function remove()
     {
