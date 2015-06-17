@@ -63,7 +63,7 @@ class modules extends SRV_Controller
     /**
      * Recherche des modules
      */
-    public function displayModule()
+    public function displayModuleContenus()
     {
         $data = array(
             "module" => $this->input->post('module'),
@@ -73,12 +73,11 @@ class modules extends SRV_Controller
         );
         //La recherche peut etre divisée en : par promo ou par nom du module
         if ($this->input->post('searchType') == 'module') {
-            $result = $this->contenu->getContenus($data);
             $recherche = 'module';
         } else {
-            $result = $this->contenu->getContenus($data);
             $recherche = 'promo';
         }
+        $result = $this->contenu->getContenus($data);
         $data = array(
             "moduleSelected" => $this->input->post('module'),
             "teacherSelected" => ($this->input->post('teacher')) ? $this->users->getUserDataByUsername($this->input->post('teacher')) : "no",

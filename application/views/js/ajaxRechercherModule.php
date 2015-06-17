@@ -41,10 +41,16 @@
                                                 fontSize: 20,
                                                 fontWeight: "bold"
                                             },
+                                            legend: {
+                                                fontFamily: "Opensans",
+                                                maxWidth: 350,
+                                                itemWidth: 120
+                                            },
                                             theme: "theme2",
                                             data: [
                                                 {
                                                     type: "pie",
+                                                    fontFamily: "Opensans",
                                                     showInLegend: true,
                                                     toolTipContent: "{y} - HED",
                                                     yValueFormatString: "",
@@ -71,6 +77,11 @@
                                                 fontSize: 20,
                                                 fontWeight: "bold"
                                             },
+                                            legend: {
+                                                fontFamily: "Opensans",
+                                                maxWidth: 350,
+                                                itemWidth: 150
+                                            },
                                             data: [{
                                                 type: "pie",
                                                 showInLegend: true,
@@ -96,6 +107,9 @@
                                                 fontFamily: "Opensans",
                                                 fontSize: 20,
                                                 fontWeight: "bold"
+                                            },
+                                            legend: {
+                                                fontFamily: "Opensans"
                                             },
                                             data: [
                                                 {

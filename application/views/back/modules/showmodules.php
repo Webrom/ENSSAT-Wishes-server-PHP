@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                        <?php if(sizeof($myModules)>0):?>
+                        <?php if(count($myModules)>0):?>
                         <div class="exportResult">
                             <?php $this->session->set_userdata($dataExport=array("dataExportMyModules"=>serialize($myModules)));?>
                             <?php echo anchor('modules/exportCSVMyModules','Recuperer au format CSV','class="btn btn-info" download="exportCSV"');?>
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <?php echo form_open('modules/displayModule')?>
+                                <?php echo form_open('modules/displayModuleContenus')?>
                                 <div id="searchByModule" class="<?php if($rechercheonglet=='promo')echo  'customHide ';?>col-md-4 col-no-border">
                                     <label for="selectModule" class="control-label">Module</label>
                                     <select name="module" data-placeholder="Pas de module en particulier..." class="form-control chosen-select-deselect" id="selectModule">
@@ -141,53 +141,50 @@
                     </div>
                     <div class='tab-pane fade <?php if($onglet=="Reporting") echo "active in"?>' id="reporting">
                         <div class="row">
-                            <div class="col-md-6 col-no-border">
-                                <legend>Contenu d'un module</legend>
-                                <div class="row">
-                                    <div id="chartSearchByModule" class="col-md-12 col-no-border">
-                                        <label for="selectModule" class="control-label">Module</label>
-                                        <select data-placeholder="Selectionnez un module" name="module" data-placeholder="Pas de module en particulier..." class="form-control chosen-select-deselect" id="selectModu">
-                                            <option value=""></option>
-                                            <?php foreach($modules as $module):?>
-                                                <option value="<?php echo $module['ident'];?>" <?php if(isset($moduleSelected) && $moduleSelected == $module['ident']) echo 'selected="selected"';?>><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
-                                            <?php endforeach;?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12 col-no-border text-right">
-                                        <?php echo anchor('#','Rechercher','id="retreiveChartContenuModule" class="selectModuleChart ajaxReporting btn btn-success"')?>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div id="selectModuChart" class="customHide" style="height: 300px; width: 100%;"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-no-border">
-                                <legend>Contenu d'un professeur</legend>
-                                <div class="row">
-                                    <div class="col-md-12 col-no-border" id="chartTeacher">
-                                        <label for="selectTeacher" class="control-label">Professeur</label>
-                                        <select data-placeholder="Selectionnez un professeur" name="selectTeacher" class="form-control chosen-select-deselect" id="selectTeac">
-                                            <option id="teacherModuleAjax" value=""></option>
-                                            <?php foreach($enseignants2 as $enseignant2):?>
-                                                <option value="<?php echo $enseignant2['login'];?>"><?php echo $enseignant2['nom']." ".$enseignant2['prenom'];?></option>
-                                            <?php endforeach;?>
-                                            <option value="">Aucun</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12 col-no-border text-right">
-                                        <?php echo anchor('#','Rechercher','id="retreiveChartTeacher" class="selectTeacherChart ajaxReporting btn btn-success"')?>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div id="selectTeacChart" class="customHide" style="height: 300px; width: 100%;"></div>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 col-no-border">
-                            <legend>Detail d'un semestre</legend>
+                            <legend>Contenu d'un module</legend>
                             <div class="row">
-                                <div class="col-md-6 col-no-border">
+                                <div id="chartSearchByModule" class="col-md-12 col-no-border">
+                                    <label for="selectModule" class="control-label">Module</label>
+                                    <select data-placeholder="Selectionnez un module" name="module" data-placeholder="Pas de module en particulier..." class="form-control chosen-select-deselect" id="selectModu">
+                                        <option value=""></option>
+                                        <?php foreach($modules as $module):?>
+                                            <option value="<?php echo $module['ident'];?>" <?php if(isset($moduleSelected) && $moduleSelected == $module['ident']) echo 'selected="selected"';?>><?php echo $module['ident']." Promotion: ".$module['public'];?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 col-no-border text-right">
+                                    <?php echo anchor('#','Rechercher','id="retreiveChartContenuModule" class="selectModuleChart ajaxReporting btn btn-success"')?>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="selectModuChart" class="customHide" style="height: 300px; width: 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <legend>Contenu d'un professeur</legend>
+                            <div class="row">
+                                <div class="col-md-12 col-no-border" id="chartTeacher">
+                                    <label for="selectTeacher" class="control-label">Professeur</label>
+                                    <select data-placeholder="Selectionnez un professeur" name="selectTeacher" class="form-control chosen-select-deselect" id="selectTeac">
+                                        <option id="teacherModuleAjax" value=""></option>
+                                        <?php foreach($enseignants2 as $enseignant2):?>
+                                            <option value="<?php echo $enseignant2['login'];?>"><?php echo $enseignant2['nom']." ".$enseignant2['prenom'];?></option>
+                                        <?php endforeach;?>
+                                        <option value="">Aucun</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 col-no-border text-right">
+                                    <?php echo anchor('#','Rechercher','id="retreiveChartTeacher" class="selectTeacherChart ajaxReporting btn btn-success"')?>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="selectTeacChart" class="customHide" style="height: 300px; width: 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="row">
+                                <legend>Detail d'un semestre</legend>
+                                <div class="col-md-12 col-no-border">
                                     <label for="selectSeme" class="control-label">Semestre</label>
                                     <select name="semester" data-placeholder="Pas de semestre en particulier..." class="form-control chosen-select-deselect" id="selectSeme">
                                         <option value="noSemester"></option>
@@ -196,15 +193,14 @@
                                         <?php endforeach;?>
                                     </select>
                                 </div>
-                                <div class="col-md-6 col-no-border text-center">
+                                <div class="col-md-12 col-no-border text-right">
                                     <?php echo anchor('#','Rechercher','id="retreiveChartSemester" class="selectSemesterChart ajaxReporting btn btn-success" style="margin-top: 18px;"')?>
                                 </div>
                             </div>
+                            <div class="col-md-12 col-no-border">
+                                <div id="selectSemeChart" class="customHide" style="height: 300px; width: 100%;"></div>
+                            </div>
                         </div>
-                        <div class="col-md-12 col-no-border">
-                            <div id="selectSemeChart" class="customHide" style="height: 300px; width: 100%;"></div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
