@@ -25,6 +25,8 @@ class Upload extends SRV_Controller
         $data['pourcentage'] = $dataPercentage['pourcentage'];
         $data['heuresprises'] = $dataPercentage['heuresprises'];
         $data['heurestotales'] = $dataPercentage['heurestotales'];
+        $data['avatar'] = $this->users->getAvatar($this->session->userdata('username'));
+
 
         $this->load->view('header');
         $this->load->view('back/template/header', $data);

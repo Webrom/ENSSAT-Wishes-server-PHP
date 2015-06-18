@@ -41,7 +41,9 @@
                     </li>
                 <?php endif;?>
                 <li class="hideMenu">
-                    <a href="<?php echo base_url()?>index.php/profile">Profil</a>
+                    <a href="<?php echo base_url()?>index.php/profile">
+                        Profil
+                    </a>
                 </li>
                 <li class="hideMenu">
                     <a href="<?php echo base_url()?>index.php/login/logout">Déconnexion</a>
@@ -55,7 +57,10 @@
                 </li>
                 <?php endif;?>
                 <li>
-                    <a href="<?php echo base_url()?>index.php/profile">Profil</a>
+                    <a href="<?php echo base_url()?>index.php/profile">
+                        <img class="media-object img-thumbnail" alt="25x25" src="<?php echo base_url()?>uploads/<?php echo $avatar;?>" style="width: 20px; height: 20px;float: left;margin-right: 5px;padding: 0">
+                        Profil
+                    </a>
                 </li>
                 <li>
                     <a href="<?php echo base_url()?>index.php/login/logout">Déconnexion</a>
