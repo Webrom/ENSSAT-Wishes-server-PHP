@@ -63,7 +63,7 @@ body {
   text-align: justify;
   font-family: "opensans", serif;
   color: #732b41;
-  background-color: #ffffff;
+  background-color: #ececec;
 }
 body a {
   color: #2c3e50;
@@ -75,7 +75,6 @@ body .pointer {
   cursor: pointer;
 }
 #display-bg {
-  background: #bdc3c7 none no-repeat scroll 0% 0%;
   position: fixed;
   width: 100%;
   height: 45%;
