@@ -287,7 +287,6 @@
       width: 100%;
       z-index: 200;
       a {
-        color : @button-color;
         &.btn {
           margin-right: 5px;
           &:last-child {
@@ -297,27 +296,31 @@
       }
     }
 
+
 	/* Buttons */
 	.btn {
 
 		margin-left: 5px;
 		color: @button-color;
+        text-transform: uppercase;
+        text-decoration: none;
 		background-color: @button-bg;
 		border-width: @button-border-width;
-		.border-radius(@button-radius);
+		.border-radius(@button-radius) !important;
 		.transition (300ms);
 		&:hover,
 		&:active,
 		&:focus {
-			color: @button-color;
+			color: @button-success-color;
 			background-color: @button-hover-bg;
+            .box-shadow(0px 1px 6px 0px lighten(@button-shadow, 15%));
 		}
 
 		&-default { .box-shadow(4px 4px 0 0 lighten(@button-bg, 15%)); }
 
       &-all{
         background: @button-info-bg;
-        .box-shadow(4px 4px 0 0 lighten(@button-info-bg, 15%));
+        font-weight: 500;
         &:hover,
         &:active,
         &:focus,
@@ -341,7 +344,7 @@
 
       &-generale{
         background: @bg-border-generale;
-        .box-shadow(4px 4px 0 0 lighten(@bg-border-generale, 15%));
+        font-weight: 500;
         &:hover,
         &:active,
         &:focus,
@@ -365,7 +368,7 @@
 
       &-contenu{
         background: @bg-border-contenu;
-        .box-shadow(4px 4px 0 0 lighten(@bg-border-contenu, 15%));
+        font-weight: 500;
         &:hover,
         &:active,
         &:focus,
@@ -388,7 +391,7 @@
       }
       &-module{
         background: @bg-border-module;
-        .box-shadow(4px 4px 0 0 lighten(@bg-border-module, 15%));
+        font-weight: 500;
         &:hover,
         &:active,
         &:focus,
@@ -411,7 +414,7 @@
       }
       &-user{
         background: @bg-border-user;
-        .box-shadow(4px 4px 0 0 lighten(@bg-border-user, 15%));
+        font-weight: 500;
         &:hover,
         &:active,
         &:focus,
@@ -436,7 +439,7 @@
 		&-primary {
 
 			background-color: @button-primary-bg;
-			.box-shadow(4px 4px 0 0 lighten(@button-primary-bg, 15%));
+            font-weight: 500;
 			&:hover,
 			&:active,
 			&:focus,
@@ -462,7 +465,7 @@
 		&-info {
 
 			background-color: @button-info-bg;
-			.box-shadow(4px 4px 0 0 lighten(@button-info-bg, 15%));
+            font-weight: 500;
 			&:hover,
 			&:active,
 			&:focus,
@@ -481,15 +484,15 @@
 			fieldset[disabled] &:active,
 			&.disabled.active,
 			&[disabled].active,
-			fieldset[disabled] &.active { background-color: @button-info-hover-bg; }
+			fieldset[disabled] &.active {
+              background-color: @button-info-hover-bg; }
 
 		}
 
 		&-success {
 
-			color: @button-success-color;
 			background-color: @button-success-bg;
-			.box-shadow(4px 4px 0 0 lighten(@button-success-bg, 15%));
+            font-weight: 500;
 			&:hover,
 			&:active,
 			&:focus,
@@ -519,7 +522,7 @@
 		&-warning {
 
 			background-color: @button-warning-bg;
-			.box-shadow(4px 4px 0 0 lighten(@button-warning-bg, 15%));
+            font-weight: 500;
 			&:hover,
 			&:active,
 			&:focus,
@@ -545,7 +548,7 @@
 		&-danger {
 
 			background-color: @button-danger-bg;
-			.box-shadow(4px 4px 0 0 lighten(@button-danger-bg, 15%));
+            font-weight: 500;
 			&:hover,
 			&:active,
 			&:focus,
@@ -571,7 +574,7 @@
 		&-other {
 
 			background-color: @button-other-bg;
-			.box-shadow(4px 4px 0 0 lighten(@button-other-bg, 15%));
+          font-weight: 500;
 			&:hover,
 			&:active,
 			&:focus,
@@ -601,10 +604,6 @@
 		/* Group buttons and dropdown */
 
 		&-group {
-
-			.btn {
-				&:hover { .box-shadow (none); }
-			}
 
 			&-vertical {
 				.btn {

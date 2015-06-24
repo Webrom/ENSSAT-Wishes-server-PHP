@@ -101,6 +101,4 @@ $(function(){
         $('#selectTeacher_chosen').addClass("customHidePulginChosen");
     }
 
-
-
 });

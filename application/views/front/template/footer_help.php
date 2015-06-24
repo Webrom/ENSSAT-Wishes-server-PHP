@@ -35,7 +35,7 @@
     <div class="alert alert-success alert-dismissible fade in text-center" role="alert" style="z-index:10000;position: fixed; bottom: 0; width: 100%; margin-bottom: 0">
         <strong>Cookies :</strong> Ce site utilise des cookies pour ses services.
         <a href="#" data-toggle="modal" data-target=".bp-cookie-modal-sm">En savoir plus</a>
-        <button type="button" class="btn btn-success" onclick="C.createCookie(C.cookieName, C.cookieValue, C.cookieDuration)" data-dismiss="alert" aria-label="Close">OK</button>
+        <button type="button" class="btn btn-success" data-dismiss="alert" aria-label="Close">OK</button>
     </div>
 <div class="modal fade bp-cookie-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-lg">

@@ -124,7 +124,7 @@
                                 </div>
                                 <div class="col-md-12 col-no-border">
                                     <div class="col-md-4 col-no-border">
-                                        <?php echo anchor("modules?page=Recherche","Reset",'title="Reset" class="btn btn-info"');?>
+                                        <?php echo anchor("modules/reset/Recherche","Reset",'title="Reset" class="btn btn-info" id="reset_search" ');?>
                                     </div>
                                     <div class="col-md-4 col-no-border">
                                         <label for="checkboxSansEnseignant">Sans enseignants</label>
@@ -204,7 +204,7 @@
                 </div>
             </div>
         </div>
-    <?php if(count($this->session->userdata('result'))>0 && $onglet=="Recherche"):?>
+    <?php if($this->session->userdata('result') && count($this->session->userdata('result'))>0 && $onglet=="Recherche"):?>
         <div class="row piiiich" id="modules_result">
             <div class="col-md-12 col-no-border">
                 <?php foreach($this->session->userdata('result') as $key => $val):?>

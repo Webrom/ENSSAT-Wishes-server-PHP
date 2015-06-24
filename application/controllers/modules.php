@@ -63,6 +63,20 @@ class modules extends SRV_Controller
     }
 
     /**
+     * reset formulaire, et supprime variable session
+     * @param $page
+     */
+    public function reset($page){
+        if(count($this->session->userdata('result'))>0)
+            $this->session->unset_userdata('result');
+        $info = array(
+            'success' => "alert-success",
+            'msg' => "Le formulaire a été réinitialisé"
+        );
+        $this->index(null, null, $info, $page, null);
+    }
+
+    /**
      * Recherche des modules
      */
     public function displayModuleContenus()
