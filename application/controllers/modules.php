@@ -138,7 +138,7 @@ class modules extends SRV_Controller
                             );
                             //supprime le module selectionné de la variable session
                             //permet de laisser afficher le resultat de la recherche precedente
-                            if(count($this->session->userdata('result'))>0){
+                            if($this->session->userdata('result') && count($this->session->userdata('result'))>0){
                                 $sessionArray =$this->session->userdata('result');
                                 $this->session->unset_userdata('result');
                                 array_splice($sessionArray,$this->input->get('key'),1);
