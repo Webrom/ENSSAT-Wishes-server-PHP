@@ -11,7 +11,7 @@
             </li>
             <?php if($enseignant):?>
                 <li class="list-group-item same-case">
-                    <?php echo $nom." ".$prenom;?>
+                    <?php echo $enseignant;?>
                 </li>
             <?php else: ?>
                 <li class="list-group-item same-case text-center">
