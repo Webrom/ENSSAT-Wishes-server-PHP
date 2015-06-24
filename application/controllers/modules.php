@@ -250,7 +250,7 @@ class modules extends SRV_Controller
      */
     public function exportCSVResult(){
         $this->exportCSV($data = array(
-            "export" => unserialize($this->session->userdata('dataExportResult'))
+            "export" => $this->session->userdata('result')
         ));
     }
 

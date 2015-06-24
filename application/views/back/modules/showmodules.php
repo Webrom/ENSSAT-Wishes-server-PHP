@@ -249,7 +249,6 @@
                 <?php endforeach; ?>
             </div>
             <div class="exportResult">
-                <?php $this->session->set_userdata($dataExport=array("dataExportResult"=>serialize($result)));?>
                 <?php echo anchor('modules/exportCSVResult','Recuperer au format CSV','class="btn btn-info" download="exportCSV"');?>
             </div>
         </div>
